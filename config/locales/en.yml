@@ -1,0 +1,337 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+
+################# General words
+  word:
+    or: Or
+    items: Items
+    friends: Friends
+    categories: Categories
+    newest: Newest
+    school: School
+
+  time:
+    now: Now
+    today: Today
+    yesterday: Yesterday
+    two_days_ago: 2 Days Ago
+    three_days_ago: 3 Days Ago
+
+  relationship:
+    father: Dad
+    mother: Mom
+    guardian: Guardian
+
+################# User
+  devise:
+    registrations:
+      user_not_found: Sorry we cannot find the user
+      finish_child_registration: "Finish registration by setting up your parent account and linking your child to their school."
+      app_intro_to_parent_1: "We've designed an app so kids can easily trade their way to new stuff."
+      app_intro_to_parent_2: "But having your watchful eye involved makes it even better!"
+      setup_your_account_header: Setup Your Account
+      login_subheader: "or <a href=\"/users/login\">Login</a> if you already have one."
+
+  child:
+    registration:
+      email_missing: Email is required for registration.
+      duplicate_first_name: Already have a child with same first name
+
+    landing:
+      made_app_title: 'Join <strong>%{child_name}</strong> and download the app.  Start trading whatever you and your friends are into.'
+      itwork_title_boy_1: 'Kids are using the app to trade:'
+      itwork_subtitle_boy_1: Video games, Legos, Trading Cards, Sports Gear, Clothing, Sneakers and much more.
+      itwork_title_boy_2: 'Trade What You Have, For What You Want!!'
+      itwork_title_girl_1: 'Kids are using the app to trade:'
+      itwork_subtitle_girl_1: Clothes, Toys, Stuffed Animals, Sports Gear, Crafts, Accessories and much more.
+      itwork_title_girl_2: 'Trade What You Have, For What You Want!!'
+      parent_approve_title_1: See what your
+      parent_approve_title_2: friends have!
+      parent_approve_subtitle_1: Find something you like
+      parent_approve_subtitle_2: and start a trade.
+      kids_post_title_1: It's super easy.
+      kids_post_subtitle_1: Snap a picture of what you
+      kids_post_subtitle_2: have and give it a quick
+      kids_post_subtitle_3: description.
+      kids_post_subtitle_4: That's it.
+      itsafe_title_1: Make a Deal!
+      itsafe_subtitle_1: An overplayed video game
+      itsafe_subtitle_2: for an outgrown sweater.
+      itsafe_subtitle_3: Now you can trade with your
+      itsafe_subtitle_4: friends anytime you want!
+      earn_buck_title_1: You can even earn a buck.
+      earn_buck_subtitle_1: Sell your old bike, sports equipment or
+      earn_buck_subtitle_2: video game console.
+
+################# Buying
+  item:
+    header:
+      browse_categories_below: Browse Categories Below
+
+    search:
+      placeholder: What are you looking for?
+      sorry_null_search: Sorry, couldn't find ...
+      null_search_tip: Double check your spelling
+
+    friends:
+      new_to_circle:
+        title: Just Joined
+        tip: "Check Out %{sender_possessive_form} Shop"
+      new_listing:
+        title: Has New Stuff in Their Shop!
+        tip: Jump On It Before It Gets Grabbed
+      like_item:
+        title: Likes Your Item
+        tip: Maybe You Can Trade!
+
+    action:
+      report_item: Report Item
+      post_item: Post Item
+
+  buying:
+    question_reply:
+      title: "Answered You"
+      tip: "See What %{sender_pronoun_form} Said"
+
+################# Selling
+  selling:
+    choose_category:
+      header: What do you want to Post?
+      tip: Pick a Category Below
+    photo_tips:
+      header: Take a <span class='warning-color'>GREAT BIG</span> picture!
+      tip: Find a bright, plain spot to set up the shot.
+      take_picture: Take Picture
+    form:
+      header: Describe Your Item
+      tip: Is it for a boy, girl or both?  What age?  How much?
+    end_item:
+      confirm: Do you really want to end this item?
+    has_question:
+      title: Has a Question or Comment
+      tip: "Don't Leave %{sender_object_form} Hangin'"
+
+################# Trading
+  trading:
+    ask_question:
+      header: Questions/Comments
+      placeholder: What do you want to say...
+      submit_label: Send Question
+      submitting_label: Sending Question
+      submitted_label: Question Sent
+      warning: Please enter your words about this trade
+    new_trade_from_customer:
+      title:  Wants to Trade!
+      tip: "Pick Something From %{sender_possessive_form} Shop"
+    new_trade_from_merchant:
+      title: Invite Sent
+      tip: Trade Details
+    trade_reply:
+      title: "Answered You"
+      tip: "See What %{sender_pronoun_form} Said"
+    trade_reply_sent:
+      title: Your Pick Was Sent
+      tip: Trade Details
+      notice: "Successfully updated the trade.  Please wait for %{the_other_user_name} to agree with the trade."
+    trade_accepted:
+      title: Wants to Trade Too!
+      tip: "See What %{sender_pronoun_form} Picked"
+    trade_completed:
+      title:
+      tip: Pick a Time and Place to Meet
+      notice: Successfully reached agreement from both sides
+    trade_parent_approval:
+      title: Is Waiting For Trade Approval
+      tip: Check Out the Details
+    trade_parent_approval_needed:
+      title: Waiting for Your Parent's Approval
+      tip: Check Out the Details
+    trade_beta_parent_approved:
+      title: Trade Approved!
+      tip: "Wait for %{the_other_user_name} to Reply"
+    trade_alpha_parent_approved:
+      title: Trade Approved!
+      tip: Pick a Time and Place to Meet
+    trade_parent_not_approved:
+      title: This Trade Is Not Approved
+      tip: Pick Something Else
+    trade_parent_not_approved_by_cubbyshop:
+      title: Sorry, This Trade Is Not Approved
+      tip: ""
+    picked_meeting:
+      title: Agrees to Trade
+      tip: See Where and When to Meet
+      warning: You need to describe where and when to meet
+    picked_meeting_sent:
+      title: "Needs to \"OK\" Meeting Place"
+      tip: Trade Details
+      notice: "Successfully sent out message to %{the_other_user_name}"
+    meeting_changed:
+      title: Meeting Place Has Been Changed
+      tip: See Where and When to Meet
+    meeting_changed_sent:
+      title: Meeting Place Changed
+      tip: Trade Details
+    meeting_agreed:
+      title: Agrees to the Meeting Place
+      tip: Don't Forget Your Stuff
+    meeting_agreed_sent:
+      title: Meeting Place is All Set!
+      tip: Trade Details
+    trade_declined:
+      notice: Successfully declined and cancelled the trade
+    trade_ended:
+      title: That trade didn't work out.
+      tip: Find one that will!
+      notice: "That trade didn't work.  Find one that will!"
+    trade_completion_confirmed:
+      notice: Successfully confirmed a completed trade
+    trade_updated:
+      notice: Trade update successfully
+    alert:
+      incomplete_registration:
+        subject: Your parent needs to complete registration.
+      new_user_items_mininum:
+        subject: Your shop is running low.
+        tip: "You need to post %{item_count} items before you start trading! Go find your stuff!"
+      zero_items:
+        subject: Your shop is empty!
+      not_enough_items:
+        subject: Your shop is almost empty!
+        tip: "You must have at least %{item_count} items in your shop to start a trade."
+      account_not_confirmed:
+        subject: Please ask your parent to approve your account.
+        tip: Your parent needs to confirm their account first. Go tell them you want to get started trading now!
+      account_not_confirmed_parent:
+        subject: Your account must be verified.
+        tip: Please check your email.
+      low_item_warning:
+        subject: Your shop is running low.
+        tip: Remember to post more items so there's plenty to choose from.
+
+################# Parents
+  parenting:
+    finish_registering:
+      title: Link them to their school.
+      subtitle: KidsTrade helps kids connect with their friends and classmates.  So they're trading with kids they already know!
+      home_address: Home Address
+
+    check_new_item:
+      notification_title: Posted New Items
+      email_subject: Let the Trading Begin!
+      email_main_paragraphs:
+        - "Let the trading begin!"
+      email_sub_paragraphs:
+        - "Your child has been busy posting stuff to trade."
+        - "Login to the app anytime with your email and password to see what they are up to. Remember, you have the option to edit or delete postings at any time."
+      email_bottom_tip:
+
+    item_approval:
+      notification_title: Approve Postings and Let the Trading Begin!
+      email_subject: Approve Postings and Let the Trading Begin!
+      email_main_paragraphs:
+        - "As soon as you approve, the trading can begin!"
+      email_sub_paragraphs:
+        - "Your child has been busy snapping pictures and setting prices, but until you approve the items, all #{sender_pronoun} can do is watch while other kids have all the fun."
+        - "Since this is their first time posting, please review each item carefully for picture quality, price and spelling."
+      email_bottom_tip: "In the future, if there is no response after 24 hours, postings go live."
+
+    trade_approval:
+      email_subject: "%{sender_name} wants to trade.  Approval Needed!"
+      email_main_paragraphs:
+        - "Your child wants to trade with a friend!"
+      email_sub_paragraphs:
+        - "Both kids are happy with this trade... we just want to make sure you are, too. "
+        - "They’re just waiting for your approval.  Please take a moment to review the details, so these kids can get on with the fun."
+
+    your_child_was_reported:
+      email_subject: "%{child_first_name} was reported. Please review."
+      email_greeting: "Dear %{parent_first_name},"
+      email_main_paragraphs:
+        - "Another user has reported your child."
+      email_sub_paragraphs:
+        - "%{child_first_name} was reported for inappropriate activity. This could be a misunderstanding, a simple mistake or a valid complaint."
+        - "Please log in to review the flagged activity."
+
+    incomplete_registration:
+      email_subject: "You’re not finished yet, but we saved your place!"
+      email_main_paragraphs:
+        - "Complete your registration. It won’t take long!"
+      email_sub_paragraphs:
+        - "You started to register for KidsTrade and then you just... disappeared!"
+        - "Signing up is quick and easy and your child will be eternally grateful."
+
+    incomplete_child_registration:
+      email_subject: Finish Registration
+      email_main_paragraphs:
+        - "Did you tell %{child_first_name} all about KidsTrade?"
+      email_sub_paragraphs:
+        - "Let this video do the talking..."
+        - "<div style='margin:0 auto 30px auto; text-align:center;'><a href='%{video_url_for_parent}' target='_blank'><img src='http://www.kidstrade.com/assets/videos/how-it-works.jpg'></a></div>"
+        - "Thanks to you, their account is set up. Now make sure they log into the app so they can start posting and trading with friends!"
+        - "(Be sure to download the app on the device your child uses)"
+
+    incomplete_kid_registration:
+      email_subject: Finish Registration
+
+    new_buy_request:
+      email_subject: "%{child_first_name} Found Something %{child_pronoun} Wants!"
+      email_main_paragraphs:
+        - "Your child wants to buy something."
+      email_sub_paragraphs:
+        - "Take a look at what %{child_pronoun} found."
+
+    new_buy_request_to_seller_parent:
+      email_top_banner_message: "(Sometimes Kids Even Sell, Too!)"
+      email_subject: "%{child_first_name} has a potential sale!"
+      email_section_header: "GREAT NEWS FOR %{child_first_name}!"
+      email_section_description: "A buyer is interested in this item:"
+      email_warning: "* Please do not respond to this email. Contact buyer’s parent directly using the info provided."
+
+################# Abandonment Emails
+    child_login_reminder:
+      email_subject: "Is %{child_first_name} as excited as you are? %{child_pronoun} should be!"
+      email_main_paragraphs:
+        - "Did you tell %{child_first_name} all about KidsTrade?"
+      email_sub_paragraphs:
+        - "<a href='%{video_url_for_parent}'>Let this video do the talking...</a>"
+        - "<div style='margin:0 auto; text-align:center;'><a href='%{video_url_for_parent}' target='_blank'><img src='http://www.kidstrade.com/assets/videos/how-it-works.jpg'></a></div>"
+        - "Thanks to you, their account is set up. Now make sure they log into the app so they can start posting and trading with friends!"
+        - "(Be sure to download the app on the device your child uses)"
+
+    child_posting_reminder:
+      email_subject: "Tell %{child_first_name} to Get in the Game!"
+      email_main_paragraphs:
+        - "Don't just sit on the sidelines... Start Posting!"
+      email_sub_paragraphs:
+        - "Your child is registered.  %{child_pronoun} has a user name.  %{child_pronoun} picked a seriously cool avatar.  But then %{child_pronoun} walked away without posting!"
+        - "<a href='%{video_url_for_kid}' target='_blank'>Maybe this video will help:</a>"
+        - "<div style='margin:0 auto; text-align:center;'><a href='%{video_url_for_kid}' target='_blank'><img src='http://www.kidstrade.com/assets/videos/how-it-works.jpg'></a></div>"
+        - "Make sure they log into the app so they can start posting! Because no one can invite them to trade if they don’t have any items."
+        - "(Be sure to download the app on the device your child uses)"
+
+    item_approval_reminder:
+      email_subject: "%{child_first_name}'s postings are ready (and waiting) for your approval."
+      email_main_paragraphs:
+        - "We know you’re busy, but approval only takes a few moments!"
+      email_sub_paragraphs:
+        - "Your child’s items are still waiting for the thumbs up from you. Once approved, the fun begins!"
+
+    verify_account_reminder:
+      email_subject: 'It takes seconds to verify your account.'
+      email_main_paragraphs:
+        - "Just a friendly reminder... It only takes a few seconds to verify your child’s account."
+      email_sub_paragraphs:
+        - "Please log in to complete verification, so your child can start trading right away!"
+
+################# Notification - others
+  notification:
+    is_following:
+      title: Is Following Your Shop
+      tip: Check Out What They Have
+
+################# Errors
+  errors:
+    need_to_login_to_app: "You need to log into the KidsTrade app to see what's going on. Download it. Its Free!"

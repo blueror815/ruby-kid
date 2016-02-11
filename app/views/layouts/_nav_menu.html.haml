@@ -1,0 +1,63 @@
+.default-menu(id="nav-menu")
+  .col-md-4
+    %ul(class="nav navbar-nav")
+      %li
+        %a(href="/")
+          %span(class='glyphicon glyphicon-home')
+          Home
+      %li 
+        %a(href="/items")
+          %span(class='glyphicon glyphicon-usd')
+          For Sale Items
+      %li 
+        %a(href="/items/new")
+          %span(class='glyphicon glyphicon-edit')
+          Post Your Item
+  .col-md-3
+    = form_tag(items_path, class: "form-inline", role: "form", method: "get") do
+      .form-group
+        %input.form-control(type="text" id="query" name="query" placeholder="Search for Items")
+      %button(class='btn btn-default' type='submit')
+        %span(class='glyphicon glyphicon-search')
+        Search
+        
+  .col-md-5
+    %ul(class="nav navbar-nav")
+      - if user_signed_in?
+        %li
+          = link_to notifications_path, class: 'btn btn-sm' do
+            %span(class='glyphicon glyphicon-envelope')
+            Messages
+            %span.badge #{@notifications_count}
+      %li
+        %a(href="#{carts_path}" class='btn btn-sm')
+          %span(id='header_cart_link' class='glyphicon glyphicon-shopping-cart') 
+          Cart
+          - if @cart.item_count.to_i > 0
+            %span.badge #{@cart.item_count}  
+      
+      - if user_signed_in?
+        %li
+          = link_to destroy_user_session_path, method: :delete, class: 'btn btn-sm', role:'button' do
+            %span(class='glyphicon glyphicon-log-out')
+            Log Out
+        %li
+          = link_to edit_user_registration_path, class: 'btn btn-default', role:'button' do
+            %span(class='glyphicon glyphicon-user')
+            #{auth_user.user_name}
+      - else
+        %li
+          = link_to new_user_registration_path, class: 'btn btn-sm', role:'button' do
+            %span(class='glyphicon glyphicon-pencil')
+            Sign Up
+        %li
+          = link_to new_user_session_path, class: 'btn btn-sm', role:'button' do
+            %span(class='glyphicon glyphicon-log-in')
+            Login
+  
+%div(id="message-panel" class="clearfix")
+  - if flash[:error].present?
+    %h4(id="flash_error" class="alert alert-danger") #{flash[:error]}
+  - if flash[:notice].present?
+    %h4(id="flash_notice" class="alert alert-success") #{flash[:notice]}
+  - flash.clear

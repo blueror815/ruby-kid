@@ -1,0 +1,67 @@
+- ## 
+- # Required locals:
+- #   category <Category>
+- add_image = '/assets/icons/add@2x.png'
+
+= form_for(category, remote: !category.new_record?, html: { id: "category_#{category.id}"} ) do|f|
+  = f.hidden_field :male_icon_background_color, id: "male_icon_bg_color_#{category.id}"
+  = f.hidden_field :female_icon_background_color, id: "female_icon_bg_color_#{category.id}"
+  = f.hidden_field :male_index, id: "male_index_#{category.id}"
+  = f.hidden_field :female_index, id: "female_index_#{category.id}"
+  %div(class='pull-left')
+    = f.text_field(:name, class: 'form-control', placeholder: 'Category Name')
+    %br
+    = f.text_field(:icon_label, class: 'form-control', placeholder: 'Category Label on Icon')
+    %br
+      - if category.new_record?
+        = f.submit('Create New Category', class: 'btn btn-lg btn-success', :disable_with => "Submitting...")
+      - else
+        = f.submit('Save Category', class: 'btn btn-lg btn-primary', :disable_with => "Submitting...")
+        = link_to(category_path(id: category.id), method:'delete', remote: true, style:"margin:10px;", class:'btn btn-default', confirm:"Sure to delete this category?") do
+          %span.glyphicon.glyphicon-remove.warning-color/
+
+  %div(class='pull-right' style="display: inline-block;")
+    %table(class='gray-border-color')
+      %tbody
+        %tr
+          %td.text-center
+            = f.check_box(:male_index, { checked: category.for_male?, 'data-toggle'=>"tooltip", 'data-placement'=>"right", 'title'=>"Click to toggle whether category is For Boys" }, category.selected_male_index)
+            %br
+            = f.check_box(:male_hides_name, { 'data-toggle'=>"tooltip", 'data-placement'=>"right", 'title'=>"Click to toggle whether category name should be hidden" } )
+            = f.label(:male_hides_name, 'Hide name?', class: 'small-size-text')
+
+          %td.category-icon-placeholder(id="male_icon_cell_#{category.id}" style="background-color:#{category.male_icon_background_color.to_s}")
+            .btn-group
+              %button(type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false")
+                Icon:
+                %span.caret
+              = make_bg_color_dropdown_menu_for("male_icon_bg_color_#{category.id}", "male_icon_cell_#{category.id}")
+            %br
+              = make_category_picture_place_holder( category, :male_icon, "Category Icon for Boys" )
+              = f.file_field(:male_icon)
+          %td.category-icon-placeholder(id="male_camera_bg_cell_#{category.id}")
+            %label Camera BG:
+            %br
+              = make_category_picture_place_holder( category, :male_camera_background, "Category Camera Background for Boys" )
+              = f.file_field(:male_camera_background)
+        %tr
+          %td.text-center
+            = f.check_box(:female_index, { checked: category.for_female?, 'data-toggle'=>"tooltip", 'data-placement'=>"bottom", 'title'=>"Click to toggle whether category is For Girls" }, category.selected_female_index)
+            %br
+            = f.check_box(:female_hides_name, { 'data-toggle'=>"tooltip", 'data-placement'=>"right", 'title'=>"Click to toggle whether category name should be hidden" } )
+            = f.label(:female_hides_name, 'Hide name?', class: 'small-size-text')
+          %td.category-icon-placeholder(id="female_icon_cell_#{category.id}" style="background-color:#{category.female_icon_background_color.to_s}")
+            .btn-group
+              %button(type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false")
+                Icon:
+                %span.caret
+              = make_bg_color_dropdown_menu_for("female_icon_bg_color_#{category.id}", "female_icon_cell_#{category.id}")
+
+            %br
+              = make_category_picture_place_holder( category, :female_icon, "Category Icon for Girls" )
+              = f.file_field(:female_icon)
+          %td.category-icon-placeholder(id="female_camera_bg_cell_#{category.id}")
+            %label Camera BG:
+            %br
+              = make_category_picture_place_holder( category, :female_camera_background, "Category Camera Background for Girls" )
+              = f.file_field(:female_camera_background)

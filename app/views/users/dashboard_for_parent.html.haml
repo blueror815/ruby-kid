@@ -1,0 +1,26 @@
+%div(class='center-block content-width' style='padding-top: 40px;')
+  - auth_user.children.each do|child|
+    .user-avatar-wrapper
+      %div(class='user-avatar-circle')
+        %a(href="#{users_dashboard_path(id: child.id)}")
+          %img.user-avatar-icon(src="#{child.profile_image_url(:thumb)}" alt="#{child.display_name}" title="#{child.display_name}")
+      %div(class="text-user-name #{child.male? ? 'male-color' : 'female-color'}") #{child.display_name}
+  .user-avatar-wrapper
+    %div(class='user-avatar-circle center-block')
+      %a(href="#{users_new_child_path}")
+        %img(src="/assets/icons/add@2x.png" alt='Add Child' title='Add Child' class='add-user-avatar-icon vertical-center')
+    %div(class='text-user-name light-blue-color')
+      Add Child
+%p      
+%div(class='center-block content-width' style='padding-top: 40px;')
+  %table(class='table')
+    %tbody
+      %tr
+        %td
+          = link_to('Browse Items', newest_items_path, class: 'text-subject dark-title-color')
+      %tr
+        %td
+          = link_to('Account Info', edit_user_registration_path, class: 'text-subject dark-title-color')
+      %tr
+        %td
+          = link_to('Sign Out', users_logout_path, class: 'text-subject dark-title-color')

@@ -1,0 +1,70 @@
+<% content_for :head_extra do -%>
+  <noscript>
+    <style>
+      .es-carousel ul {
+        display: block;
+      }
+    </style>
+  </noscript>
+  
+  <style type="text/css">
+    #rb-gallery {
+      max-width: <%= ImageUploader::MAX_WIDTH %>px;
+      max-height: <%= ImageUploader::MAX_HEIGHT %>px;
+    }
+  </style>
+
+  <script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+    <div class="rg-image-wrapper">
+      {{if itemsCount > 1}}
+      <div class="rg-image-nav">
+        <a href="#" class="rg-image-nav-prev">Previous Image</a>
+        <a href="#" class="rg-image-nav-next">Next Image</a>
+      </div>
+      {{/if}}
+      <div class="rg-image"></div>
+      <div class="rg-loading"></div>
+      <div class="rg-caption-wrapper">
+        <div class="rg-caption" style="display:none;">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </script>
+<% end %>
+
+
+<div id="rg-gallery" class="rg-gallery">
+  <div class="rg-thumbs">
+    <!-- Elastislide Carousel Thumbnail Viewer -->
+    <div class="es-carousel-wrapper center-block">
+      <div class="es-nav">
+        <span class="es-nav-prev">Previous</span>
+        <span class="es-nav-next">Next</span>
+      </div>
+      <div class="es-carousel">
+        <ul>
+          <% @item.item_photos.each do |item_photo| -%>
+              <li>
+                <% if item_photo.image_processing -%>
+                  <span class='medium-gray-color'>Processing ...</span>
+                <% else -%>
+                  <a href="#"><img src="<%= item_photo.image_url(:thumb) %>" data-large="<%= item_photo.image_url %>" alt="<%= item_photo.name %>" data-description="<%= item_photo.name %>"/></a>
+                <% end -%>  
+              </li>
+          <% end -%>
+        </ul>
+      </div>
+      <div class="es-nav">
+        <span class="es-nav-prev" style="display: none;">Previous</span>
+        <span class="es-nav-next">Next</span>
+      </div>
+    </div>
+    <!-- End Elastislide Carousel Thumbnail Viewer -->
+  </div>
+  <!-- rg-thumbs -->
+</div><!-- rg-gallery -->
+
+<%= stylesheet_link_tag 'gallery/elastislide', 'gallery/style' %>
+
+<%= javascript_include_tag "jquery.tmpl.min", "jquery.elastislide", "gallery" %>

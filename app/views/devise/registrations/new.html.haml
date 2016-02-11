@@ -1,0 +1,11 @@
+- @page_title = 'New Account Registration'
+- content_for(:head_extra) do
+  :css
+    .alert-danger { margin: 0 auto; padding: 10px; display: inline-block; height: 40px; }
+
+- if @child
+  = render partial: 'form_for_parent', locals: { child: @child }
+- else
+  = render partial: 'form'
+
+  = render partial: 'devise/shared/links'

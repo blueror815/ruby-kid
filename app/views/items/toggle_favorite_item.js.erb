@@ -1,0 +1,4 @@
+<% @is_in_favorite_items ||= ::Items::FavoriteItem.where(["item_id = ? AND user_id = ?", @item.user_id, user_id: auth_user.try(:id)] ).count > 0
+-%>
+$("#favorite_item_icon_<%=@item.id%> img").removeClass("heart-open heart-filled").addClass("<%=@is_in_favorite_items ? 'heart-filled' : 'heart-open'-%>");
+$("#favorite_item_icon_<%=@item.id%> img").attr("src", "/assets/icons/heart-<%=@is_in_favorite_items ? 'filled' : 'open'-%>@2x.png");

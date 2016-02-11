@@ -1,0 +1,5 @@
+<% if flash[:error].present? -%>
+alert("Error: <%=flash[:error]%>");
+<% elsif params[:hide_element].present? -%>
+$("#<%= params[:hide_element] %>").fadeOut();
+<% end # flash[:error], hide_element -%>

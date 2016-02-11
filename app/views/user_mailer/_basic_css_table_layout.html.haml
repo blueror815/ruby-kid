@@ -1,0 +1,483 @@
+-# Expected instance variables:
+-#   @sender <User>
+-#   @recipient <User>
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+-# Optional instance variables:
+-#   @greeting <String> optional; such as 'Dear someone'
+-#   @footer_warning_notes <String> Warning notes below main table with alarm clock icon.
+-#   @host_uri <String> The host of the email assets like 'http://www.kidstrade.com'
+-#   @site_logo <String full path> default '/assets/logos/kidstrade-title@2x.png'
+-#   @statue_logo <String> default 'goat-statue'.  If empty, no statue logo would be shown.
+-#   @do_not_use_inline_style <boolean> optional; if set, avoids using inline style property to major elements.  Currently set when recipient email is Gmail.
+-#   @use_separator_gap <boolean> optional; if not set to false, shows a HR separate with spacing.
+-# Yielded content_for context:
+-#   :top_banner_center
+-#   :head_extra
+-#   :body_top
+-#   :footer_extra
+-#   :after_panel
+-# Use of @yield_top_banner_row means instead following structure of top banner defined here, specify the HTML inside yield content_for(:top_banner_row)
+-# Use of @alt_top_banner_row instead of default or @yield_top_banner_row
+-#   :login_msg (speech bubble), :idol_msg (goat idol/statue), :title_msg (site logo), :title_msg_mobile
+
+= render partial: 'user_mailer/basic_css_table_config'
+
+%html(lang="en")
+  %head
+    %title
+      = (@page_title.present? ? @page_title + ' - ' : '') + 'Kids Trade'
+
+    %meta(charset="UTF-8")
+    %meta(content='text/html; charset=UTF-8' http-equiv='Content-Type')
+    %meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+      :css
+        a { text-decoration: none; }
+        hr { background-color: #999999; border: 0; height: 1px; width: 100%; }
+        .desktop { display:block; }
+        .mobile { display:none; }
+        .desktop img { margin: 5% 2% 0 2%; max-width:96%; }
+        .mobile img { margin: 5% 2% 0 2%; max-width:90%; }
+
+        .main-table {
+          width: 866px;
+          height: auto;
+          margin: 1% auto;
+        }
+        .main-table td {
+          padding: 0;
+        }
+        .top-banner-first-cell {
+          width: 50%;
+          height: 120px;
+          vertical-align:top; text-align:right;
+        }
+        td.spacing-column-between-logos {
+          width: 3%;
+        }
+        td.top-banner-row {
+          height: #{@top_banner_height};
+          background: url('#{@host_uri}/assets/logos/top-banner-bg@2x.png') repeat-x;
+        }
+        td.top-banner-center-row {
+          width: 245px;
+        }
+        td.title-logo-row {
+          padding: 50px 3% 0 3%;
+          width: 50%;
+        }
+
+        .title-msg { width: 302px; float: left; margin: 0 0 0 6%; display: block; }
+        .title-msg-mobile { float: left; margin: 0 0 0 6%; display: none; }
+
+        .title_msg img { width: 345px; height: auto; }
+        .title_msg_mobile img { margin: 50px 0 5px 3%; }
+
+        .login-msg {
+          display: inline;
+          margin-right: 0;
+          vertical-align: top;
+        }
+        .login-msg img {
+          position: relative;
+          top: 0px;
+          left: 0px;
+        }
+        .idol-msg { display: inline; padding-top: 50px; }
+        .idol-msg-mobile { display: none; padding-top: 50px; }
+
+        .goat-statue {
+          background: url('#{@host_uri}/assets/logos/#{@statue_logo}@2x.png') no-repeat;
+          height: 213px;
+        }
+        a { text-decoration: none; }
+        p.sub-header {
+          margin: #{@text_margin};
+          font-weight:500;
+          font-size: 30px;
+          color:#666666;
+        }
+        p {
+          font-family: #{@font_family};
+          color:#{@font_color};
+        }
+        p.greeting {
+          margin: 15px 8% 30px 0;
+          width: 85%;
+          font-size: 24px;
+          font-weight:300;
+        }
+        p.section-title {
+          font-weight:500;
+          font-size: 32px;
+          width: 100%;
+          margin: 0 auto;
+          color:#666666;
+        }
+        p.section-text {
+          font-weight:300;
+          font-size: 28px;
+          color:#999999;
+        }
+        p.main-paragraph {
+          width: 85%;
+          margin: 40px auto 40px 0;
+          font-size: 30px;
+          font-weight:bold;
+          color:#666666;
+        }
+        p.sub-paragraph {
+          margin: 30px 8% 0 0;
+          width: 85%;
+          font-size: 24px;
+          font-weight:400;
+        }
+        hr {
+          background-color: #999999;
+          border: 0;
+          height: 1px;
+          width: 100%;
+        }
+        hr.secondary-hr {
+          height: 0;
+        }
+        .submit-button {
+          border-radius:6px !important;
+          border:0 !important;
+          padding: 12px;
+          margin: 5% auto;
+          color:#ffffff !important;
+          background-color: rgb(0, 149, 252) !important;
+          font-size: 1.8em;
+          width: 66%;
+          font-family: #{@font_family};
+          font-weight:500;
+          opacity:0.9;
+        }
+        .submit-button a {
+          color:#ffffff !important;
+        }
+        .response-image {
+        }
+        .body-content {
+          margin: #{@text_margin};
+          padding-bottom: 40px;
+        }
+        /* Smaller Screen ***************************************************/
+        @media only screen and (min-width: 481px) and ( max-width: 640px)
+        {
+          .desktop { display:none; }
+          .mobile { display:block; }
+          .main-table {
+            width: 96%;
+          }
+          td.top-banner-row {
+            height: 48px;
+            background:url('#{@host_uri}/assets/logos/top-banner-bg.png') repeat-x;
+          }
+          td.top-banner-center-row {
+            width: 180px;
+          }
+          td.top-banner-center-row img {
+            width: 200px;
+            margin-left: -50px;
+          }
+          td.title-logo-row {
+            vertical-align: top;
+            padding: 25% 0 0 2%
+          }
+          td.title-logo-row img {
+            width: 90%;
+            min-width: 140px;
+          }
+
+          .top-banner-first-cell {
+            width: 50%;
+            height: 50%;
+            min-height: 70px;
+          }
+          .title-msg { display: none; }
+          .title-msg-mobile {
+            display: block;
+            width: 100%;
+            margin: 10% 0 0 5%;
+          }
+          .title-msg-mobile img {
+            margin-top:50px;
+            max-width: 160px;
+          }
+          .login-msg {
+            padding: 0;
+          }
+          .login-msg img {
+            width: 50%;
+            vertical-align: top;
+          }
+
+          .idol-msg { display: none; }
+          .idol-msg-mobile { display: block; padding-top: 10px; }
+          .idol-msg-mobile img {  max-width: 80px; margin-right: 1%; }
+
+          .goat-statue {
+            background: url('#{@host_uri}/assets/logos/#{@statue_logo}.png') no-repeat;
+            height: 168px;
+          }
+          .body-content { margin: 0 3%; }
+          hr {
+            width: 96%;
+          }
+          p.greeting {
+            font-size: 1.1em;
+            margin-left: 20px !important;
+          }
+          p.sub-header {
+            font-weight: 500;
+            font-size: 1.2em;
+          }
+          p.section-title {
+            font-size: 28px;
+            line-height: 1.2;
+            margin: 0 auto;
+          }
+          p.section-text {
+            font-size: 26px;
+          }
+          p.main-paragraph {
+            font-size: 1.1em;
+            margin: 0 auto 0 20px !important;
+          }
+          p.sub-paragraph {
+            font-size: 1em;
+            margin: 30px auto 0 20px !important;
+          }
+          hr.secondary-hr {
+            height: 1;
+            margin: #{@text_margin};
+          }
+          .submit-button {
+            width: 90%;
+            margin: 0 5% 3% 5%;
+            font-size: 1.4em;
+          }
+        }
+        /* Smallest screen ******************************/
+        @media only screen and ( max-width: 480px)
+        {
+          .desktop { display:none; }
+          .mobile { display:block; }
+          .body-content { margin: 0 3%; }
+          .main-table {
+            width: 96%;
+          }
+          td.top-banner-row {
+            height: 38px;
+            background:url('#{@host_uri}/assets/logos/top-banner-bg.png') repeat-x;
+          }
+          td.top-banner-center-row {
+            width: 180px;
+          }
+          td.top-banner-center-row img {
+            width: 200px;
+            margin-left: -50px;
+          }
+          td.title-logo-row {
+            vertical-align: top;
+            padding: 25% 0 0 2%
+          }
+          td.title-logo-row img {
+            max-width: 140px;
+          }
+
+          .top-banner-first-cell {
+            width: 50%;
+            height: 50%;
+            min-height: 70px;
+          }
+          .title-msg { display: none; }
+          .title-msg-mobile {
+            display: block;
+            width: 100%;
+            margin: 10% 0 0 5%;
+          }
+          .title-msg-mobile img {
+            margin-top: 40px;
+            max-width: 120px;
+          }
+          .login-msg {
+            padding: 0;
+          }
+          .login-msg img {
+            width: 50%;
+            vertical-align: top;
+          }
+
+          .idol-msg { display: none; }
+          .idol-msg-mobile { display: block; padding-top: 10px; }
+          .idol-msg-mobile img {  max-width: 80px; margin-top:50px; margin-right: 1%; }
+
+          .goat-statue {
+            background: url('#{@host_uri}/assets/logos/#{@statue_logo}.png') no-repeat;
+            height: 168px;
+          }
+          hr {
+            width: 96%;
+          }
+          p.greeting {
+            font-size: 1.1em;
+            margin-left: 20px !important;
+          }
+          p.sub-header {
+            font-weight: 400;
+            font-size: 1.1em;
+          }
+          p.section-title {
+            font-size: 16px;
+            line-height: 1.2;
+            margin: 0 auto;
+          }
+          p.section-text {
+            font-size: 16px;
+          }
+          p.main-paragraph {
+            font-size: 1.1em;
+            margin: 0 auto 0 20px !important;
+          }
+          p.sub-paragraph {
+            font-size: 1em;
+            margin: 30px auto 0 20px !important;
+          }
+          hr.secondary-hr {
+            height: 1;
+            margin: #{@text_margin};
+          }
+          .submit-button {
+            width: 90%;
+            margin: 0 5% 3% 5%;
+            font-size: 1.4em;
+          }
+        }
+
+    = yield :head_extra
+
+  %body(style="background-color:#{@body_bgcolor};")
+
+    = yield :body_top
+
+    .clearfix
+
+    %table.main-table(cellspacing="0" style="width: 96%; height: auto; max-width: 868px; margin: 1% auto; border:0; background-color:#ffffff;")
+      %tbody
+        %tr
+          %td(colspan="3" style="height: #{@top_banner_corner}; background-color: #{@body_bgcolor}; padding:0;")
+            %div(style="width: 100%; margin: 0; background-color: #{@body_bgcolor};")
+              %div(style="width: 100%; margin: 0; border-radius: #{@top_banner_corner} #{@top_banner_corner} 0 0; background-color: #{@top_banner_bgcolor};")
+                = yield :top_banner_inside_text
+                &nbsp;
+
+        - if @yield_top_banner_row
+
+          = yield :top_banner_row
+
+        - elsif @alt_top_banner_row #######################
+          %tr
+            %td.top-banner-row(colspan="3" style="width: 100%; padding:0;")
+
+              %table(style="width: 100%;")
+                %tbody
+                  %tr
+                    %td.top-banner-first-cell(colspan="2")
+                      .login-msg
+                        = yield :login_msg
+                      .login-msg-mobile
+                        = yield :login_msg_mobile
+
+                    %td(rowspan="2" style="vertical-align:top; padding:5px;" )
+                      .idol-msg
+                        = yield :idol_msg
+                      .idol-msg-mobile
+                        = yield :idol_msg_mobile
+                  %tr
+                    %td.title-logo-row2(style="vertical-align:top; width: 50%;")
+                      .title-msg
+                        = yield :title_msg
+                      .title-msg-mobile
+                        = yield :title_msg_mobile
+
+                    %td(style="width:25%;") &nbsp;
+                  - if @sub_header
+                    %tr
+                      %td(colspan="3")
+                        %p.sub-header #{@sub_header}
+
+        - else
+          %tr
+            %td.top-banner-row(colspan="3" style="width: 100%; padding:0;")
+
+              %table(style="width: 100%;")
+                %tbody
+                  %tr
+                    %td.title-logo-row
+                      %img(src="#{@host_uri}#{@site_logo}" alt="KIDSTrade")
+
+                    %td.top-banner-center-row(style="vertical-align: top; padding:0;")
+                      = yield :top_banner_center
+
+                    %td
+                      %div.goat-statue(title="Goat") &nbsp;
+
+        - if @use_separator_gap != false
+          %tr
+            %td(colspan="3" style="text-align:center; padding:2% 3%;")
+              %hr(style="#{@hr_style}")
+        %tr
+          %td(colspan="3" style="text-align:left; padding: 0 3%;")
+            - if @greeting.present?
+              %p.greeting #{@greeting}
+
+            - @main_paragraphs.to_a.each do|p|
+              %p.main-paragraph(style="#{@main_p_style}") #{p.html_safe}
+
+            - @sub_paragraphs.to_a.each do|p|
+              %p.sub-paragraph(style="#{@sub_p_style}") #{p.html_safe}
+
+            %div(class="body-content")
+              = yield :body_content
+
+        %tr
+          %td(colspan="3" style="text-align:center; padding: 0 3%;")
+            = yield :goto_section
+
+        %tr
+          %td(colspan="3" style="padding: 0 3%;")
+            - footer_extra_content = yield :footer_extra
+            - if @use_separator_gap != false && footer_extra_content.present?
+              %hr.secondary-hr(style="#{@hr_style}")
+
+            = footer_extra_content
+
+        %tr
+          %td(colspan="3" style="height: #{@top_banner_corner}; background-color:#{@body_bgcolor}; padding:0;")
+            %div(style="width: 100%; margin: 0; background-color: #{@body_bgcolor};")
+              %div(style="width: 100%; margin: 0; border-radius: 0 0 #{@top_banner_corner} #{@top_banner_corner}; background-color:#ffffff;") &nbsp;
+
+
+    = yield :after_panel
+
+    %table(cellspacing="0" style="margin: 30px 0; width:100%;")
+      %tbody
+        %tr
+          %td(style="vertical-align:top; text-align:center;")
+            %a(href="http://www.facebook.com/kidstrade")
+              %img(src="#{@host_uri}/assets/logos/facebook-circle.png" alt="Facebook")
+            %a(href="http://www.twitter.com/kidstrade.com")
+              %img(src="#{@host_uri}/assets/logos/twitter-circle.png" alt="Twitter")
+            %p &nbsp;
+            %p(style="#{@text_style}")
+              Have a question?
+              %br
+                %a(href="https://kidstrade.com/faq") https://kidstrade.com/faq
+            %p(style="font-size:11pt; font-weight:300; line-height:1.5em; color:#999999;")
+              Copyright 2015 CubbyShop LLC. KidsTrade and the KidsTrade logo
+              %br are trademarks of CubbyShop, LLC

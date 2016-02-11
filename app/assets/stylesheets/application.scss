@@ -1,0 +1,473 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require style
+ *= require ./landing/bootstrap.min.css
+ *= require ./landing/responsive.css
+ *= require ./landing/fonts.css
+/*
+Cubby Shop
+*/
+
+@import "site-wide-styles.scss";
+
+/* Forms */
+
+.subtle-drop-shadow {
+  box-shadow: 2px 2px 2px $gray-border-color;
+  -webkit-box-shadow: 2px 2px 2px $gray-border-color;
+  -moz-box-shadow: 2px 2px 2px $gray-border-color;
+}
+
+.large-form-field {
+  width: 100%;
+  height: 66px;
+  background-color: #fff !important;
+  color: $dark-gray-color;
+  font-size: 18pt;
+  text-align: center;
+  border: 0;
+}
+
+.large-form-button {
+  width: 100%;
+  color: #fff;
+  font-size: 30pt !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+}
+
+.btn-light {
+  border: solid 2px $light-blue-color;
+  color: $light-blue-color;
+  font-weight:normal;
+  border-radius: 6px;
+  font-size: 26px;
+  line-height: 1;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+/***************************************
+* Common alignments
+*/
+
+%vertical-align-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.vertical-center {
+  @extend %vertical-align-center;
+}
+
+.thumbnail-placeholder {
+  @extend %vertical-align-center;
+  max-width: 100%;
+}
+
+/**********************
+*/
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  -webkit-text-size-adjust: none;
+  background-color: $moderate-gray-color;
+}
+
+/* Text */
+
+.text-user-name {
+  font-weight: bold;
+  font-size: 1.2em;
+  padding-top: 8px;
+}
+
+.text-superbig-title {
+  font-size: $superbig-size;
+  font-weight: 400;
+}
+
+.text-big-title {
+  font-size: $big-size;
+  font-weight: 400;
+}
+.text-moderate-big-title {
+  font-size: 1.5em !important;
+  font-weight: normal;
+}
+.text-medium-title {
+  font-size: 19px !important;
+  font-weight: normal;
+}
+.text-moderate-small-title {
+  font-size: 1.2em !important;
+  font-weight: normal;
+}
+.text-small-title {
+  font-size: 1.1em !important;
+  font-weight: normal;
+}
+.text-xsmall {
+  font-size: 0.9em !important;
+  font-weight: 300;
+}
+.text-tiny {
+  font-size: 0.8em !important;
+  font-weight: 300;
+}
+
+.text-subject {
+  font-size: 1em !important;
+}
+.text-tip {
+  font-size: 1em !important;
+}
+
+.text-timestamp {
+  font-size: 1em !important;
+}
+
+
+/* Header */
+
+#header-panel {
+  background: no-repeat scroll 0 0 transparent;
+  background-color: #cfc;
+  width: 100%;
+  height: 100px;
+  padding: 20px 20px 0 20px;
+  font-size: 30pt;
+  font-family: 'Lucida Grande', sans-serif;
+}
+
+#header-logo {
+  float: left;
+}
+
+#user-nav {
+  float: right;
+  font-size: 10pt;
+  margin-right: 50px;
+}
+
+#message-panel {
+  margin-bottom: 10px;
+  clear: both;
+  text-align: center;
+}
+
+.panel-no-top-border {
+  border: solid 1px #cccccc;
+  border-top: 0;
+  padding: 25px;
+}
+
+.content-width {
+  max-width: $content-width;
+}
+
+.content-table-width {
+  max-width: $content-width;
+  width: 100%;
+  margin: auto;
+}
+
+.sides-spaced {
+  margin-left: $container-hmargin;
+  margin-right: $container-hmargin;
+}
+
+/* Menu */
+
+#menu {
+  background-color: #ffffff;
+  line-height: 50px;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 74px;
+  padding-top: 10px;
+  z-index: 100;
+}
+
+#menu a, #menu p {
+  font-family: "Lucida Grande", sans-serif;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Nav bar */
+
+#nav-left-arrow {
+  padding: 2px 0;
+  margin-left: 1%; // 10px
+}
+
+#nav-message-circle {
+  width: 60px;
+  height: 45px;
+  padding: 2px;
+  margin: 2px;
+  font-size: 1.0em;
+  color: #ffffff !important;
+  background: no-repeat center url("/assets/icons/activity-red@2x.png");
+}
+.nav-message-circle-inactive {
+  background: no-repeat center url("/assets/icons/activity-gray@2x.png") !important;
+}
+
+#nav-search-icon {
+  padding: 2px 0;
+  margin-right: 2%;
+  //background: url('/assets/nav/search-magnifier@2x.png') center no-repeat;
+}
+
+#nav-more-icon {
+  padding: 2px 0;
+  margin-right: 2%;
+  //background: url('/assets/nav/more@2x.png') center no-repeat;
+}
+#nav-more-icon img {
+  max-width: 60px;;
+}
+
+@media all and (min-width: 1200px){
+  .notification-content {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media all and (max-width: 1199px){
+  .notification-content{
+    width: 100%;
+    height: 100%;
+    /* 96% is the closest to (1-x) when 45[px, from above] = 1200x. */
+  }
+}
+
+.notification-content td {
+  vertical-align: middle;
+}
+
+/* Content */
+
+.legal-content {
+  text-align: left;
+  padding: 25px;
+
+  li {
+    margin-left: 40px;
+  }
+
+  li:last-child {
+    padding-bottom: 10px;
+  }
+
+  h1, h2, h3 {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    text-decoration: underline;
+  }
+
+  strong, .underlined {
+    text-decoration: underline;
+  }
+}
+
+.main-content {
+  padding-top: 40px; 
+}
+
+.title-area {
+  text-align: center
+}
+
+.payment-area {
+  width: 100%;
+}
+
+.bt-form-container {
+  background-color: white;
+  padding: 20px;
+}
+
+.btn-large-cta {
+  display: block;
+  position: relative;
+  width: 80%;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: white;
+  text-align: center;
+}
+
+/* User components */
+
+/** Avatar logo */
+.user-avatar-icon {
+  max-width: 80px;
+}
+.add-user-avatar-icon {
+  max-width: 80px;
+}
+
+/** Entire container wrapping both avatar icon within circle and user name at bottom. */
+.user-avatar-wrapper {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 20px;
+}
+
+.user-avatar-circle {
+  border-radius: 50%;
+  background-color: #ffffff;
+  width: 104px;
+  height: 104px;
+}
+
+.user-avatar-circle-small {
+  border-radius: 50%;
+  border: solid 1px $gray-border-color;
+  background-color: #ffffff;
+  right: 3px;
+  opacity: 0.8;
+  width: 60px;
+  height: 60px;
+}
+
+.user-avatar-circle-small:hover {
+  opacity: 1.0;
+}
+
+.user-avatar-circle-small img {
+  border-radius: 50%;
+  border: solid 1px $medium-gray-color;
+  width: 60px;
+  height: 60px;
+  @extend .subtle-drop-shadow
+}
+
+/* This at big screen renders as .user-avatar-circle, but resizes to .user-avatar-circle-small in small screen */
+.user-avatar-circle-responsive {
+  @extend .user-avatar-circle;
+}
+
+.trade-count-icon {
+  height: 80px;
+  font-weight: bold;
+  font-size: 16pt;
+  margin: 0 10px;
+  color: $medium-gray-color;
+}
+.trade-count-icon img {
+  max-height: 100%;
+}
+
+.gender-icon {
+  width: 40px;
+  height: 55px;
+  text-align: center;
+}
+.gender-icon img {
+  max-width: 40px;
+}
+.boy-icon {
+  background: url('/assets/icons/boy-figure@2x.png') center no-repeat;
+}
+.girl-icon {
+  background: url('/assets/icons/girl-figure@2x.png') center no-repeat;
+}
+
+/* Default Style */
+
+.default-menu {
+  background-color: white;
+  width: 100%;
+  height: 64px;
+  margin: 0 0 2px 0;
+  padding-top: 14px;
+  //box-shadow: 0 5px 20px #888;
+  //-webkit-box-shadow: 0 5px 20px #888;
+  //-moz-box-shadow: 0 5px 20px #888;
+  //border-bottom: solid 2px rgb(225, 225, 225);
+}
+.default-menu-icon {
+  max-height: 50px;
+}
+
+.default-menu a {
+  font-weight: bold;
+  font-size: 1.0em;
+  text-decoration: none;
+}
+
+img.nav-center-logo {
+  position: relative;
+  height: 30px;
+}
+
+.nav-center-title {
+  font-size: 1.3em !important;
+  font-weight: normal;
+  -webkit-text-size-adjust: auto;
+}
+
+/* CSS3 position: fixed */
+.fixed-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 0 40px #222;
+  -webkit-box-shadow: 0 0 40px #222;
+  -moz-box-shadow: 0 0 40px #222;
+}
+
+/* Items */
+
+
+.price-field {
+  width: 120px;
+  height: 44px;
+  line-height: 36pt;
+  background-color: #fff;
+  color: $warning-color;
+  font-size: $big-size;
+  font-weight: normal;
+  border: solid 1px $warning-color;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.price {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.4em;
+  color: $dark-gray-color;
+}
+
+.price-medium {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.3em;
+  //line-height: 2.0em;
+  color: $dark-gray-color;
+}
+
+@import "item-ui";
+@import "nav-ui-small-screen";

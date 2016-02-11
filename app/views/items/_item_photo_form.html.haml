@@ -1,0 +1,19 @@
+-# Required locals:
+-#   item_photo_form <ActionView::Helpers::FormBuilder>
+- item_photo = item_photo_form.object
+
+%div(class="col-sm-#{item_photo.new_record? ? '8' : '4'}")
+  .thumbnail
+    = item_photo_form.text_field :name, :placeholder => 'Name (optional)', :class => 'form-control'
+    - if item_photo.image.present? && item_photo.image_url.present?
+      = hidden_field_tag('item_photo_ids[]', item_photo.id, id: "item_photo_#{item_photo.id}")
+      = item_photo_form.hidden_field(:id)
+      = link_to(item_photo.image_url, :target => '_blank') do
+        = image_tag item_photo.image_url(:thumb).to_s, :title => item_photo.name, :class => 'img-responsive img-rounded'
+    .caption
+      
+      - if item_photo.new_record?
+        = item_photo_form.file_field :image
+      - else
+        %span(class='glyphicon glyphicon-remove')
+        = link_to "Remove", "javascript:$('#item_photo_#{item_photo.id}').val(''); $('#item_photo_#{item_photo.id}').closest('.thumbnail').css('opacity', 0.2); void(0)"

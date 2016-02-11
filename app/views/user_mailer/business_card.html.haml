@@ -1,0 +1,111 @@
+:ruby
+  @host_uri ||= Rails.env.development? ? "http://192.168.1.195" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+
+  @body_bgcolor = 'rgb(245,245,239)'
+  @table_bgcolor = '#ffffff'
+  @top_banner_bgcolor = '#006EB8'
+  @top_banner_corner = '11px'
+  @top_banner_height = '85px'
+
+  @avatar_size = '105px'
+  @card_box_shadow = '2px 2px 4px #666'
+
+  @main_table_style = "width: 866px; height: auto; margin: 1% auto;"
+  @drop_shadow_style = "box-shadow: #{@card_box_shadow}; -webkit-box-shadow: #{@card_box_shadow}; -moz-box-shadow: #{@card_box_shadow};"
+  @section_title_style = "font-weight:500; font-size: 32px; width: 70%; margin: 0 auto; color:#666666;"
+  @sub_text_style = "font-size: 26px; font-weight: 300; color: #666;"
+  @extra_spacing_style = "margin: 20px 0;"
+:css
+  .drop-shadow { #{@drop_shadow_style} }
+  .main-table { #{@main_table_style} }
+  .main-table td {
+    padding: 0;
+  }
+  p.section-title { #{@section_title_style }
+  .sub-text { #{@sub_text_style} }
+  .extra-spacing { #{@extra_spacing_style} }
+
+  a { text-decoration: none; }
+
+  hr {
+    background-color: #999999;
+    border: 0;
+    height: 1px;
+    width: 100%;
+  }
+
+  @media only screen and ( max-width: 640px)
+  {
+    .main-table {
+      width: 96%;
+    }
+    hr {
+      width: 96%;
+    }
+    p.section-title {
+      font-size: 36px;
+      line-height: 1.2;
+      margin: 0 auto;
+    }
+    p.section-text {
+      font-size: 30px;
+    }
+  }
+
+- content_for(:top_banner_inside_text) do
+  %div(style="height: 120px; padding: 30px 0 0 0;")
+    %p.section-title.text-center(style="#{@section_title_style}; color: #ffffff;")
+      #{@user.first_name.titleize} is pumped to pass out #{@user.possessive_form} custom cards!
+
+- content_for(:top_banner_row) do
+  %tr
+    %td(colspan="3") &nbsp;
+
+
+%body(style="background-color:#{@body_bgcolor}; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;")
+  %div(style="background-color: #ffffff; width: 617px; height: auto; margin: 64px auto; border:0; border-radius: #{@top_banner_corner} #{@top_banner_corner} #{@top_banner_corner} #{@top_banner_corner};")
+
+    %div(style="width: 100%; margin: 0; border-radius: #{@top_banner_corner} #{@top_banner_corner} 0 0; background-color: #{@top_banner_bgcolor};")
+      = yield :top_banner_inside_text
+      &nbsp;
+
+    %table(style="width: 490px; height: 283px; border: solid 2px #999999; margin: 30px auto; #{@drop_shadow_style}")
+      %tbody
+        %tr
+          %td(style="vertical-align: top; height: 140px;")
+            %img(src="#{@host_uri}/assets/logos/kidstrade-title-250.png" alt="KIDSTrade" style="margin: 22px 0 0 18px;")
+          %td(style="text-align:right;")
+            %div(style="width: #{@avatar_size}; height: #{@avatar_size}; border-radius: 50%; border:solid 1px #999999; text-align:center; float:right; margin:0 14px 0 0;")
+              %img.user-avatar-icon(src="#{@host_uri}#{@user.profile_image_url(:thumb)}" alt="#{@user.display_name}" title="#{@user.display_name}" style="margin: auto 0; max-width:100%;" )
+        %tr
+          %td(colspan="2" style="text-align: center;  vertical-align: top; height: 83px;")
+            %div(style="color: #666; font-size: 36px; font-weight:500;") #{@user.user_name}
+
+        %tr
+          %td(colspan="2" style="padding: 0 0 12px 16px; ")
+            %div Trade with me at:
+            %div kidstrade.com/#{@user.user_name}
+
+    %div(style="max-width: 490px; margin: 0 auto; padding: 0 50px;")
+      %p.sub-text.text-center(style="#{@sub_text_style} #{@extra_spacing_style} text-align:center;")
+        Simply print the attched file.
+      %p.sub-text.text-center(style="#{@sub_text_style} text-align:center;")
+        %img(src="#{@host_uri}/assets/icons/yellow-eclipse.png" alt="*")
+        More Cards, More Friends!
+        %img(src="#{@host_uri}/assets/icons/yellow-eclipse.png" alt="*")
+        %br
+        %img(src="#{@host_uri}/assets/icons/yellow-eclipse.png" alt="*")
+        More Friends, More Fun!
+        %img(src="#{@host_uri}/assets/icons/yellow-eclipse.png" alt="*")
+
+      %p.sub-text.text-center(style="#{@sub_text_style} #{@extra_spacing_style} text-align:center;")
+        Follow KidsTrade
+        %br
+        and share with your friends, too!
+
+    %div(style="text-align:center;")
+      %img(src="#{@host_uri}/assets/logos/facebook-circle.png" alt="Facebook")
+      %img(src="#{@host_uri}/assets/logos/twitter-circle.png" alt="Twitter")
+
+    %div
+      %p &nbsp;

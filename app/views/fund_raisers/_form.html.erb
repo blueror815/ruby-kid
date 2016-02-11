@@ -1,0 +1,17 @@
+<h3>I’M INTERESTED!</h3>
+<p>Please have a KidsTrade School Liason contact me.</p>
+<%= form_for( ::FundRaiser.new, remote: true) do|f| %>
+  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <%= f.text_field(:name, placeholder:'Your Name', class:'form-control', required: true) %>
+  </div>
+  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <%= f.text_field(:email, placeholder:'Your Email', class:'form-control', required: true) %>
+  </div>
+  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <%= f.text_field(:school_name, placeholder:'School', class:'form-control', required: true) %>
+  </div>
+  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <%= f.text_field(:city_state, placeholder:'City / State', class:'form-control', required: true) %>
+  </div>
+  <button type="submit" class="btn btn-default" data-disable-with="Submitted">Submit</button>
+<% end # :fund_raiser -%>

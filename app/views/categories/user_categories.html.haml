@@ -1,0 +1,17 @@
+- content_for(:head_extra) do
+
+  = javascript_include_tag 'items'
+
+
+.container
+  = section_tabs(css_class: 'content-width center-block')
+
+  .section-gap
+
+  %div(class="content-width center-block text-center")
+    - @categories.each_with_index do|category, index|
+      - if index % 3 == 0
+        .row
+      = make_category_cell(category, auth_user)
+      
+  .section-gap

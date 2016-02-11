@@ -1,0 +1,86 @@
+- content_for(:head_extra) do
+  :css
+    .tip-title-success { background-color:#c4e3ff; padding:0; }
+    .tip-title-changed { background-color:#ffddf0; padding:0; }
+    .tip-title-status button { padding: 12px; border:0; background: none; }
+
+- content_for(:footer_extra) do
+  :javascript
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+
+      $("#tips_list").sortable({
+        update: function(event, ui) {
+          var children = $(this).children();
+          var order = 1;
+          for (var ci = 0; ci < children.length; ci++) {
+            if (children[ci].tagName == "LI")
+            {
+              var id = $(children[ci]).attr("data");
+              $("#mapping_" + id +"_order_index").val(order);
+              order++;
+            }
+          }
+          var saveOrderingClass = $("#save_ordering_button").attr("class");
+          if (saveOrderingClass && saveOrderingClass.indexOf("btn-primary") == -1 ) {
+            $("#save_ordering_button").attr("class", saveOrderingClass + " btn-primary");
+          }
+        }
+      });
+
+      $(".tip-title").change(function() {
+        var statusDiv = $(this).siblings(".tip-title-status");
+        statusDiv.removeClass("tip-title-success");
+        statusDiv.addClass("tip-title-changed");
+      });
+    });
+
+.container
+  .section-gap
+  %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+    %a(href='/admin') ADMIN
+    %span.gray-title-color - Tips
+
+  .clearfix
+
+  = form_tag(update_all_tips_path, method: :put, remote:true, id:'tips_form', name:'tips_form') do
+    - @tips.each_with_index do|tip, index|
+      %input(type='hidden' name="mapping_#{tip.id}[order_index]" id="mapping_#{tip.id}_order_index" value="#{index}")/
+    %a.btn.btn-success.pull-right(href="#" data-toggle="modal" data-target="#examples-modal" title="New Tip") New
+    = submit_tag('Save Ordering', class:'btn pull-right', disable_with:'Saving Ordering ...', id:'save_ordering_button', style:'margin: 0 25px 0 5px;')
+    %span.pull-right.light-blue-color You can drag up/down to re-order and press ->
+    .clearfix
+
+  .section-gap
+  #tips_box
+    %ul#tips_list.list-group
+      - @tips.each_with_index do|tip, index|
+        %li.list-group-item(id="tip_li_#{tip.id}" data="#{tip.id}")
+
+          = form_for(tip, remote: true, method: :put, class:'form-inline tip-form', name:"tip_form_#{tip.id}", id:"tip_form_#{tip.id}") do|f|
+            .input-group
+              = f.text_field(:title, class:'form-control input-lg tip-title')
+              .input-group-addon.tip-title-status.tip-title-success(id="tip_title_status_#{tip.id}" )
+                = button_tag(type:'submit') do
+                  %span(class='glyphicon glyphicon-floppy-disk pull-right' title='Save This Tip' )
+              .input-group-addon
+                = link_to(' ', tip_path(tip), remote:true, method:'delete', confirm:'Are you sure to delete this tip?', class:'glyphicon glyphicon-trash pull-right', title:'Delete This Tip' )
+
+
+#examples-modal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+  .modal-dialog(role="document")
+    .modal-content.container
+      .modal-header
+        %button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true") &times;
+        %h4#examples-modal-title.modal-title New Tip
+
+      .modal-body
+        = form_for(::Tip.new) do|f|
+          .form-inline.row
+            .form-group.col-sm-10.col-md-8
+              = f.label(:title)
+              = f.text_field(:title, class:'form-control input-lg tip-title', style:'width:90%;')
+
+            .form-group.col-sm-2.col-md-4
+              = f.submit('Submit', class:'btn btn-lg btn-primary', :disable_with => 'Submitting...')

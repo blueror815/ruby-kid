@@ -1,0 +1,58 @@
+-# Items search entry page or result page with search form
+
+= render(partial: 'items/items_search_head')
+
+.container
+  %div(class="content-width center-block btn-group btn-group-justified" role="group")
+    %div(class="btn-group" role="group")
+      %a(href="#{items_search_path}" class="btn button-group-link light-blue-bg") #{t('word.items')}
+    %div(class="btn-group" role="group")
+      %a(href="#{friends_items_path}" class="btn button-group-link btn-default light-blue-color") #{t('word.friends')}
+    
+    .section-gap
+  
+    %div(class='text-center')
+      = form_tag(items_search_path, method:'GET' ) do
+        %div(class='input-group input-group-lg')
+          %span.input-group-addon(id="sizing-addon1" style='background-color:#e9e9e9; border:0;')
+            %img(src='/assets/nav/search-magnifier.png' alt='Search Items')
+          = text_field_tag(:query, params[:query], placeholder: t('item.search.placeholder'), |
+            class:'form-control text-big-title subtle-gray-bg text-center', style:"color: black; background-color:#e9e9e9; border:0; " ) |
+  
+  - if @items.blank?
+    
+    - if params[:query].present? # Keyword search
+      %div(class='text-superbig-title dark-title-color normal-weight text-center')  
+        #{t('item.search.sorry_null_search')}
+        %span.warning-color #{params[:query].strip}
+      %div(class='text-superbig-title gray-title-color slim-weight text-center')
+        #{t('item.search.null_search_tip')}
+      .section-gap  
+  
+    %div(class='text-superbig-title dark-title-color normal-weight text-center')  
+      #{t('word.or')}
+      %br
+      #{t('item.header.browse_categories_below')}
+    
+    .section-gap
+  
+    %div(class="content-width center-block text-center")
+      - @categories.each_with_index do|category, index|
+        - if index % 3 == 0
+          .row
+        = make_category_cell(category, auth_user)
+  
+  - else
+  
+    %div(id='items_container' class='row content-width center-block')
+      %ul(id="tiles")
+        - @items_search.results.each do|item|
+          %li
+            = render(partial: 'items/item_thumbnail', locals:{ item: item, favorite_item_ids: @favorite_item_ids } )
+  
+      .clearfix
+  
+    %div(id="loader-circle" class='row content-width center-block')
+      %span(class='vertical-center') Loading ...
+  
+  .section-gap

@@ -1,0 +1,6 @@
+- search_uri = 'http://www.google.com/search?q='
+#schools_wrapper.full-width-block
+  %ul#nearby_schools
+    - @nearby_schools.each do|nearby_school|
+      %li(class="nearby-school-item") 
+        #{link_to nearby_school.name, schools_admin_destroy_path(:id => school.id, :nearby_school_id => nearby_school.id), {:method => :delete, :confirm => 'Are you sure you want to replace the school being edited?'}} <span style="color: red"> #{@num_students[nearby_school.id]} </span> 

@@ -1,0 +1,522 @@
+##################################
+AWS
+
+----------------------------------
+EC2 Instance
+
+Production -----------------
+ec2-54-173-211-252.compute-1.amazonaws.com
+
+Staging -----------------
+ec2-52-4-158-156.compute-1.amazonaws.com
+
+==============================
+Connection to AWS server
+
+chmod 400 ~/.ssh/cubby_shop_sandbox.pem
+
+Connect to your instance using its Public IP:
+staging: 54.165.129.11
+production: 54.165.40.102
+
+Example:
+ssh -i ~/.ssh/cubby_shop_sandbox.pem ec2-user@54.172.201.158
+
+
+-------------------------------
+Set in /etc/hosts aliases to corresponding IPs, like this for all in localhost:
+
+127.0.0.1   localhost localhost.localdomain currentdb rubydev localgit
+
+
+###############################################
+For all virtual machine/instance
+
+================================
+Basic Development Tools
+
+sudo yum install gcc
+sudo yum install gcc-c++ make
+sudo yum -y groupinstall "Development Tools"
+
+=========================================
+MySQL Libraries and Client
+
+sudo yum install mysql
+sudo yum install mysql-devel
+
+sudo useradd mysql
+sudo passwd mysql
+cbs214Db
+sudo usermod -a -G mysql ec2-user
+
+sudo useradd -s /sbin/nologin -r www
+sudo usermod -a -G www ec2-user
+
+.. logout & relogin
+ 
+sudo mkdir /var/lib/mysql
+sudo chown mysql:mysql /var/lib/mysql -R
+
+
+================================
+MySQL Server Local
+
+sudo yum install mysql-server
+
+---------------------------
+Check /etc/my.cnf
+
+change 
+socket=/var/run/mysqld/mysqld.sock
+
+sudo /etc/init.d/mysqld start
+
+------------------------------------------
+Login to mysql
+mysql -uroot --socket=/var/run/mysqld/mysqld.sock
+
+
+====================================
+MySQL Server in OS X
+
+brew install mysql
+export DYLD_LIBRARY_PATH=/opt/local/lib/mysql56/mysql:$DYLD_LIBRARY_PATH
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:~/.bin:$PATH
+
+====================================
+MySQL Server - Remote Virtual Instance
+
+DNS: cubbyshopproduction.c9nlh0zvqqy7.us-east-1.rds.amazonaws.com
+
+
+==============================================
+MySQL Initialization
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'test' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'currentdb' IDENTIFIED BY 'test' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON *.* TO 'kids_toys'@'localhost' IDENTIFIED BY 'test' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'kids_toys'@'currentdb' IDENTIFIED BY 'test' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON *.* TO 'kids_toys_prod'@'localhost' IDENTIFIED BY 'cbs214DbProd' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'kids_toys_prod'@'currentdb' IDENTIFIED BY 'cbs214DbProd' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+create database kids_toys_development;
+create database kids_toys_test;
+create database kids_toys_production;
+
+
+---------------------- Fix for UTF8 problem
+
+ALTER DATABASE kids_toys_development DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER DATABASE kids_toys_production DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+---------------------- Populate Static Data: schools, categories
+
+Populate with sql files, categories.sql and static_data.sql like this:
+mysql -uroot -ptest -Dkids_toys_development < doc/data/categories.sql
+mysql -uroot -ptest -Dkids_toys_development < doc/data/static_data.sql
+
+
+
+
+
+
+---------------------- User paths
+
+gem install mysql -v '2.9.1' -- --with-mysql-dir=/usr/local/mysql
+
+And add onto ~/.bash_profile
+
+MYSQL=/usr/local/mysql/bin
+export PATH=$PATH:$MYSQL
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+
+sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+
+===============================
+Ruby on Rails
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable --ruby=1.9.3
+source ~/.profile
+rvm use 1.9.3 --default
+gem install bundler
+bundle install
+
+==============================
+sudo yum install ImageMagick
+sudo yum install ImageMagick-devel
+
+
+=================================================
+GIT
+
+-----------------------------------
+Add & push from local to remote GIT repo 
+git remote add sandbox cubby_shop_sandbox:/home/ec2-user/git/cubby_shop_web.git
+
+Call to push remote:
+git push sandbox master
+
+-----------------------------------------
+
+cd /var/www/
+git clone file://///home/ec2-user/git/cubby_shop_web.git cubby_shop
+
+cd cubby_shop
+mkdir -p log
+mkdir -p tmp/cache
+mkdir -p tmp/pids
+mkdir -p tmp/sockets
+
+If permission problem still occurs in accessing /var/www, move to ~/code/
+or 
+add to ignore filemode bits:
+git config core.filemode false
+
+
+===============================================
+Ruby on Rails Env
+
+To wherever the root of app-server source code root:
+
+---------------------------------
+Dependent libraries:
+
+NodeJS: 
+wget http://nodejs.org/dist/v0.10.33/node-v0.10.33.tar.gz
+tar xzvf node* && cd node*
+./configure
+make
+sudo make install
+
+cd cubby_shop
+bundle install
+
+---------------------------------
+Possible that nokogirl cannot be installed on Mac because it warns libiconv is missing
+(although Xcode has command line tools installed).  Then try this option first:
+
+bundle config build.nokogiri --use-system-libraries
+
+---------------------------------
+
+rake db:migrate -t
+
+==============================
+Nginx
+
+sudo yum install nginx
+
+sudo ln -s ~/code/cubby_shop /var/www/cubby_shop
+sudo chmod -Rf 775 /var/www/cubby_shop
+sudo chmod -Rf 775 /var/www/cubby_shop/tmp
+sudo chmod -Rf 775 /var/lib/nginx/tmp
+sudo chown -R nobody.nobody /var/lib/nginx
+
+sudo mkdir -p /etc/nginx/sites-enabled
+sudo ln -s /var/www/cubby_shop/config/nginx_unicorn.conf /etc/nginx/sites-enabled/cubby_shop
+
+------------------------
+Simply ensure 
+  sendfile off;
+Or
+  set /etc/nginx/nginx.conf
+
+user www;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+    # multi_accept on;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+
+    access_log        /var/log/nginx/access.log;
+
+    sendfile        off;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+    tcp_nodelay        on;
+
+    gzip  on;
+    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+}
+
+------------------------
+Can run Nginx by:
+sudo /etc/init.d/nginx start
+.. but don't know why sudo service nginx start doesn't turn to be same
+
+------------------------
+OS X paths:
+
+brew install nginx
+
+Setup auto-launch in OS X by linking homebrew's 
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/nginx/1.2.2/homebrew.mxcl.nginx.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+
+==========================================
+Unicorn
+
+mkdir -p /tmp/sockets
+
+Start in daemon mode by:
+unicorn_rails -c config/unicorn.rb -D -E production
+
+Stop daemon after finding the master's process ID
+kill -s QUIT 12345
+
+==========================================
+SOLR Server
+
+Ensure in config/sunspot.yml
+path: /solr/default
+
+---------------------------------
+Runs by 
+RAILS_ENV=production rake sunspot:solr:start
+
+---------------------------------
+Repopulate data:
+
+Item.reindex
+Category.reindex
+User.reindex
+Schools::School.reindex
+
+
+==========================================
+memcached
+
+OS X
+cp /usr/local/Cellar/memcached/1.4.20/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+
+==========================================
+CarrierWave background script
+
+rails g carrierwave_backgrounder:install
+
+==========================================
+Delayed Job
+
+rails generate delayed_job:active_record
+rake db:migrate
+
+==========================================
+Redis Server
+
+Refer to: http://redis.io/topics/quickstart
+and for EC2 AMI https://gist.github.com/FUT/7db4608e4b8ee8423f31
+
+mkdir /tmp/redis && redis-cli CONFIG SET dir /tmp/redis
+redis-cli CONFIG SET dbfilename temp.rdb
+
+
+===============================================
+Run Servers
+
+RAILS_ENV=production rake sunspot:solr:start
+
+RAILS_ENV=production whenever --update-crontab store
+
+RAILS_ENV=production rake assets:precompile
+
+RAILS_ENV=production unicorn_rails -c config/unicorn.rb -D -E production
+
+/etc/init.d/redis_6379 start
+
+RAILS_ENV=production bundle exec sidekiq -d -L log/sidekiq.log
+
+sudo /etc/init.d/nginx start
+
+===============================================
+Setup Tasks
+
+Edit crontab -e
+
+for production server:
+*/5 * * * * cd /var/www/cubby_shop/current && RAILS_ENV=production ~/.rvm/wrappers/ruby-1.9.3-p551/bundle exec rake deliver_notification_mails >> log/user_mailer.log 2>&1
+*/30 * * * * cd /var/www/cubby_shop/current && RAILS_ENV=production ~/.rvm/wrappers/ruby-1.9.3-p551/bundle exec rake clean_up_expired_notifications >> log/user_notification.log 2>&1
+*/5 * * * * cd /var/www/cubby_shop/current && RAILS_ENV=production ~/.rvm/wrappers/ruby-1.9.3-p551/bundle exec rake notify_to_approve_items >> log/trade_approve_items.log 2>&1
+
+
+------------------------------
+Use alternative method: whenever
+
+gem install whenever
+wheneverize 
+
+Adding this line to your user rvm file in ~/.rvmrc
+rvm_trust_rvmrcs_flag=1
+
+whenever --update-crontab store
+
+Edit manually crontab -e, add inside ' ' with:
+2>&1 >> log/user_mailer.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /bin/bash -l -c 'cd /var/www/cubby_shop && RAILS_ENV=production bundle exec rake deliver_notification_mails --silent 2>&1 >> log/user_mailer.log'
+
+
+=================================================
+Ruby Commands
+
+----------------------------------
+Re-process item_photos
+
+Item.all.each{|item| item.item_photos.each{|ip| begin; ip.image.process!; ip.save if ip.changed?; rescue; end; } }.size
+
+
+#####################################
+Database
+
+-----------------
+MySQL
+
+In Gemfile
+add 'mysql2'
+
+Log into mysql and create databases kids_toys_development, kids_toys_test, kids_toys_production
+
+Config config/database.yml with corresponding DB authentication.
+
+###################################
+User
+
+--------------------
+Devise, user authentication
+
+rails generate devise:install
+
+Generate some secret key for devise: rake secret
+  and change value of config.secret_key inside config/initializers/devise.rb with this key.
+
+Inside config/environments/development.rb
+make sure there's 
+config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+And do so for config/environments/production.rb with product server name
+
+rails generate devise User
+
+rails g migration AddFieldsToUsers type:string user_name:string first_name:string last_name:string interests:text birthdate:date
+rake db:migrate
+  
+-------------------------
+Devise view
+rails g devise:views
+
+-----------------------
+Change sign up and login forms
+
+####################################
+Item
+
+rails g scaffold Category name:string level:integer level_order:integer parent_category_id:integer full_path_ids:string --no-stylesheets
+
+rails g scaffold Item user_id:integer title:string price:float description:text status:string
+
+rake db:migrate
+
+########################
+Image Processor
+
+For Linux system, installing RMagick requirements: http://rmagick.rubyforge.org/install2-linux.html
+Ensure these libraries installed:
+    FreeType, Version 2.0 or above, to annotate with TrueType and Postscript Type 1 fonts.
+    libjpeg to read and write JPEG v1 format images. (libjpeg-dev)
+    The PNG library, to read and write PNG format images.
+    libwmf 0.2.5 or later, to read and write Windows Meta File (WMF) format images. (libwmf-dev)
+    Ghostscript version 8.10, to read and write the PDF and PS document formats.
+    libltdl-dev
+
+Install imagemagick first: http://www.imagemagick.org/script/download.php
+tar xvzf ImageMagick.tar.gz
+cd ImageMagick-X.Y.Z
+./configure --disable-static --with-modules --without-perl \
+     --without-magick-plus-plus --with-quantum-depth=8 \
+     --with-gs-font-dir=$FONTS
+make
+sudo make install
+
+
+-------------------------------
+
+In Gemfile, add
+gem 'rmagick', '2.13.2'
+gem 'carrierwave', '>= 0.5.3'
+gem 'nested_form'
+
+-------------------------------
+Possible loading error on carrierwave uploader
+
+sudo vi /etc/ld.so.conf.d/local.conf
+add:
+/usr/lib
+/usr/local/lib
+
+then run: sudo ldconfig
+
+
+#########################
+SOLR and Sunspot
+
+-----------------------------
+Server 
+
+http://lucene.apache.org/solr/
+http://lucene.apache.org/solr/4_7_0/tutorial.html
+http://wiki.apache.org/solr/
+
+Run with Jetty individually:
+java -jar start.jar
+ 
+-----------------------------
+Sunspot
+
+gem 'sunspot_rails'
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
+Generate a default configuration file:
+rails generate sunspot_rails:install
+
+Change server settings in: config/sunspot.yml
+  The path setting is actually relative to root of the webapp.
+
+Can start server by running in BG
+bundle exec rake sunspot:solr:start
+
+#############################
+Ngnix 
+
+sudo ln -s /mnt/media/code/kids_toys /var/www/cubbyshop
+sudo useradd -s /sbin/nologin -r nginx
+sudo usermod -a -G www-data nginx
+sudo chgrp -R www-data /var/www
+sudo chmod -R 775 /var/www
+sudo usermod -a -G www-data deploy
+sudo chgrp -R www-data /var/log
+sudo chmod -R 775 /var/log
+
+############################
+Startup Commands
+
+The use of Capistrano script may be useful for more scripts and commands to fire.  But for now, a simple script like this
+can handle the sequence of calls.
+
+script/init <cold_start|start|stop|restart|reload|upgrade|rotate|force-stop>

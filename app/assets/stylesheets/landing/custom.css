@@ -1,0 +1,218 @@
+/*about us font-family*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,600italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700);
+
+	/*about us header*/
+	.header-about{width:100%;float:left;    padding-top: 15px;	background:url("/assets/landing-25/about-banner.png") no-repeat scroll center top / cover  rgba(0, 0, 0, 0) }
+	
+	.banner-text {float: left;  text-align: center;  width: 100%;}
+	.cust-text { color: #fff;display: inline-block;font-family: 'MyriadPro-Regular';font-size: 54px;padding-bottom: 11%;
+		padding-top: 26%;text-align: center;line-height: 68px;width: 72%;}
+	.about-login {background-color: transparent; border: 1px solid #ffffff; border-radius: 5px; color: #fff; float: right; font-weight: 600;
+					font-family: 'Open Sans', sans-serif; font-size: 15px; line-height: 21px; margin: 18px 0 0; padding: 6px; text-align: center;  
+				    text-transform: uppercase;    width: 110px; font-weight: 800;   margin-right: 59px;}
+
+	/*about us section 1*/
+	.section1{font-family: 'Open Sans', sans-serif; font-weight: 300;  font-size: 28px;width: 100%;float:left; text-align: center;
+	           padding-top: 66px;padding-bottom: 53px; color: #333333;}
+	.section1 .para1 {    width: 95%;margin-top: -5px;padding-left: 12px;}
+	.section1 .para2 {margin: 0 auto;padding-bottom: 45px;padding-top: 18px;width: 60%;}
+	.section1 .para3 {margin-top: -10px;}
+	.section1 .para4{color:#339200;   margin-top: -6px;}
+	.section1 .para5{padding-top: 16px;     font-weight: 500;   word-spacing: 2px;}
+
+	/*about us section 2*/
+	.section2{width:100%;float:left;background:url("/assets/landing-25/section2-bg.png") no-repeat scroll center top / cover  rgba(0, 0, 0, 0) ;
+	               padding-bottom: 40px;    padding-top: 70px;color:#fff;}
+	.section2 .para1{font-family: 'Poppins', sans-serif;font-size: 48px;font-weight: 400;text-align: center;color:#fff;    padding-bottom: 16px;
+	    background: url("/assets/landing-25/line2.png") no-repeat bottom center;}
+	.section2 .para1 a { border-bottom: 1px solid #fff;padding-bottom: 11px;color: #fff;cursor: auto;font-family: 'Poppins',sans-serif;font-size: 48px;font-weight: 400;
+	                     text-align: center;}
+	.section2 .para2{font-family: MyriadPro-Regular;font-size: 33px;text-align: center;cursor: auto;color: #fff;font-weight: 400;
+		             padding-top: 5%;width: 90%;margin: 0 auto;line-height: 55px;}
+
+	/*about us section 3*/
+	.section3{width:100%;float:left;background-color: #efefef;padding-top: 70px;padding-bottom: 45px;}
+	.apple-logo {  display: inline-block;  text-align: center;  width: 100%;    padding-left: 0px;    margin-left: -13px;}
+	.apple-logo li{display: inline;    float: left;    text-align: right;    width: 50%;padding-right: 6%;}
+	.apple-logo li:last-child{text-align: left;padding-left: 3%;}
+
+	/*about us footer*/
+	#footer { float: left;    padding: 35px 0 27px 0px;  text-align: center;  width: 100%;}
+	#footer ul{list-style:none; margin:0; padding:0;}
+	#footer ul li {  color: #999;  font-size: 24px;  margin: 0 0 5px;}
+	#footer ul li a {  color: #666666; font-family: 'Open Sans', sans-serif;  font-size: 16px;}
+	.footer-heading{font-family: 'Poppins',sans-serif !important;padding-top: 10px; margin-bottom: 13px !important;
+	 font-weight: 400 !important;color:#333333 !important;font-size:30px !important; text-align: right;     padding-right: 20%;}
+	.footer-heading2{    font-family: 'Poppins',sans-serif !important; padding-top: 10px; margin-bottom: 13px !important;  font-weight: 400 !important;    color: #333333 !important;    font-size: 30px !important;    text-align: left;}
+	.social-icon > li {  display: inline;}
+	.our-app a {      padding-left: 27%;}
+	.our-company li{    text-align: center;    padding-right: 52%;}
+	#footer img {     margin: -32px 0 0;    width: 69%;}
+	.social-icon > li a img { width: auto !important;    margin-left: 0px !important;}
+	.social-icon {     padding-top: 6% !important;    padding-right: 21% !important;}
+	.footer-bottom{width:100%;float:left;background-color: #424343;}
+	.copyright {color: #999999;font-family: 'Open Sans', sans-serif;font-size: 14px;margin: 0 auto;padding-bottom: 25px;padding-top: 28px;
+	text-align: center;width: 40%;}
+	.destop a img{margin-left: -55px !important;}
+
+/*Faq page*/
+	.header-faq {  border-bottom: 2px solid #eaeaea;    padding-top: 15px;}
+	.faq-login {background-color: transparent; border: 1px solid #0296fc; border-radius: 5px; color: #0296fc; float: right; font-weight: 600;
+						font-family: 'Open Sans', sans-serif; font-size: 20px; line-height: 21px;
+						 margin: 18px 0 0 !important; padding: 6px; text-align: center;  
+					    text-transform: uppercase;    width: 110px;    margin-right: 10%;}
+
+
+	.faq-para1{font-family: 'Poppins',sans-serif !important;font-size: 48px;font-weight: 400;     margin-left: -56px;    padding-bottom: 13px; background: url("/assets/landing-25/line.png") no-repeat bottom center;}
+	.faq-main{width:100%; float:left;}
+	.faq-list {  list-style: none outside none;    padding-top: 37px;}
+	.faq-section1{padding-bottom: 70px;}
+	.faq-index-index .breadcrumb{padding:24px 0 9px;}
+	.faq-col-main{width:100%;float:left;}
+	.faq-header{width:100%; float:left;}
+	.faq-header h1{color:#3e4146;font-size:60px; line-height:40px;font-family: 'Oswald';font-weight:700;margin-bottom:50px;text-transform:uppercase;}
+	.faq-header p{color:#707070;font-size:16px; line-height:36px;font-family: 'Raleway';}
+	.faq-content{width:100%; float:left;}
+	.faq-section{float:left; width:100%; }
+	.faq-tab{    padding-left: 25px;    margin-top: -12px;}
+	.faq-list > li { border: 1px solid #d6d6d6;    float: left;    width: 89%;    margin-left: 13px;    margin-bottom: 10px; }
+	.faq-list > li:last-child {  border-bottom:1px solid #d6d6d6;}
+	.faq-section .img-responsive.faq-img {  display: inline-block;}
+	.faq-section .answer-link {  background-image: url("/assets/landing-25/arrow-down.png") ;background-repeat: no-repeat;background-attachment: scroll;
+			          background-position: 100.5% center;background-size: 62px 70px; color: #666666;  display: block;  font-family: 'Open Sans', sans-serif;  font-weight: 500;
+	                  font-size: 24px;  line-height: 28px; z-index: 0;    padding: 11px 20px 18px 30px;  position: relative;  text-align: left;}
+	.faq-section .answer-text { font-family: 'Open Sans', sans-serif;  font-weight: 500; font-size: 24px;  line-height: 32px;
+    text-align:left; padding: 11px 20px 18px 30px; }
+  .faq-section .answer-text a { padding: 0 !important; display: inline !important; background: none !important; }
+	.faq-tab li{ background: url("/assets/landing-25/faq-li-sign.png") no-repeat scroll top left rgba(0, 0, 0, 0);text-align: left;  font-family: 'Open Sans', sans-serif;
+	             font-weight: 400;list-style-type: none;padding-left: 40px;margin-top: 15px;  font-size: 20px;}
+	.faq-section-content{float:left; width:100%;border-bottom:1px solid #e3e3e3;display:none;padding: 28px 0px;padding-bottom: 38px;}
+	.faq-section-content p{font-size:14px; line-height:26px;color:#878787;font-family: 'Open Sans';}
+	.faq-section a.active { color: #339300; background: url("/assets/landing-25/arrow-up.png") no-repeat scroll 100.5% center / 62px 70px rgba(0, 0, 0, 0);background-color: #f5f5f5;  border-bottom: 1px solid #e3e3e3;  content: "";}
+
+
+	/************* safty page *************/
+	.header-safty{width:100%;float:left;padding-top: 15px;padding-bottom: 8%;background:url("/assets/landing-25/safty-banner.png") no-repeat scroll center top / cover  rgba(0, 0, 0, 0) ;}
+	.banner-safety{width:100%; margin:-78px 0 0 0; float:left;}
+	.banner-safety .img{width:100%; float:left}
+	.banner-safety .img img{width:100%; position:relative; z-index:9;}
+	.banner-safety .img2{display:none;}
+	.banner-safety .img2 img{width:100%; float:left;}
+	.safety-page{width:100%; float:left;}
+	.saftey-top{width:100%; float:left;padding-bottom: 25px;}
+	.saftey-top1{width:100%; float:left; padding:0 7%;}
+	.saftey-top h1{    font-size: 48px;
+	    color: #333333;
+	    line-height: 70px;
+	    text-align: center;
+	    font-family: 'Poppins',sans-serif !important;
+	    padding-bottom: 13px;
+	    background: url("/assets/landing-25/line.png") no-repeat bottom center;
+	    padding-top: 40px;}
+	.saftey-top  h2{font-size:28px; color:#339200;     padding-top: 18px;    line-height: 23px;font-family: MyriadPro-Regular; font-weight:400; text-align: center;}
+	.saftey-top  p{font-size:28px; color:#333333; line-height:45px;font-family: 'Open Sans', sans-serif; font-weight: 400;text-align: center;font-weight: 300;}
+	.safteypage-list{width:100%; float:left;}
+	.saftey-list-li{width:100%; float:left; padding: 26px 7% 43px 4%;}
+	.saftey-list-li:last-child{margin-bottom:0;}
+	.safty-list{    padding: 20px 7% 43px 4%;}
+	.safty-mac {width: 100%;float: left;background-color: #efefef;padding-top: 56px;padding-bottom: 58px;}
+	.safteypage-img{margin:0 0 0 0;}
+	.safteypage-textarea{display:table-cell; vertical-align:middle;padding-right: 12px;    padding-top: 15px;}
+	.safteypage-textarea  h3{font-size:30px; color:#333333; font-family: 'Poppins',sans-serif !important; font-weight:400; margin-top: 0;text-align: left !important; padding-left:14px; line-height:29px;}
+	.safteypage-textarea  p{font-size:24px; color:#333333; line-height:42px;font-family: 'Open Sans', sans-serif; font-weight: 300;padding-left: 14px;text-align: left;}
+	.saftey-button-section{width:100%; float:left; display:table;text-align:center;margin:52px 0 0 0;}
+	.saftey-social-icons{width:100%; float:left; list-style: outside none none; margin: 0 0 15px; padding-top:22px !important}
+	.saftey-social-icons li{display: inline-block;padding: 0 20px;}
+	.saftey-social-icons li a img{width:100% !important; margin:0 !important;}
+	.saftey-footer{padding-top:91px !important;}
+	.saftey-copy{padding: 28px 0 0 0 !important;}
+
+
+@media only screen and (max-width :1500px) {.cust-text {  width: 70%;}}
+@media only screen and (max-width :1200px) {
+	#footer img {  margin: -20px 0 0;  width: 84%;}
+	.faq-login {  margin: 18px 20% 0 0;}
+
+.faq-para1 { margin-left: 0;}
+.faq-list {  float: left;  list-style: none outside none;  padding-left: 0;  padding-top: 30px;  width: 100%;}
+.faq-section a.active {  background: url("/assets/landing-25/arrow-up.png") no-repeat scroll 100.5% center / 62px 70px #f5f5f5;}
+}
+@media only screen and (max-width :991px) {	
+     .cust-text {  width: 85%;}
+     .footer-heading2 {  font-size: 25px !important;}
+     .copyright {  width: 64%;}
+     .about-login {  margin: 18px 0 0;}
+     .faq-tab li {  font-size: 17px; padding-right: 10px;}
+      .faq-list > li {  margin-left: 0;  width: 100%;}
+     .faq-para1 {margin-left: 0;}
+     .our-app li a {  padding: 0 !important;}
+     #footer h6 {  text-align: center;font-size: 30px !important;}
+     .our-company li {  padding-right: 0%;}
+     .footer-heading { padding-right: 0;}
+     .faq-login {  margin: 18px 0 0;}
+     #footer img {  margin: -20px 0 0;  width: 100%;}
+     .faq-section .img-responsive.faq-img {  display: inline-block;  width: 90%;}
+    
+}
+@media only screen and (max-width :767px) {
+.header-about #logo-destop{padding: 10px 0 16px;}
+	.header-safty #logo-destop{padding: 17px 0 16px;}
+	.cust-text {  font-size: 35px;   line-height: 44px; width: 68%;}
+	.section1 {  font-size: 24px;}
+	.section2 .para1 { font-size: 30px; padding-bottom: 11px;}
+	.section2 .para2 {  font-size: 26px;  line-height: 50px;}
+	.footer-heading2 {  text-align: center;}
+	.our-company li {  padding-right: 0%;  text-align: center;}
+	.footer-heading {  padding-right: 0%;text-align: center;}	
+	.copyright {  width: 68% !important;}
+	.faq-list > li {  margin-left: 0px;  width: 100%;}
+	.faq-section .answer-link {  font-size: 18px;  padding: 11px 20px 18px 13px;}
+	.faq-list {  float: left;  padding-left: 0;width: 100%;}
+	.apple-logo {  display: inline-block;  margin-left: 0;}
+	.apple-logo li:last-child {  text-align: left;padding-left: 2%;padding-right:0;}
+	.apple-logo li {  padding-right: 3%;}
+	.social-icon {  padding-right: 0 !important;  padding-top: 6% !important;}
+	.mobile-view {  margin: 0 auto !important;  width: 50% !important;}
+	.social-icon > li {    float: left;    text-align: right;    width: 50%;padding-right: 20px;}
+	.social-icon > li:last-child {    float: left;    text-align:left;    width: 50%; padding-left: 20px;}
+	.saftey-top h1 {  font-size: 42px;}
+	.safteypage-textarea h3 {  font-size: 28px;  text-align: center !important;}
+	.safteypage-textarea p {  text-align: center;}
+	.saftey-list-li {  padding: 0 7% 30px 4%;}
+	.social-icon > li:last-child {  padding-left: 10px;}
+	.social-icon > li {  padding-right: 10px;}
+	.faq-para1 {  font-size: 30px;  margin-left: 0;}
+	#footer h6 { font-size: 21px !important;}
+
+  .faq-section-content { padding: 14px 0 16px; }
+  .faq-section .answer-text { font-weight: 400; font-size: 15px;  line-height: 24px; padding: 0 6px 2px 8px; }
+  .faq-tab { padding-left: 12px; }
+}
+@media only screen and (max-width :642px) {	
+	.copyright {  font-size: 13px;  width: 76% !important;}
+    .faq-section .answer-link { font-size: 15px; padding: 11px 77px 18px 13px;	 background: url("/assets/landing-25/arrow-down.png") no-repeat scroll 100.5% center / 62px 88px rgba(0, 0, 0, 0);
+}
+}
+@media only screen and (max-width :631px) {		.cust-text {  font-size: 35px;  width: 85%;}}
+@media only screen and (max-width :480px) {
+.header-safty #logo-destop{padding: 10px 0 16px;}
+.about-login{margin: 8px 0 0; width: 100px;font-size: 13px;line-height: 19px;padding: 4px;}
+ #footer h6 {  text-align: center;font-size: 17px !important;}
+	.cust-text {  font-size: 23px;line-height: 40px; width: 70%;}
+	.section1 {  font-size: 19px;}
+	.section2 .para2 {  font-size: 23px;}
+	.copyright {  font-size: 13px;  width: 100% !important;}
+	.faq-section .answer-link {  background: url("/assets/landing-25/arrow-down.png") no-repeat scroll 100.5% center / 70px 90px rgba(0, 0, 0, 0);}
+  .faq-section a.active {  background: url("/assets/landing-25/arrow-up.png") no-repeat scroll 100.5% center / 70px 88px #f5f5f5;}
+
+}
+@media only screen and (max-width :390px) {
+	.cust-text {  font-size: 19px;  line-height: 30px;width: 75%;}
+	.section2 .para2 {  font-size: 23px;  line-height: 30px;}
+	 #footer h6 {  text-align: center;font-size: 17px !important;}
+	.footer-heading2 {  font-size: 17px !important;}
+	.footer-heading {  font-size: 17px !important;}
+	.copyright {  font-size: 13px;  width: 100% !important;}
+	#footer ul li a {  font-size: 14px;}
+}

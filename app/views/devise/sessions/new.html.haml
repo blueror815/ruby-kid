@@ -1,0 +1,51 @@
+- content_for(:head_extra) do
+  
+  :css
+    .login-form-group {
+      width: 360px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 16px;
+      background-color: rgb(245, 245, 241);
+    }
+    #center-logo {
+      max-width: 90%;
+      height: auto;
+    }
+    @media only screen and ( max-width: 640px )
+    {
+      .login-form-group {
+        width: 100%;
+        padding: 30px;
+        border-radius: 10px;
+      }
+      #center-logo {
+        max-width: 280px;
+      }
+    }
+
+  :javascript
+    $(function() {
+      //$("#errorModal").modal({show: true } );
+    });
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name),
+    :html=>{:class => 'form-horizontal',  :role => 'form'}) do |f|
+  .section-gap
+  .container
+    %div(class='login-form-group center-block')
+      - if flash[:error].present?
+        %div(class="alert alert-danger" role="alert") #{flash[:error]}
+
+      %div(class='form-group')
+        = f.text_field :login, :class => 'large-form-field form-control', :autofocus => true, :placeholder => "#{login_requires_email_only?(request) ? 'Email' : 'User ID'}"
+
+      %div(class='form-group')
+        = f.password_field :password, :class => 'large-form-field form-control', :placeholder => 'Password'
+
+      %div(class='form-group text-center')
+        %br
+        = f.submit "Login", :class => 'btn btn-primary large-form-button light-blue-bg', :style => "width: 80%;"
+
+      -#= render "devise/shared/links"
+

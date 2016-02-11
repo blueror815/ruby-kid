@@ -1,0 +1,56 @@
+-# Expected instance variables:
+-#   @child <User>
+-#   @recipient <User>
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+
+= render partial: 'user_mailer/basic_css_table_config'
+
+:ruby
+  @yield_top_banner_row = true
+  @footer_warning_notes = t('parenting.item_approval.email_bottom_tip')
+
+:css
+
+  .center-block { width:60%; margin: 0 auto; }
+
+  @media only screen and (min-width: 480px) and (max-width :991px) {
+  #title-logo-section{ max-width:95%; }
+  .center-block { width: 90%; margin: 0 5% 3% 5%;}
+  }
+  @media only screen and (max-width :479px) {
+  #title-logo-section{ max-width:95%; }
+  .center-block { width: 90%; margin: 0 5% 3% 5%;}
+  }
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding:0;")
+      %div.text-center(id="title-logo-section" style="padding:40px 5% 0 5%; margin: 0 auto;")
+        %img(src="#{@host_uri}/assets/messages/dont-forget-desktop.png" title="Don't forget..." style="max-width:100%;" )
+
+- content_for(:goto_section) do
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{@host_uri}#{inventory_approve_item_path(user_id: @child.id)}") Login
+
+- content_for(:footer_extra) do
+  .center-block
+    %table(cellspacing="0" style="margin: 10px auto 50px auto; width:100%;")
+      %tbody
+        %tr
+          %td(style="vertical-align:top;")
+            %img.responsive-image(src="#{@host_uri}/assets/icons/alarm-clock.png" alt="Alarm Clock" title="Alarm Clock")
+          %td(style="vertical-align:middle;")
+            %p.sub-paragraph(style="#{@sub_p_style}" style="margin:0 5% !important;")
+              #{@footer_warning_notes}
+
+- content_for(:after_panel) do
+  %table(cellspacing="0" style="margin: 40px 0; width:100%;")
+    %tbody
+      %tr
+        %td(style="vertical-align:top; text-align:center;")
+          %h4(style="#{@text_style}") Have a question?
+          %h4(style="#{@text_style}")
+            %a(href="mailto:hello@kidstrade.com") hello@kidstrade.com
+
+= render partial: 'user_mailer/basic_css_table_layout'

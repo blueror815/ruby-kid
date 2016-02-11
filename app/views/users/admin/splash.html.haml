@@ -1,0 +1,213 @@
+- content_for :head_extra do
+
+  :css
+    body {
+      background-color: #ffffff;
+    }
+    .all-around-wrapper
+    {
+      max-width: 1000px;
+      margin-top: 55px;
+      margin-bottom: 55px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 490px;
+      border-radius: 16px;
+      background-color: rgb(245, 245, 241);
+    }
+    .header-wrapper {
+      position: relative;
+      min-height: 135px;
+    }
+    .logo-wrapper {
+      position: absolute;
+      width: 60%;
+      bottom: 18.7%;
+      padding: 2%;
+      float: left;
+      text-align: center;
+      min-height: 100px;
+      background: url("/assets/logos/cubby-shop-logo-medium@2x.png") bottom center no-repeat;
+    }
+    .launch-circle-wrapper {
+      width: 40%;
+      float: right;
+      position: absolute;
+      left: 55%;
+      top: 25%;
+      text-align: center;
+      z-index: 5;
+    }
+    .launch-circle {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      border: 0;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 2.0em;
+      background-color: rgb(0,102,204);
+      opacity: 0.7;
+    }
+    .main-picture-wrapper {
+      height: 500px;
+      text-align: center;
+      background: url("/assets/logos/splash-bg-kids@2x.png") center top no-repeat;
+    }
+
+    #about-us-wrapper {
+      padding: 46px 9% 10% 9%;
+      clear: left;
+    }
+    #about-us-wrapper h4 {
+      font-size: 1.8em;
+    }
+    #about-us-wrapper p {
+      font-size: 1.6em;
+    }
+
+    #login-form-space {
+      float: left;
+      width: 55%;
+      height: 100%;
+    }
+    #login-form-wrapper {
+      float: left;
+      position: relative;
+      width: 45%;
+      height: auto;
+      margin-top: 250px;
+    }
+    .login-form div {
+      margin: 12px 40px;
+    }
+    .login-form input {
+      width: 100%;
+      height: 55px;
+      border-radius: 8px;
+      font-size: 1.6em;
+      margin-left: auto;
+    }
+    .login-button {
+      margin-top: 30px;
+      font-size: 1.8em !important;
+      font-weight: bold;
+      padding: 2px;
+      background-color: rgb(0, 149, 252);
+    }
+
+    @media only screen and (min-width: 1000px)
+    {
+      .login-form-wrapper input {
+        width: 370px;
+      }
+    }
+
+    @media only screen and ( min-width: 500px ) and ( max-width: 639px ) and (orientation: portrait)
+    {
+      .login-form input
+      {
+        width: 500px;
+        height: 70px;
+      }
+      .main-picture-wrapper {
+        height: 250px;
+        background: url("/assets/logos/splash-bg-kids@2x.png") center top no-repeat;
+      }
+    }
+
+    @media only screen and ( max-width: 639px ) and (orientation: portrait)
+    {
+      .all-around-wrapper {
+        border-radius: 0;
+        background-color: #ffffff;
+        margin: 0px;
+      }
+      .header-wrapper {
+        min-height: 110px;
+      }
+      .logo-wrapper {
+        min-height: 55px;
+        background: url("/assets/logos/cubby-shop-logo-medium.png") bottom center no-repeat;
+      }
+      .launch-circle-wrapper {
+        right: 5%;
+        top: 50%;
+        text-align: center;
+      }
+      .launch-circle {
+        width: 122px;
+        height: 122px;
+        font-size: 1.3em;
+      }
+      .main-picture-wrapper {
+        height: 250px;
+        background: url("/assets/logos/splash-bg-kids.png") left top no-repeat;
+      }
+
+      #about-us-wrapper {
+        padding: 6px 5%;
+      }
+      #about-us-wrapper h4 {
+        font-size: 17px;
+      }
+      #about-us-wrapper p {
+        font-size: 15px;
+      }
+
+      #login-form-space {
+        width: 100%;
+        height: 100%;
+      }
+      #login-form-wrapper {
+        width: 100%;
+        margin-top: 0;
+      }
+      .login-form input {
+        width: 100%;
+        height: 35px;
+        font-size: 1.2em;
+        margin-left: auto;
+      }
+      .login-button {
+        margin-top: 30px;
+        font-size: 1.2em !important;
+        font-weight: bold;
+        padding: 2px;
+      }
+    }
+
+.all-around-wrapper
+  %div(class='header-wrapper')
+    %div(class='#{within_cubbyshop? ? "logo-wrapper" : ""}')
+      &nbsp;
+    %div(class='launch-circle-wrapper')
+      %button(class='launch-circle')
+        %a(href="http://itunes.apple.com/app/id1042828368" class="app")
+          %img(src="/assets/landing/App-Store-Mobile-LP.png" alt="Download app from the AppStore")
+
+    .clearfix
+  %div(class='main-picture-wrapper')
+
+    %div(id="login-form-space" style="")
+
+    %div(id="login-form-wrapper" style="")
+      = form_tag(admin_login_url, method: 'post') do
+
+        %div(class='login-form center-block content-width')
+
+          %div
+            = text_field_tag :login, '', :autofocus => true, :placeholder => 'User Name', :class => 'form-control'
+
+          %div
+            = password_field_tag :password, '', :placeholder => 'Password', :class => 'form-control'
+
+          %div
+            = submit_tag "Log In", class: 'form-control btn-primary login-button light-blue-bg'
+    .clearfix
+
+  - if within_cubbyshop?
+    .center-block(id="about-us-wrapper")
+      %h4(class="text-center dark-title-color") ABOUT US
+      %p(class="text-center dark-title-color")
+        CubbyShop is a small, Princeton-based start-up founded by local moms committed to creating entertaining and educational apps for kids. Some of your child’s friends are already testing CubbyShop and they want your child to join the fun!

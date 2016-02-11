@@ -1,0 +1,11 @@
+<% @is_following ||= @user.has_follower?(auth_user)
+if @is_following %>
+  $('#follow_user_<%= @user.id %>').removeClass("btn-info");
+  $('#follow_user_<%= @user.id %>').removeClass("btn-light");
+  $('#follow_user_<%= @user.id %>').html("<%= escape_javascript trade_icon(@user, :div) -%>");
+<% else %>
+
+  $('#follow_user_<%= @user.id %>').text('Follow');
+  $('#follow_user_<%= @user.id %>').removeClass("btn-info");
+  $('#follow_user_<%= @user.id %>').addClass("btn-light");
+<% end %>

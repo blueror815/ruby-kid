@@ -1,0 +1,67 @@
+@import "site-wide-styles.scss";
+
+table.notifications-table tr {
+  min-height: 105px;
+  height: 105px;
+}
+table.notifications-table tr:nth-of-type(1) td {
+  border-top: 0;
+}
+td.user-avatar-cell {
+  width: 10%;
+  padding-left: 15px;
+}
+td.user-avatar-cell img { max-width: 100px; }
+td.message-cell { width: 80%; }
+tr.starred td {
+  background-color: $subtle-blue-color;
+  text-align: left;
+}
+td.message-cell a {
+  color: $dark-gray-color;
+}
+td.status-cell {
+  text-align: left;
+}
+
+.notification-image {
+  transform: scale(.7, .7);
+  -ms-transform: scale(.7, .7);
+  -webkit-transform: scale(.7, .7);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.notification-timestamp {
+  width: 100%;
+  text-align: center;
+}
+
+@media only screen and ( min-width: $mid-screen-min-width ) and (max-width: $mid-screen-max-width)
+{
+  td.user-avatar-cell img { max-width: 65px; }
+}
+
+/* Scale down icons for small 320px screen. */
+@media only screen and ( max-width: $small-screen-max-width )
+{
+  table.notifications-table tr {
+    height: 60px;
+  }
+  td.message-cell {
+    width: auto;
+    padding: 3px 0;
+  }
+  td.user-avatar-cell {
+    width: 18%;
+    padding: 4px 4px 4px 12px;
+  }
+  td.user-avatar-cell img { max-width: 48px; }
+  td.status-cell {
+    padding: 3px 12px 0 6px;
+  }
+  .othercheck{
+    width: 55px;
+  }
+}

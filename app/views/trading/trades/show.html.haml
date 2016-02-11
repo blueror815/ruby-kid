@@ -1,0 +1,81 @@
+= stylesheet_link_tag "trade-ui", :media => "all"
+- ordered_user_list = ordered_users_list(@trade)
+- user = ordered_user_list.first
+
+%section.inner-pages
+  .paitem
+    .container
+      .row
+        .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+          %h1 Please review the following trade:
+          .user-info-row
+            .img
+              %img.user-avatar-icon(src="#{user.profile_image_url(:thumb)}" alt="#{user.display_name}" title="#{user.display_name}")
+            .textarea
+              %h3
+                #{user_name_label(user)}
+                %span.size - #{user.first_name}
+    .container
+      .row
+        - @trade.wanted_items_of(user).each do|item|
+          .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+            .slide2
+              .carousel.slide{"id" => "myCarousel#{item.id}", "data-ride" => "carousel"}
+                / Indicators
+                - if item.item_photos.size > 1
+                  %ol.carousel-indicators
+                    - item.item_photos.each_with_index do |item_photo, ip_index|
+                      %li{"class" => (ip_index==0 ? 'active' : ''),  "data-slide-to" => ip_index.to_s, "data-target" => "#myCarousel#{item.id}"}
+                / Wrapper for slides
+                .carousel-inner{:role => "listbox"}
+                  - item.item_photos.each_with_index do|item_photo, ip_index|
+                    %div(class="item#{ip_index==0 ? ' active' : ''}")
+                      %img{:alt => "", :src => item_photo.image_url}/
+                      %a.wants{:href => "#"} Wants
+              %p
+                #{item.description.strip.truncate(500).html_safe}
+    - user = ordered_user_list.last ####################################
+    - grade_text = user.grade ? ::Schools::SchoolGroup::GRADES_HASH[user.grade].to_s : ''
+    .pa-trade
+      .container
+        .row
+          .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+            .GreenViper
+              .img
+                %img.user-avatar-icon(src="#{user.profile_image_url(:thumb)}" alt="#{user.display_name}" title="#{user.display_name}")
+              .textarea
+                %h3
+                  #{user_name_label(user)}
+                  %span.size - #{user.first_name}
+                  .clearfix
+                  %span.size
+                    - if user.teacher.present? || user.current_school
+                      #{user.teacher.present? ? user.teacher : user.current_school.name}#{grade_text.present? ? " - #{grade_text}" : ''}
+                      .clearfix
+                    %span.color #{pluralize(user.item_count, 'Item')}
+      .container
+        .row
+          - @trade.wanted_items_of(user).each do|item|
+            .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+              .slide2
+                .carousel.slide{"id" => "myCarousel#{item.id}", "data-ride" => "carousel"}
+                  / Indicators
+                  - if item.item_photos.size > 1
+                    %ol.carousel-indicators
+                      - item.item_photos.each_with_index do |item_photo, ip_index|
+                        %li{"class" => (ip_index==0 ? 'active' : ''),  "data-slide-to" => ip_index.to_s, "data-target" => "#myCarousel#{item.id}"}
+                  / Wrapper for slides
+                  .carousel-inner{:role => "listbox"}
+                    - item.item_photos.each_with_index do|item_photo, ip_index|
+                      %div(class="item#{ip_index==0 ? ' active' : ''}")
+                        %img{:alt => "", :src => item_photo.image_url}/
+                        %a.wants{:href => "#"} Wants
+          .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+            .slide2
+              = form_tag(accept_trade_path(@trade), :method => :post) do
+                = submit_tag "Approve Trade", class: "Approve-trade text-center"
+              = form_tag(decline_trade_path(@trade), :method => :delete) do
+                = submit_tag "End Trade", class: "End-trade text-center"
+              %p
+                Unhappy with this trade? Why not use it as a
+                %span teaching moment.

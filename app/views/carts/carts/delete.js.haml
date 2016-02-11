@@ -1,0 +1,5 @@
+$("#make_offer_button_of_cart_#{@item.user_id}").attr("href", "#{ new_offer_response_path(item_id: @cart[@item.user_id].collect(&:item_id) ).html_safe }");
+$("#cart_item_row_of_#{@item.id}").fadeOut(2000, function(){ |
+  $("#cart_item_row_of_#{@item.id}").hide(); |
+  $("#header_cart_link").html("<a href='#{carts_path}'>Cart #{@cart.item_count.to_i > 0 ? "<span class='badge'>#{@cart.item_count}</span>".html_safe : ''}</a>"); |
+  } ); |

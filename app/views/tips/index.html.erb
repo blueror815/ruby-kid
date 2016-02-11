@@ -1,0 +1,29 @@
+<% content_for(:head_extra) do %>
+<style type="text/css">
+  li { text-align: left; line-height: 1.8em; }
+</style>
+<% end -%>
+
+<% content_for(:footer_extra) do %>
+  <%= render partial: 'layouts/google_analysis' %>
+<% end # footer_extra %>
+
+<hr class="full-separator" />
+
+<section class="section1"><!--section1-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <p class="faq-para1"> Tips</p>
+        <ul>
+          <% @tips.each do|tip| %>
+            <li><%= tip.title -%></li>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section><!--section1 end-->
+<div class="clearfix"></div>
+<hr class="full-separator" />
+<div class="section-gap">&nbsp;</div>

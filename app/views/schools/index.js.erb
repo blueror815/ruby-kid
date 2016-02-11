@@ -1,0 +1,15 @@
+<% 
+logger.info "---- schools/index.rjs w/ #{@schools.try(:size)} schools, "
+-%>
+
+<% 
+if @schools.present? -%>
+  $('#user_current_school_id option').remove();
+  $('#user_current_school_id').append($('<option></option>') );
+  <% @schools.each do|school| -%>
+    $('#user_current_school_id').append($('<option></option>').attr('value', <%= school.id %>).text("<%=school.name.titleize%>") );
+  <% end -%>
+  $('.ui-autocomplete').show();
+  schoolNames = <%= @schools.to_a.collect{|sc| {'label' => sc.name.titleize + " (#{sc.address.titleize})", 'value'=> sc.id } }.to_json.html_safe %>;
+
+<% end %>

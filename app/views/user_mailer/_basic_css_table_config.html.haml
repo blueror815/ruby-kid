@@ -1,0 +1,24 @@
+:ruby
+  @body_bgcolor = 'rgb(245,245,239)'
+  @table_bgcolor = '#ffffff'
+  @top_banner_bgcolor = '#006EB8'
+  @top_banner_corner = '11px'
+  @top_banner_height = '85px'
+  # Text
+  @text_margin = '0 5%'
+  @font_family = '"Helvetica Neue",Helvetica, sans-serif'
+  @font_color = '#666666'
+  @host_uri ||= Rails.env.development? ? "http://localhost" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+  @site_logo ||= "/assets/logos/kidstrade-title@2x.png"
+  @statue_logo ||= 'goat-statue'
+
+  @do_not_use_inline_style ||= @recipient.try(:email).to_s =~ /(gmail|icloud|me)\.(com|org|net)$/i
+  @use_separator_gap = true if @use_separator_gap.nil?
+
+  unless @do_not_use_inline_style
+    @main_p_style = "width: 85%; margin: 40px auto 40px 5%; font-size: 24px; font-weight:bold; color:#{@font_color};"
+    @sub_p_style = "width: 85%; margin: 0 auto 30px 5%; font-size:18px; font-weight:400; color:#{@font_color}; "
+    @hr_style = "background-color: #cccccc; border: 0; height: 1px; width: 100%;"
+    @form_button_style = "border-radius:6px; border:0; padding:10px; margin: 5% auto; color:#ffffff; background-color: rgb(64,159,237); font-size:36px; font-family: #{@font_family}; font-weight:500; opacity:0.9;"
+    @text_style ||= "font-weight:300; color:#{@font_color};"
+  end

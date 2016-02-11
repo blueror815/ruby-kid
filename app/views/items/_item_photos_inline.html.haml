@@ -1,0 +1,12 @@
+-# Item photo thumbnails inline, intended for secondary pictures.
+-# Required locals:
+-#  item <Item>
+-# Optional locals:
+-#  item_photos <Array of ItemPhoto> if not specified, this would be the 2nd to last photos of the item.
+- item_photos = item.item_photos[1, item.item_photos.size - 1] if not defined?(item_photos)
+
+%div(class='center-block' style='padding-top: 10px;')
+  - item_photos.each_with_index do|item_photo, index|
+    %div(class='thumbnail-cell')
+      %a(href="#{item_photo.image_url}" target="_blank" id="thumbnail_link_#{item_photo.item_id}")
+        %img.thumbnail-placeholder(src="#{item_photo.image_url(:thumb)}" alt="Picture #{index + 2}")

@@ -1,0 +1,45 @@
+.section-gap
+
+= render(partial: 'items/items_search_head')
+
+%div(class='container')
+  
+  .row(style="display: none;")
+    %ol.breadcrumb
+      %li
+        = link_to('For Sale Items', items_path)
+      - if @category
+        %li
+          = link_to(@category.name, category_title_path(@category, title: @category.title_path) )
+      - if params[:query].present?
+        %li(class='active')
+          %strong.text-success &ldquo;#{params[:query]}&rdquo;
+
+  %div(class='row content-width' style="display: none;")
+    %div(class='col-sm-offset-8 col-sm-4 text-right')
+      = form_tag({}, :method => 'get', :id => 'items_search_form') do
+        Sort by:
+        = select_tag(:sort, sort_select_options(params[:sort] ), :id => 'items_search_sort' )
+
+  = section_tabs(css_class: 'content-width center-block')
+
+  .section-gap
+
+  %div(id='items_container' class='row content-width center-block')
+    %ul(id="tiles")
+      - (@items || @items_search.results).each do|item|
+        %li
+          = render(partial: 'items/item_thumbnail', locals:{ item: item, favorite_item_ids: @favorite_item_ids } )
+
+    .clearfix
+
+  %div(id="loader-circle" class='row content-width center-block')
+    %span(class='vertical-center') Loading ...
+
+  -# = pagination_links (@items || @items_search.results), { is_active: true }
+
+  .row
+    %p.clearfix
+  
+  - if auth_user && auth_user.is_a?(Child)
+    = render(partial: 'home/bottom_tabbar')

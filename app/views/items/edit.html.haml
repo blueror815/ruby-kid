@@ -1,0 +1,16 @@
+%div(class='center-block' style="padding: 0 5%")
+
+  .section-gap
+
+  = render 'form'
+
+  %nav
+    %ul.pager
+      %li
+        = link_to inventory_manager_index_path(tab: auth_user.is_a?(Parent) ? 'inactive' : '')  do
+          &larr; Back to #{@item.user.display_name}&rsquo;s Items
+      %li
+        = link_to 'Reset & Show Item Again'
+
+  .clearfix
+    %p

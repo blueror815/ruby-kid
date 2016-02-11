@@ -1,0 +1,25 @@
+-##
+-# Additional header CSS and Javascript for item browsing.
+
+- content_for(:head_extra) do
+
+  = javascript_include_tag 'items'
+
+- content_for(:footer_extra) do
+
+  :javascript
+
+    apiURL = "#{items_path( current_search_params.merge(format: 'js') )}";
+    page = #{[params[:page].to_i, 1].max };
+      
+    $(function () {
+
+
+      $("#items_search_sort").change( function() { $("#items_search_form").submit(); } );
+
+      $(window).load( setTilesWithWookmark );
+      $(window).resize( setTilesWithWookmark );
+      
+      $(document).bind('scroll', onScroll);
+      
+    } );

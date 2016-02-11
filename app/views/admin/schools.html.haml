@@ -1,0 +1,60 @@
+- search_uri = 'http://www.google.com/webhp?sourceid=chrome-instant&es_th=1ie='
+- filter_all = params[:filter].to_s == 'all'
+- content_for(:head_extra) do
+  :css
+    #schools_table { width:100%; margin:0; }
+    #schools_table td { padding: 5px 10px; }
+
+- content_for(:footer_extra) do
+  :javascript
+    jQuery(function(){
+      /*$("#schools_search_form").submit(function(event){
+        // Load search into iframe
+        var school_name = $("#school_name").val().trim();
+        alert(school_name);
+        if (school_name != "") {
+          $("#search_engine_frame")[0].src = ""+ school_name;
+        }
+        return false;
+      }); // Cannot cross-frame load */
+    });
+
+.container
+  .row.form-group(style="vertical-align:bottom; margin:0;")
+    %form#schools_search_form(action="#{search_uri}" target='_blank')
+      %img.pull-left(src="/assets/logos/kidstrade-title.png" alt="KIDSTrade" style="margin:0 2% 0 0;")
+      %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+        %a(href='/admin') ADMIN
+        %span.gray-title-color - SCHOOLS
+      %p.pull-left(style="width:25%;")
+        %input#school_name(type="text" name="q" value="#{params[:name]}" placeholder="Search Schools" style="width:80%;" )
+        %button(type="submit" aria-label="Search Schools" )
+          %span.glyphicon.glyphicon-search(aria-hidden="true")/
+      %p.pull-right.normal-weight.text-medium-title
+        %a(href="#{admin_schools_path(filter:'all')}" class="#{filter_all ? 'dark-title-color' : ''}") ALL
+        \|
+        %a(href="#{admin_schools_path}" class="#{filter_all ? '' : 'dark-title-color'}") Not Validated
+%table#schools_table.table-striped
+  %tbody
+    %tr
+      %td.text-small-title.gray-title-color() ID
+      %td.text-small-title.gray-title-color(width="30%" ) Name
+      %td.text-small-title.gray-title-color(width="15%" ) City
+      %td.text-small-title.gray-title-color(width="10%" ) State/Province/Region
+      %td.text-small-title.gray-title-color(width="18%" ) Zip/Postal Code
+      %td.text-small-title.gray-title-color(width="15%" ) Country
+    - @schools.each do|school|
+      %tr
+        %td.gray-title-color #{school.id}
+        %td #{school.name}
+        %td #{school.city}
+        %td #{school.state}
+        %td.moderate-dark-title-color #{school.zip}
+        %td.moderate-dark-title-color #{school.country}
+.section-gap
+.container
+  .text-center
+    = pagination_links(@schools)
+
+- if params[:name].present?
+  %iframe#search_engine_frame(style="width:100%; height:80%; padding:1% 2%; border:solid 1px #cccccc;" src="#{search_uri}#{params[:name]}")

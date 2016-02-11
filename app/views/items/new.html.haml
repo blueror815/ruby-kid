@@ -1,0 +1,66 @@
+- @page_title = 'New Item'
+- @page_title << " of #{@category.name}" if @category
+
+- content_for :footer_extra do
+
+  :javascript
+    var mainPhotoID = "#main-item-photo";
+    $( function() {
+      $(mainPhotoID).change( function() {
+        if ( $(this).val() != "" ) {
+          $("#photo-tips").css("display", "none");
+          $("#describe-form").css("display", "block");
+        }
+      } );
+      $("#take-picture-button").click( function() {
+        $(mainPhotoID).click();
+      });
+    } );
+
+
+- if @item.category_id.to_i.zero?
+
+  %div(class="content-width center-block text-center")
+
+    %h2 #{t("selling.choose_category.header")}
+    %h3.gray-title-color #{t("selling.choose_category.tip")}
+
+    - @categories.each_with_index do|category, index|
+      - if index % 3 == 0
+        .row
+      = make_category_cell(category, auth_user, url: new_item_path(category_id: category.id) )
+
+- elsif params[:ios_form]
+
+  = nested_form_for(@item, :html=>{:multipart => true, :class => 'form-horizontal',  :role => 'form'}) do |f|
+    %div(class="content-width center-block text-center")
+      %div(id="photo-tips" style="#{show_photo_tips? ? '' : 'display:none;'}")
+
+        = render partial: 'items/photo_tips', locals: { f: f }
+
+      %div(id="describe-form" style="#{show_photo_tips? ? 'display: BLOCK' : ''}")
+        .section-gap
+        %div(class='text-center text-superbig-title') #{t('selling.form.header')}
+        %div(class='text-center gray-title-color text-moderate-big-title slim-weight') #{t('selling.form.tip')}
+
+        = render partial: 'items/ios_form', locals: { f: f }
+
+  %hr.dark-hr
+
+- else
+
+  %div(class='center-block' style="padding: 0 5%")
+
+    .section-gap
+
+    = render 'form'
+
+    %nav
+      %ul.pager
+        %li
+          = link_to inventory_manager_index_path(tab: auth_user.is_a?(Parent) ? 'inactive' : '') do
+            &larr; Back to Your Items
+
+
+  .clearfix
+    %p

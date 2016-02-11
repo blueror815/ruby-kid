@@ -1,0 +1,13 @@
+.row
+  %div(id='children_edit_tabs' class='pull-left col-lg-2 panel')
+    .panel-body
+      %a(href="#{users_new_child_path}" class="btn btn-success" role='button') + Add New Child
+    %div(class='panel panel-default')
+      .panel-heading
+        %h4.panel-title Added Children
+      .list-group
+        - auth_user.children.each do|child|
+          %a(class="list-group-item#{child.id == params[:id].to_i ? ' active' : ''}" href="#{users_edit_child_path(child)}") #{child.first_name} #{child.last_name}
+          
+  .pull-left
+    = render(:partial => 'devise/registrations/form', :locals => { :resource => (@child || Child.new) } )

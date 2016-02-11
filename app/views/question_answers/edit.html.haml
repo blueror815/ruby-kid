@@ -1,0 +1,10 @@
+.container
+  .section-gap
+  %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+    %a(href='/admin') ADMIN
+    %span.gray-title-color - Question &amp; Answer
+  .clearfix
+
+  = render 'form'
+
+  = link_to ' Back', question_answers_path, class:'glyphicon glyphicon-chevron-left'

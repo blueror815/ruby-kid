@@ -1,0 +1,23 @@
+-###############
+-# Required locals:
+-#   items <Array of Item>
+-# Optional locals:
+-#   hide_user_label <Boolean> default false.
+-#   hide_school_teacher_label <Boolean> default false.
+-#   favorite_item_ids <Array of integer>
+-#   favorite_counts_map <Hash of item_id => integer> If defined, renders the favorite icon as a like-count instead of icon for buyers to toggle like status.
+-#   use_trade_path <boolean> whether set thumbnail link to point to trade path instead of item path.  default false.  This checks the presence of active_trade attribute.
+-# Reference: http://www.jqueryscript.net/layout/Dynamic-Grid-Layout-Plugin.html
+- hide_user_label = false if not defined?(hide_user_label)
+- hide_school_teacher_label = false if not defined?(hide_school_teacher_label)
+- favorite_item_ids = Set.new if not defined?(favorite_item_ids)
+- favorite_item_ids ||= Set.new
+- favorite_counts_map = { } if not defined?(favorite_counts_map)
+- use_trade_path = false if not defined?(use_trade_path)
+
+%ul(id="tiles")
+  - items.each do|item|
+    %li(class="#{item.active_trade_attribute(:breathing) ? 'breathing-item' : ''}")
+      = render(partial: 'items/item_thumbnail', locals:{ item: item, hide_user_label: hide_user_label, hide_school_teacher_label: hide_school_teacher_label, favorite_counts_map: favorite_counts_map, favorite_item_ids: favorite_item_ids, use_trade_path: use_trade_path } )
+
+

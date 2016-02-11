@@ -1,0 +1,60 @@
+- action_title = @child.nil? || @child.new_record? ? 'New Child' : @child.first_name
+- @page_title = 'Profile - ' + action_title 
+- parent_tab_active_class = ''
+- children_tab_active_class = ' active'
+
+- content_for :head_extra do
+  = render(partial: 'users/schools_data')
+  = javascript_include_tag 'jquery-ui', 'bootstrap-modal'
+
+
+- content_for :footer_extra do
+  :javascript
+    $(function() {
+      $( document ).tooltip();
+      $("#remove_profile_image_link").tooltip({animation: false, placement:'auto'} );
+
+      $('#remove_profile_image_link').click( function() {
+        var removeField = $('#remove_profile_image');
+        var removeValue = (removeField == null) ? true : (removeField.val() == 'false');
+        $('#remove_profile_image').val( removeValue );
+        if (removeValue) {
+          $("#profile_image").attr("style", "opacity: 0.3;");
+          $("#profile_image_thumbnail").attr("style", "border-color: #993333; background-color: #ffdddd;");
+        } else {
+          $("#profile_image").attr("style", "opacity: 1.0;");
+          $("#profile_image_thumbnail").attr("style", "border-color: #cccccc; background-color: #ffffff;");
+        }
+
+      } );
+
+      $(".avatar-button").on("click", function() {
+        $("#user_profile_image_name").val( $(this).attr("data") );
+        $("#avatar_button_image").attr("src", $(this).attr("src") );
+        $("#avatars_modal").modal("hide");
+        $(".modal-backdrop").hide();
+      } );
+    } );
+
+
+%h2 #{@page_title}
+
+%ul(class='nav nav-tabs' id='profile_nav_tabs')
+  %li(class="#{parent_tab_active_class}")
+    %a.navbar-brand(href="#{edit_user_registration_path}") Parent
+    
+  %li(class="#{children_tab_active_class}")
+    %a.navbar-brand(href='#children_tab' data-toggle='tab') Children
+  - if auth_user.is_a?(Parent)
+    %li(class="#{profile_tab_css_class('address')}")
+      %a.navbar-brand(href="#{user_locations_path}") Addresses
+
+    %li(class="#{profile_tab_css_class('phone')}")
+      %a.navbar-brand(href="#{user_phones_path}") Phone Numbers
+
+%div(class='tab-content')
+  %div(class="tab-pane panel-no-top-border#{parent_tab_active_class}" id='parent_tab')
+    - # = render(:partial => 'devise/registrations/form' )
+    
+  %div(class="tab-pane panel-no-top-border#{children_tab_active_class}" id='children_tab')
+    = render(:partial => 'children_panel')

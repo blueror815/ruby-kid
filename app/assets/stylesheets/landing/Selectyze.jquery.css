@@ -1,0 +1,27 @@
+/***************************/
+/** Common to every theme **/
+/***************************/
+
+
+.optgroupTitle {
+	display:block;
+}
+
+	/*****************/
+	/** MAC THEME **/
+	/*****************/
+	.mac .selectyzeValue {
+	color:#999;
+	}
+
+	
+	
+	.mac .optgroupTitle {
+		margin-top:15px;
+		font-size:13px;
+		padding-left:10px;
+		background-color:#fff;
+		color:#969696;
+	}
+	
+	

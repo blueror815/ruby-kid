@@ -1,0 +1,3 @@
+var qty = $("#item_quantity_select_of_#{@item.id}");
+qty.attr('data-content', 'Successfully updated').popover('show');
+qty.delay(3000).queue(function(next){ qty.popover('hide'); next(); } );

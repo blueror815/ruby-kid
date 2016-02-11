@@ -1,0 +1,34 @@
+- content_for(:head_extra) do
+
+  = javascript_include_tag 'items'
+
+- content_for(:footer_extra) do
+
+  :javascript
+
+    function setThumbnailOverlays() {
+      var overlays = $(".thumbnail-overlay-text");
+      for (i = 0; i < overlays.length; i++) {
+        var overlay = overlays[i];
+        var mainImageLink = $(overlay).siblings(".main-image-link")[0];
+        $(overlay).positionOn($(mainImageLink), "center");
+        $(overlay).css("visibility", "visible");
+      }
+      var userIcons = $(".thumbnail-user-icon-wrapper");
+      for (i = 0; i < userIcons.length; i++) {
+        var overlay = userIcons[i];
+        var parentBox = $(overlay).parent();
+        $(overlay).position({ my:"right top", at: "right-5 top+5", of: parentBox });
+        $(overlay).css("visibility", "visible");
+      }
+    }
+
+    $(function () {
+
+      $(window).load( setTilesWithWookmark );
+      $(window).load( setThumbnailOverlays );
+      $(window).resize( setTilesWithWookmark );
+
+      //$(document).bind('scroll', onScroll);
+
+    } );

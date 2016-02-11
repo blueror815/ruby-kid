@@ -1,0 +1,50 @@
+- request_child = @friend_request.current_request_child
+
+- content_for(:head_extra) do
+  :css
+    #form-container { margin: 0 5%; }
+    .message-box { margin: 5px 10px; border: solid 2px #999999; border-radius: 5px; background-color: #FFFFFF; }
+    .message-box img.tail-left { display: inline; position:relative; left: -29px; top: 15px; }
+    .message-box p { padding:10px; font-family:"Helvetica Neue",sans-serif; font-size:1.2em; line-height: 1.5em; margin-top: -15px; }
+
+    .submit-button { font-size:2.0em; font-weight: bold; width:90%; margin:1% auto; padding: 15px 0; }
+    @media all and (min-width: 700px) {
+      #form-container { margin:0 auto; }
+      .submit-button { font-size:2.4em; width:70%; }
+    }
+
+
+#form-container.container
+  .row
+    .section-gap
+    %h3.moderate-dark-title-color #{request_child.first_name.titleize} would like to add a friend:
+    .section-gap
+
+    - if @friend_request.current_message.present?
+      %div(class='row container center-block content-width')
+        %div(class='user-avatar-wrapper pull-left')
+          .user-avatar-circle-responsive
+            %img.user-avatar-icon.vertical-center(src="#{request_child.profile_image_url(:thumb)}" alt="#{request_child.display_name}" title="#{request_child.display_name}")
+        %div(class='message-box pull-left col-md-9 col-sm-8 col-xs-8')
+          %img.tail-left(src="/assets/messages/message-tail-left.png" alt="")/
+          %p
+            #{@friend_request.current_message}
+        .section-gap
+
+    = render partial:'users/seller_info', locals:{ user: @friend_request.current_recipient_child, show_child_name:true }
+
+    .section-gap(style="height:3%;") &nbsp;
+
+    - if @friend_request.waiting_for_response_of?(auth_user.id)
+
+      .section-gap(style="height:3%;") &nbsp;
+
+      .center-block.text-center
+        = form_tag(accept_friend_request_path(id: @friend_request.id), method:'post') do
+          = submit_tag('Approve', class: 'btn btn-lg btn-success submit-button', disable_with:'Submitting...')
+
+        = form_tag(deny_friend_request_path(id: @friend_request.id), method:'post') do
+          = submit_tag('Decline', class: 'btn btn-lg btn-danger submit-button', confirm:'Are you sure you want to decline this friend?', disable_with:'Submitting...')
+
+    - else
+      %h3.moderate-dark-title-color.text-center You have already responded to this request

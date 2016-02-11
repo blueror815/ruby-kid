@@ -1,0 +1,35 @@
+- content_for(:head_extra) do
+
+  = stylesheet_link_tag 'trade-ui'
+
+  = javascript_include_tag 'items'
+
+  :javascript
+
+    jQuery( function() {
+
+      setButtonWithChangingStatus( $("#submit-item-comment") );
+    });
+
+- item_photo = @item.item_photos.first
+%div(class='container row content-width center-block text-center' style='padding-top: 10px;')
+  %div(class='thumbnail-cell text-center center-block' style="width: 180px; height: 180px; margin-bottom: 5px;")
+    %div
+      %a(href="#{item_photo.image_url}" target="_blank" id="thumbnail_link_#{@item.id}")
+        %img(src="#{item_photo.image_url(:thumb)}" alt="Item Picture")
+    .pull-left(style='padding: 4px;')
+      = user_name_label(@item.user, :span)
+    %div(class="item-info-row #{@item.status.downcase}-item pull-right")
+      = link_to( store_path(id: @item.user_id), { class: 'user-avatar-circle-small' } ) do
+        %img(src="#{@item.user.profile_image_url(:thumb)}" alt="#{@item.user.display_name}" title="#{@item.user.display_name}")
+    .clearfix
+
+  = form_for(ItemComment.new(item_id: @item.id ) ) do|f|
+    = f.hidden_field(:item_id)
+    .section-gap
+    %div(class='text-center center-block' style="padding: 0 20px;")
+      .form-group
+        = f.text_field(:body, placeholder: t('trading.ask_question.placeholder'), class: 'gray-border-round-corner form-control', style: "background-color: white;" )
+      %div(class='form-group text-center')
+        = f.submit(t('trading.ask_question.submit_label'), class:'btn btn-success', id:'submit-item-comment', |
+          'submitting-label'=> t('trading.ask_question.submitting_label'), 'submitted-label'=> t('trading.ask_question.submitted_label') ) |

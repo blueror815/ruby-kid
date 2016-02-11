@@ -1,0 +1,48 @@
+- children_user_ids = auth_user ? auth_user.children.collect(&:id) : []
+- content_for(:head_extra) do
+  = stylesheet_link_tag 'notifications'
+
+= content_for(:footer_extra) do
+  :javascript
+    $( function() {
+      $("#all_notification_ids").change(
+        function(){
+          if(this.checked) { $(".notification_id_checkbox").each( function(){ this.checked=true;} );
+          } else { $(".notification_id_checkbox").each( function(){ this.checked=false;} );
+          }
+        } )
+    } );
+
+.clearfix
+.landing-page-section(style="min-height:80%;")
+  %table(class='table notifications-table content-table-width' style='border-top: 0;')
+    %tbody
+      - (@sorted_notifications || @notifications.to_a).each do |notification|
+        - notification_url = notification.id ? notification_path(notification) : notification.uri
+        %tr(class="#{notification.starred ? 'starred' : ''}")
+          %td.user-avatar-cell
+            %a(href="#{children_user_ids.include?(notification.sender_user_id) ? user_path(id: notification.sender_user_id) : store_path(id: notification.sender_user_id) }")
+              %img.user-avatar-icon(src="#{notification.sender.profile_image_url(:thumb)}" alt="#{notification.sender.display_name}" title="#{notification.sender.display_name}")
+          %td.message-cell
+            = user_name_label(notification.sender, :div, relationship_to_user: auth_user )
+            %div(class="text-subject dark-title-color")
+              = link_to(notification.title, notification_url, class: 'dark-title' )
+            - if notification.tip.present?
+              %div(class="text-tip")
+                = link_to(notification.tip, notification_url, class: 'gray-title-color' )
+          %td.status-cell
+            %div(class='gray-title-color text-timestamp notification-timestamp') #{ timestamp_ordinal(notification) }
+            - if notification.action_icon.present? && notification.waiting?
+              - if notification.action_icon.eql? 'other'
+                %img(class='notification-image' src='/assets/icons/message-#{notification.action_icon}@2x.png')
+              - else
+                %img(class='notification-image othercheck' src='/assets/icons/message-#{notification.action_icon}@2x.png')
+            - elsif notification.starred
+              %img(class='notification-image othercheck' src='/assets/icons/message-starred@2x.png' title='Important')
+            - elsif notification.waiting?
+              %div
+                %button(class='btn notification-#{notification.action_icon} othercheck' title='New') &nbsp;
+
+  %br
+
+  = pagination_links @notifications

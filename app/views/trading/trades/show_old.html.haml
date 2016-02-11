@@ -1,0 +1,53 @@
+= stylesheet_link_tag "trade-ui", :media => "all"
+= stylesheet_link_tag 'bootstrap', :media => "all"
+= stylesheet_link_tag 'application', :media => "all"
+
+- content_for(:head_extra) do
+
+  :css
+
+
+.content-table-width(style="width:90%; margin:auto;")
+  - ordered_users_list(@trade).each_with_index do|user, user_index|
+    - @trade.wanted_items_of(user).each_with_index do|item, index|
+      %div(class='container center-block' style="max-width: 60%;")
+        %div(class='container center-block')
+          %table
+            %tbody
+              %tr
+                %td
+                  %a(href="#{store_path(user)}")
+                    %img.user-avatar-icon(src="#{user.profile_image_url(:thumb)}" alt="#{user.display_name}" title="#{user.display_name}")
+                %td(style="vertical-align:top; padding: 10px;")
+                  %a(href="#{store_path(user)}")
+                    = user_name_label(user, :span, user_name_css_class: 'text-medium-title')
+
+        %div(class='center-block' id='main_picture_wrapper_#{item.id}')
+
+          %div(id='pictures_wrapper' class='')
+            %div(class='right-round-tag' id='price_tag_#{item.id}')
+              %button
+                %img(src="/assets/icons/check-blue-white-bg.png" alt="" style="vertical-align:middle; margin-bottom:3px;")
+                Wants
+            - item_photo = item.item_photos.first
+            - if item.editable_by_user?(auth_user)
+              %a(href="#{edit_item_path(item)}")
+                = image_tag(item_photo.image_url, class:'main-image-placeholder', alt:item.title)
+            - else
+              %a(href="#{item_photo.image_url}" target="_blank")
+                = image_tag(item_photo.image_url, class:'main-image-placeholder', alt:item.title)
+
+        %div(class='container row' style='padding: 10px 0; display: inline;')
+          %p(class='text-moderate-big-title dark-title-color')
+            = html_escape( item.description ).strip
+
+    - if user_index == 0
+      %div.full-separator &nbsp;
+
+  .section-gap
+    &nbsp;
+
+  %div(class='container row content-width center-block' style='max-width:60%;')
+    %div(id="actions-wrapper" class='row')
+      =link_to "Approve Trade", accept_trade_path, :method => :post, class: "btn btn-lg large-form-button btn-primary"
+      =link_to "Decline Trade", decline_trade_path, :method => :post, class: "btn btn-lg large-form-button btn-danger"

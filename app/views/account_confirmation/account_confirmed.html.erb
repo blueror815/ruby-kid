@@ -1,0 +1,33 @@
+<% content_for(:footer_extra) do %>
+  <div style="width:100%; height:50%;">
+    &nbsp;
+  </div>
+<% end -%>
+
+<section class="inner-pages">
+
+  <div class="container" style="padding: 6% 0;">
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 text-center description-titles">
+        <h2 class="title-success">Your account has been verified.</h2>
+
+        <h1>Your child thanks you!</h1>
+
+        <% if back_page_url.present? -%>
+          <div class="section-gap">&nbsp;</div>
+          <h4><a href="<%= back_page_url %>">Back to Messages</a></h4>
+
+          <div class="section-gap" style="height:200px;">&nbsp;</div>
+        <% end -%>
+
+        <h3 class="description-text moderate-dark-title-color slim-weight" >
+          Interested in what they&apos;re up to?  Login to your
+          KidsTrade app at anytime.
+        </h3>
+      </div>
+    </div>
+
+  </div>
+
+
+</section>

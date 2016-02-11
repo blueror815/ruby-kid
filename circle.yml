@@ -1,0 +1,23 @@
+machine:
+  hosts:
+    currentdb: 127.0.0.1
+
+database:
+  override:
+    - mv config/database.ci.yml config/database.yml
+    - bundle exec rake db:create db:schema:load --trace
+    - bundle exec rake db:test:prepare
+    - mv config/sunspot.ci.yml config/sunspot.yml
+    - bundle exec rake sunspot:solr:start
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - chmod +x script/*
+      - bundle exec cap staging deploy
+  production:
+    branch: production
+    commands:
+      - chmod +x script/*
+      - bundle exec cap production deploy

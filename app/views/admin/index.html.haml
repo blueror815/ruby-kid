@@ -1,0 +1,23 @@
+.container
+  %h1.page-header Admin Dashboard
+
+  .panel.panel-success
+    .panel-heading
+      %h4 Users
+    .panel-body.list-group
+      %a.list-group-item(href="/admin/users") User Registrations
+      %a.list-group-item(href="/admin/notifications") Notifications Manager
+
+  .panel.panel-info
+    .panel-heading
+      %h4 Categories
+    .panel-body.list-group
+      %a.list-group-item(href="/categories") Categories Manager
+      %a.list-group-item(href="/admin/categories") Category Groups Admin
+
+  .panel.panel-warning
+    .panel-heading
+      %h4 Guides
+    .panel-body.list-group
+      %a.list-group-item(href="/question_answers") Questions and Answers (FAQs)
+      %a.list-group-item(href="/tips") Tips

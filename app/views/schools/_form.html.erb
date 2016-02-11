@@ -1,0 +1,58 @@
+<div class='section-gap'>
+</div>
+
+<div class='center-block content-width row'>
+
+  <%= form_for(@school, :url => (@school.new_record? ? schools_url : school_url(@school) ), html:{ name: 'school_form' } ) do |f| %>
+  <% if @school.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+
+      <ul>
+        <% @school.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='col-sm-2'></div>
+  <div class='col-sm-8'>
+    <div class='form-group'>
+      <%= f.label :name %>
+      <%= f.text_field :name, name:'school[name]', class:'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <%= f.label :address %>
+      <%= f.text_field :address, name: 'school[address]', class:'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :city %>
+      <%= f.text_field :city, name: 'school[city]', class:'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :state %>
+      <%= f.text_field :state, name: 'school[state]', class:'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :zip %>
+      <%= f.text_field :zip, name: 'school[zip]', class:'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :latitude %>
+      <%= f.text_field :latitude, name: 'school[latitude]', class:'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :longitude %>
+      <%= f.text_field :longitude, name: 'school[longitude]', class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit %>
+    </div>
+
+  </div>
+  <div class='col-sm-2'></div>
+  <% end %>
+
+</div>

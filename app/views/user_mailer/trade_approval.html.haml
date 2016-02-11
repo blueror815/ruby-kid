@@ -1,0 +1,29 @@
+-# Follows layouts/notification_mail.html.haml
+-# Expected instance variables:
+-#   @sender <User>
+-#   @host_uri
+-#   @trade
+
+:ruby
+  @host_uri ||= Rails.env.development? ? "http://192.168.1.195" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+
+  @statue_logo = 'goat-statue-with-backpack'
+
+  @footer_warning_notes = "If there is no response after 24 hours, the trade will progress."
+  @main_paragraphs = t("parenting.trade_approval.email_main_paragraphs")
+  @sub_paragraphs = t("parenting.trade_approval.email_sub_paragraphs")
+  @yield_top_banner_row = true
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding: 0;")
+      %div.text-center(style="padding:25px 5% 0 5%;")
+        %img(src="#{@host_uri}/assets/messages/hey-#{@relationship.downcase}-desktop.png" title="Hey #{@relationship.titleize}! Time to Log In" style="max-width:100%;")
+
+
+- content_for(:goto_section) do
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{@host_uri}#{trade_path(id: @trade.id)}" type="submit" style="#{@form_button_style}") Log In
+  %p &nbsp;
+
+= render partial: 'user_mailer/basic_css_table_layout'

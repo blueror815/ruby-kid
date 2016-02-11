@@ -1,0 +1,110 @@
+<% # Yielded content_for sections:
+   #   :body_top - the very top area at start of page even before nav bar, which is good for top banner.
+   #   :head_extra - more into <head> tag
+   #   :footer_extra - more at bottom of the page
+   # Options to change sections of page:
+   #   params[:hide_navbar] <Boolean> default false; hide the top navigation bar with site logo, FAQs, Safety and Login button.
+-%>
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= @page_title_prefix %>KidsTrade - An App For Kids To Trade With Friends</title>
+
+  <%= render partial:'layouts/site_meta' %>
+  <%= stylesheet_link_tag 'landing-25' %>
+
+  <style media="all" type="text/css">
+    .mail-envelope-counter { vertical-align:super; height: 48px; }
+    .mail-envelope-counter a { z-index:40; }
+    .mail-envelope-counter div { width: 30px; height: 30px; color:#ffffff; display:inline-block; z-index: 50;
+      text-align:center; font-size: 16px; font-weight: 500; font-family:helvetica-neue-bold; position: relative; right:34px; top:-9px;
+    }
+  </style>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!--[if lte IE 7]> <html class="ie7"> <![endif]-->
+  <!--[if IE 8]>     <html class="ie8"> <![endif]-->
+  <!--[if IE 9]>     <html class="ie9"> <![endif]-->
+  <!--[if !IE]><!--><script>
+  if (/*@cc_on!@*/false) {document.documentElement.className+=' ie10';}
+</script><!--<![endif]-->
+  <!--[if IE]>
+  <script type="text/javascript" src="/assets/landing/PIE.js"></script>
+  <![endif]-->
+
+  <%= yield :head_extra %>
+</head>
+<body>
+
+<%= yield :body_top -%>
+
+<% if !params[:hide_navbar] -%>
+
+  <header class="header<%= @version=='fundraising' ? '2' : '' -%> landing-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-4 col-xs-4">
+          <div id="logo-destop"><a href="/"><img src="/assets/landing-25/logo-desktop.png" alt=""/></a></div>
+        </div>
+        <div class="col-md-6 col-sm-8 col-xs-8 menu">
+          <% if auth_user.is_a?(Parent) && @notifications_count.to_i > 0 -%>
+          <span class="mail-envelope-counter" data-toggle="tooltip" data-placement="bottom" title="Click to view messages">
+            <a href="/notifications"><img src="/assets/icons/mail-envelope.png"></a>
+            <div><%= [@notifications_count, 99].min -%></div>
+          </span>
+          <% end -%>
+          <nav class="top-nav">
+            <ul>
+              <% if @version.blank? || @version == 'students' -%>
+
+              <% elsif @version != 'fundraising' # landing_page? -%>
+              <li><a href="/faq">FAQs</a></li>
+              <li><a href="/safety">SAFETY</a>&nbsp;</li>
+              <% end -%>
+              <%= yield :top_nav_links %>
+            </ul>
+          </nav>
+          <div class="registaion-section">
+            <% if user_signed_in? -%>
+              <a href="<%= users_logout_path -%>" class="login">LOG OUT</a>
+            <% elsif request.path != new_user_session_path -%>
+              <a class="login" href="<%= new_user_session_path %>">LOGIN</a>
+            <% else -%> &nbsp;
+            <% end -%>
+          </div>
+        </div>
+      </div>
+      <!--row-->
+    </div>
+    <!--container-->
+  </header>
+<% end # if !params[:hide_navbar] -%>
+
+
+<!--pageContent-->
+<%= yield -%>
+
+<% if !params[:hide_navbar] -%>
+
+  <%= render partial: 'layouts/landing_footer' %>
+
+<% end # if !params[:hide_navbar] -%>
+
+
+<%= javascript_include_tag 'landing' %>
+
+<script type="text/javascript">
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+
+<%= yield :footer_extra %>
+</body>
+</html>

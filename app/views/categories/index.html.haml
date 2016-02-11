@@ -1,0 +1,213 @@
+- gender_sort = params[:sort].to_s =~ /^sorted_for_(boys|girls)$/i ? $1 : nil
+- gender_only = ( gender_sort=='boys' ? 'male' : (gender_sort=='girls' ? 'female' : nil) )
+- gender_index = gender_only.present? ? "#{gender_only}_index" : nil
+
+- content_for(:head_extra) do
+  = javascript_include_tag 'jquery-ui.js'
+
+  :css
+    .small-size-text {
+      font-size: 0.8em;
+      font-weight: normal;
+    }
+
+    .gender-checkbox{
+      width: 25px;
+      height: 40px;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      top: 3px;
+      margin: 5px;
+      background-color: white;
+    }
+    .gender-checkbox input[type="checkbox"]
+    {
+      margin: 0;
+      position: absolute;
+      z-index: 2;            
+      cursor: pointer;
+      outline: none;
+      opacity: 0;
+      width: 100%;
+      height: 80%;
+      top: 0;
+      left: 0;
+
+      /* CSS hacks for older browsers */
+      _noFocusLine: expression(this.hideFocus=true); 
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      filter: alpha(opacity=0);
+      -khtml-opacity: 0;
+      -moz-opacity: 0;
+    }
+
+    .male-checkbox {
+      background: url("/assets/icons/boy-off.png") no-repeat;
+    }
+    .male-checkbox.selected{
+      background: url("/assets/icons/boy-on.png") no-repeat;
+    }
+
+    .female-checkbox {
+      background: url("/assets/icons/girl-off.png") no-repeat;
+    }
+    .female-checkbox.selected{
+      background: url("/assets/icons/girl-on.png") no-repeat;
+    }
+        
+    .category-list-item {
+      background-color: white;
+    }
+    .category-list-item td {
+      padding: 5px;
+      border: solid 1px #cccccc;
+    }
+    .category-icon-placeholder {
+      text-align: center;
+    }
+    .category-icon-placeholder img {
+      width: 50px;
+      max-height: 80px;
+      cursor: pointer;
+      position: relative;
+      left: 25px;
+    }
+    .category-icon-placeholder input {
+      display: inline-block;
+      opacity: 0.01;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      position: relative;
+      left: -30px;
+      top: -5px;
+    }
+
+    .dropdown-menu li a {
+      color: #ffffff !important;
+    }
+    .dropdown-menu li a:hover {
+      color: black !important;
+    }
+
+
+- content_for(:footer_extra) do
+  :javascript
+    function customCheckbox(checkboxName, genderClass)
+    {
+      var checkBox = $('input[name="'+ checkboxName +'"]');
+      $(checkBox).each(function(){
+        if (this.type == "checkbox") // exclude those hidden field of same name generated for model-related checkbox
+        {
+          $(this).wrap( "<span class='gender-checkbox " + genderClass + "'></span>" );
+          if($(this).is(':checked')){
+            $(this).parent().addClass("selected");
+          }
+        }
+      });
+
+      $(checkBox).click(function(){
+        $(this).parent().toggleClass("selected");
+        var siblingOpacity = $(this).is(':checked') ? "1.0" : "0.3";
+        $(this).parent().parent().siblings().each(function(){ $(this).css("opacity", siblingOpacity); } );
+      });
+    }
+
+    function setActionsOfColorSelectMenu()
+    {
+      $(".dropdown-menu li a").click(function() {
+        $( "#" + $(this).parent().parent().attr("viewid")  ).css("background-color", $(this).attr("bgcolor") );
+        $( "#" + $(this).parent().parent().attr("fieldid") ).val( $(this).attr("bgcolor") );
+      } );
+    }
+
+    $(document).ready(function (){
+      customCheckbox("category[male_index]", "male-checkbox");
+      customCheckbox("category[female_index]", "female-checkbox");
+      setActionsOfColorSelectMenu();
+
+      if ( typeof($('[data-toggle="tooltip"]').tooltip) == "function" ) {
+        $('[data-toggle="tooltip"]').tooltip({
+          position:{ my:"left+15 center", at:"right center" }
+        });
+      }
+
+      $("#category-list").sortable({
+        update: function(event, ui) {
+          var children = $(this).children();
+          var order = 0; // first is header
+          if ($("#category_order_form")) {
+            for (var ci = 0; ci < children.length; ci++) {
+              if (children[ci].tagName == "LI")
+              {
+                var id = $(children[ci]).attr("data");
+                if (id != "new_category_list_item") {
+                  $("#category_" + id +"_order_index").val(order);
+                  console.log("  Category " + id + ": "+ order );
+                }
+                order++;
+              }
+            }
+            $("#category_order_form").submit();
+          }
+        }
+      });
+
+    });
+    
+
+.container
+  .row.form-group.clearfix(style="vertical-align:bottom; margin:0;")
+    %img.pull-left(src="/assets/logos/kidstrade-title.png" alt="KIDSTrade" style="margin:0 2% 0 0;")
+    %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+      %a(href='/admin') ADMIN
+      %span.gray-title-color - CATEGORY MANAGER
+      - if gender_only.present?
+        = '-'
+        %span(class="#{gender_only}-color") #{gender_sort.titleize} Only
+.section-gap
+%div(class='container content-width center-block')
+  %div(class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close(type="button" data-dismiss="modal" aria-label="Close")
+            %span(aria-hidden="true") &times;
+          %h4.modal-title New Category
+        .modal-body
+          = render(partial: 'form', locals: { category: Category.new } )
+          .clearfix
+  %div(class="modal fade" id="updatingCategoryModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h4.modal-title Updating Category
+        .modal-body.text-center
+          %span.glyphicon.glyphicon-time/
+
+  %ul#category-list.list-group
+    %li(class='list-group-item category-list-item clearfix light-green-bg' id="new_category_list_item")
+      %ul.nav.nav-tabs.pull-left(style="margin-bottom:-11px;")
+        %li(role="presentation" class="#{params[:sort] == 'all' ? 'active' : ''}")
+          %a(href="#{request.path}?sort=all") All
+        %li(role="presentation" class="#{params[:sort]=='sorted_for_boys' ? 'active' : ''}")
+          %a(href="#{request.path}?sort=sorted_for_boys") Boys Only
+        %li(role="presentation" class="#{params[:sort]=='sorted_for_girls' ? 'active' : ''}")
+          %a(href="#{request.path}?sort=sorted_for_girls") Girls Only
+
+      %button(type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#newCategoryModal")
+        New Category
+      - if gender_sort.present?
+        %h4.gray-title-color(style="margin:20px 10px 0 10px;") You can drag rows around to re-order for #{gender_sort.titleize} Only
+
+    - @categories.each do|category|
+      %li(class='list-group-item ui-state-default category-list-item clearfix' data="#{category.id}" id="category_list_item_#{category.id}")
+        = render(partial: 'form', locals: { category: category } )
+
+- if gender_index
+  = form_tag(update_all_categories_path, method: :put, remote: true, id:"category_order_form") do
+    = hidden_field_tag('sort', params[:sort])
+    - @categories.each_with_index do|category, index|
+      %input(type='hidden' name="category_#{category.id}[#{gender_index}]" id="category_#{category.id}_order_index" value="#{index + 1}")/
+.section-gap

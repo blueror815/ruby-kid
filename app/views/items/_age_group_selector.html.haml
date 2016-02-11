@@ -1,0 +1,12 @@
+- # Optional Locals
+- #   age_group <String> for preselection
+- #   field_name <String> default is 'item[age_group]'
+- if !defined?(age_group); age_group = ''; end;
+- if !defined?(field_name); field_name = 'item[age_group]'; end;
+
+%div(class='selector-field gray-border-round-corner')
+  %span(class='text-big-title gray-title-color vertical-center')
+    = ::Users::AgeGroup.age_group_name(age_group)
+
+  %a(href='javascript:void(0);')
+    %img(src='/assets/icons/drop-down-accessory.png' alt='Choose from Menu' style='padding-left: 10px; vertical-align: middle;')

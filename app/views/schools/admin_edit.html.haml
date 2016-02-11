@@ -1,0 +1,82 @@
+- search_uri = 'http://www.google.com/search?q='
+- content_for(:head_extra) do
+  :css
+    .full-width-block { width:100%; margin:0; }
+    #schools_wrapper {  max-height: 400px; overflow: scroll; padding:2px; background-color:#EFEFEF; }
+    .schools-table { width:100%; margin:0; background-color:#ffffff; }
+    .schools-table tr td { background-color:rgb(196, 232, 16); }
+    .schools-table td { padding: 5px 10px; }
+    .schools-table td input { width:96%; border-radius: 4px; }
+    #nearby_schools { list-style: none; margin: 0; padding:0; }
+    #nearby_schools li { display:inline-block; margin:0 15px; width:45%; font-weight:300; line-height: 1.7em; }
+    #nearby_schools li a { text-decoration:none; }
+
+- content_for(:footer_extra) do
+  :javascript
+    jQuery(function(){
+    });
+
+.container
+  .row(style="vertical-align:bottom; margin:0;")
+    = form_for(:school, method: :get, remote:false ) do
+      %img.pull-left(src="/assets/logos/kidstrade-title.png" alt="KIDSTrade" style="margin:0 2% 0 0;")
+      %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+        %a(href='/admin') ADMIN
+        %span.gray-title-color - SCHOOLS
+      %p.pull-left(width="25%;")
+        %input#school_name(type="text" name="q" value="#{params[:name]}" placeholder="Search Schools" width="80%;" )
+          %button(type="submit"  aria-label="Search Schools" )
+            %span.glyphicon.glyphicon-search(aria-hidden="true")/
+      %p.pull-right.normal-weight.text-medium-title
+        %a(href="#{schools_admin_path}") List
+        \-
+        %a(href="#{schools_admin_edit_path(@next_school)}") Skip &gt;
+.full-width-block.subtle-inner-shadow
+  %table.schools-table.table-striped
+    %tbody
+      %tr.gray-bottom-border
+        %td.text-tiny.gray-title-color(width="30%") Name
+        %td.text-tiny.gray-title-color(width="22%") City
+        %td.text-tiny.gray-title-color(width="18%") State/Province/Region
+        %td.text-tiny.gray-title-color(width="15%") Zip/Postal Code
+        %td.text-tiny.gray-title-color(colspan="2" width="15%" ) Country
+#schools_wrapper.full-width-block
+  %table.schools-table#admin-schools-table
+    %tbody
+      %tr 
+        %td(width="30%") <span style="color: red"> #{@num_students[@school.id]} </span> #{link_to @school.name, search_uri + @school.name, :target => "_blank"}
+        %td(width="22%") #{@school.city}
+        %td(width="18%") #{@school.state}
+        %td(width="15%") #{@school.zip}
+        %td(colspan="2") #{@school.country}
+#schools_add.full-width-block.form-group 
+  = form_for(:school, remote:false) do|f| 
+    %table.full-width-block
+      %tbody 
+        %tr 
+          %td(width="30%") 
+            = f.text_field(:name, class:'form-control', id: 'schools_add_name') 
+          %td(width="22%") 
+            = f.text_field(:city, class:'form-control', id: 'schools_add_city') 
+          %td(width="18%") 
+            = f.text_field(:state, class:'form-control', id:'schools_add_state') 
+          %td(width="15%") 
+            = f.text_field(:zip, class:'form-control', id: 'schools_add_zip') 
+          %td(style="overflow:visible;") 
+            = f.text_field(:country, class:'form-control', id: 'schools_add_country') 
+          %td 
+            %button.btn.btn-primary(type='submit' ) ADD
+          %td
+            = f.hidden_field(:id)
+= form_for(:school, remote:false, method: :delete) do |f|
+  %table.full-width-block
+    %tbody
+      %tr
+        %td
+          = f.hidden_field :replace, :value => "false"
+          %button.btn.btn-danger DELETE
+.full-width-block.gray-bottom-border
+  .text-tiny.gray-title-color(style="padding-left: 1%;")
+    Nearby Schools in Database
+= render 'nearby_schools_table', :school => @school, :nearby_schools => @nearby_schools, :num_students => @num_students
+

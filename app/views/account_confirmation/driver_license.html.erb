@@ -1,0 +1,52 @@
+<% content_for(:head_extra) do %>
+  <style type="text/css">
+    @media only screen  and (max-width :639px) {
+      #goat {
+        width: 70px;
+        height: auto;
+      }
+    }
+  </style>
+<% end -%>
+
+<section class="inner-pages">
+  <div class="credit-card">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h2 class="title">Great, your child is on their  <span>way to trading!</span></h2>
+        </div>
+        <div class="col-md-10 col-md-offset-2 col-sm-11 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+          <div class="upload-photo">
+            <h2>Driver License Verification</h2>
+            <h3>Driver License Requirement</h3>
+            <ul>
+              <li>-License must include your name, birthdate and photo</li>
+              <li>-License must be valid</li>
+            </ul>
+            <h3>Photo Requirement</h3>
+            <ul>
+              <li>-face must be clearly visible and facing forward</li>
+              <li>-photo must be in color and content centered</li>
+            </ul>
+            <h3>Example:</h3>
+            <div class="upload-img"><img src="/assets/landing/upload.jpg" alt="" /></div>
+            <div class="clearfix"></div>
+            <%= form_tag(account_upload_driver_license_path, method:'post', multipart: true) do %>
+              <%= hidden_field_tag('csrf-param', request_forgery_protection_token ) %>
+              <%= hidden_field_tag('authenticity_token', form_authenticity_token ) %>
+              <h3>Upload you photo</h3>
+              <span class="choose2">Browse...</span>
+              <input class="choose" name="driver_license_image" type="file" />
+              <input class="button destop" name="button" type="submit" value="Submit" />
+              <input class="button mobile" name="button" type="submit" value="Submit" />
+
+            <% end # form -%>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,29 @@
+-# Expected instance variables:
+-#   @sender <User>
+-#   @recipient <User>
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+-#   @host_uri
+
+:ruby
+  @host_uri ||= Rails.env.development? ? "http://192.168.1.195" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+  @yield_top_banner_row = true
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding:0;")
+      %div.text-center(style="padding:30px 5% 0 5%;")
+        %img(src="#{@host_uri}/assets/messages/whered-you-go-desktop.png" title="Where'd you go?" style="max-width:100%;")
+
+- content_for(:goto_section) do
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{@host_uri}#{account_confirmation_path}") Log In
+
+- content_for(:footer_extra) do
+  %table(cellspacing="0" style="margin: 10px 0;")
+    %tbody
+      %tr
+        %td(style="vertical-align:top;")
+
+
+= render partial: 'user_mailer/basic_css_table_layout'

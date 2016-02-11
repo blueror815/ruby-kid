@@ -1,0 +1,27 @@
+// Required locals:
+//   user_phone <Users::UserPhone>
+
+%div(id="user_phone_number_row_of_#{user_phone.id}" data-toggle='popover' data-placement='top' style='border-bottom: solid 1px #cccccc')
+  = form_for(user_phone, remote: true, url: (user_phone.new_record? ? user_phones_path : user_phone_path(user_phone)), html:{ class: 'form-inline' } ) do|f|
+    .form-group
+      = f.label :phone_type, 'Phone Type'
+      = f.select :phone_type, ::Users::UserPhone::PHONE_TYPES.collect{|pt| [pt.to_s.humanize, pt] }, {}
+    .form-group(id="user_phone_number_group_of_#{user_phone.id}")
+      = f.text_field :number, autofocus: true, placeholder: 'Numbers', id:"users_user_phone_number_of_#{user_phone.id}", |
+        'data-toggle'=>"popover", 'data-placement'=>'top', class: 'form-control' |
+    .form-group
+      %label.checkbox-inline
+        = f.check_box :is_primary, {class: 'is_primary_check_box',  id:"users_user_phone_is_primary_of_#{user_phone.id}", title: user_phone.id}, true, false
+        Default Number?
+                    
+    .form-group
+      .col-sm-offset-2
+        %div(class=' btn-group')
+          - if user_phone.new_record?
+            = f.submit 'Add', remote: true, class: 'btn btn-success'
+          - else
+            = f.submit 'Update', remote: true, class: 'btn btn-primary'
+            = link_to 'Delete', user_phone_path(user_phone), method: 'delete', remote: true, confirm: 'Sure to delete this?', class: 'btn btn-warning'
+      
+      - display_error_on(user_phone, :number) do|msg|
+        %span(class="alert-danger") #{msg}

@@ -1,0 +1,23 @@
+= render partial: 'items/tile_item_list'
+
+
+%div(class='container')
+
+  .section-gap
+
+  %div(id='items_container' class='row content-width center-block')
+
+    = render partial: 'items/item_thumbnail_grid', locals: { items: @items, hide_user_label: false, hide_school_teacher_label: true, use_trade_path: true }
+
+    .clearfix
+
+  %div(id="loader-circle" class='row content-width center-block')
+    %span(class='vertical-center') Loading ...
+
+  -# = pagination_links (@items || @items_search.results), { is_active: true }
+
+  .row
+    %p.clearfix
+
+- if auth_user.is_a?(Child)
+  = render(partial: 'home/bottom_tabbar' )

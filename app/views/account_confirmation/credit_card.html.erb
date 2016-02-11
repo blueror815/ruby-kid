@@ -1,0 +1,60 @@
+<section class="inner-pages">
+  <div class="credit-card">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h2 class="title">Please enter your <span>credit card information.</span></h2>
+        </div>
+        <div class="col-md-10 col-md-offset-2 col-sm-11 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+          <%= form_tag "/account/confirm/payment", class:'form', method:'post' do %>
+
+            <div class="part">
+              <label class="label">Parent's Name:</label>
+              <input type="text" class="input" name="user[first_name]" value="<%= auth_user.first_name %>" placeholder="First Name">
+              <input type="text" class="input" name="user[last_name]" value="<%= auth_user.last_name %>" placeholder="Last Name">
+            </div>
+            <div class="part">
+              <label class="label">Billing Address:</label>
+              <input type="text" class="input" name="user_location[address]" value="<%= @user_location.try(:address) %>" placeholder="Street Address">
+              <input type="text" class="input" name="user_location[city]" value="<%= @user_location.try(:city) %>" placeholder="City">
+              <%= select_tag('user_location[state]', options_for_select(::Geocode::State::USA_STATE_LIST, @user_location.try(:state)), class: 'input form-control', id: "user_location_state_of_#{@user_location.try(:id)}") %>
+
+              <input type="text" class="input" name="user_location[zip]" value="<%= @user_location.try(:zip) %>" placeholder="Zip Code">
+              <input type="text" class="input" name="user_location[country]" value="United States" placeholder="Country" disabled>
+            </div>
+            <div class="part">
+              <label class="label">
+                <a href="https://www.braintreegateway.com/merchants/<%= Braintree::Configuration.merchant_id -%>/verified" target="_blank" class="pull-right" style="border:solid 2px #cccccc;">
+                  <img src="https://s3.amazonaws.com/braintree-badges/braintree-badge-wide-light.png" width="280px" height ="44px" border="0"/></a>
+                <span class="pull-left">Enter Card:</span>
+              </label>
+              <div id="payment-form"></div>
+              <!-- <input type="text" class="input card" name="credit-card-number" value="" placeholder="Card Number">
+              <input type="text" class="input" name="expiration" value="" placeholder="Expiration MM/YY"> -->
+              <!-- <input type="text" class="input card2" name="name" value="" placeholder="Security Code"> -->
+            </div>
+
+            <div class="price">
+              <input class="button btn-primary" name="button" type="submit" value="Submit" />
+            </div>
+
+
+          <% end # form -%>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<script>
+  // We generated a client token for you so you can test out this code
+  // immediately. In a production-ready integration, you will need to
+  // generate a client token on your server (see section below).
+  var clientToken = "<%= @token %>";
+
+  braintree.setup(clientToken, "dropin", {
+    container: "payment-form"
+  });
+
+</script>

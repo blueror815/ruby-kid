@@ -1,0 +1,129 @@
+- test_only = params[:test_only].to_i == 1
+- Time.zone = 'Eastern Time (US & Canada)'
+- content_for(:head_extra) do
+  = stylesheet_link_tag 'jquery-ui'
+  :css
+    .users-table { border:solid 1px #cccccc; margin:3% 1%; }
+    .users-table th { font-size:12pt; padding:5px; }
+    .users-table td { font-size:12pt; padding:5px; }
+    .highlight-border { box-shadow: 0 0 15px #33ff99;
+      -webkit-box-shadow: 0 0 15px #33ff99;
+      -moz-box-shadow: 0 0 15px #33ff99;
+     }
+
+  :javascript
+    $(function() {
+      $(".datepicker" ).datepicker({dateFormat:'yy-mm-dd' });
+      $("input[type=checkbox]" ).change(function() {
+          $(this).siblings("input[type=submit]").click();
+        } );
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+.pull-right(style="margin: 10px 10px 0;")
+  %a(href="#{admin_categories_path}") Admin / Categories
+.clearfix
+
+%table(class="users-table table table-striped" cellspacing="1" )
+  %tbody
+    %tr
+      %td(colspan="13")
+        = form_tag({test_only: test_only}, method:'get' ) do
+          %h3
+            Since:
+            %input(type='text' name='start_time' value="#{@start_time.strftime('%Y-%m-%d %H:%M')}" placeholder="year-month-day hour:minute" class='datepicker')/
+            %input(type='submit' value="Search")
+          %a(href="#{request.path}.csv?test_only=#{test_only}&start_time=#{@start_time.strftime('%Y-%m-%d+%H:%M')}") CSV Export of All These Records
+      %td(colspan="3" style="text-align:left;" )
+        - if test_only
+          = link_to('Real Users', {test_only: 0, page:1})
+          '/'
+          %strong Test Users
+        - else
+          %strong Real Users /
+          = link_to('Test Users', {test_only: 1, page:1})
+      %td(colspan="3" style="text-align:right")
+        %a(href="#" class="glyphicon glyphicon-phone" data-toggle='modal' data-target='#send_push_modal' data-placement='right' title='Send custom notification')
+        %a(href="#" data-toggle='modal' data-target='#send_push_modal' data-placement='right' title='Send custom notification') Send Notification
+    %tr
+      %th Test User?
+      %th ID
+      %th Gender
+      %th user_name
+      %th First Name
+      %th Avatar
+      %th School Name
+      %th Grade
+      %th Register Time
+      %th Parent: First Name
+      %th Parent: Last Name
+      %th Parent: Email
+      %th Address (joined)
+      %th City
+      %th State
+      %th Zip
+      %th Items Approved
+      %th Items Pending
+      %th Account confirmed?
+    - @users.each do|user|
+      %tr(id="user_row_#{user.id}")
+        %td
+          = form_for(user, as: 'user', url: admin_update_user_path(user), method:'put', remote:true, html:{id:"user_form_#{user.id}", class:'user-form', method:'put'}) do|f|
+            = hidden_field_tag(:hide_element, "user_row_#{user.id}") if not test_only
+            = f.check_box(:is_test_user, class:'form-control', style:'max-width:30px;', id:"is_test_user_#{user.id}",  data: user.id, |
+              'data-toggle'=> 'popover', title:'Update Error') |
+            = f.submit('', class:'hidden')
+        %td #{user.id}
+        %td(class="#{user.gender.downcase}-color") #{user.gender}
+        %td
+          %strong #{user.user_name}
+          %br/
+          = link_to(' ', admin_delete_user_path(id: user, hide_element: "user_row_#{user.id}"), remote:true, method:'delete', confirm:'Sure to delete this child?', class:'glyphicon glyphicon-remove text-danger', 'data-toggle'=>'tooltip', 'data-placement'=>'right', title:'Delete this child')
+          %a(href="#" class="glyphicon glyphicon-phone" data-toggle='modal' data-target='#send_push_modal' data-placement='right' title='Send notification to this child' data="#{user.user_name}")
+        %td #{user.first_name}
+        %td
+          %img(src="#{profile_image_thumbnail(user)}" style="max-width:56px; height:auto;")
+        %td #{user.current_school.try(:name)} (#{user.current_school_id})
+        %td #{::Schools::SchoolGroup::GRADES_HASH[user.grade] }
+        %td #{user.created_at.in_time_zone.strftime('%m/%d/%y %l:%M %p') }
+        %td #{user.parent ? user.parent.first_name : '---'}
+        %td #{user.parent ? user.parent.last_name : '---'}
+        %td
+          #{user.parent.try(:email)}
+          %br/
+          = link_to(' ', admin_delete_user_path(id: user.parent_id, hide_element: "user_row_#{user.id}"), remote:true, method:'delete', confirm:'Sure to delete this parent and children?', class:'glyphicon glyphicon-remove text-danger', 'data-toggle'=>'tooltip', 'data-placement'=>'left', title:'Delete this parent and children')
+        %td
+          #{user.primary_user_location.try(:address)}
+          %br/
+          #{user.primary_user_location.try(:address2)}
+        %td #{user.primary_user_location.try(:city)}
+        %td #{user.primary_user_location.try(:state)}
+        %td #{user.primary_user_location.try(:zip)}
+        %td.text-center #{Item.open_items.where(user_id: user.id).count}
+        %td.text-center #{Item.pending.where(user_id: user.id).count}
+        %td #{user.parent.try(:account_confirmed?) }
+
+
+.container
+  .row.text-center
+    = pagination_links(@users)
+.container
+  #send_push_modal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        = form_tag(send_push_notification_path, remote: true) do
+          = hidden_field_tag('hide_element', 'send_push_modal', id:'send_push_modal');
+          .modal-header
+            %button.close(type="button" data-dismiss="modal" aria-label="Close")
+              %span(aria-hidden="true") &times;
+            %h4.modal-title Send Push Notifications
+          #edit_send_push.modal-body
+            .form-group
+              %label(for='user_name') User Name
+              %input.form-control(id='user_name' name='user_name' placeholder='User Name' )
+            .form-group
+              %label(for='notification_text') Message
+              %textarea.form-control(id='notification_text' name='notification_text' placeholder='Message' )
+          .modal-footer
+            %button.btn.btn-default(type='button' data-dismiss='modal' id='send_push_modal_close') Close
+            %input.btn.btn-primary(type="submit" data-disable-with="Sending..." value='Send')

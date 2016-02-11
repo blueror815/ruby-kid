@@ -1,0 +1,57 @@
+- content_for(:head_extra) do
+
+  :css
+    body {
+      padding-bottom: 100px;
+    }
+    .navbar-table td {
+      width: 25%;
+      padding: 10px 5px;
+    }
+
+    .tab-link {
+      width: 80px;
+      height: 80px;
+    }
+    .tab-link img {
+      max-height: 80px;
+    }
+
+    .tab-edit { background: url('/assets/nav/edit@2x.png') no-repeat center; }
+    .tab-share { background: url('/assets/nav/share@2x.png') no-repeat center; }
+    .tab-print { background: url('/assets/nav/print@2x.png') no-repeat center; }
+    .tab-end { background: url('/assets/nav/end@2x.png') no-repeat center; }
+
+    @media only screen and (max-width: 600px)  {
+      .tab-link {
+        width: 40px;
+        height: 40px;
+      }
+      .tab-link img {
+        max-height: 40px;
+      }
+      .tab-edit { background: url('/assets/nav/edit@2x.png') no-repeat center; }
+      .tab-share { background: url('/assets/nav/share@2x.png') no-repeat center; }
+      .tab-print { background: url('/assets/nav/print@2x.png') no-repeat center; }
+      .tab-end { background: url('/assets/nav/end@2x.png') no-repeat center; }
+    }
+
+
+%nav(class="navbar navbar-default navbar-fixed-bottom" style='background-color:white; z-index:6000;')
+  .full-separator
+  %div(class='container content-width')
+    %table(style='width: 100%' class='navbar-table')
+      %tbody
+        %tr
+          %td.text-center
+            %a(class='tab-link' href="#{edit_item_path(item)}" title="Edit Item")
+              %img(src="/assets/nav/edit@2x.png" alt="Edit Iem")
+          %td.text-center
+            %a(class='tab-link' href="" title="Share Item")
+              %img(src="/assets/nav/share@2x.png" alt="Share Item")
+          %td.text-center
+            %a(class='tab-link' href="" title="Print Item")
+              %img(src="/assets/nav/print@2x.png" alt="Print Item")
+          %td.text-center
+            = link_to(item_path(item), method:'delete', remote:true, class:'tab-link', title:'Delete/End Item', confirm: t('selling.end_item.confirm') ) do
+              %img(src="/assets/nav/end@2x.png" alt="Delete/End Item")

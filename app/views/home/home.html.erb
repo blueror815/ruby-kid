@@ -1,0 +1,436 @@
+<% for_students = @version.blank? || @version == 'students' -%>
+<% content_for(:head_extra) do %>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!--[if lte IE 7]> <html class="ie7"> <![endif]-->
+  <!--[if IE 8]>     <html class="ie8"> <![endif]-->
+  <!--[if IE 9]>     <html class="ie9"> <![endif]-->
+  <!--[if !IE]><!--><script>
+  if (/*@cc_on!@*/false) {document.documentElement.className+=' ie10';}
+  </script><!--<![endif]-->
+  <!--[if IE]>
+  <script type="text/javascript" src="js/PIE.js"></script>
+  <![endif]-->
+
+<% end # head_extra %>
+
+<% content_for(:footer_extra) do %>
+
+
+  <%= render partial: 'layouts/google_analysis' %>
+<% end # footer_extra %>
+
+<% content_for(:body_top) do %>
+  <div id="banner-destop">
+    <div class="img"><img src="/assets/landing-25/home-baner.jpg" alt="" /></div>
+    <div class="img2"><img src="/assets/landing-25/Cart-BG-Mobile.jpg" alt="" /></div>
+    <div id="banner-cont">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <h1><span>Finally,</span><span>A Way For <%= @version.to_s=='parents' ? 'Kids' : 'You' %></span> To Get Things On <%= @version=='parents' ? 'Their' : 'Your' %> Own</h1>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="banner-btn-section">
+              <a href="http://itunes.apple.com/app/id1042828368"><img src="/assets/landing-25/banner-app-img.png" alt="IOS App" /></a>
+              <a href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop"><img src="/assets/landing-25/google-play-live.png" alt="Google Play App"></a>
+            </div>
+            <div class="banner-btn-section-mobile">
+              <a href="http://itunes.apple.com/app/id1042828368"><img src="/assets/landing-25/mobile-app-store.png" alt="IOS App" /></a>
+              <a href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop"><img src="/assets/landing-25/google-play-live.png" alt="Google Play App"></a>
+            </div>
+          </div>
+        </div><!--row-->
+      </div><!--container-->
+    </div><!--banner-cont-->
+
+  </div><!--banner-destop-->
+<% end -%>
+
+<div class="clearfix"></div>
+<section class="pageContent">
+  <div class="made-app">
+    <div class="container">
+      <div class="row">
+        <a name="how_it_works_video"></a>
+        <div class="col-md-6 col-sm-6  col-xs-12">
+          <% if for_students %>
+          <p>A trading app that links you with your friends
+          from school.  Download it and start trading
+          whatever you and your friends are into.</p>
+          <% else -%>
+          <p>We made an app for kids to trade
+            with their friends. Now they can
+            get stuff on their own.</p>
+          <% end # for_students %>
+        </div>
+        <div class="col-md-6 col-sm-6  col-xs-12 mobile">
+          <div class="vedio-section">
+            <%= @version.to_s == 'parents' ? how_it_works_video_iframe_for_parent  : how_it_works_video_iframe_for_kid %>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--made-app-->
+  <div class="itwork">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-6 col-sm-6 col-sm-offset-6 col-xs-12 col-xs-offset-0">
+          <% if for_students %>
+          <p>
+            <span>Kids are using the app to trade:</span>
+            Video games, Clothes, Legos, Trading Cards,
+            Accessories, Sports Gear, Crafts, Toys and
+            much more.
+            <span>Trade What You Have, For What You Want!!</span>
+          </p>
+          <% else %>
+          <p>Trading goes beyond cards and stickers.
+            Kids see all the stuff their friends have to offer instead of
+            just a few items in their backpack.<span>It's safe and easy.</span></p>
+          <% end # for_students %>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--itwork-->
+  <div class="kids-post">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="right">
+            <div class="textarea">
+            <% if for_students %>
+              <h2>It&apos;s super easy.</h2>
+              <p>
+                <span>Snap a picture of what you</span>
+                <span>have and give it a quick</span>
+                <span>description.</span>
+                <span>That's it.</span>
+              </p>
+            <% else %>
+              <h2>Kids post</h2>
+              <p>
+                <span>Snap a picture and give a  </span>
+                <span>quick description.</span>
+                <span>That's it.</span>
+              </p>
+            <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 kids-mobile">
+          <div class="img">
+            <img src="/assets/landing-25/<%= for_students ? 'Student' : 'Kid' -%>-Phone-Mobile-LP.png" alt="" />
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--kids-post-->
+  <div class="kids-post-mobile">
+    <h2>Kids post</h2>
+    <div class="img">
+      <img src="/assets/landing-25/Kid-Phone-and-Hand-Mobile-LP.png" alt="" />
+    </div>
+    <div class="textarea">
+      <p>
+        <span>Snap a picture and </span>
+        <span>give a quick description.</span>
+        <span>That's it.</span>
+      </p>
+    </div>
+  </div><!--kids-post-->
+  <div class="parents-approve">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="img">
+            <img src="/assets/landing-25/<%= for_students ? 'See-What-Your-Friends-Phone.png' : 'Mom-Phone-Mobile.png' -%>"  alt="" />
+
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="textarea">
+          <% if for_students %>
+            <h3><span>See what your</span><span>friends have!</span></h3>
+            <p><span>Find something you like</span><span>and start a trade</span></p>
+          <% else %>
+            <h3><span>Parents can</span> <span>check in any time</span></h3>
+            <p><span>Just login to the app</span> <span>to view all your child's activity.</span> </p>
+          <% end %>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--parents-approve-->
+  <div class="parents-approve-mobile">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="textarea">
+          <% if for_students %>
+            <h3><span>See what your</span><span>friends have!</span></h3>
+            <p><span>Find something you like</span><span>and start a trade</span></p>
+          <% else %>
+            <h3><span>Parents can</span> <span>check in any time</span></h3>
+            <p><span>Just login to the app</span> <span>to view all your child's activity.</span> </p>
+          <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="img text-center">
+            <img src="/assets/landing-25/<%= for_students ? 'See-What-Your-Friends-Phone-Mobile.png' : 'Mom-Phone-Mobile1.png' -%>"  alt="" />
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+
+  </div><!--parents-approve-mobile-->
+  <div class="itsafe">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-sm-5 col-xs-12 destop">
+          <div class="itsafe-content">
+          <% if for_students %>
+            <h3>Make a Deal!</h3>
+            <p><span>An unloved lava lamp</span><span>for an underused skateboard.</span></p>
+          <% else %>
+            <h3>Yes, it's safe...</h3>
+            <p>They're trading with<span> kids they already know.</span> </p>
+          <% end %>
+          </div>
+        </div>
+        <div class="col-md-7 col-sm-7 col-xs-12">
+          <div class="img">
+            <img src="/assets/landing-25/<%= for_students ? 'Skateboard-Lava-Lamp.png' : 'Double-Phone-Desktop.jpg'%>" alt="" />
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="bottom">
+          <% if for_students %>
+            <h4><span>Now you can trade with your</span><span>friends anytime you want!</span></h4>
+          <% else %>
+            <h4><span>KidsTrade links them with their </span><span> friends and classmates.</span></h4>
+            <p>Parents can tighten (or loosen) boundaries at any time.</p>
+          <% end %>
+          </div>
+        </div>
+
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--itsafe-->
+<% unless for_students %>
+  <div class="kids-exchange">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xm-12">
+          <div class="kids-exchange-data">
+            <h4>Best of all, kids exchange things themselves.</h4>
+            <div class="col-md-4 col-sm-4">
+              <div class="img-container">
+                <img src="/assets/landing-25/img1.png" alt=""/>
+                <div class="img-data">
+                  <div class="vertical-center">
+                    <div class="vertical-inner">
+                      <p>Whether they swap at a sleepover</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- ist -->
+            <div class="col-md-4 col-sm-4">
+              <div class="img-container">
+                <img src="/assets/landing-25/img2.png" alt=""/>
+                <div class="img-data">
+                  <div class="vertical-center">
+                    <div class="vertical-inner">
+                      <p>Soccer practice or the bus stop</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- second -->
+            <div class="col-md-4 col-sm-4">
+              <div class="img-container">
+                <img src="/assets/landing-25/img3.png" alt=""/>
+                <div class="img-data">
+                  <div class="vertical-center">
+                    <div class="vertical-inner">
+                      <p>Delivery by backpack is always free</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- third -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!--kids-exchange-->
+  <div class="listing-destop">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h5>Kids learn</h5>
+        </div>
+        <div class="new-content">
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Money-Icon-Mobile.png" alt=""/>
+              <p>THAT TOYS<span>AREN’T CHEAP</span></p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Heart-Icon-Mobile.png" alt=""/>
+              <p>TO TAKE CARE OF<span>THEIR STUFF</span></p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Green-Icon-Mobile.png" alt=""/>
+              <p>A GREENER WAY<span>TO GET NEW THINGS</span></p>
+            </div>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--listing-destop-->
+  <div class="listing-moblie">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h5>Kids learn</h5>
+        </div>
+        <div class="new-content">
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Money-Icon-Mobile.png" alt=""/>
+              <p>THAT TOYS<span>AREN’T CHEAP</span></p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <p class="p-data">TO TAKE CARE OF<span>THEIR STUFF</span></p>
+              <img src="/assets/landing-25/Heart-Icon-Mobile1.png" class="new-img" alt=""/>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Green-Icon-Mobile.png" alt=""/>
+              <p>A GREENER WAY<span>TO GET NEW THINGS</span></p>
+            </div>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--listing-moblie-->
+  <div class="parent-destop">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h5>Parents Love</h5>
+        </div>
+        <div class="new-content">
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Smiley-Icon-Mobile.png" alt=""/>
+
+              <p>SKIPPING THE<span>TOY AISLE</span></p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Free-Icon-Mobile.png" alt=""/>
+              <p>GIVING CHILDREN<span>INDEPENDENCE</span></p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Check-Icon-Mobile.png" alt=""/>
+              <p>KEEPING CLUTTER<span>IN CHECK</span></p>
+            </div>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--parent-destop-->
+  <div class="parent-mobile">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h5>Parents Love</h5>
+        </div>
+        <div class="new-content">
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Smiley-Icon-Mobile.png" alt=""/>
+
+              <p>SKIPPING THE<span>TOY AISLE</span></p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <p class="p-data">GIVING CHILDREN<span>INDEPENDENCE</span></p>
+              <img src="/assets/landing-25/Free-Icon-Mobile1.png" class="new-img" alt=""/>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xm-12">
+            <div class="learn-img-container">
+              <img src="/assets/landing-25/Check-Icon-Mobile.png" alt=""/>
+              <p>KEEPING CLUTTER<span>IN CHECK</span></p>
+            </div>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--parent-moblie-->
+<% end # unless for_students %>
+  <div class="earn-buck mobile">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 buck">
+          <div class="textarea">
+          <% if for_students %>
+            <h5>You can even earn a buck.</h5>
+            <p><span>Sell your old bike, sports equipment or</span><span>video game console.</span></p>
+          <% else %>
+            <h5>They can even earn a buck.</h5>
+            <p>Or score a bargain! Buying and selling are available<span> with your permission.</span></p>
+          <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-offset-6 col-sm-6 col-sm-offset-6 col-xs-12">
+          <div class="img-right">
+            <a href="http://itunes.apple.com/app/id1042828368"><img src="/assets/landing-25/banner-app-img.png" alt="IOS App" /></a>
+            <a href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop"><img src="/assets/landing-25/google-play-live.png" alt="Google Play App"></a>
+          </div>
+          <div class="img-right-mobile">
+            <a href="http://itunes.apple.com/app/id1042828368"><img src="/assets/landing-25/mobile-app-store.png" alt="IOS App" /></a>
+            <a href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop"><img src="/assets/landing-25/google-play-live.png" alt="Google Play App"></a>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--earn-buck-->
+
+  <div class="section-gap"><p>&nbsp;</p></div>
+
+</section><!--pageContent-->
+
+<div class="overlay1">
+  <section class="vidio_container">
+    <div class="vidio_popup">
+      <a href="#" class="close_popup"><img src="/assets/landing-25/cross_img.png" alt="cancel" /></a>
+      <iframe  src="https://www.youtube.com/embed/e5EbK25kQ7s"  allowfullscreen></iframe>
+    </div>
+  </section>
+</div>
+

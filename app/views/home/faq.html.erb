@@ -1,0 +1,63 @@
+<% content_for(:footer_extra) do %>
+  <%= render partial: 'layouts/google_analysis' %>
+<% end # footer_extra %>
+<% if !params[:minimal] -%>
+<header class="header-faq" ><!--header-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div id="logo-destop"><a href="/"><img src="/assets/landing-25/logo-desktop.png" alt="logo" /></a></div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <% if user_signed_in? -%>
+          <a href="<%= users_logout_path -%>" class="faq-login btn-default">LOG OUT</a>
+        <% elsif request.path != new_user_session_path -%>
+          <a href="<%= new_user_session_path %>" class="faq-login btn-default">LOGIN</a>
+        <% else -%> &nbsp;
+        <% end -%>
+      </div>
+
+    </div><!--row-->
+  </div><!--container end-->
+</header>
+<% end # header -%>
+<section class="section1 faq-section1"><!--section1-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <p class="faq-para1"> Frequently Asked Questions</p>
+        <ul class="faq-list">
+          <% @question_answers.each do|qa| %>
+            <li>
+              <div class="faq-content">
+                <div class="faq-section">
+                  <a class="faq-section-title answer-link" href="#"><%= qa.question %></a>
+                  <div class="faq-section-content">
+                    <%= answer_to_html(qa.answer).html_safe -%>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section><!--section1 end-->
+<% if !params[:minimal] -%>
+<section class="section3">	<!--section3-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <ul class="apple-logo">
+          <li><a href="https://itunes.apple.com/app/id1042828368"><img src="/assets/landing-25/apple-logo1.png" alt="IOS App"></a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop"><img src="/assets/landing-25/google-play-live.png" alt="Google Play App"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section><!--section3 end-->
+
+<%= render partial: 'layouts/landing_footer' %>
+<% end # footer -%>
+<!-- footer -->

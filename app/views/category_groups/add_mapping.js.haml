@@ -1,0 +1,6 @@
+-# Required instance variables: @category_group, @category_group_mapping, @category
+- if @category_group_mapping
+  - input_html = hidden_field_tag("mapping_#{@category_group_mapping.id}[order_index]", @category_group_mapping.order_index, id:"mapping_#{@category_group_mapping.id}_order_index")
+  - list_item_html = make_category_cell(@category, Child.new(gender: @category_group.gender), url:edit_category_path(id: @category.id, category_group_id: @category_group.id), class:'category-cell', tag_name: :li, name: @category.name.underscore, data: @category_group_mapping.id )
+  $("#category_group_#{@category_group.id}").append("#{escape_javascript(input_html)}");
+  $("#category_group_#{@category_group.id}").append("#{escape_javascript(list_item_html)}");

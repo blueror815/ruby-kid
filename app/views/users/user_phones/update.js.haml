@@ -1,0 +1,13 @@
+- if @user_phone.valid?
+
+  $('#user_phone_number_group_of_#{@user_phone.id}').addClass('has-success');
+  var phoneNumber = $('#users_user_phone_number_of_#{@user_phone.id}');
+  phoneNumber.attr('data-content', 'Successfully updated').popover('show');
+  phoneNumber.delay(3000).queue(function(next){ phoneNumber.popover('hide'); next(); } );
+  - if @user_phone_is_primary_changed == true && @user_phones
+    - @user_phones.each do|phone|
+      $("#users_user_phone_is_primary_of_#{phone.id}").prop("checked", #{phone.is_primary});
+- else
+  $('#user_phone_number_group_of_#{@user_phone.id}').addClass('has-error');
+  var phoneNumber = $('#users_user_phone_number_of_#{@user_phone.id}');
+  phoneNumber.attr('data-content', '#{@user_phone.errors[:number].join('.')}').popover('show');

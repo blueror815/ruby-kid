@@ -1,0 +1,2 @@
+module AccountConfirmationHelper
+end

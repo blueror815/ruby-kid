@@ -1,0 +1,128 @@
+-# Expected instance variables:
+-#   @child <User>
+-#   @recipient <User>
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+-#   @item
+
+:ruby
+  @host_uri ||= Rails.env.development? ? "http://192.168.1.195" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+  @statue_logo = "goat-pair"
+  @sub_header = t("parenting.new_buy_request_to_seller_parent.email_top_banner_message")
+  @yield_top_banner_row = true
+
+  # Text styles
+  @section_title_style = "font-family:'Helvetica Neue',Helvetica, sans-serif; font-size:1.1em; font-weight:500; line-height: 1.2; width:100%; margin: 0 auto; color:#666666;"
+  @section_text_style = "font-family:'Helvetica Neue',Helvetica, sans-serif; font-size:1.1em; font-weight:400; line-height: 1.2; width:100%; margin: 3px auto; color:#666666;"
+
+:css
+
+  .picture-wrapper {
+    max-width: 85%;
+    border-radius: 8px;
+  }
+  .picture-wrapper img {
+    width: 100%;
+  }
+  .right-price-tag {
+    text-align: right;
+    position: relative;
+    overflow: hidden;
+    right: 0;
+    z-index: 50;
+    bottom: 70px;
+  }
+  .right-price-tag button
+  {
+    color: #ffffff;
+    background-color: rgb(0, 149, 252);
+    opacity: 0.8;
+    text-align: right;
+    position: relative;
+    font-weight: bolder;
+    font-size: 30pt;
+    border: 0;
+    border-radius: 8px;
+    padding: 2px 18px 2px 12px;
+    margin-right: -8px;
+  }
+  .speech-bubble-left {
+    border: solid 2px #999999;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  @media only screen and ( max-width: 640px)
+  {
+    .right-price-tag {
+      bottom: 26px;
+    }
+    .right-price-tag button {
+      font-size: 18px;
+      padding: 2px 12px 2px 8px;
+    }
+  }
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding:0;")
+      %div.text-center(style="padding:40px 5% 0 5%;")
+        %img(src="#{@host_uri}/assets/messages/potential-sale-desktop.png" title="KIDSTrade and Buy & Sell" style="max-width:100%;" )
+
+- content_for(:body_content) do
+  %p(style="#{@section_title_style}")
+    = t("parenting.new_buy_request_to_seller_parent.email_section_header", child_first_name: @child.first_name.upcase)
+  %p(style="#{@section_text_style};")
+    = t("parenting.new_buy_request_to_seller_parent.email_section_description")
+  .section-gap
+
+  .picture-wrapper.text-center
+    = image_tag(@item.item_photos.first.try(:image_url), alt: @item.title, style:"border-radius: 16px;")
+    .right-price-tag
+      %button $&nbsp;#{sprintf("%.2f", @item.price) }
+
+  %p(style="#{@section_title_style}")
+    BUYER:
+  %div(style="margin-left: 5%;")
+    %p(style="#{@section_text_style}")
+      %strong
+        #{@buy_request.buyer.first_name} #{@buy_request.buyer.last_name}
+    - if (school = @buy_request.buyer.current_school)
+      - grade_group = Schools::SchoolGroup::GRADES_HASH[@buy_request.buyer.grade]
+      %p(style="#{@section_text_style}")
+        #{grade_group.present? ? "#{grade_group} - " : ""} #{school.name}
+    - if @buy_request.buyer.is_a?(Child) and (location = @buy_request.buyer.parent.primary_user_location)
+      %p(style="#{@section_text_style}")
+        #{location.city}, #{location.state} #{location.zip}
+    - if @buy_request.buyer.is_a?(Parent) and (location = @buy_request.buyer.primary_user_location)
+      %p(style="#{@section_text_style}")
+        #{location.city}, #{location.state} #{location.zip}
+
+
+  .section-gap
+
+  %p(style="#{@section_title_style}")
+    PARENT:
+  %div(style="margin-left: 5%;")
+    %p(style="#{@section_text_style}")
+      #{@buy_request.name}
+    %p(style="#{@section_text_style}")
+      %a(href="mailto:#{@buy_request.email}") #{@buy_request.email}
+    - if @buy_request.phone.present?
+      %p(style="#{@section_text_style}")
+        #{@buy_request.phone}
+    - if @buy_request.parent_message.present?
+      .speech-bubble-left
+        %span(style="margin-left:-22px; display:inline;")
+          %img(src="#{@host_uri}/assets/icons/speech-bubble-tail-left-white.png" alt="")
+        %p(style="#{@section_text_style} display:inline;")
+          #{@buy_request.parent_message}
+
+  .section-gap
+  %p(style="color: #c00; font-size: 20px;")
+    = t("parenting.new_buy_request_to_seller_parent.email_warning")
+
+  .section-gap
+
+
+= render partial: 'user_mailer/basic_css_table_layout'

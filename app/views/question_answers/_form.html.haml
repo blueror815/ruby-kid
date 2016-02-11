@@ -1,0 +1,82 @@
+- content_for(:head_extra) do
+
+  :css
+    .code-container { padding: 2% 10%; }
+    .code-container .faq-content { background-color:#ffffff; }
+    .code-container .faq-section-content { padding: 10px; }
+
+    .faq-tab { padding-left: 25px;    margin-top: -12px;}
+    .faq-tab li{ background: url("/assets/landing-25/faq-li-sign.png") no-repeat scroll top left rgba(0, 0, 0, 0);text-align: left;  font-family: 'Open Sans', sans-serif; font-weight: 400;list-style-type: none;padding-left: 40px;margin-top: 15px;  font-size: 20px;}
+
+= form_for(@question_answer) do |f|
+  - if @question_answer.errors.any?
+    #error_explanation
+      %h2 #{ pluralize(@question_answer.errors.count, "error") } prohibited this question_and_answer from being saved:
+      %ul
+        - @question_answer.errors.full_messages.each do |msg|
+          %li #{msg}
+
+  .section-gap(style="height:3%;")
+  .form-horizontal
+    .form-group-lg.row
+      = f.label(:question, class:'col-sm-2 control-label text-medium-title')
+      .col-sm-10
+        = f.text_area(:question, class:'form-control', rows: 3 )
+    .section-gap
+    .form-group-lg.row
+      .col-sm-2.text-right
+        = f.label(:answer, class:'control-label text-medium-title')
+        %br/
+        %a.glyphicon.glyphicon-info-sign
+        %a(href="#" data-toggle="modal" data-target="#examples-modal") Examples
+      .col-sm-10
+        = f.text_area(:answer, class:'form-control', rows: 8 )
+    .section-gap
+    .form-group-lg.row
+      .col-sm-offset-2.col-sm-10
+        = f.submit('Submit', class:'btn btn-lg btn-primary', :disable_with => 'Submitting...')
+
+#examples-modal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        %button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true") &times;
+        %h4#examples-modal-title.modal-title Examples of Answer
+
+      .modal-body
+        %ul
+          %li Mainly plain text.
+          %li You can embed HTML tags inside, such as &lt;img&gt; or &lt;a&gt;.
+          %li Extra empty line between paragraphs would be rendered as gap between them.
+
+      .full-separator
+
+      .modal-body
+        .row.code-container
+          .form-group-lg
+            = text_area_tag('example1', "<img src=\"/assets/landing-25/faq-img.png\">\nFirst paragragh.\n\nSecond paragraph.", {rows: 4, class:'form-control'})
+          %h4 Rendered as:
+          .faq-content
+            .faq-section
+              .faq-section-content
+                %p.faq-tab-img
+                  %img.img-responsive.faq-img(src="/assets/landing-25/faq-img.png")
+                %p.answer-text
+                  First paragraph.
+                %p.answer-text
+                  Second paragraph.
+
+      .full-separator
+
+      .modal-body
+        .row.code-container
+          .form-group-lg
+            = text_area_tag('example1', "<ul class=\"faq-tab\">\n\t<li>Your child browses items posted by kids in their circle.</li>\n\t<li>When they see something they like, they select itand invite the owner to check out their stuff. </li>\n</ul>", {rows: 5, class:'form-control'})
+          %h4 Rendered as:
+          .faq-content
+            .faq-section
+              .faq-section-content
+                %ul.faq-tab
+                  %li Your child browses items posted by kids in their circle.
+                  %li When they see something they like, they select itand invite the owner to check out their stuff. </li>

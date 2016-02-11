@@ -1,0 +1,100 @@
+- ##
+- # Required locals:
+- #   resource <CategoryGroupMapping>
+
+- content_for(:head_extra) do
+  :css
+    .category-table th {
+      text-align: right;
+      vertical-align: top;
+      padding-right: 10px;
+    }
+    .color-textfield { width:150px; font-family:monospace, serif; font-size:1.2em; }
+    .curated-item-wrapper {  width:395px; display:inline-block; margin:20px 0;}
+    .curated-item-pic-box { border:solid 1px #eeeeee; margin: 10px 10px; text-align:center; vertical-align:middle; width:100%; height:550px;  }
+    .curated-item-pic-box img { max-width:100%; max-height: 100%; z-index: 10; }
+    .curated-item-pic-box h4 { position: relative; top:-300px; left:20%; z-index: 3; }
+    .curated-item-textfield { width:100px; }
+
+- content_for(:footer_extra) do
+  :javascript
+    function setActionsOfColorSelectMenu()
+    {
+      $(".dropdown-menu li a").click(function() {
+        $( "#" + $(this).parent().parent().attr("viewid")  ).css("background-color", $(this).attr("bgcolor") );
+        $( "#" + $(this).parent().parent().attr("fieldid") ).val( $(this).attr("bgcolor") );
+      } );
+    }
+
+    $(function() {
+      setActionsOfColorSelectMenu();
+
+      $('[data-toggle="tooltip"]').tooltip();
+      $(".color-textfield").change( function() {
+        $(this).css('background-color', $(this).val() );
+      } );
+      $("input[data-disable-with]").click( function(){ $(this).attr('disabled',true); $(this).val($(this).attr('data-disable-with')); } );
+    });
+
+= form_for(resource, html:{ class:'form-inline' } ) do|f|
+  - bgcolor_field = :icon_background_color
+  - bgcolor_css = resource.try(bgcolor_field).blank? ? '' : 'background-color:'+ resource.try(bgcolor_field)
+  - icon_field = :icon
+  - icon_bg = resource.try(:icon_url, :thumb)
+  = f.hidden_field(:category_group_id, value: params[:category_group_id] || resource.category_group_id)
+  .container
+    .row.form-group.clearfix(style="vertical-align:bottom; width:100%; margin:0;")
+      %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+        %a(href='/admin') ADMIN
+        = '-'
+        %a(href='/admin/categories') CATEGORIES
+        %span.gray-title-color - Group for #{resource.category_group.name}, ages #{resource.category_group.lowest_age} to #{resource.category_group.highest_age}
+      %p.pull-right
+
+        = f.submit('SUBMIT', class:'btn btn-large light-blue-bg', disable_with:'Submitting...')
+
+  - #= link_to('DELETE', category_path(category), method:'delete', class:'btn btn-large btn-warning', style:"margin: 0 25px;", confirm:'Are you sure to delete?', disable_with:'Deleting...') if !category.new_record?
+
+  .container
+    .row.text-center
+      %h3 Category: #{resource.category.name}
+  %hr.full-separator
+  .container
+    .row
+      .col-md-4.col-sm-4.col-xs-4
+        %ul.category-tiles-list.no-indention(id="category_group_#{resource.category_group_id}" data="#{resource.category_group_id}" style="width:auto; max-width:160px;" )
+          %li.text-center
+            %h4.gray-title-color Tile Icon
+          %li.category-cell.text-center(id="icon_cell_#{resource.category_id}" style="border: solid 1px #cccccc; padding:3px; margin-left:20px; #{bgcolor_css}")
+            = make_category_picture_place_holder( resource, :icon, "Category Icon" )
+            = f.file_field(icon_field, style:"width:100%; height:100%; margin-top:-50px;")
+          %li.form-group
+            .input-group(style="max-width: 160px;")
+              = f.text_field(bgcolor_field, class:'color-textfield form-control', style:"", title:'Provide the hex RGB values like #ffcccc', 'data-toggle'=>'tooltip', 'data-placement'=>"right")
+              .btn-group.input-group-addon
+                %button(type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false")
+                  %span.caret
+                = make_bg_color_dropdown_menu_for('category_group_mapping_icon_background_color', "icon_cell_#{resource.category_id}")
+      .col-md-4.col-sm-4.col-xs-4
+        %ul.category-tiles-list.no-indention(data="#{resource.category_group_id}" style="width:auto; max-width:140px;")
+          %li.text-center
+            %h4.gray-title-color Camera BG
+          %li.category-cell.text-center(id="camera_background_#{resource.category_id}" style="border: solid 1px #cccccc; padding:3px; margin-left:20px; ")
+            = make_category_picture_place_holder( resource, :camera_background, "Camera Background" )
+            = f.file_field(icon_field, style:"width:100%; height:100%; margin-top:-50px;")
+  .container
+    .row
+      - category_curated_items = resource.category_curated_items || []
+      - 0.upto(3) do|idx|
+        - curated_item = category_curated_items[idx] || Items::CategoryCuratedItem.new
+        - item = curated_item.try(:item) || Item.new
+        .curated-item-wrapper(id="curate_item_#{idx}" class="col-xs-3 col-sm-3 col-md-3")
+          .curated-item-pic-box.subtle-drop-shadow
+            - if (item_image_url = item.item_photos.first.try(:image_url) ).present?
+              = image_tag(item_image_url, alt:"")
+          %div
+            Upload Pic
+            = file_field_tag("curated_item_image[]", style:'display:inline; opacity:100;' )
+            OR Set Item
+            %input.curated-item-textfield(type='text' name="curated_item_id[]" value="#{item.id}" placeholder="Item ID" )
+  .clearfix

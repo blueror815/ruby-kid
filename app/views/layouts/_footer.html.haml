@@ -1,0 +1,37 @@
+%footer#footer-inner
+  .container
+    .row
+      - if !params[:hide_footer_icons]
+        .col-md-12.col-md-offset-0.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+          %br
+          .img
+            %a(href="http://itunes.apple.com/app/id1042828368")
+              %img(src="/assets/landing/App-Store-Mobile-LP.png" alt="Download on the AppStore")/
+            %a(href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop")
+              %img(src="/assets/landing-25/google-play-live.png" alt="Google Play App")/
+          %br
+
+        .col-md-12.col-sm-12.col-xs-12
+          %ul.links
+            %li
+              %a{:href => "http://www.facebook.com/KidsTrade"}
+                %img(src="/assets/landing/facebook-asset.png" alt="Facebook")
+            %li
+              %a{:href => "http://twitter.com/kidstrade"}
+                %img(src="/assets/landing/twitter-asset.png" alt="Twitter")
+      .col-md-12.col-sm-12.col-xs-12
+        %ul.links
+          %li.slim-weight
+            %a(href="/about_us") About Us
+          %li.slim-weight
+            %a(href="/safety") Safety
+          %li.slim-weight
+            %a(href="mailto:hello@kidstrade.com") Contact Us
+          %li.slim-weight
+            %a{:href => "/privacy"} Privacy
+          %li.slim-weight
+            %a{:href => "/terms"} Terms of Service
+      .col-md-12.col-sm-12.col-xs-12
+        %p
+          Copyright 2015 CubbyShop LLC. KidsTrade and the KidsTrade logo
+          %span are trademarks of CubbyShop, LLC

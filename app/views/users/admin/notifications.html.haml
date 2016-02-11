@@ -1,0 +1,67 @@
+- sample_user = ::User.where(is_test_user: true).first || ::Admin.cubbyshop_admin
+- content_for(:head_extra) do
+  = stylesheet_link_tag 'jquery-ui'
+  :css
+
+.pull-right(style="margin: 10px 10px 0;")
+  %a(href="#{admin_path}") Admin
+  \/ Notifications Manager
+.clearfix
+
+%table(class="users-table table table-striped" cellspacing="1" )
+  %tbody
+    %tr
+      %th Class Name
+      %th
+        Title on Message Board
+        %br/
+        Tip
+      %th
+        Push Notification Text
+    - @notification_classes.each do|n_class|
+      - short_class_name = n_class.name.gsub('Users::Notifications::', '')
+      - next if short_class_name.ends_with?('Basic')
+      - n_instance = nil
+      - if n_class.parent == ::Users::Notifications::TradeBasic
+        - sample_trade = ::Trading::Trade.first
+        - n_instance = n_class.new(sample_trade, sample_trade.buyer)
+      - else
+        - n_instance = n_class.new
+        - n_instance.sender = sample_user
+        - n_instance.recipient = sample_user
+      %tr
+        %td
+          %span.moderate-heavy.dark-title-color(title="#{n_class.name}") #{short_class_name}
+          %br/
+          - non_desc = n_instance.get_property(:non_tech_description).to_s
+          %span.gray-title-color.text-xsmall(title="#{non_desc}") #{non_desc.truncate(60)}
+        %td
+          %span.normal-weight #{n_instance.title}
+          %br/
+          %span.gray-title-color #{n_instance.tip}
+        %td
+          #{n_instance.text_for_push_notification}
+
+.container
+  .row.text-center
+
+.container
+  #send_push_modal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        = form_tag(send_push_notification_path, remote: true) do
+          = hidden_field_tag('hide_element', 'send_push_modal', id:'send_push_modal');
+          .modal-header
+            %button.close(type="button" data-dismiss="modal" aria-label="Close")
+              %span(aria-hidden="true") &times;
+            %h4.modal-title Send Push Notifications
+          #edit_send_push.modal-body
+            .form-group
+              %label(for='user_name') User Name
+              %input.form-control(id='user_name' name='user_name' placeholder='User Name' )
+            .form-group
+              %label(for='notification_text') Message
+              %textarea.form-control(id='notification_text' name='notification_text' placeholder='Message' )
+          .modal-footer
+            %button.btn.btn-default(type='button' data-dismiss='modal' id='send_push_modal_close') Close
+            %input.btn.btn-primary(type="submit" data-disable-with="Sending..." value='Send')

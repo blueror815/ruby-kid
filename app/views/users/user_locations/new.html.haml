@@ -1,0 +1,5 @@
+.container
+  %h3 Enter New Address
+  %br
+
+  = render partial: 'form', locals: { user_location: @user_location || ::Users::UserLocation.new }

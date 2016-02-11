@@ -1,0 +1,31 @@
+-# Required locals
+-#  seller <User>
+-#  cart_items <Array of CartItem>
+%table(class='table table-responsive table-striped')
+  %thead
+    %tr
+      %th(colspan='4')
+        Seller: 
+        = user_profile_link(seller)
+    %tr
+      %th Title
+      %th Listing Price
+      %th.text-center Quantity
+  %tbody
+    - cart_items.each do|cart_item|
+      %tr(id="cart_item_row_of_#{cart_item.item_id}")
+        %td #{link_to(cart_item.item.title, item_path(cart_item.item), title: stripped_compact_text(cart_item.item.description, 150) ) }
+        %td #{price_display(cart_item.item.price) }
+        %td.text-center
+          - if cart_item.item.quantity > 1
+            = select_tag(:quantity, options_for_select( (1..cart_item.item.quantity).to_a, cart_item.quantity), |
+              id: "item_quantity_select_of_#{cart_item.item_id}", 'data-id'=> cart_item.item_id.to_s, class:'cart_item_quantity', |
+              'data-toggle'=>"popover", 'data-placement'=>'top' ) |
+            of  #{cart_item.item.quantity}
+          - else
+            = cart_item.quantity
+        %td.text-right
+          = link_to '  ', carts_delete_path(item_id: cart_item.item_id), method:'delete', remote: true, title: 'Remove Item from Cart', confirm: "Sure to remove this item from cart?", class: 'glyphicon glyphicon-remove'
+    %tr
+      %td(colspan='4')
+        = link_to 'Make Offer', new_offer_response_path(make_offer_params(cart_items)), id:"make_offer_button_of_cart_#{seller.id}", class:'btn btn-primary'

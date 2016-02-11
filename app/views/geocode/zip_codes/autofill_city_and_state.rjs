@@ -1,0 +1,8 @@
+if @zip_codes.present?
+  top_zip_code = @zip_codes.first
+  # puts "--> Set w/ zip_code #{top_zip_code.attributes}"
+  # page << "$('##{params[:city_id]}').val('#{top_zip_code.primary_city}');"
+  page[params[:city_id].to_sym ].value = 'Qererr'
+else
+  page << "alert('NO zip_codes')"
+end

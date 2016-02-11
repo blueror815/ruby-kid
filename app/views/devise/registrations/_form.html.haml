@@ -1,0 +1,152 @@
+-# Required variables
+-#   resource <User or Child> Can be either global method or local variable. This determines different form URL
+-# Required use of view level
+-#   ::Users::UsersHelper
+
+= form_for(resource, :as => resource_name, :url => user_form_url(resource, auth_user), |
+             :html=>{ :class => 'form-horizontal', :role => 'form', :name => 'user_form'} ) do |f| |
+  %div(class='panel panel-primary')
+    .panel-heading 
+      %h4 Account Info
+    .panel-body             
+      .form-group
+        = f.label :user_name, 'User Name', :class => 'col-sm-3 control-label'
+        .col-sm-4
+          = f.text_field :user_name, :autofocus => true, :placeholder => 'User Name', :class => 'form-control'
+        - display_error_on(resource, :user_name) do|msg|
+          %div(class="col-sm-4 alert-danger") #{msg}
+
+
+      .form-group
+        = f.label :email, :class => 'col-sm-3 control-label'
+        .col-sm-4
+          = f.email_field :email, :placeholder => 'Email', :class => 'form-control'
+        - display_error_on(resource, :email) do|msg|
+          %div(class="col-sm-4 alert-danger") #{msg}
+
+      .form-group
+        = f.label :password, (resource.nil? || resource.try(:new_record?) ? 'Password' : 'New Password'), :class => 'col-sm-3 control-label'
+        .col-sm-3
+          = f.password_field :password, :placeholder => 'Password', :class => 'form-control'
+        - display_error_on(resource, :password) do|msg|
+          %div(class="col-sm-4 alert-danger") #{msg}
+    
+      .form-group
+        = f.label :password_confirmation, :class => 'col-sm-3 control-label'
+        .col-sm-3
+          = f.password_field :password_confirmation, :placeholder => 'Confirm Password', :class => 'form-control'
+        - display_error_on(resource, :password_confirmation) do|msg|
+          %div(class="col-sm-4 alert-danger") #{msg}
+
+  %div(class='panel panel-success')
+    .panel-heading 
+      %h4 Personal Info
+    .panel-body  
+      - if resource.is_a?(Child) && auth_user.is_a?(Parent)
+        .form-group
+          = f.label :relationship_type, 'Your Relationship', :class => 'col-sm-3 control-label'
+          .col-sm-4
+            = select_tag(:relationship_type, options_for_select(relationship_type_options, params[:relationship_type]) )
+          - display_error_on(resource, :relationship_type) do|msg|
+            %div(class="col-sm-4 alert-danger") #{msg}
+
+      .form-group
+        = f.label :first_name, 'First Name', :class => 'col-sm-3 control-label'
+        .col-sm-2
+          = f.text_field :first_name, :placeholder => 'First Name', :class => 'form-control'
+        - display_error_on(resource, :first_name) do|msg|
+          %div(class="col-sm-2 alert-danger") #{msg}
+
+        = f.label :last_name, 'Last Name (optional)', :class => 'col-sm-2 control-label'
+        .col-sm-2
+          = f.text_field :last_name, :placeholder => 'Last Name', :class => 'form-control'
+      
+      - if resource.is_a?(Child)   
+        .form-group
+          = f.label :profile_image, 'Profile Picture', :class => 'col-sm-3 control-label'
+          .col-sm-3
+            = f.hidden_field(:profile_image_name)
+            %button(type='button' class='btn btn-default' data-toggle='modal' data-target='#avatars_modal')
+              %img(src="#{profile_image_thumbnail(resource)}" id='avatar_button_image' class='img-responsive img-rounded' alt="Choose a Profile Picture" title="Choose a Profile Picture")
+
+        .form-group
+          = f.label :gender, 'Gender (optional)', :class => 'col-sm-3 control-label'
+          .col-sm-2
+            = f.select :gender, gender_options(resource), :class => 'form-control'
+
+          = f.label :birthdate, 'Birth Date (optional)', :class => 'col-sm-2 control-label'
+          .col-sm-2
+            = f.text_field :birthdate, start_year: 1900, :id => "#{resource.is_a?(Child)? 'child' : 'user'}_birthdate", :placeholder => 'Month/Day/Year'
+          - display_error_on(resource, :birthdate) do|msg|
+            %div(class="col-sm-4 alert-danger") #{msg}
+
+        .form-group
+          = f.label :interests, 'Interests (optional)', :class => 'col-sm-3 control-label'
+          .col-sm-5
+            = f.text_area :interests, :placeholder => 'Your interests of buying and/or selling', :class => 'form-control', :rows => 5
+
+      
+  - if resource.is_a?(Child)
+    %div(class='panel panel-info')
+      .panel-heading 
+        %h4 School Info
+      .panel-body
+        .col-sm-6
+          .form-group
+            %label Name: 
+            = f.hidden_field :current_school_id
+            = text_field_tag 'search_schools_name', resource.try(:current_school).try(:name).try(:titleize), id: 'search_schools_name', class: 'form-control'
+          .form-group
+            .col-sm-4
+              %label Grade:
+            .col-sm-8
+              = f.select(:grade, grade_options(resource)  )
+          .form-group
+            .col-sm-4
+              %label Teacher:
+            .col-sm-8
+              = f.text_field(:teacher)
+        .col-sm-6
+          %table.table
+            %thead
+              %tr
+                %th
+                  %h4 Find Schools Near:
+            %tbody
+              %tr
+                %td
+                  .form-group
+                    .col-sm-4
+                      %label State:
+                    .col-sm-8
+                      = select_tag 'state', options_for_select(  [['','']] + ::Geocode::State::USA_STATE_LIST, auth_user.primary_user_location.try(:state) ), id: 'search_schools_state'
+                  .form-group
+                    .col-sm-4
+                      %label Zip code:
+                    .col-sm-8
+                      = text_field_tag 'zip', auth_user.primary_user_location.try(:zip), id: 'search_schools_zip'
+              %tr
+                %td.text-right
+                  %input(type='button' id='search_schools_button' value='Search')
+                    
+  
+    
+  .col-sm-offset-3
+    %div(class='btn-group btn-group-lg')
+      = f.submit (resource.nil? || resource.new_record? ? 'Register' : 'Update'), :class => 'btn btn-primary'
+
+%div(class="modal fade" id="avatars_modal" role="dialog" aria-hidden="true" style="display:none;")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button(type="button" class="close" data-dismiss="modal")
+          %span(aria-hidden="true") &times;
+          %span.sr-only Close
+        %h4.modal-title Choose a Profile Picture
+      .modal-body( style="background-color:#F3F3F3; width: 95%; margin: 0 auto;")
+        - image_index = 0
+        - for_each_avatar_image(resource.try(:gender) ) do|image_name, image_url|
+          %a(class='btn avatar-button' data ="#{image_name}" src="#{image_url}" style='background-color: white; border-radius: 50%; width: 100px; height: 100px; position: relative;')
+            - image_title = image_name.gsub(/((@2x)?\.(jpg|jpeg|png))$/i, '').humanize
+            %img(class='img-responsive img-rounded' src="#{image_url}" alt="#{image_title}" title="#{image_title}" style="margin: 0 auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);")
+          - image_index += 1

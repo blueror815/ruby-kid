@@ -1,0 +1,32 @@
+= form_for(@report, :html=>{:multipart => true, :class => 'form-horizontal',  :role => 'form'} ) do |f|
+  = f.hidden_field(:content_type)
+  = f.hidden_field(:content_type_id)
+  - if @report.errors.any?
+    %div(id="error_explanation")
+      %h2 #{pluralize(@report.errors.count, "error") } prohibited this report from being saved:
+      %ul
+        - @report.errors.full_messages.each do |msg|
+          %li #{msg}
+  
+  %div(class='content-width center-block text-center')
+    - if @report.content_type == 'ITEM' && (item = @report.content_record)
+      = render(partial: 'items/item_thumbnail', locals: { item: item } )
+      
+      .section-gap
+  
+  
+    %div(class='panel panel-default form-horizontal')
+      .panel-body
+        .form-group
+          %label(class='control-label col-sm-4 text-right') Reason
+          %div(class='col-sm-2 text-left')
+            = f.select(:reason_type, make_reason_type_select_options, {}, class: 'form-control') 
+        .form-group
+          %label(class='control-label col-sm-4 text-right') Message
+          %div(class='col-sm-4 text-left')  
+            = f.text_area(:reason_message, class: 'form-control', rows: 3 )
+          
+          
+        .section-gap
+          
+        = f.submit

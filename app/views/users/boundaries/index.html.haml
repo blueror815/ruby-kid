@@ -1,0 +1,36 @@
+.section-gap
+
+%div(class='center-block content-width row')
+  = form_tag(boundaries_path, method:'put') do
+    = hidden_field_tag(:id, @user.id ) if @user
+    .col-sm-2
+    .col-sm-8
+      .form-group
+        %h3 Childs Circle
+        = select_tag(:child_circle_option, child_circle_options_for_select(@user), {class:'form-control' } )
+
+      .form-group
+        %h3
+          Block Kids
+          %small (Seperate user id’s by commas)
+        = text_area_tag(:block_user_ids, (@user ? @user.boundaries.user_blocks.collect{|b| b.content_value.to_s }.join(', ') : '' ), {cols: 80, rows: 5, class:'form-control'}  )
+
+      .form-group
+        %h3
+          Block Items
+          %small (Seperate words by commas)
+        = text_area_tag(:block_keywords, (@user ? @user.boundaries.keyword_blocks.collect(&:content_value).join(', ') : '' ), {cols: 80, rows: 5, class:'form-control'}  )
+
+      .form-group
+        %h3 Block Categories
+        - (@categories || Category.for_user(@user) ).each_with_index do|category, index|
+          - if index % 3 == 0
+            .row
+          %label(style="")
+            = check_box_tag('block_category_ids[]', category.id, false, {class:'form-control', style:'position: relative; left: -35%; top: 25%;'})
+            = make_category_cell(category, @user, {url: "javascript:void(0);" })
+
+      .form-group
+        %p &nbsp;
+        %input(class='btn btn-lg btn-success' type='submit' value='Update')
+    .col-sm-2

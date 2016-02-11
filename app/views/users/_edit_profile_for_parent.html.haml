@@ -1,0 +1,29 @@
+-# Optional inner content_for content
+-#   :other_tab_content - displayed at the end of the tab-content. Intended to use for Address tab
+
+.clearfix
+.section-gap
+
+%ul(class='nav nav-tabs' id='profile_nav_tabs')
+  %li(class="#{profile_tab_css_class('parent')}")
+    %a.navbar-brand(href="#{edit_user_registration_path}") Parent Profile
+    
+  %li(class="#{profile_tab_css_class('children')}")
+    %a.navbar-brand(href="#{edit_user_registration_path(tab:'children')}") Children
+  
+  %li(class="#{profile_tab_css_class('address')}")
+    %a.navbar-brand(href="#{user_locations_path}") Addresses
+    
+  %li(class="#{profile_tab_css_class('phone')}")
+    %a.navbar-brand(href="#{user_phones_path}") Phone Numbers
+
+
+
+%div(class='tab-content')
+  %div(class="tab-pane panel-no-top-border #{profile_tab_css_class('parent')}" id='parent_tab')
+    = render partial:'devise/registrations/form_for_parent', locals:{}
+    
+  %div(class="tab-pane panel-no-top-border #{profile_tab_css_class('children')}" id='children_tab')
+    = render(:partial => '/users/children/children_panel')
+  
+  = yield(:other_tab_content)

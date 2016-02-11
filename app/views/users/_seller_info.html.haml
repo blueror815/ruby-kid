@@ -1,0 +1,35 @@
+-# Required locals:
+-#  user <User>
+-# Optional locals:
+-#  hide_user_avatar <boolean> default false.
+-#  show_trade_icon <boolean> default false.  Intentionally show trade icon regardless of the viewer
+-#  show_child_name <boolean> default false.
+:ruby
+  hide_user_avatar = false if not defined?(hide_user_avatar)
+  show_trade_icon = false if not defined?(show_trade_icon)
+  show_child_name = false if not defined?(show_child_name)
+
+%div(class='row container center-block content-width')
+  - unless hide_user_avatar
+    %div(class='user-avatar-wrapper pull-left')
+      .user-avatar-circle
+        %a(href="#{store_path(user)}")
+          %img.user-avatar-icon.vertical-center(src="#{user.profile_image_url(:thumb)}" alt="#{user.display_name}" title="#{user.display_name}")
+
+  %div(class='pull-left')
+    %a(href="#{store_path(user)}")
+      = user_name_label(user, :span)
+    - if show_child_name
+      = " - #{user.first_name.titleize}"
+    %br
+    - if user.teacher.present? || user.current_school
+      %span(class='text-big-title dark-title-color') #{user.teacher.present? ? user.teacher : user.current_school.name}
+      %br
+    %span(class='text-moderate-big-title gray-title-color') #{grade_and_item_count_label(user) }
+  %div(class='pull-right vertical-center')
+    - if auth_user && user.id != auth_user.try(:id) && !auth_user.is_a?(Parent)
+      = follow_button_or_trade_icon(user, auth_user)
+    - elsif show_trade_icon
+      = trade_icon(user, :div)
+
+  %div(style="clear:both;")/

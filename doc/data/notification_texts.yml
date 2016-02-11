@@ -1,0 +1,1716 @@
+---
+- !ruby/object:NotificationText
+  attributes:
+    id: 92
+    identifier: buying_friends_new_to_circle
+    non_tech_description: This is sent to all users in a circle after someone new
+      joins said circle.
+    title: Just Joined
+    subtitle: Check Out %{sender_possessive_form} Shop
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-06-16 20:42:43.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 93
+    identifier: buying_friends_new_listing
+    non_tech_description: This is sent to all users with in the friend circle when
+      another user in the circle adds new stuff to their shop.
+    title: Has New Stuff in Their Shop!
+    subtitle: Jump On It Before It Gets Grabbed
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-06-16 20:42:25.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 94
+    identifier: buying_friends_like_item
+    non_tech_description: This is sent to the user after an another user likes their
+      item. Both users are in the same friend group.
+    title: Likes Your Item
+    subtitle: Maybe You Can Trade!
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-06-16 20:41:54.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 95
+    identifier: buying_question_reply
+    non_tech_description: This is sent to the "buyer" of an item after the seller
+      has answered a question that the buyer asked.
+    title: Answered You
+    subtitle: See What %{sender_pronoun_form} Said
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-06-16 20:40:40.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 96
+    identifier: selling_has_question
+    non_tech_description: This is sent when a user asks a question about a specific
+      item to the user that owns the item.
+    title: "%{sender_name} sent you a message!\nDon't leave %{sender_object_form} hanging!"
+    subtitle: Don't Leave %{sender_object_form} Hanging'
+    push_notification: "%{sender_name} sent you a message!\nDon't leave %{sender_object_form} hanging!"
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-08-14 19:12:02.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 97
+    identifier: trading_new_trade_from_customer
+    non_tech_description: This is sent after another user has picked something from
+      the recipient user's shop to trade.
+    title: ! "Great News! %{sender_name} wants to trade!\nCheck out %{sender_owner_form} stuff!"
+    subtitle: Pick Something From %{sender_possessive_form} Shop
+    push_notification: "Great News! %{sender_name} wants to trade!\nCheck out %{sender_owner_form} stuff!"
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-12-14 21:19:39.000000000 Z
+    title_for_item: ! '%{the_other_user_name}
+
+      Wants This!'
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: Wants This!
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 98
+    identifier: trading_new_trade_from_merchant
+    non_tech_description: This is created for the user that invites another user to
+      trade by picking an item from their shop.
+    title: ! '%{sender_name} Wants to Trade!'
+    subtitle: Trade Details
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-12-14 21:19:39.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: Invent Sent
+    subtitle_for_trade: Wating for Reply
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 99
+    identifier: trading_trade_reply
+    non_tech_description: This is sent after someone replies to a trade question.
+    title: Answered You
+    subtitle: See What %{sender_pronoun_form} Said
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-06-16 20:43:03.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 100
+    identifier: trading_trade_accepted
+    non_tech_description: This is sent to user B after user A picks an item to continue
+      the trade from user B's shop
+    title: Wants to Trade Too!
+    subtitle: See What %{sender_pronoun_form} Picked
+    push_notification: ! '%{the_other_user_name} agrees to trade'
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! '%{the_other_user_name}
+
+      Wants This!'
+    subtitle_for_item: 
+    title_for_trade: ! '%{the_other_user_name}
+
+      Wants to Trade Too!'
+    subtitle_for_trade: 
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: You Want This!
+    tip_for_trade_b: Waiting for Reply
+    title_for_item_b: Wants This!
+    tip_for_item_b: Waiting for Reply
+- !ruby/object:NotificationText
+  attributes:
+    id: 101
+    identifier: trading_trade_completed
+    non_tech_description: This notification is sent to User B after User A agrees
+      to the items that are to be traded.
+    title: It's a Deal!
+    subtitle: Pick a Spot to Meet
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-06-16 20:32:02.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 102
+    identifier: trading_trade_parent_approval_buyer
+    non_tech_description: This is sent to the parents of children in a trade if the
+      trade is awaiting approval due to unevenness
+    title: Please Approve
+    subtitle: ! '%{buyer}''s Trade'
+    push_notification: ! '%{buyer} requests trade approval'
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-22 13:26:56.000000000 Z
+    title_for_item: Waiting for Parent Approval
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 103
+    identifier: trading_trade_parent_approval_needed_buyer
+    non_tech_description: This is sent to a child if their pick of item for trade
+      needs parental approval.
+    title: Waiting for Parent Approval
+    subtitle: ''
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-22 13:19:54.000000000 Z
+    title_for_item: Waiting for Parent Approval
+    subtitle_for_item: ''
+    title_for_trade: Waiting for Parent Approval
+    subtitle_for_trade: ''
+    title_for_parent: Please Approve This Trade!
+    tip_for_parent: ''
+    title_for_trade_b: You Want This!
+    tip_for_trade_b: Waiting for Reply
+    title_for_item_b: Wants This!
+    tip_for_item_b: Waiting for Reply
+- !ruby/object:NotificationText
+  attributes:
+    id: 104
+    identifier: trading_trade_beta_parent_approved
+    non_tech_description: This is sent to the beta child after their parent has approved
+      of the uneven trade.
+    title: Trade Approved!
+    subtitle: Wait for %{the_other_user_name} to Reply
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! '%{the_other_user_name}
+
+      Wants This!'
+    subtitle_for_item: Waiting for Reply
+    title_for_trade: You Want This!
+    subtitle_for_trade: Waiting for Reply
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 105
+    identifier: trading_trade_alpha_parent_approved
+    non_tech_description: This is sent to the alpha child after their parent has approved
+      of the uneven trade.
+    title: Trade Approved!
+    subtitle: Pick a Place to Meet
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! 'Parent Approved!
+
+      Pick a Place to Meet'
+    subtitle_for_item: 
+    title_for_trade: ! 'Parent Approved!
+
+      Pick a Place to Meet'
+    subtitle_for_trade: 
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: ! '%{seller} Needs to Pick a Place'
+    tip_for_trade_b: Waiting for Reply
+    title_for_item_b: ! '%{seller} Needs to Pick a Place'
+    tip_for_item_b: Waiting for Reply
+- !ruby/object:NotificationText
+  attributes:
+    id: 106
+    identifier: trading_trade_parent_not_approved
+    non_tech_description: This is sent to the child after the parent disapproves of
+      the trade.
+    title: Sorry, This Trade Was Not Approved
+    subtitle: Pick Something Else
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! 'Not Approved
+
+      Pick Something Else'
+    subtitle_for_item: 
+    title_for_trade: ! 'Not Approved
+
+      Pick Something Else'
+    subtitle_for_trade: 
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 107
+    identifier: trading_picked_meeting
+    non_tech_description: This is sent to user A after user B agrees to trade.
+    title: Agrees to Trade
+    subtitle: See Where and When to Meet
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! '%{the_other_user_name} Agrees to Trade!
+
+      See Where & When'
+    subtitle_for_item: 
+    title_for_trade: ! 'Your Getting This!
+
+      See Where & When'
+    subtitle_for_trade: 
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: You're Getting This!
+    tip_for_trade_b: See Where & When
+    title_for_item_b: Agrees to Trade!
+    tip_for_item_b: See Where & When
+- !ruby/object:NotificationText
+  attributes:
+    id: 108
+    identifier: trading_picked_meeting_sent
+    non_tech_description: This is sent to user B after user B changes the meeting
+      place.
+    title: Needs to "OK" Meeting Place
+    subtitle: Trade Details
+    push_notification: Successfully sent out message to %{the_other_user_name}
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! '%{the_other_user_name}
+
+      Needs to "OK" Meeting Place'
+    subtitle_for_item: Waiting for Reply
+    title_for_trade: ! '%{the_other_user_name}
+
+      Needs to "OK" Meeting Place'
+    subtitle_for_trade: Waiting for Reply
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 109
+    identifier: trading_meeting_changed
+    non_tech_description: This is sent to user B after user A changes the meeting
+      place.
+    title: Changed the Meeting Spot
+    subtitle: See the New Time and Place
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! 'New Meeting Place
+
+      See Where & When'
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: Meeting Place Sent
+    tip_for_trade_b: Waiting for Reply
+    title_for_item_b: ! '%{buyer} Needs to "OK"'
+    tip_for_item_b: Meeting Place
+- !ruby/object:NotificationText
+  attributes:
+    id: 110
+    identifier: trading_meeting_changed_sent
+    non_tech_description: This is sent to user A after user A changes the meeting
+      place.
+    title: Meeting Place Changed
+    subtitle: Trade Details
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-14 00:23:24.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 111
+    identifier: trading_meeting_agreed
+    non_tech_description: This is sent to user B after user A agrees to the meeting
+      place that user B within the app.
+    title: Pack It Up!
+    subtitle: Don't Forget Your Stuff
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-17 21:22:04.000000000 Z
+    title_for_item: ! 'Pack It Up
+
+      for %{the_other_user_name}'
+    subtitle_for_item: 
+    title_for_trade: Your Getting This
+    subtitle_for_trade: 
+    title_for_parent: Help Them
+    tip_for_parent: Remember
+    title_for_trade_b: You're Getting This
+    tip_for_trade_b: Don't Forget!
+    title_for_item_b: ! '%{the_other_user} Is Getting This!'
+    tip_for_item_b: Don't Forget!
+- !ruby/object:NotificationText
+  attributes:
+    id: 112
+    identifier: trading_meeting_agreed_sent
+    non_tech_description: This is sent to bother users after they both agree to a
+      meeting place for a trade.
+    title: Great Trade!
+    subtitle: Don't Forget Your Stuff
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: Pack It Up for %{the_other_user_name}
+    subtitle_for_item: 
+    title_for_trade: Your Getting This
+    subtitle_for_trade: 
+    title_for_parent: Help Them
+    tip_for_parent: Remember
+    title_for_trade_b: ! '%{the_other_user} Is Getting This!'
+    tip_for_trade_b: Don't Forget!
+    title_for_item_b: You're Getting This
+    tip_for_item_b: Don't Forget!
+- !ruby/object:NotificationText
+  attributes:
+    id: 113
+    identifier: trading_trade_declined
+    non_tech_description: This is sent to user B after user A cancels the trade between
+      A and B.
+    title: Says, "No Thanks"
+    subtitle: Sorry, But This Trade is Over
+    push_notification: That trade didn't work.  Find one that will!
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 114
+    identifier: trading_trade_ended
+    non_tech_description: The notification and the push notifications are sent to
+      the user canceling the trade.
+    title: That trade didn’t work out.
+    subtitle: Find one that will!
+    push_notification: That trade didn't work.  Find one that will!
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 115
+    identifier: trading_trade_completion_confirmed
+    non_tech_description: Push notification sent to both users after the trade has
+      been successfully completed.
+    title: ''
+    subtitle: ''
+    push_notification: Successfully confirmed a completed trade
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 116
+    identifier: notification_is_following
+    non_tech_description: Sent to the user who has someone else follow them. Sender
+      is the person who followed the other user's shop.
+    title: Is Following Your Shop
+    subtitle: Check Out What They Have
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-06-16 19:59:38.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 117
+    identifier: parenting_item_approval
+    non_tech_description: Sent to the the parent of children who have items that are
+      waiting for approval. %{pending_items_count} = number of items waiting for approval,
+      pluralize = New Item/New Items
+    title: Is Waiting For Approval
+    subtitle: On %{pending_items_count} %{item_count_pluralize}
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-08-14 19:12:03.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 118
+    identifier: item_friends_like_item
+    non_tech_description: ''
+    title: ! "%{sender_name} likes your post!\nMaybe you can trade?"
+    subtitle: Maybe You Can Trade!
+    push_notification: "%{sender_name} likes your post!\nMaybe you can trade?"
+    language: en
+    created_at: 2015-09-20 23:48:28.000000000 Z
+    updated_at: 2015-09-20 23:48:28.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 119
+    identifier: item_friends_new_to_circle
+    non_tech_description: ''
+    title: ! "Do you use %{sender_name}?\n%{sender_pronoun_form} just joined!"
+    subtitle: Check out %{sender_possessive_pronoun} Shop!
+    push_notification: "Do you use %{sender_name}?\n%{sender_pronoun_form} just joined!"
+    language: en
+    created_at: 2015-09-20 23:50:22.000000000 Z
+    updated_at: 2015-09-20 23:50:22.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 120
+    identifier: trade_completed_check
+    non_tech_description: Notification sent to both the merchant and the customer
+      in a trade 4 days after it has been marked as "Completed"
+    title: Did You Trade?
+    subtitle: <PlaceHolderText>
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: Did You Trade?
+    subtitle_for_item: 
+    title_for_trade: Did You Trade?
+    subtitle_for_trade: 
+    title_for_parent: Help Them
+    tip_for_parent: Remember
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 121
+    identifier: trade_basic
+    non_tech_description: Message that is sent to a child after another child asks
+      some sort of question for a user.
+    title: Has a Message for You
+    subtitle: ''
+    push_notification: ''
+    language: en
+    created_at: 2015-12-22 14:40:12.000000000 Z
+    updated_at: 2015-08-14 19:12:03.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 122
+    identifier: report_child_reported
+    non_tech_description: This message is sent to parent when the child is reported
+      with violation.
+    title: Was Reported
+    subtitle: Please Review the Complaint
+    push_notification: ''
+    language: en
+    created_at: 2015-08-14 19:12:03.000000000 Z
+    updated_at: 2015-09-14 00:23:24.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 123
+    identifier: trading_trade_parent_not_approved_cont
+    non_tech_description: This is sent to the seller if the parent didn't approve,
+      though the trade is still supposed to continue.
+    title: This Trade Is Not Approved
+    subtitle: Pick Something Else
+    push_notification: ! '%{sender_name} wants you to pick something else!'
+    language: en
+    created_at: 2015-08-20 18:57:26.000000000 Z
+    updated_at: 2015-09-19 13:33:15.000000000 Z
+    title_for_item: Not Approved
+    subtitle_for_item: Pick Something Else
+    title_for_trade: Not Approved
+    subtitle_for_trade: Pick Something Else
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 124
+    identifier: trading_picked_something_else
+    non_tech_description: This is sent to the other user when they want them to pick
+      something else
+    title: Wants to Trade But Needs You to
+    subtitle: Pick Something Else
+    push_notification: ! '%{buyer} wants to trade but trade but %{seller} must pick
+      something else'
+    language: en
+    created_at: 2015-08-20 20:36:19.000000000 Z
+    updated_at: 2015-09-22 12:43:38.000000000 Z
+    title_for_item: Wants You To
+    subtitle_for_item: Pick Something Else
+    title_for_trade: Wants You To
+    subtitle_for_trade: Pick Something Else
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 125
+    identifier: trading_pack_it_up
+    non_tech_description: Message stuff to tell the user to pack it up
+    title: Pack It Up!
+    subtitle: ''
+    push_notification: ''
+    language: en
+    created_at: 2015-08-24 14:10:57.000000000 Z
+    updated_at: 2015-08-24 14:10:57.000000000 Z
+    title_for_item: Pack It Up
+    subtitle_for_item: ''
+    title_for_trade: You're Getting This!
+    subtitle_for_trade: ''
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 126
+    identifier: trading_completed_packed
+    non_tech_description: ! 'Item/Trade title/tip that are displayed '
+    title: ''
+    subtitle: ''
+    push_notification: ''
+    language: en
+    created_at: 2015-08-24 14:24:52.000000000 Z
+    updated_at: 2015-09-14 03:14:47.000000000 Z
+    title_for_item: ! '%{the_other_user} Is Getting This!'
+    subtitle_for_item: Don't Forget!
+    title_for_trade: You're Getting This
+    subtitle_for_trade: Don't Forget!
+    title_for_parent: Help Them
+    tip_for_parent: Remember
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 127
+    identifier: trading_b_wait_meeting
+    non_tech_description: This is sent to user B after the parent approves the trade,
+      and A needs to pick a meeting place.
+    title: Trade Approved
+    subtitle: Waiting for Meeting Place
+    push_notification: ''
+    language: en
+    created_at: 2015-08-24 14:58:24.000000000 Z
+    updated_at: 2015-09-13 17:08:52.000000000 Z
+    title_for_item: ! '%{the_other_user} Needs to Pick a Place'
+    subtitle_for_item: Waiting for Reply
+    title_for_trade: ! '%{the_other_user} Needs to Pick a Place'
+    subtitle_for_trade: Waiting for Reply
+    title_for_parent: In Trade
+    tip_for_parent: ''
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 128
+    identifier: report_reported_child
+    non_tech_description: This message is sent to parent when his/her child reported
+      another one.
+    title: Reported a Child for Misuse
+    subtitle: Please Review the Complaint
+    push_notification: ''
+    language: en
+    created_at: 2015-09-14 00:23:24.000000000 Z
+    updated_at: 2015-09-14 00:23:24.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 129
+    identifier: trade_from_past
+    non_tech_description: Invisible notification to show the correct text after a
+      trade has been confirmed_completed
+    title: ''
+    subtitle: ''
+    push_notification: ''
+    language: en
+    created_at: 2015-09-14 15:51:32.000000000 Z
+    updated_at: 2015-09-14 15:52:50.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: Past Trade
+    subtitle_for_trade: ''
+    title_for_parent: Past Trade
+    tip_for_parent: ''
+    title_for_trade_b: Past Trade
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 130
+    identifier: trading_trade_parent_both_approval
+    non_tech_description: ! 'This is sent to both children if both parents need to
+      approve a trade in the case where both users are '
+    title: Waiting for Parent Approval
+    subtitle: ''
+    push_notification: ''
+    language: en
+    created_at: 2015-09-16 19:10:22.000000000 Z
+    updated_at: 2015-09-16 19:10:22.000000000 Z
+    title_for_item: Waiting for
+    subtitle_for_item: Parent Approval
+    title_for_trade: Waiting for
+    subtitle_for_trade: Parent Approval
+    title_for_parent: Waiting for
+    tip_for_parent: Both Parent's Approval
+    title_for_trade_b: Waiting for
+    tip_for_trade_b: Parent Approval
+    title_for_item_b: Waiting for
+    tip_for_item_b: Parent Approval
+- !ruby/object:NotificationText
+  attributes:
+    id: 131
+    identifier: trading_trade_reply_sent
+    non_tech_description: This is sent after user A picks a item in response to user
+      B's shop for a trade
+    title: Your Pick Was Sent
+    subtitle: Trade Details
+    push_notification: Successfully updated the trade. Please wait for %{the_other_user_name}
+      to agree with the trade.
+    language: en
+    created_at: 2015-09-17 21:22:04.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! '%{the_other_user_name}
+
+      Wants This!'
+    subtitle_for_item: Waiting for Reply
+    title_for_trade: You Want This!
+    subtitle_for_trade: Waiting for Reply
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 132
+    identifier: trading_trade_updated
+    non_tech_description: Push notification that is sent to the user once they update
+      their trade.
+    title: ''
+    subtitle: ''
+    push_notification: Trade update successfully
+    language: en
+    created_at: 2015-09-17 21:22:04.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 133
+    identifier: new_buy_request
+    non_tech_description: This message is sent to parent when the child wants to buy
+      another's item
+    title: Wants To Buy Something
+    subtitle: Check Out the Details
+    push_notification: ''
+    language: en
+    created_at: 2015-09-17 21:22:04.000000000 Z
+    updated_at: 2015-09-17 21:22:04.000000000 Z
+    title_for_item: Somebody Wants to Buy This!
+    subtitle_for_item: 
+    title_for_trade: Somebody Wants to Buy This!
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 134
+    identifier: trading_trade_parent_approval_needed_seller
+    non_tech_description: ! 'This is when the seller becomes beta. This message is
+      sent to him in that case. '
+    title: Waiting for Parent Approval
+    subtitle: ''
+    push_notification: ! '%{seller} requests trade approval'
+    language: en
+    created_at: 2015-09-18 20:57:02.000000000 Z
+    updated_at: 2015-09-22 14:44:31.000000000 Z
+    title_for_item: Waiting for Parent Approval
+    subtitle_for_item: ''
+    title_for_trade: Waiting for Parent Approval
+    subtitle_for_trade: ''
+    title_for_parent: Waiting for Parent Approval
+    tip_for_parent: ''
+    title_for_trade_b: You Want This!
+    tip_for_trade_b: Waiting for Reply
+    title_for_item_b: Wants This!
+    tip_for_item_b: Waiting for Reply
+- !ruby/object:NotificationText
+  attributes:
+    id: 135
+    identifier: business_card_kid
+    non_tech_description: This is the notification sent to the user when the endpoint
+      /api/v1/users/id/business_card is hit with "not_now" set to "ture"
+    title: Print and Pass Your Custom Cards
+    subtitle: It's the Fastest Way to Tell Friends!
+    push_notification: ''
+    language: en
+    created_at: 2015-09-19 17:05:30.000000000 Z
+    updated_at: 2015-09-19 17:05:30.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 136
+    identifier: business_card_parent
+    non_tech_description: ''
+    title: Print Custom Cards
+    subtitle: Kids Can Pass Them to Friends
+    push_notification: ''
+    language: en
+    created_at: 2015-09-19 17:58:01.000000000 Z
+    updated_at: 2015-09-19 18:10:05.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 137
+    identifier: item_friends_new_listing
+    non_tech_description: ''
+    title: ! "%{sender_name} just posted!\nCheck out %{sender_owner_form} shop!"
+    subtitle: Check out %{sender_possessive_pronoun} Shop!
+    push_notification: "%{sender_name} just posted!\nCheck out %{sender_owner_form} shop!"
+    language: en
+    created_at: 2015-09-20 23:47:38.000000000 Z
+    updated_at: 2015-09-20 23:47:38.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 138
+    identifier: trading_trade_parent_approval_seller
+    non_tech_description: ''
+    title: Please Approve
+    subtitle: ! '%{seller}''s Trade'
+    push_notification: ! '%{seller} requests trade approval'
+    language: en
+    created_at: 2015-09-22 13:27:31.000000000 Z
+    updated_at: 2015-09-22 13:27:31.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 139
+    identifier: trading_trade_parent_not_approved_seller
+    non_tech_description: Sent to seller if a trade is not approved. Trade not approved
+      notifications don't send out a push notification.
+    title: Sorry. This Trade Was Not Approved
+    subtitle: ''
+    push_notification: Sorry! %{seller}'s trade with %{buyer} was not approved.
+    language: en
+    created_at: 2015-09-22 14:15:26.000000000 Z
+    updated_at: 2015-09-22 15:03:12.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 140
+    identifier: trading_trade_parent_not_approved_buyer
+    non_tech_description: ''
+    title: ! 'Sorry. This Trade Was Not Approved. '
+    subtitle: Sorry! %{buyer}'s trade with %{seller} was not approved.
+    push_notification: ''
+    language: en
+    created_at: 2015-09-22 14:15:47.000000000 Z
+    updated_at: 2015-09-22 15:02:28.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 141
+    identifier: needs_account_confirm
+    non_tech_description: ''
+    title: Your Account Must Be Verified
+    subtitle: Please Check Your Email
+    push_notification: ''
+    language: en
+    created_at: 2015-09-22 18:39:28.000000000 Z
+    updated_at: 2015-09-22 18:42:56.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 142
+    identifier: check_email_push
+    non_tech_description: ! 'Sending a push notification to a user when they need
+      to '
+    title: ''
+    subtitle: ''
+    push_notification: Check your email to approve %{sender_name}'s postings.  Then
+      let the trading begin!
+    language: en
+    created_at: 2015-10-07 22:06:36.000000000 Z
+    updated_at: 2015-10-07 22:06:36.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 143
+    identifier: child_verify_account
+    non_tech_description: Prompts child to verify their account through their parent
+    title: Your Account Needs to Be Approved!
+    subtitle: Ask Your Parent to Check Their Email
+    push_notification: ''
+    language: en
+    created_at: 2015-10-12 19:20:29.000000000 Z
+    updated_at: 2015-10-15 13:27:07.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 144
+    identifier: nag_parent_item
+    non_tech_description: ''
+    title: Your Items Need To Be Approved
+    subtitle: Ask Your Parent to Login
+    push_notification: ''
+    language: en
+    created_at: 2015-10-12 19:21:42.000000000 Z
+    updated_at: 2015-10-15 13:26:56.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 145
+    identifier: push_note_trade_pls
+    non_tech_description: This is a push notification that the kid will get after
+      the parent confirms their account.
+    title: ''
+    subtitle: ''
+    push_notification: Your account is ready to go. Start trading with your friends!
+    language: en
+    created_at: 2015-10-15 13:58:51.000000000 Z
+    updated_at: 2015-10-15 13:58:51.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 146
+    identifier: welcome_kid_path
+    non_tech_description: ''
+    title: Watch our video!
+    subtitle: Learn all about how KidsTrade works
+    push_notification: ''
+    language: en
+    created_at: 2015-11-06 21:23:07.000000000 Z
+    updated_at: 2015-11-06 21:23:45.000000000 Z
+    title_for_item: ''
+    subtitle_for_item: ''
+    title_for_trade: ''
+    subtitle_for_trade: ''
+    title_for_parent: ''
+    tip_for_parent: ''
+    title_for_trade_b: ''
+    tip_for_trade_b: ''
+    title_for_item_b: ''
+    tip_for_item_b: ''
+- !ruby/object:NotificationText
+  attributes:
+    id: 147
+    identifier: kid_to_parent_friend
+    non_tech_description: This message is sent to parent who wants to add friend
+    title: Wants to Add a Friend
+    subtitle: 
+    push_notification: ''
+    language: en
+    created_at: 2015-11-03 17:05:33.000000000 Z
+    updated_at: 2015-11-03 17:05:33.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 148
+    identifier: child_never_posted
+    non_tech_description: When registered child has set profile image but never posted,
+      sent every 24 hrs.
+    title: You gotta post stuff to get stuff!
+    subtitle: Let's see what you've got.
+    push_notification: You gotta post stuff to get stuff!
+    language: en
+    created_at: 2015-12-08 21:53:49.000000000 Z
+    updated_at: 2015-12-08 21:53:49.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 149
+    identifier: child_never_posted
+    non_tech_description: When registered child has set profile image but never posted,
+      sent every 24 hrs.
+    title: Can you post 5 items in 5 minutes?
+    subtitle: Bet you can!
+    push_notification: Can you post 5 items in 5 minutes?
+    language: en
+    created_at: 2015-12-09 15:15:43.000000000 Z
+    updated_at: 2015-12-09 15:15:43.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 150
+    identifier: child_never_posted
+    non_tech_description: When registered child has set profile image but never posted,
+      sent every 24 hrs.
+    title: Everyone loves getting an invitation.
+    subtitle: Invite friends to join you on KidsTrade now!
+    push_notification: Everyone loves getting an invitation.
+    language: en
+    created_at: 2015-12-09 15:15:44.000000000 Z
+    updated_at: 2015-12-09 15:15:44.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 151
+    identifier: child_never_posted
+    non_tech_description: When registered child has set profile image but never posted,
+      sent every 24 hrs.
+    title: Post a few things. Invite a few friends.
+    subtitle: You'll be trading your way to new stuff in no time!
+    push_notification: Post a few things. Invite a few friends.
+    language: en
+    created_at: 2015-12-09 15:15:44.000000000 Z
+    updated_at: 2015-12-09 15:15:44.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 152
+    identifier: child_never_posted
+    non_tech_description: When registered child has set profile image but never posted,
+      sent every 24 hrs.
+    title: Getting new stuff is easy!
+    subtitle: Post. Shared. Trade. Repeat.
+    push_notification: Getting new stuff is easy!
+    language: en
+    created_at: 2015-12-09 15:15:44.000000000 Z
+    updated_at: 2015-12-09 15:15:44.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 153
+    identifier: child_never_posted
+    non_tech_description: When registered child has set profile image but never posted,
+      sent every 24 hrs.
+    title: Stop! Look around.
+    subtitle: See anything you don't use anymore? Post it!
+    push_notification: Stop! Look around.
+    language: en
+    created_at: 2015-12-08 21:53:49.000000000 Z
+    updated_at: 2015-12-08 21:53:49.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 154
+    identifier: kid_to_kid_friend_direct
+    non_tech_description: This is direct Add Friend request from Child A to Child
+      B
+    title: Wants to be Friends
+    subtitle: ''
+    push_notification: ! "%{sender_name} wants to be friends.\nDon't leave %{sender_object_form}
+      hanging!"
+    language: en
+    created_at: 2015-12-08 21:18:17.000000000 Z
+    updated_at: 2015-12-08 21:18:17.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 155
+    identifier: kid_to_kid_friend
+    non_tech_description: This message is sent to kid who wants to add friend
+    title: Wants to be Friends
+    subtitle: 
+    push_notification: ! '%{sender_name} wants to Follow you! Log in to say, "Yes".'
+    language: en
+    created_at: 2015-12-09 15:15:44.000000000 Z
+    updated_at: 2015-12-09 15:15:44.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 156
+    identifier: kid_to_kid_friend
+    non_tech_description: This message is sent to kid who wants to add friend
+    title: Wait for Parent to Approval Your Friend
+    subtitle: Tell Your Parent
+    push_notification: ! '%{sender_name} wants to Follow you! Log in to say, "Yes".'
+    language: en
+    created_at: 2015-12-08 21:53:49.000000000 Z
+    updated_at: 2015-12-08 21:53:49.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 157
+    identifier: trading_trade_parent_approval
+    non_tech_description: This is sent to the parents of children in a trade if the
+      trade is awaiting approval due to unevenness
+    title: Wants to Make an Uneven Trade
+    subtitle: Read the Note to Find Out More
+    push_notification: ''
+    language: en
+    created_at: 2015-09-24 02:42:50.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 158
+    identifier: trading_trade_parent_approval_needed
+    non_tech_description: This is sent to a child if their pick of item for trade
+      needs parental approval.
+    title: Waiting for Parent Approval
+    subtitle: Trade Details
+    push_notification: ''
+    language: en
+    created_at: 2015-09-24 02:42:50.000000000 Z
+    updated_at: 2015-09-24 02:42:50.000000000 Z
+    title_for_item: ! 'Waiting for
+
+      Parent Approval'
+    subtitle_for_item: Trade Details
+    title_for_trade: ! 'Waiting for
+
+      Parent Approval'
+    subtitle_for_trade: Trade Details
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 159
+    identifier: child_is_now_friend
+    non_tech_description: To both Child A to Child B who just became friends
+    title: ! "Cool! You are now friends with %{sender_name}\nCheck out %{sender_owner_form} stuff!"
+    subtitle: Check out their shop
+    push_notification: "Cool! You are now friends with %{sender_name}\nCheck out %{sender_owner_form} stuff!"
+    language: en
+    created_at: 2015-12-09 15:15:44.000000000 Z
+    updated_at: 2015-12-09 15:15:44.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 160
+    identifier: child_no_login_after_trade
+    non_tech_description: Reminder when child needs to respond to trade offer every
+      24 hrs when not logged in.
+    title: Don't wait for something to happen... make it happen!
+    subtitle: Post, share, start a trade!
+    push_notification: Don't wait for something to happen... make it happen!
+    language: en
+    created_at: 2015-12-14 21:19:39.000000000 Z
+    updated_at: 2015-12-14 21:19:39.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 161
+    identifier: child_no_login_after_trade
+    non_tech_description: Reminder when child needs to respond to trade offer every
+      24 hrs when not logged in.
+    title: The best stuff goes quickly.
+    subtitle: See what's new and get it before it's gone!
+    push_notification: The best stuff goes quickly.
+    language: en
+    created_at: 2015-12-14 21:19:39.000000000 Z
+    updated_at: 2015-12-14 21:19:39.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 162
+    identifier: child_no_login_after_trade
+    non_tech_description: Reminder when child needs to respond to trade offer every
+      24 hrs when not logged in.
+    title: Can you post 5 items in 5 minutes?
+    subtitle: Bet you can!
+    push_notification: Can you post 5 items in 5 minutes?
+    language: en
+    created_at: 2015-12-14 21:19:39.000000000 Z
+    updated_at: 2015-12-14 21:19:39.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 163
+    identifier: child_no_login_after_trade
+    non_tech_description: Reminder when child needs to respond to trade offer every
+      24 hrs when not logged in.
+    title: Banish boredom!
+    subtitle: Find something that's "new to you" and get a trade going.
+    push_notification: Banish boredom!
+    language: en
+    created_at: 2015-12-14 21:19:39.000000000 Z
+    updated_at: 2015-12-14 21:19:39.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 164
+    identifier: child_no_login_after_trade
+    non_tech_description: Reminder when child needs to respond to trade offer every
+      24 hrs when not logged in.
+    title: Who joined? What's up for grabs? Who's checking out your stuff?
+    subtitle: Log in to find out!
+    push_notification: Who joined? What's up for grabs? Who's checking out your stuff?
+    language: en
+    created_at: 2015-12-14 21:19:39.000000000 Z
+    updated_at: 2015-12-14 21:19:39.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 165
+    identifier: child_no_login_after_trade
+    non_tech_description: Reminder when child needs to respond to trade offer every
+      24 hrs when not logged in.
+    title: What's the one thing you've been wishing for?
+    subtitle: Maybe someone just posted it!
+    push_notification: What's the one thing you've been wishing for?
+    language: en
+    created_at: 2015-12-14 20:59:56.000000000 Z
+    updated_at: 2015-12-14 21:18:00.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 166
+    identifier: kid_to_kid_friend_direct
+    non_tech_description: This is direct Add Friend request from Child A to Child
+      B
+    title: Wants to be Friend
+    subtitle: ''
+    push_notification: ! "%{sender_name} wants to be friends.\nDon't leave %{sender_object_form}
+      hanging!"
+    language: en
+    created_at: 2015-12-08 21:18:17.000000000 Z
+    updated_at: 2015-12-08 21:18:17.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 167
+    identifier: child_never_posted
+    non_tech_description: When registered child has set profile image but never posted,
+      sent every 24 hrs.
+    title: Don't wait for something to happen... make it happen!
+    subtitle: Post, share, start a trade!
+    push_notification: Don't wait for something to happen... make it happen!
+    language: en
+    created_at: 2015-12-09 15:15:43.000000000 Z
+    updated_at: 2015-12-09 15:15:43.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 
+- !ruby/object:NotificationText
+  attributes:
+    id: 168
+    identifier: parenting_check_new_item
+    non_tech_description: New item without parent approval required
+    title: Posted New Items
+    subtitle: Check 'em out!
+    push_notification: "%{sender_name} Posted New Items"
+    language: en
+    created_at: 2015-12-22 14:56:26.000000000 Z
+    updated_at: 2015-12-22 14:56:26.000000000 Z
+    title_for_item: 
+    subtitle_for_item: 
+    title_for_trade: 
+    subtitle_for_trade: 
+    title_for_parent: 
+    tip_for_parent: 
+    title_for_trade_b: 
+    tip_for_trade_b: 
+    title_for_item_b: 
+    tip_for_item_b: 

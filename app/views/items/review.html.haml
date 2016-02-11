@@ -1,0 +1,17 @@
+%section.inner-pages
+  .credit-card
+    .container
+      .row
+        %div(class="col-md-10 col-md-offset-2 col-sm-11 col-sm-offset-1 col-xs-12 col-xs-offset-0")
+          = form_for(@item, method:'put', html:{ class:'form' }) do|f|
+            .part.mar
+              %label.label Edit Item:
+              = f.text_area(:description, class:'textarea', placeholder:'Describe the item..')
+            .price.pad
+              %label.label $
+              = f.text_field(:price, class:'input', placeholder:'Price', value:format("%.02f", @item.price) )
+            .price
+              %input.button(type="submit" value="Submit Changes")
+          = form_tag(inventory_decline_item_path(id: @item.id ), method:'put', class:'form' ) do
+            .price
+              %input.end(type="submit" value="End Item")

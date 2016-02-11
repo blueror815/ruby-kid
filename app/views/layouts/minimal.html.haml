@@ -1,0 +1,32 @@
+%html(lang="en")
+  %head
+    %title
+      = ( @page_title.present? ? @page_title + ' - ' : '' ) + domain_name
+  
+    %meta(charset="UTF-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', :media => 'all'
+    = stylesheet_link_tag 'jquery-ui', :medial => 'all'
+    = javascript_include_tag 'minimal'
+
+    = yield :head_extra
+
+  %body
+    %div(id="message-panel" class="clearfix")
+      - if flash[:error].present?
+        %h4(id="flash_error" class="alert alert-danger") #{flash[:error]}
+      - if flash[:notice].present?
+        %h4(id="flash_notice" class="alert alert-success") #{flash[:notice]}
+      - flash.clear
+    
+    = yield :body_top
+
+    .clearfix
+    
+    = yield
+
+
+    = yield :footer_extra
+    

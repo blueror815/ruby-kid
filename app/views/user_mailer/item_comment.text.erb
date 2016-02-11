@@ -1,0 +1,6 @@
+From <%= @item_comment.user.display_name%>:
+
+Item: <%= @item_comment.item.display_title %>
+      <%= item_url(@item_comment.item) %>
+
+Message: <%= @item_comment.body %>

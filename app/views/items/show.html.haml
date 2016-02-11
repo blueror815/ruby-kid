@@ -1,0 +1,121 @@
+- content_for(:head_extra) do
+
+  = stylesheet_link_tag 'trade-ui'
+
+  = javascript_include_tag 'items'
+
+- content_for(:footer_extra) do
+
+  :javascript
+    var priceTagTopSpace = 10, priceTagWidth = 60;
+    
+    function onScroll(event) {
+      repositionPriceTag();
+    }
+    function onWindowResize(event) {
+      priceTagWidth = $(".price-tag:first").width();
+      repositionPriceTag();
+    }
+    
+    function repositionPriceTag() 
+    {
+      var scrollTop = $(window).scrollTop();
+      var priceTag = $(".price-tag:first");
+      var list = $("img.main-image-placeholder");
+      var firstPicture = $("img.main-image-placeholder:first");
+      var firstPictureBottom = firstPicture.offset().top + firstPicture.height();
+      var picturesWrapper = $("#pictures_wrapper");
+      var picturesOffset = picturesWrapper.offset();
+      var picturesWrapperBottom = picturesOffset.top + picturesWrapper.height();
+      var spaceAboveBottom = priceTag.height() * 1.5;
+
+      if ( scrollTop > picturesWrapperBottom - spaceAboveBottom ) {
+        priceTag.offset( { top: picturesWrapperBottom - spaceAboveBottom } );
+      }
+      else if ( scrollTop > firstPictureBottom - spaceAboveBottom + priceTagTopSpace ) // push below 1st picture
+      {
+        priceTag.offset( { top: scrollTop + priceTagTopSpace } );
+      }
+      else {
+        //priceTag.offset( { left: firstPicture.offset().left + firstPicture.width() - priceTagWidth, top: firstPicture.offset().top + priceTagTopSpace } );
+        priceTag.offset( { top: firstPictureBottom - spaceAboveBottom } );
+      }
+    }
+
+    jQuery(function() {
+      $(".link_with_tip").tooltip({animation: false, placement:'auto'} );
+
+      $(window).load( setTilesWithWookmark );
+      $(window).resize( setTilesWithWookmark );
+
+      $(".price-tag:first").css("display", "block");
+      priceTagWidth = $(".price-tag:first").width();
+      repositionPriceTag();
+      $(document).bind('scroll', onScroll);
+      $(window).bind('resize', onWindowResize);
+    } );
+
+- if auth_user.try(:id) != @item.user_id
+  = render(partial: 'users/seller_info', locals: { user: @item.user } )
+- else
+  .no-seller-info-space &nbsp;
+
+- if (auth_user && auth_user.parent_of?(@item.user) )
+  .full-separator
+
+%div(id='item-content-wrapper' class='container row content-width center-block')
+  - if @item.item_photos.present? && (auth_user.nil? || !auth_user.parent_of?(@item.user) )
+    = render(partial: 'items/item_photos_in_stack', locals: { item: @item, is_in_favorite_items: @is_in_favorite_items } )
+
+  %div(class='container' style='padding: 10px 0; display: inline;')
+    %p(class='text-moderate-big-title dark-title-color')
+      = html_escape( @item.description ).strip
+
+%div(class='container row content-width center-block')
+  - if @item.tradeable_to_user?(auth_user)
+    %div(id="actions-wrapper" class='row')
+      %a(href="#{new_trade_path(item_id: @item.id )}" class='btn btn-lg large-form-button trade-button') Trade
+      %a(href="#{new_item_comment_path(item_id: @item.id)}" class='btn btn-lg large-form-button ask-question-button') Ask Question
+      = link_to('Add to Cart', carts_add_path(item_id: @item.id), id:"add_to_cart_#{@item.id}", |
+        class: 'btn btn-lg large-form-button add-to-cart-button', role: 'button', remote: true, method: 'post') |
+
+  - if @item.manageable_by_user?(auth_user)
+    %div(class='bottom-spaced text-superbig-title normal-weight gray-title-color')
+      = gender_group_icons(@item.gender_group)
+      &nbsp;
+      %span(style='vertical-align: bottom;')
+        #{::Users::AgeGroup.age_group_name(@item.age_group) } #{Category.find_by_id(@item.category_id).try(:name)}
+        - if auth_user.is_a?(Parent)
+          = @item.category.try(:name)
+    .no-seller-info-space
+
+  - if @item.item_photos.present? && (auth_user && auth_user.parent_of?(@item.user) )
+    = render(partial: 'items/item_photos_in_stack', locals: { item: @item, is_in_favorite_items: @is_in_favorite_items } )
+
+- if @other_items.present?
+  .full-separator(style='margin-top: 20px;')
+  %div(class='row content-width center-block' style='padding: 10px;')
+    %div(class='pull-left text-moderate-big-title male-color')
+      %strong #{@item.user.display_name}'s Other Items
+    %div(class='pull-right male-color text-right')
+      %a(href="#{new_report_path(item_id: @item.id)}")
+        %img.report-item-icon(src='/assets/items/report@2x.png' alt="#{t('item.action.report_item')}")
+    .clearfix
+
+  %div(id='items_container' class='row content-width center-block')
+    = render(partial: 'items/item_thumbnail_grid', locals:{ items: @other_items, hide_user_label:true, hide_school_teacher_label:true, favorite_item_ids: @favorite_item_ids  } )
+
+.section-gap
+.row
+  .col-md-6
+    - if has_questions_and_offers?(@item)
+      %div(class='panel panel-info')
+        .panel-heading
+          %a(name='qo')
+          %h4 Questions and Offers
+        - if (item_comments = @item.item_comments.still_open).present?
+          .panel-body(id="itemCommentsTable")
+            = render(partial: 'item_comments/table', locals:{ item: @item, item_comments: item_comments } )
+
+- if auth_user && @item.manageable_by_user?(auth_user)
+  = render(partial: 'items/manage_item_bar', locals: { item: @item } )

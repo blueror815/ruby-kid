@@ -1,0 +1,199 @@
+-## 
+-# Required locals: 
+-#   item_form <item upload form>
+
+- content_for :head_extra do
+  - # = stylesheet_link_tag 'jquery.tagit', 'tagit.ui-zendesk'
+  = javascript_include_tag 'nested_form'
+  - # javascript_include_tag 'tag-it.min'
+  
+  
+  :css
+    .remove-checkbox {
+      display:inline-block; 
+      background: url('/assets/icons/remove-white@2x.png') no-repeat 0 0; 
+      line-height: 55px !important;
+      position: relative;
+      z-index: 3;
+      vertical-align: top;
+      top: 4px;
+      left: 60px;
+      width: 55px;
+      height: 55px;
+    }
+    
+    .remove-checkbox:hover{
+      background: url('/assets/icons/removed-red@2x.png') no-repeat;
+    }
+    .remove-checkbox.selected{
+      background: url('/assets/icons/removed-red@2x.png') no-repeat;
+    }
+    .remove-checkbox input[type="checkbox"]{
+      margin: 0;
+      z-index: 3;
+      width: 55px;
+      height: 55px;
+      cursor: pointer;
+      outline: none;
+      opacity: 0;
+      /* CSS hacks for older browsers */
+      _noFocusLine: expression(this.hideFocus=true); 
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      filter: alpha(opacity=0);
+      -khtml-opacity: 0;
+      -moz-opacity: 0;
+    }
+    
+    .deleted-overlay-title {
+      font-weight: bold;
+      font-size: 36pt;
+      color: rgb(255, 31, 71);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      visibility: hidden;
+    }
+    
+    .photo-placeholder {
+      display: inline-block;
+      width: 130px;
+      height: 130px;
+      margin: 15px;
+      background-color: #ffffff;
+    }
+    .photo-placeholder img {
+      width: 70%;
+      position: relative;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    #item-description {
+      width: 94%;
+      font-size: 18pt;
+      padding: 5px 10px;
+    }
+    
+    .selector-field {
+      display: inline-block;
+      margin: 15px 2% 15px 2%;
+      width: 43%;
+      height: 80px;
+      text-align: center;
+      background-color: #ffffff;
+    }
+    .selector-field span {
+      line-height: 2;
+      display: inline-block;
+    }
+    .selector-field img {
+      max-height: 85%;
+      margin: 0 10px;
+    }
+    
+    
+  :javascript
+    function customCheckbox(checkboxName, checkboxClass){
+      var checkBox = $('input[name="'+ checkboxName +'"]');
+      $(checkBox).each(function(){
+        $(this).attr("checked", false);
+        $(this).wrap( "<span class='" + checkboxClass +"'></span>" );
+        
+        var photoid = $(this).attr("photoid");
+        var mainImage = $("#main_image_link_" + photoid );
+
+        centerDeletedToMainImage( photoid );
+        
+        if($(this).is(':checked')){
+            $(this).parent().addClass("selected");
+        }
+      });
+      $(checkBox).click(function(){
+          $(this).parent().toggleClass("selected");
+          var isChecked = $(this).is(':checked');
+          var photoid = $(this).attr("photoid");
+          var mainImage = $("#main_image_link_" + photoid );
+
+          centerDeletedToMainImage( $(this).attr("photoid") );
+
+          if (isChecked) {
+            $("#deleted_overlay_title_" + photoid ).css("visibility", "visible");
+          } else {
+            $("#deleted_overlay_title_" + photoid ).css("visibility", "hidden");
+          }
+          mainImage.css("opacity", isChecked ? '0.6' : '1.0' );
+      });
+    }
+    
+    function centerDeletedToMainImage(photoid) {
+      var overlay = $("#deleted_overlay_title_" + photoid );
+      var mainImage = $("#main_image_link_" + photoid );
+      overlay.positionOn( mainImage, "center" );
+    }
+    
+    function updateGenderGroupSelector(selector_id) {
+      
+    }
+     
+    //////////////////////////////////////
+    
+    $(function() {
+      //$( document ).tooltip();
+      
+      customCheckbox("deleted_item_photos[]", "remove-checkbox");
+
+      $('#select-category-accessory').on('click', function() {
+
+      });
+      $('#submit_item_button').on('click', function () {
+        var $btn = $(this).button('Processing ...')
+      });
+      /*
+      $('#item_item_keywords_string').tagit({
+          availableTags: #{@item.item_keywords.collect(&:keyword).to_s},
+          placeholderText: "More item specifics",
+          allowSpaces: true
+      });
+      */
+
+    });
+
+
+- @item.item_photos.each_with_index do|item_photo, index|
+  %div(class='center-block text-center' style='padding: 5px 0;')
+    %input(type='checkbox' name="deleted_item_photos[]" value="#{item_photo.image_url}" photoid="#{item_photo.id}" title="Delete This Picture")
+    %a(href="#{item_photo.image_url}" target='_blank'  id="main_image_link_#{item_photo.id}")
+      %img.main-image-placeholder(src="#{item_photo.image_url}" alt="Picture #{index + 1}" id="main_image_#{item_photo.id}")
+    .deleted-overlay-title(id="deleted_overlay_title_#{item_photo.id}") DELETED
+- if @item.item_photos.count < ::ItemPhoto::MAX_ITEM_PHOTOS
+  %div(class='center-block text-center' style='padding: 5px 0;')
+    - @item.item_photos.count.upto(::ItemPhoto::MAX_ITEM_PHOTOS - 1) do|photo_index|
+      %div(class='photo-placeholder gray-border-round-corner')
+        %a(href="javascript:void(0);")
+          %img(src="/assets/items/camera#{photo_index + 1}@2x.png" alt="Picture no. #{photo_index + 1}" id="main_image_#{photo_index}")
+     
+%div(class='center-block text-center')
+  = f.text_area :description, :placeholder => 'Description', :id => 'item-description', :class => 'dark-title-color gray-bordered', :rows => 6
+
+%div(class='center-block text-center')
+  = f.hidden_field(:gender_group, id: "item_gender_group")
+  = render partial: 'gender_group_selector', locals: { gender_group: @item.gender_group } 
+  
+  
+  = f.hidden_field(:age_group, id: "item_age_group")
+  = render partial: 'age_group_selector', locals: { gender_group: @item.age_group } 
+
+%div(class='center-block text-center')
+  .row
+    = f.text_field(:price, id: "item_price", class: 'text-superbig-title gray-title-color selector-field gray-border-round-corner', value: @item.price ? ("$ %.2f" % [@item.price]) : '' )
+
+  .row(style='margin: 20px 5%; text-align: center;')
+    = f.submit (@item.nil? || @item.new_record? ? 'Submit Item' : (@item.pending? && @item.manageable_by_user?(auth_user) ? 'Approve Item' : 'Submit Changes')  ), class: 'btn large-form-button light-blue-bg', id: 'submit_item_button'
+
+  - if !@item.new_record? && @item.manageable_by_user?(auth_user)
+    .row(style='margin: 0px 5%; text-align: center;')
+      - if @item.pending?
+        = link_to('Decline Item', inventory_deactivate_item_path(item_ids: [@item.id] ), :use_icon => false, class:'btn large-form-button light-red-bg', onclick:"return confirm('Are you sure?')")
+      - else
+        = link_to('End Item', inventory_approve_item_path( item_ids: [@item.id] ), :use_icon => false, class:'btn large-form-button light-red-bg')

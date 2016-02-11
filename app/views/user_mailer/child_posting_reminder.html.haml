@@ -1,0 +1,48 @@
+-# Expected instance variables:
+-#   @child <User>
+-#   @recipient <User>
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+
+= render partial: 'user_mailer/basic_css_table_config'
+
+:ruby
+  @yield_top_banner_row = true
+
+  @text_style ||= "color:#666666; font-weight:300;"
+
+:css
+
+  /* These are from style-25.css */
+  .vedio-section{  height: 285px; width: 506px; border:2px solid #000000;}
+  .vedio-section iframe{ width:100%; height:100%; }
+
+  @media only screen and (min-width: 480px) and (max-width :991px) {
+  .vedio-section{ width: 320px;height: 180px; border:0; }
+  #title-logo-section{ max-width:95%; }
+  }
+  @media only screen and (max-width :479px) {
+  .vedio-section{ width: 280px;height: 150px; border:0; }
+  #title-logo-section{ max-width:95%; }
+  }
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding:0;")
+      %div.text-center(id="title-logo-section" style="padding:40px 5% 0 5%; margin: 0 auto;")
+        %img(src="#{@host_uri}/assets/messages/whatcha-waitin-for-desktop.png" title="Whatcha waitin' for?" style="max-width:100%;" )
+
+- content_for(:goto_section) do
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{@host_uri}/login") Login
+
+- content_for(:after_panel) do
+  %table(cellspacing="0" style="margin: 40px 0; width:100%;")
+    %tbody
+      %tr
+        %td(style="vertical-align:top; text-align:center;")
+          %h4(style="#{@text_style}") Have a question?
+          %h4(style="#{@text_style}")
+            %a(href="mailto:hello@kidstrade.com") hello@kidstrade.com
+
+= render partial: 'user_mailer/basic_css_table_layout'

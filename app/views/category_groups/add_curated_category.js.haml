@@ -1,0 +1,6 @@
+-# Required instance variables: @category_group, @curated_category, @category
+- if @curated_category
+  - input_html = hidden_field_tag("curated_category_#{@curated_category.id}[order_index]", @curated_category.order_index, id:"curated_category_#{@curated_category.id}_order_index")
+  - list_item_html = make_category_cell(@category, @category_group.sample_child, url:edit_category_path(id: @category.id, category_group_id: @category_group.id), class:'category-cell', tag_name: :li, name: @category.name.underscore, data: @curated_category.id )
+  $("#category_group_#{@category_group.id}").append("#{escape_javascript(input_html)}");
+  $("#category_group_#{@category_group.id}").append("#{escape_javascript(list_item_html)}");

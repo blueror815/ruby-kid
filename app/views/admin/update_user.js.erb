@@ -1,0 +1,7 @@
+$("#is_test_user_<%=@user.id%>").addClass("highlight-border");
+setTimeout(function(){ $("#is_test_user_<%=@user.id%>").removeClass("highlight-border"); }, 2000);
+<% if flash[:error].present? -%>
+alert("Error: <%=flash[:error]%>");
+<% elsif params[:hide_element].present? -%>
+$("#<%= params[:hide_element] %>").fadeOut();
+<% end # flash[:error], hide_element -%>

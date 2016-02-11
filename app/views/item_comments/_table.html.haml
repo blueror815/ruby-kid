@@ -1,0 +1,45 @@
+-# Required locals:
+-#   item_comments <Array of ItemComment>
+-# Optional locals:
+-#   item <Item>
+-#   show_actions <Boolean> default => true. Whether to show actions like Reply button
+-#   make_modal <Boolean> default => true. Whether to create a modal dialgo for submitting item comment
+- if defined?(item).nil?; item = nil; end
+- if defined?(show_actions).nil?; show_actions = true; end
+- if defined?(make_modal).nil?; make_modal = true; end
+- parent_item_comment = nil
+- if item_comments.present?
+  %table(class='table table-striped')
+    - item_comments.each do|item_comment|
+      %tr
+        %td #{item_comment.sender.user_name}
+        %td
+          %p #{item_comment.body.html_safe}
+        %td(nowrap='nowrap') 
+          %small
+            %em #{item_comment.created_at.to_formatted_s(:short_date_and_time)}
+      - if show_actions && auth_user && item_comment.recipient_user_id == auth_user.id
+        - parent_item_comment = item_comment
+    %tr
+      %td.text-right(colspan='3')
+        %button(type='button' class='btn btn-primary' data-toggle='modal' data-target='#replyItemComment') Reply
+            
+-# Modal form to ask/reply to item_comment
+- if make_modal && parent_item_comment
+  %div(class='modal fade' id='replyItemComment' tabindex='-1' role='dialog' aria-labelledby='replyItemCommentTitle' aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        = form_for(ItemComment.new, remote: true) do|f|
+          = f.hidden_field(:parent_id, value: parent_item_comment.id)
+          = f.hidden_field(:item_id, value: parent_item_comment.item_id)
+          = f.hidden_field(:buyer_id, value: parent_item_comment.buyer_id)
+          .modal-header
+            %button.close(type='button' data-dismiss='modal')
+              %span(aria-hidden='true') &times;
+              %span.sr-only Close
+            %h4.modal-title(id='replyItemCommentTitle') Add Comment/Question
+          .modal-body
+            = f.text_area(:body, cols: 60, rows: 5)
+          .modal-footer
+            %button(type='button' class='btn btn-default' data-dismiss='modal') Cancel
+            %button(type='submit' class='btn btn-primary' id='sendItemCommentButton') Send

@@ -1,0 +1,12 @@
+<%
+# Optional params
+#   :hide_element
+-%>
+$("input[type=sumbit]").attr('disabled', false).val('Send');
+<% if flash[:error].present? -%>
+alert("Error: <%=flash[:error]%>");
+<% else -%>
+$('#user_name').val('');
+$('#notification_text').val('');
+setTimeout(function(){ $("#send_push_modal_close").click(); }, 5000);
+<% end # flash[:error], hide_element -%>

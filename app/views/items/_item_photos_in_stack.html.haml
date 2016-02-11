@@ -1,0 +1,27 @@
+-# Full width stack of item photos on top of another, with price tag hovering around the photos.
+-# Required locals:
+-#  item <Item>
+-# Optional locals:
+-#   is_in_favorite_items <Boolean>
+- is_in_favorite_items = false if not defined?(is_in_favorite_items)
+
+%div(class='center-block' id='main_picture_wrapper_#{item.id}')
+  %div(id='pictures_wrapper' class='text-center')
+    %div(class='pictures-top-info-overlay')
+      - if item.tradeable_to_user?(auth_user)
+        %div(class='ask-question-dialog-icon')
+          %a(href="#{new_item_comment_path(item_id: item.id)}" data-toggle="tooltip" data-placement="right" title="Ask a Question")
+            %img(src="/assets/items/comment@2x.png" alt="Ask Question")
+        %div(class='favorite-item-icon')
+          = favorite_item_icon(item, auth_user, is_in_favorite_items, link_css_class:'')
+
+    - item.item_photos.each_with_index do|item_photo, index|
+      - if item.editable_by_user?(auth_user)
+        %a(href="#{edit_item_path(item)}"  class="thumbnail_link")
+          %img.main-image-placeholder(src="#{item_photo.image_url}" alt="Picture #{index + 1}")
+      - else
+        %a(href="#{item.item_photos.first.image_url}" target="_blank" class="thumbnail_link")
+          %img.main-image-placeholder(src="#{item_photo.image_url}" alt="Picture #{index + 1}")
+    %div(class='price-tag' id='price_tag_#{item.id}')
+      %button $&nbsp;#{sprintf("%.2f", item.price) }
+

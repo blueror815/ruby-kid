@@ -1,0 +1,38 @@
+-# Follows layouts/notification_mail.html.haml
+-# Expected instance variables:
+-#   @sender <User>
+-#   @recipient <User>
+-#   @relationship <String> 'Mom' or 'Dad'
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+-#   @host_uri
+
+:ruby
+  @host_uri ||= Rails.env.development? ? "http://192.168.1.195" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+  @relationship = 'Mom' if not @relationship.present?
+  @footer_warning_notes = t('parenting.item_approval.email_bottom_tip')
+  @yield_top_banner_row = true
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding: 0;")
+      %div.text-center(style="padding:25px 5% 0 5%;")
+        %img(src="#{@host_uri}/assets/messages/hey-#{@relationship.downcase}-desktop.png" title="Hey #{@relationship.titleize}! Time to Log In" style="max-width:100%;")
+
+
+- content_for(:goto_section) do
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{@host_uri}#{inventory_approve_item_path(user_id: @sender.id)}") Log In
+  %p &nbsp;
+
+- content_for(:footer_extra) do
+  %table(cellspacing="0" style="margin: 10px 0;")
+    %tbody
+      %tr
+        %td(style="vertical-align:top;")
+          %img.responsive-image(src="#{@host_uri}/assets/icons/alarm-clock.png" alt="Alarm Clock" title="Alarm Clock")
+        %td(style="vertical-align:bottom;")
+          %p.sub-paragraph(style="#{@sub_p_style}" style="margin:0 5% !important;")
+            #{@footer_warning_notes}
+
+= render partial: 'user_mailer/basic_css_table_layout'

@@ -1,0 +1,832 @@
+/*
+Theme Name:Bar Code Direct
+Theme URI:http://www.markupbox.com/
+Author: Markupbox
+Author URI:http://www.markupbox.com/
+Description:Bar Code Direct provides consultation, configuration, activation, and ongoing maintenance and support services for your mobile computing and bar code needs. 
+Version:2.5
+License:GNU General Public License v2 or later
+License URI:http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:Bar Code Direct
+Tags:black, white, two-columns, right-sidebar, custom-menu, responsive-layout, gray, silver, featured-images, post-formats, sticky-post, custom-background, threaded-comments, black
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool :) , have fun, and share what you've learned with others.
+*/
+
+/*=========================Universal Selectors===============================*/
+body{
+	-webkit-font-smoothing:antialiased; 
+	color:#656666;
+	font-size:16px;
+	font-family: 'Open Sans', sans-serif;
+	-webkit-text-size-adjust: none;
+}
+
+img{max-width:100%; height:auto; border:none;}
+a{text-decoration:none;}
+a:hover{text-decoration:none;}
+a:focus,
+a:visited{outline:0; text-decoration:none;}
+input,select{vertical-align:middle; -webkit-appearance: none;}
+iframe{border:none;}
+textarea{overflow:auto; resize:none; -webkit-appearance: none;}
+/* Placeholder text color -- selectors need to be separate to work. */
+::-webkit-input-placeholder {
+	color: #999;opacity:1;
+}
+
+:-moz-placeholder {
+	color: #999;opacity:1;
+}
+
+::-moz-placeholder {
+	color: #999; opacity:1;
+}
+
+:-ms-input-placeholder {
+	color: #999;opacity:1;
+}
+
+.page-site{width:100%; position:relative; float:left;}
+
+/*=========================Header===============================*/
+.header{background:url(/assets/landing-25/header-bg.png) repeat;z-index:99;position: absolute; width: 100%; left: 0; top: 0;}
+#logo-destop{padding:11px 0 11px 0;}
+.menu{text-align:right;padding:26px 0 0 0;}
+.top-nav{display:inline-block;padding-right:33px;}
+.top-nav ul{margin:0; padding:0; list-style-type:none;}
+.top-nav ul li{margin:0; padding:0 29px 0 0; list-style-type:none; display:inline;}
+.top-nav ul li a{font-size:18px; color:#666666; font-family: 'Open Sans', sans-serif; font-weight:500;display:inline-block;}
+.registaion-section{display: inline-block;}
+.registaion-section a.login{font-size:14px; color:#666666; font-family: 'Open Sans', sans-serif; font-weight:500;  line-height:18px; text-transform: uppercase; border:1px solid #676767; padding:7px 32px; text-align:center; border-radius:2px ;display:inline-block; }
+
+
+/*=========================Banner Destop===============================*/
+#banner-destop{width:100%; position:relative; top:0; z-index:9; float:left;}
+#banner-destop .img{width:100%; float:left}
+#banner-destop .img img{width:100%; position:relative; z-index:9;}
+#banner-cont{width:100%; position:absolute; z-index:99;bottom: 0;left:0; }
+#banner-cont h1{font-size:36px; color:#fff; line-height:48px; font-family: 'Open Sans', sans-serif; font-weight:400;text-shadow:0px 0px 1px #927b61;}
+#banner-cont h1 span{display:block;}
+#banner-cont h1 span:first-child{font-size:60px; line-height:79px;}
+a.app img{display: block;margin-bottom: 20px;}
+#banner-destop .img2{display:none;}
+#banner-destop .img2 img{width:100%; float:left;}
+.banner-btn-section{width:100%; float:left;margin: 28px 0 30px 0;}
+.banner-btn-section a{display:block; margin-bottom:13px;width:250px;}
+.landing-btn-section{width:100%; float:left;}
+.landing-btn-section-mobile{width:100%; float:left; display:none;}
+.landing-btn-section-mobile a{ display: inline-block; margin: 0 4px; width: 40%;}
+.landing-btn-section a{  display: inline-block; margin: 0 4px; width: 40%;}
+#landing1 p{margin-top: 29px;}
+/* for mobile */
+.banner-btn-section-mobile{display:none;}
+
+/*=========================Homepage===============================*/
+.pageContent{margin:0;}
+
+/*=========================Made APP===============================*/
+.made-app{width: 100%;padding:35px 0 49px 0; margin:0px 0 0 0;}
+.made-app p{width:93%; line-height:48px; float:left; color:#666666; font-size:32px;font-family: 'Open Sans', sans-serif; font-weight:300;margin-top: 40px; }
+/* .made-app .vedio-section{ float:right;} */
+/* changes */
+.made-app .vedio-section{  height: 285px; width: 506px; border:2px solid #000000;}
+.made-app .vedio-section iframe{ width:100%; height:100%;}
+
+
+/*=========================How it works===============================*/
+.itwork{width:100%; background:url('/assets/landing-25/how-it-work.jpg') no-repeat; background-size:cover; padding:107px 0 164px 0; float:left;}
+
+.itwork p{color:#ffffff; font-size:30px;  line-height:48px;font-family: 'Open Sans', sans-serif; font-weight:300;width: 83%; margin: 0 auto;}
+.itwork p span{display:block;font-family: 'Open Sans', sans-serif; font-weight:400;font-size:28px;line-height:44px;margin:40px 0;}
+
+/*=========================Kids post===============================*/
+.kids-post{width:100%; padding:91px 0 82px 0; display:table; float:left;}
+.kids-post .right{float:right; margin:0px 84px 0 0;}
+.kids-post .textarea{display:table-cell; vertical-align:middle;}
+.kids-post .textarea h2{color:#333333; margin:3px 0 33px 0; font-size:54px;font-family: 'Open Sans', sans-serif; font-weight:400;}
+.kids-post .textarea p{color:#666666; font-size:30px; line-height:48px;font-family: 'Open Sans', sans-serif; font-weight:300;}
+.kids-post .textarea p span{display:block;}
+.kids-post .img{width:385px; margin:0 0 0 31px;}
+.kids-post .img img{width:100%;}
+
+/*=========================kids-post-mobile===============================*/
+.kids-post-mobile{width:100%; padding:50px 0; display:none; float:left;}
+.kids-post-mobile  h2{color:#656666; margin:0 0 57px 0; text-align:center; font-size:72px;}
+/**edit-D**/
+.kids-post-mobile .img{width:100%; float:left;}
+.kids-post-mobile .img img{width:76%;}
+.kids-post-mobile .textarea{width:100%; text-align:center; margin:-90px 0 0 0; float:left;}
+.kids-post-mobile .textarea p{color:#656666; font-size:36px; line-height:42px;}
+.kids-post-mobile p span{display:block;}
+
+/*=========================Parents approve===============================*/
+.parents-approve{width:100%; background:url(/assets/landing/bizcard-bg-desktop.jpg) no-repeat top center;
+display:table; padding:50px 0 0 0; float:left;
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
+.parents-approve .textarea{display:table-cell; vertical-align:middle;padding-left:20px;}
+.parents-approve .textarea h3{color:#fff; margin:23px 0 20px 0px; font-size:54px; line-height:71px;font-family: 'Open Sans', sans-serif; font-weight:400;}
+.parents-approve .textarea p{color:#fff; font-size:31px;line-height:48px;font-family: 'Open Sans', sans-serif; font-weight:300;}
+.parents-approve .textarea span{display:block;}
+.parents-approve .img { margin: 1% 0; }
+.parents-approve .img img{width:100%;}
+
+
+/*=========================parents-approve-mobile===============================*/
+
+.parents-approve-mobile{width:100%; background:url(/assets/landing-25/Boy-PiggyBank-BG-Desktop-2.jpg) no-repeat top center; display:none; padding:37px 0 0; float:left;
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
+.parents-approve-mobile  h3{color:#fff; margin:0px 0 20px 0; text-align:center; font-size:40px; line-height:50px;}
+.parents-approve-mobile .textarea{width:100%; text-align:center; margin:0px 0 0 0; float:left;font-family: 'Open Sans', sans-serif; font-weight:400;}
+.parents-approve-mobile .textarea p{color:#fff; font-size:28px; line-height:30px;font-family: 'Open Sans', sans-serif; font-weight:300;}
+.parents-approve-mobile .img{width:100%; float:left;margin: 2% 0;}
+.parents-approve-mobile span{display:block;}
+
+/*=========================kid-trade-mobile===============================*/
+.kid-trade-mobile{width:100%; padding:60px 0 20px 0; display:none; text-align:center; position:relative; float:left; 
+  background:url(/assets/landing/kid-trade-mobile.jpg) no-repeat top center;
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
+.kid-trade-mobile  h3{color:#fff; margin:0 0 57px 0; font-size:72px;}
+.kid-trade-mobile .img{width:100%; float:left;}
+.kid-trade-mobile .img img{width:auto;}
+.kid-trade-mobile .textarea{width:100%; float:left;}
+.kid-trade-mobile .textarea p{color:#7f8080; font-size:36px; line-height:42px;}
+.kid-trade-mobile span{display:block;}
+
+/*=========================Yes, it�s safe...===============================*/
+.itsafe{width:100%; padding:100px 0 26px 0;  float:left;}
+.itsafe-content{width:82%; margin:0 auto;padding:32% 0 40px 0;}
+.itsafe-content  h3{color:#333333; margin:55px 0 45px 0;font-family: 'Open Sans', sans-serif; font-weight:400; font-size:54px;}
+.itsafe p{color:#666666; font-size:30px; line-height:43px; margin:0 0 40px 0;font-family: 'Open Sans', sans-serif; font-weight:300;}
+.itsafe span{display:block;}
+.itsafe .img{ display:inline-block;}
+.itsafe .img2{display:none;}
+.itsafe .img img{width:100%; float:left;}
+.itsafe .bottom{ margin:20px 0 0 0; text-align:center; }
+.itsafe .bottom h4{color:#0077c6; margin:0px 0 19px 0; line-height:57px;font-family: 'Open Sans', sans-serif; font-weight:400; font-size:44px; display:inline-block;}
+.itsafe .bottom p{color:#666666; font-size:26px; line-height:41px; margin:0 0 54px 0;font-family: 'Open Sans', sans-serif; font-weight:300;}
+.itsafe .destop{display:block;}
+.itsafe .mobile{display:none;}
+/*=========================Best of all, kids exchange===============================*/
+
+.kids-exchange{width:100%; background:#efefef;float:left; }
+.kids-exchange-data{width:100%; float:left;padding:72px 0 81px 0; }
+.kids-exchange-data  h4{color:#333333; line-height:61px; font-size:44px;text-align:center;font-family: 'Open Sans', sans-serif; font-weight:400;margin-bottom:59px; }
+.kids-exchange-data .img-container{width:100%; float:left;position:relative;text-align: center;}
+.kids-exchange-data .img-container .img-data{float: left;height: 100%; left: 0; position: absolute;top: 0;width: 100%;}
+.kids-exchange-data .img-container .img-data .vertical-center{ width: 100%;display: table;height: 100%; }
+.kids-exchange-data .img-container .img-data .vertical-center .vertical-inner { display: table-cell; vertical-align: middle; text-align:center;}
+.kids-exchange-data .img-container .img-data .vertical-center p {color:#ffffff;line-height:38px;font-family: 'Open Sans', sans-serif; font-weight:500; font-size:32px; padding: 0 20%; }
+
+/*=========================Best of all, kids exchange===============================*/
+.kids-exchange-mobile{width:100%;  text-align:center; display:none; float:left;}
+.kids-exchange-mobile h4{color:#7f8080; margin:100px 0 80px 0; line-height:82px; font-size:72px;}
+.kids-exchange-mobile .textarea{width:100%; height:857px; background:url(/assets/landing/kids-exchange-mobile.jpg) no-repeat top center; position:relative;
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
+.kids-exchange-mobile span{display:block;}
+.kids-exchange-mobile p{width:100%; color:#fff; font-size:36px; position:absolute; bottom:10px; left:0; line-height:40px;}
+
+/*=========================Parents Love===============================*/
+.new-content{width:94%;margin:0 auto;}
+.listing-destop{width:100%; padding:64px 0 68px 0;  float:left;}
+.listing-moblie{width:100%; padding:42px 0 68px 0;  float:left; display:none;}
+.parent-destop{width:100%; padding:57px 0 71px 0; float:left; background:#f7f7f7;}
+.parent-mobile{width:100%; padding:57px 0 71px 0; float:left; background:#f7f7f7;display:none;}
+.learn-img-container{width:100%; float:left;display:table;}
+.learn-img-container img{display:table-cell;vertical-align:middle;}
+.learn-img-container p{display:table-cell;vertical-align:middle; overflow:hidden;text-align: initial; width: 66%;}
+.learn-img-container p span{display:block}
+.listing-destop h5{color:#656666; margin:0 0 37px 0; font-size:50px;text-align:center;font-family: 'Open Sans', sans-serif; font-weight:500;line-height:70px;}
+.listing-moblie h5{color:#656666; margin:0 0 37px 0; font-size:50px;text-align:center;font-family: 'Open Sans', sans-serif; font-weight:500;line-height:70px;}
+.listing-destop p ,.parent-destop p{font-family: 'Open Sans', sans-serif; font-weight:600;color:#656666; line-height:28px;font-size:20px;}
+.parent-destop  h5{color:#656666; margin:0 0 47px 0; font-size:50px;text-align:center;font-family: 'Open Sans', sans-serif; font-weight:500;line-height:70px;}
+.parent-mobile h5{color:#656666; margin:0 0 47px 0; font-size:50px;text-align:center;font-family: 'Open Sans', sans-serif; font-weight:500;line-height:70px;}
+.listing-destop ul{margin:0;}
+.listing-destop ul.mar{margin:0 0 113px 0;}
+.listing-destop ul li{width:33%; color:#656666; font-size:36px; display:inline-block;}
+.listing-destop ul li .img{width:100%; margin:0 0 35px 0; float:left;}
+.listing-destop ul li .img img{width:175px}
+.listing-destop ul li p{line-height:43px;}
+.listing-destop ul li span{display:block;}
+.listing-destop ul li a{color:#656666;}
+/*=========================listing-mobile===============================*/
+/**popup section**/
+.overlay1 {    background: url("/assets/landing-25/overlay_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0); display: none; height: 100%; top: 0; overflow: scroll; position: fixed;
+    width: 100%;  z-index: 9999999999999999;    left: 0;}
+.vidio_container{max-width:506px;margin:70px auto;position:relative;top:-300%;z-index:999;height:285px;}
+.vidio_popup {float: left;height: 100%;position: relative;width: 100%; border: 1px solid #000;}
+.vidio_container .close_popup {  background: none repeat scroll 0 0 #fff;border: 1px solid #000;height: 20px;line-height: 20px;position: absolute;right: -21px;text-align: center;top: -1px;width: 20px;z-index: 999999999;}
+.vidio_popup iframe {height: 100%;width: 100%;border:0;}
+.close_popup > img { margin-top: -6px;}
+/*=========================Earn Buck===============================*/
+.earn-buck{width:100%; background:url(/assets/landing-25/Boy-PiggyBank-BG-Desktop.jpg) no-repeat top center; float:left;    padding-bottom: 28px;
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
+.earn-buck .textarea{padding:122px 0 80px 0;}
+.earn-buck span{display:block;}
+.earn-buck h5{color:#fff; margin:0 0 27px 0; line-height:70px; font-size:54px; text-align:center;font-family: 'Open Sans', sans-serif; font-weight:400;}
+.earn-buck p{color:#fff; font-size:28px;line-height:45px;text-align:center;font-family: 'Open Sans', sans-serif; font-weight:500;}
+.earn-buck .img-right{float:right}
+.earn-buck .img-right-mobile { display: none;}
+.earn-buck .img-right a {display:block; margin-bottom:30px;}
+
+/*=========================Earn Buck===============================*/
+.contact-form{width:100%; background:#efefef; padding:87px 0 121px 0; text-align:center; float:left;}
+.contact-form h6{color:#339300; margin:0 0 66px 0; line-height:42px; font-size:32px;font-family: 'Open Sans', sans-serif;}
+.contact-form h6 span{display:block;}
+.contact-form .input{width:29%; height:60px;  background:#fff; border:solid 1px #d1d1d1; border-radius:5px; font-size:16px; color:#a3a3a3; margin:0 2% 0px 0; padding:0 20px 0 20px; display:inline-block;font-family: 'Open Sans', sans-serif;}
+.ie8 .contact-form .input{}
+.contact-form .form-section{width:100%; float:left;}
+.contact-form .button{width:19%; height:59px; background:#efefef; border:solid 2px #7f8c8d; border-radius:5px; font-size:26px; color:#7f8c8d; margin:0px 0 0 0; display:inline; font-family: 'Open Sans', sans-serif; }
+.contact-form .button:hover{background:#46c503; color:#fff;}
+
+
+/*=========================landing page css ===============================*/
+.landing-page-section{width:100%; float:left;padding:82px 0 0; }
+.landing-top-section{width:100%; float:left; background:#efefef;border-top:1px solid #d1d1d1;}
+.landing-top-section p{color:#666666;font-family: 'Open Sans', sans-serif; font-weight:300;font-size:32px;line-height:46px; text-align:center;width:100%; float:left; padding:38px 0 28px 0;}
+.landing-top-section p span{color:#000000;font-weight:500;}
+.landing-bottom-section{width:100%; float:left; padding:20px 0 0 10px;}
+.wraper{max-width:1514px; margin:0 auto;}
+.landing-col-1{width:18%; float:left;}
+.landing-col-1 ul{margin:0; padding:0 ;list-style-type:none;}
+.landing-col-1 ul li{margin:0 0 25px 0; padding:0 ;list-style-type:none;position:relative;}
+.landing-col-2{width:61%; float:left; margin-left:23px;}
+.landing-col-2 ul{margin:0; padding:0 ;list-style-type:none;}
+.landing-col-2 ul li{margin:0 3% 3% 0; padding:0 ;list-style-type:none;width:30%; float:left;position:relative;}
+.landing-col-3{width:18%; float:left;margin-left:3px;}
+.landing-col-4{width:47%; float:left;}
+.landing-col-4 ul{margin:0; padding:0 ;list-style-type:none;}
+.landing-col-4  ul li{margin:0 0 30px 0; padding:0 ;list-style-type:none;width:100%; float:left; text-align:center;position:relative;}
+.landing-col-5{width:47%; float:right}
+.landing-col-5 ul{margin:0; padding:0 ;list-style-type:none;}
+.landing-col-5 ul  li{margin:0 0 30px 0; padding:0 ;list-style-type:none;width:100%; float:left;text-align:center;position:relative;}
+.landing-col-3 ul{margin:0; padding:0 ;list-style-type:none;}
+.landing-col-3 ul li{margin:0 0 25px 0; padding:0 ;list-style-type:none;position:relative;}
+.landing-bottom-section-mobile{display:none;width:100%; float:left; padding: 20px 21px;}
+.landing-learn-heading{display:none; float: left; width: 100%;padding: 30px 0 5px 0;}
+.landing-learn-heading h5{color:#656666; font-size:48px;text-align:center;font-family: 'Open Sans', sans-serif; font-weight:500;line-height:70px;}
+.img-content-one{  bottom: 3%; position: absolute; right: 0;}
+.img-content-one > img{ width:85%;opacity:0.8;}
+.img-content-one > img:hover{opacity:1;}
+/*=========================footer===============================*/
+#footer h6{font-size:30px; color:#666;  margin:0 0 28px 0;}
+
+#footer ul li a:hover{color:#666;}
+#footer .copy{padding:73px 0 0 0; color:#656666; font-size:18px;}
+#footer .copy span{display:block;}
+#footer .mobile{display:none;}
+#footer .mobile a{margin:0 0 15px 0;}
+#footer .copy2{display:none;}
+
+/** Fundraiser Page **/
+/** Reset Css **/
+ul{list-style-type: none;}
+h1,h2,h3,h4,h5,ul,li{margin: 0;padding: 0;}
+.fundraiser_main{width: 100%;float: left;}
+.fundraiser_main h2{font: 400 60px 'Open Sans', sans-serif;}
+.fundraiser_main h3{font: 400 40px 'Open Sans', sans-serif;text-transform: uppercase;}
+.fundraiser_main p{font: 300 30px/35px 'Open Sans', sans-serif;}
+.header2{width: 100%;float: left;background: url(/assets/landing-25/header-bg.png) repeat;}
+.header2 .top-nav p{font: 600 18px 'Open Sans', sans-serif;color: #666666;display: inline-block;text-align: left;padding-right: 5px;}
+.banner_section{width: 100%;float: left;background-color: #eef6ff;text-align: center;padding: 32px 0 0;}
+.banner_section h2{color: #219539;display: inline-block;background: url('/assets/landing-25/banner_border.png') no-repeat bottom center;padding: 0 0 26px;margin: 0 0 13px;}
+.banner_section p{color: #666;}
+.banner_section p span{display: block;padding-top: 14px;}
+.banner_section ul{width: 100%;float: left;padding: 40px 0 32px 30px;}
+.banner_section ul li{width: 33%;display: inline-block;}
+.banner_section ul li:last-child{margin-right: 0;}
+.mobile_content {width: 100%;float: left;padding: 0 50px;}
+.mobile_content h3{color: #033333;background: url('/assets/landing-25/mobile_heading_border.png') no-repeat bottom center;display: inline-block;padding: 0 0 20px; margin: 0 0 18px;}
+.mobile_content p{color: #666666;}
+.mobile_img{margin: 0 0 20px;}
+.trading_sec{width: 100%;float: left;background-color: #1a7dc4;padding: 30px 50px;}
+.trading_sec ul {text-align:center;}
+.trading_sec ul li{display: inline-block;padding-right: 31px;}
+.trading_sec ul li:first-child p{text-transform: uppercase;}
+.trading_sec ul li:last-child{padding-right: 0;text-transform: uppercase;}
+.trading_sec ul li p{color: #fffefe;margin: 0;padding: 0;}
+/** No kidding section **/
+.no_kidding{width: 100%;float: left;text-align: center;padding: 38px 0 0;}
+.no_kidding h3{color: #666;text-transform: none;line-height: 50px;}
+.no_kidding h3 span{display: block;}
+.no_kidding h3 span.kiding{color: #219539;}
+.no_kidding ul{width: 100%;float: left;padding: 19px 0 41px 30px;}
+.no_kidding ul li{width: 100%;float: left;text-align: left;padding-bottom: 22px;}
+.steps_img{float: left;width: 21.5%;}
+.steps_text{display: inline-block;padding-top: 30px;overflow: hidden;}
+.steps_text p {font-size: 24px;color: #333333;}
+.steps_text h3{color: #333333;}
+.info_pkg_sec{width: 83.5%;margin: 0 auto;overflow: hidden;clear: both;padding: 2px 22px 0 0px;border: 1px solid #c2c2c2;text-align: left;}
+.info_pkg{display: inline-block;width: 78%;padding: 23px 20px 20px 98px;}
+.info_pkg h3{color: #219539;display: inline-block;}
+.info_pkg p , .contact_form p{display: inline-block;font-size: 24px;line-height: 31px;color: #333;}
+.info_pkg_btn{float: right;margin: 47px 91px 0 0;}
+/** contact section **/
+.contact_form{width: 100%;float: left;background-color: #efefef;margin: 61px 0 0;text-align: center;padding: 23px 0 30px;}
+.contact_form h3{color: #333333;line-height: 60px;}
+.contact_form form{width: 735px;margin: 0 auto;clear: both;overflow: hidden;padding: 42px 0 0;}
+.contact_form form input{width: 100%;height: 60px;font: 400 16px 'Open Sans', sans-serif;color: #a3a3a3;padding: 10px 0 15px 18px;border: 1px solid #dddddd;box-shadow: none;}
+.contact_form form .form-group {margin-bottom: 41px;}
+.contact_form form button{display: inline-block;margin: 25px auto 0;padding: 10px 40px;min-width: 150px;clear: both;background: none !important;outline: none;color: #666666;border: 2px solid #666;font: 600 28px 'Open Sans', sans-serif;text-transform: uppercase;transition: 0.5s ease-in-out;-webkit-transition: 0.5s ease-in-out;}
+.contact_form form button:hover{background: #666666 !important;outline: none;color: #efefef;border: 2px solid #666;box-shadow: none;}
+.contact_form form button:focus{background: none !important;outline: none;color: #666666;border: 2px solid #666;box-shadow: none;}
+.contact_form form button:active{background: none !important;outline: none;color: #666666;border: 2px solid #666;box-shadow: none;}
+.contact_form form button:active:hover{background: none !important;outline: none;color: #666666;border: 2px solid #666;}
+.fund_footer{padding: 22px 0 27px 0px !important;}
+#footer ul.fundraiser_icons{width: 100%;float: left;padding: 15px 0 0 !important;}
+#footer ul.fundraiser_icons li{display: inline-block;margin-right: 10px;margin: 0 -6px 0 17px;}
+#footer ul.fundraiser_icons li:first-child{padding-left: 0; margin-left: 0;}
+#footer ul.fundraiser_icons li a img{margin: 0 !important;}
+.footer_custom{text-align: center;padding-top: 23px;}
+.footer_custom h6{margin-bottom: 9px !important;text-align: center;padding: 0;}
+#footer .footer_custom ul{width: 100%;float: left;}
+#footer .footer_custom ul li{width: 100%;float: left;padding: 0 0 12px;font-size: inherit;}
+#footer .footer_custom ul.our-app2 li a{padding: 0;}
+#footer .fundraiser_footer {width: 100%;float: left;text-align: center;}
+#footer .fundraiser_footer a{display: inline-block;}
+#footer .fundraiser_footer a img{max-width: 100%;width: inherit;margin: 0 !important;}
+
+/** Fundraiser Page End Here **/
+
+
+@media only screen  and (max-width :1200px) {
+#banner-cont h1 {font-size: 33px;line-height: 41px;margin: 7px 0 0;}
+#banner-cont h1 span:first-child { font-size: 42px; line-height: 56px;}
+.top-nav{padding-right: 9px;}
+.banner-btn-section { margin: 28px 0 24px;}
+.registaion-section{margin-right:10px;}
+.made-app p{width:88%; line-height:44px; font-size:30px; margin-top:40px; }
+.itwork{padding:65px 0;}
+.itwork p{font-size:20px; line-height: 37px;}
+.kids-post{padding:62px 0;}
+.kids-post .img{width:344px;}
+.kids-post .textarea h2{font-size:42px; margin:0 0 20px 0; line-height:52px;}
+.kids-post .textarea p{font-size:24px; line-height:34px;}
+.parents-approve .textarea h3{font-size:42px; margin:0 0 20px 0; line-height:52px;}
+.parents-approve .textarea p{font-size:24px;}
+.itsafe{padding: 60px 0 26px;}
+.itsafe h3{font-size:42px; margin:0 0 20px 0; line-height:52px;}
+.itsafe .bottom h4{font-size:42px; line-height:52px;}
+.itsafe p{font-size:24px; line-height:34px;}
+.kids-exchange-data{padding:30px 0 55px 0;}
+.kids-exchange h4{ font-size: 34px; line-height: 40px; margin-bottom: 44px;}
+.kids-exchange-data .img-container .img-data .vertical-center p{ font-size: 23px;line-height: 32px;}
+.new-content{width:100%; float:left; margin:auto;}
+.learn-img-container p{width: 61%;font-size: 16px;line-height: 23px;}
+.listing-destop h5 , .parent-destop h5{ font-size: 39px;line-height: 42px;}
+.contact-form{ padding: 60px 0 97px;}
+.contact-form h6{font-size:26px;line-height: 37px; margin: 0 0 42px;}
+.listing-destop ul.mar{margin:0 0 50px 0;}
+.listing-destop ul li{font-size:24px;}
+.listing-destop ul li .img{margin:0 0 10px 0;}
+.listing-destop ul li p {line-height:34px;}
+#footer h6{font-size:24px;}
+.made-app .vedio-section{height: 260px;width: 460px;}
+
+/** fundraiser Page **/
+.banner_section{padding: 20px 0 0;}
+.mobile_content{padding: 0;}
+.fundraiser_main h2{font-size: 48px;}
+.fundraiser_main p{font-size: 21px;line-height: 24px;}
+.banner_section h2{padding: 0 0 10px;}
+.fundraiser_main h3{font-size: 30px;}
+.mobile_content h3{padding: 0 0 5px;margin: 0 0 10px;}
+.banner_section p span{padding-top: 0;}
+.trading_sec{padding: 25px 10px;text-align: center;}
+.no_kidding{padding: 15px 0 0;}
+.no_kidding h3{line-height: 40px;}
+.info_pkg{padding: 23px 20px 20px 30px;}
+.info_pkg_btn {margin: 30px 30px 0 0;}
+.contact_form form button{margin: 5px auto 0;}
+#footer ul.fundraiser_icons {padding-top: 30px !important;}
+.trading_sec ul li {
+  padding-right: 20px;
+}
+}
+
+@media only screen  and (max-width :991px) {
+#banner-cont h1 {font-size: 24px;line-height: 32px;}
+.banner-btn-section { margin: 23px 0 21px;}
+#banner-cont h1 span:first-child {font-size: 34px;line-height: 42px;}
+.banner-btn-section a{display:block; margin-bottom:11px;width:152px;}
+.made-app p{line-height: 37px;  margin-top: 8px; font-size: 23px;width:100%;}
+.made-app .vedio-section{width: 320px;height: 180px;}
+.itwork p{ font-size: 21px;}
+.itwork p span{font-size: 23px;line-height: 34.4px;margin: 25px 0;}
+.kids-post {padding: 37px 0;}
+.kids-post .img{ width: 291px;margin: 0 0 0 19px;}
+.kids-post .right {  margin: 0 47px 0 0;}
+.parents-approve .textarea h3 {font-size: 38px;line-height: 49px; margin: 0 0 15px;}
+.itsafe {padding: 47px 0 26px;}
+.itsafe-content { margin: 0 auto; padding: 19% 0 21px; width: 100%;}
+.itsafe h3 {  font-size: 35px; line-height: 50px; margin: 0 0 16px;}
+.itsafe p{margin: 0 0 17px; font-size: 23px;line-height: 34px;}
+.itsafe .bottom{ margin: 13px 0 0;}
+.itsafe .bottom h4 {font-size: 35px;line-height: 41px;  margin: 0 0 11px;}
+.itsafe .bottom p{  margin: 0 0 29px;}
+.kids-exchange h4 {font-size: 26px;line-height: 34px; margin-bottom: 36px;}
+.kids-exchange-data .img-container .img-data .vertical-center p { font-size: 17px; line-height: 25px;}
+.listing-destop { float: left;padding: 45px 0 51px;}
+.listing-destop h5, .parent-destop h5 {font-size: 35px;line-height: 36px;margin: 0 0 32px;}
+.learn-img-container img {width: 74%;}
+.learn-img-container p {font-size: 14px; line-height: 21px; width: 65%;}
+.parent-destop{ padding: 40px 0 59px;}
+.earn-buck .textarea { padding: 88px 0 19px;}
+.contact-form { padding: 44px 0 76px;}
+.contact-form h6 { font-size: 26px;line-height: 37px; margin: 0 0 42px;}
+.landing-col-2{width: 59%;}
+.landing-top-section p{  font-size: 28px;line-height: 46px; padding: 38px 10px 28px;}
+.img-content-one{ margin-right: -18px;bottom:4%;  }
+.img-content-one > img{ width:70%;}
+
+/** Fundraiser page **/
+.banner_section ul li{width: 25%;margin-right: 40px;}
+.trading_sec { padding:25px 5px; }
+.trading_sec ul li {padding-right: 10px; padding-bottom: 7px;}
+.steps_img {width: 17%;margin-right: 20px;}
+.steps_text {padding-top: 10px;width: 77%;}
+.no_kidding h3{font-size: 22px;line-height: 35px;}
+.trading_sec ul li p{font-size: 15.5px;}
+}
+
+@media only screen  and (max-width :767px) {
+.landing-top-section p{ padding: 15px 10px 18px;}
+#banner-cont { bottom: unset; top: 40%; }
+#banner-cont h1 span:first-child { font-size: 36px; line-height: 48px;}
+#banner-cont h1 {font-size: 26px; line-height: 36px; margin: 0 0 15% 20px; }
+#logo-destop{padding:11px 0 11px 0;}
+.menu { padding: 18px 0 0;}
+.registaion-section{margin-right:14px;}
+/* .landing-page .top-nav{display:none;} */
+.top-nav ul li a{font-size:16px;}
+.banner-btn-section{display:none;}
+.banner-btn-section-mobile{display:block; text-align:center;width:100%; float:left; margin: 26px 0;}
+.banner-btn-section-mobile a{display:inline-block; margin:0 2%;width:40%;}
+#banner-destop .img{display:none;}
+#banner-destop .img2{display:block;}
+/* #banner-cont h1 {font-size:68px; margin:50px 0 0 0; line-height:80px;} */
+.made-app p{width:92%; font-size: 28px; line-height: 40px; margin-top: 1px; margin-left: 4%; }
+.mobile{text-align:center;}
+.made-app .vedio-section {display: inline-block; width: 320px; height:180px;float:none;margin-top: 40px; z-index: 99999;position:relative;}
+.itwork{padding:56px 0 160px 0;position:relative;z-index:1;margin-top:-92px;background:url("/assets/landing-25/how-it-work-2.jpg") no-repeat;background-size:cover;-ms-background-size:cover;-moz-background-size:cover;-webkit-background-size:cover; min-height: 700px; background-position:center center;}
+.itwork p{font-size: 24px;line-height: 41px; margin:72px 1% 35px 1%; width:100%; float:left;}
+.itwork p span{text-align:center; font-size: 28px; line-height: 50px; margin: 4px 0; padding: 23px 0;}
+.itsafe h3{font-size:72px; line-height:82px;}
+.itsafe p{font-size:72px; line-height:82px;}
+.made-app{padding: 35px 0 0;}
+.kids-post .right{width:100%; float:left; text-align:left;margin:0; }
+.kids-post .textarea{height:auto !important; text-align: center;width: 100%; float:left;}
+.kids-mobile{text-align:center;}
+.kids-post .img{display:inline-block; margin:39px 0 0 0;text-align: center;}
+.kids-post{display:block;}
+.kids-post-mobile{display:none;}
+.parents-approve{display:none;}
+.parents-approve-mobile{display:block;}
+.itsafe-content{width:100%; float:left; padding:0 0 20px 0;margin:0; text-align:center;}
+.kid-trade-mobile{display:block;}
+.itsafe .bottom{display:block;}
+.itsafe h3{ font-size: 38px;line-height: 61px;}
+.itsafe p{ font-size: 33px;line-height: 45px;margin: 0 auto;width: 80%;}
+.itsafe p span{display:inline;}
+.itsafe .img{display:block; padding-right:0; text-align:center;   margin-top: 21px;}
+.itsafe .bottom h4 {  font-size: 29px; line-height: 37px; margin: 0 0 11px;}
+.itsafe .bottom p { margin: 0 0 29px; margin-bottom: 10px; text-align: center; width: 100%;font-size: 18px; line-height: 39px;}
+.itsafe .img2{display:block;}
+.itsafe .destop{display:block;}
+.itsafe .mobile{display:block;}
+.listing-destop{display:none;}
+.listing-moblie { display: block;}
+.new-content{width:80%; float:none; margin:0 auto;}
+.kids-exchange{display:block;}
+.kids-exchange-data{width:100%; float:left;}
+.kids-exchange-data .img-container{text-align:center; margin-bottom: 23px;}
+.kids-exchange-data .img-container .img-data .vertical-center p{font-size: 31px;line-height: 39px; margin: 0 auto; width: 86%;}
+.listing-moblie h5 , .parent-mobile h5 { font-size: 48px;}
+.learn-img-container p{ font-size: 18px;line-height: 27px; width: 62%;}
+.learn-img-container {margin-bottom: 12px;}
+.parent-destop{display:none;}
+.parent-mobile{display:block;}
+.kids-exchange-mobile{display:block;}
+.earn-buck .img-right{display:none;}
+  .earn-buck{background: url(/assets/landing-25/Boy-PiggyBank-BG-Desktop1.jpg) no-repeat top center; background-size:cover;-ms-background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;}
+.earn-buck .img-right-mobile {display: block; float: left;  margin-top: 42px; text-align: center; width: 100%;}
+.earn-buck h5{ font-size: 48px;line-height: 51px;}
+.earn-buck .img-right-mobile a { display: inline-block;width: 40%;margin: 0 4px;}
+.earn-buck p{ font-size: 28px; line-height: 36px;}
+.contact-form{padding:52px 0;}
+.contact-form h6{font-size: 28px; margin:0 0 40px 0}
+.contact-form .form-section{padding: 0 6%;}
+.contact-form .input{ float: left; margin: 0 0 30px;width: 100%;height: 51px;}
+.contact-form .button{width:220px;}
+.vidio_container{width:320px; height:180px;}
+#footer{padding:25px 0 50px 0}
+#footer .destop{display:none;}
+#footer .mobile{display:block;}
+#footer img{margin:0;}
+#footer h6{font-size:36px; margin:30px 0 30px 0;}
+#footer ul li{font-size:36px;}
+#footer .copy{display:none;}
+#footer .copy2{font-size:24px; padding:80px 0; display:block; font-family: HelveticaNeue;}
+#footer .copy2 span{display:block;}
+.landing-col-4{width:48%;}
+.landing-col-5{width:48%;}
+.landing-col-5 ul li ,.landing-col-4 ul li{margin: 0 0 19px;}
+.landing-col-5 img ,.landing-col-4 img{ width: 100%;}
+.landing-page-section {padding-top:97px;}
+.landing-btn-section{display:none;}
+.landing-btn-section-mobile{ display:block;text-align: center;}
+.landing-btn-section-mobile a{width:44%}
+.landing-bottom-section-mobile{display:block;}
+.landing-bottom-section{display:none;}
+#landing1{padding:0px 0 0 0;}
+#landing-learn{background:#f7f7f7;}
+.landing-learn-heading{display:block;}
+.img-content-one{margin-right:0;bottom:4%;}
+.img-content-one > img{ width:80%;}
+
+/** Funderdraiser Page **/
+.banner_section ul li {width: 100%;margin-right: 0;}
+.mobile_img{width: 46%;float: left;margin: 0;margin-top: -50px;}
+.mobile_content {width: 46%;float: right;padding-top: 18%;}
+.banner_section ul li:nth-child(2) .mobile_img{float: right;}
+.banner_section ul li:nth-child(2) .mobile_content{float: left;}
+.banner_section ul{padding: 0;margin-top: 70px;margin-bottom: 30px;}
+.fundraiser_main h2 {font-size: 24px;margin: 0 0 7px;}
+.table_cell{vertical-align: middle;}
+.contact_form form{width: 100%;float: left;}
+.info_pkg_sec{width: 96%;padding: 0 0 15px;}
+.fundraiser_main p {font-size: 16px;}
+.info_pkg {padding: 10px;width: 82%;}
+.info_pkg_btn{width: 10%;margin: 30px 15px 0 0;}
+.menu{padding:12px 0 20px 0}
+.contact_form form input{height: 40px;font-size: 12px;padding:10px;}
+.contact_form form button{padding: 5px 30px;font-size: 20px;}
+.trading_sec ul li:first-child { display:block;padding-right: 0; }
+.trading_sec ul li p {font-size: 15px;}
+.trading_sec ul li {padding-bottom: 7px; padding-right: 10px;}
+.trading_sec ul li:last-child {display:none;}
+.no_kidding h3 span.kiding {
+  border-bottom: 1px solid #adadad;
+  display: inline-block;
+  padding: 5px 20px;
+}
+}
+
+@media only screen  and (max-width :640px) {
+.landing-page-section { padding-top: 89px;}
+.menu{padding:12px 0 0 0}
+.new-img { float: right;}
+.p-data { padding-right: 12px;text-align: right !important;}
+#banner-cont { bottom: unset; top: 40%; }
+#banner-cont h1 {font-size: 26px; line-height: 36px; margin: 0 0 10% 18px; }
+}
+
+
+
+@media only screen  and (max-width :479px) {
+.new-img { float: right;}
+.itwork{ min-height: unset;}
+.itwork p span{ font-size: 22px; }
+#banner-destop{ float: left;width: 100%;}
+#banner-cont { bottom: unset; top: 40%; }
+#banner-cont h1 { font-size: 18px; line-height: 29px; margin: 0 0 8% 10px; }
+#banner-cont h1 span:first-child {font-size: 30px;line-height: 46px; }
+#logo-destop { padding: 12px 0 11px;}
+.menu{padding:12px 0 0 0}
+.top-nav ul li a { font-size: 12px;}
+.top-nav ul li { padding: 0 6px 0 0;}
+.registaion-section a.login{  font-size: 13px;line-height: 14px; padding: 2px 11px;}
+.made-app .vedio-section{width:90%;height: 180px;}
+.made-app p { font-size: 20px;line-height: 33px;}
+.itwork p {font-size: 18px;line-height: 35px;}
+.parents-approve-mobile h3 { font-size: 34px; line-height: 46px;}
+.parents-approve-mobile .textarea p{font-size: 24px;}
+.itsafe p { font-size: 26px; line-height: 37px; width: 95%;}
+.itsafe span {display: inline;}
+.itsafe .bottom h4 {font-size: 26px; line-height: 35px;}
+.itsafe .bottom p { font-size: 18px; line-height: 31px;}
+.listing-moblie {padding: 35px 0 52px;}
+.learn-img-container p {font-size: 14px; line-height: 21px;}
+.listing-moblie h5, .parent-mobile h5{ line-height: 47px;font-size: 41px;}
+.parent-mobile {  float: left;  padding: 32px 0 50px;}
+.earn-buck h5 { font-size: 42px; line-height: 47px;}
+.earn-buck .textarea{ padding: 74px 0 19px;}
+.earn-buck p {font-size: 23px;line-height: 33px;}
+.contact-form .button{font-size: 19px;height: 45px;width: 53%;}
+.kids-exchange-data .img-container .img-data .vertical-center p{ font-size: 26px; line-height: 33px;width:100%;}
+.vidio_container{width:250px; height:150px;}
+#footer h6{font-size:20px;} 
+.landing-page-section { padding-top: 63px;}
+.landing-top-section p { font-size: 25px; line-height: 40px;}
+.landing-learn-heading h5{line-height: 47px;font-size: 41px;}
+.img-content-one{margin-right:-4px;}
+.img-content-one > img{width:72%;}
+
+/** Fundraiser Page **/
+.header2 .top-nav p{font-size: 13px;}
+.fundraiser_main h3 {font-size: 16px;line-height: normal;margin: 0 0 3px;}
+.mobile_content{padding-top: 60px;}
+.mobile_content p{font-size: 14px;}
+.fundraiser_main h2 {font-size: 20px;}
+.no_kidding ul{padding: 20px 0 30px;}
+.steps_img{width: 25%;float: none;margin: 0 auto;clear: both;}
+.steps_text{width: 100%;text-align: center;}
+.info_pkg {padding: 10px;width: 100%;float: left;}
+.info_pkg p {font-size: 13px;}
+.info_pkg_btn {width: 15%;margin: 0 auto;float: none;}
+.contact_form form .form-group {margin-bottom: 20px;width: 100%;}
+}
+
+@media only screen  and (max-width :359px) {
+.made-app .vedio-section{width:90%;height: 170px;}
+#banner-cont h1 { margin-bottom: -10px; }
+}
+ @media screen and (min-width:320px) and (max-width:359px) {
+ 
+
+}
+
+/*==========================Inner Header Footer===============================*/
+.header-inner{background:#fff; padding:47px 0 32px 0;}
+.header-inner .bg-red{width:63px; height:48px; background:url(/assets/landing/bg-red.png) no-repeat; color:#fff; font-size:32px; line-height:50px; font-family:MyriadPro-Semibold; text-align:center;}
+.header-inner .bg-red a{color:#fff; display:block;}
+.header-inner #logo-inner{text-align:center; margin:6px 0 0 0;}
+.header-inner .login{margin:17px 0 0 0;}
+#footer-inner{width:100%; padding:123px 0 30px 0; text-align:center; float: left;}
+#footer-inner ul{list-style:none; margin:0 0 15px 0; padding:0;}
+#footer-inner ul li{font-size:24px; display:inline-block; padding:0 30px; color:#999;}
+#footer-inner ul li a{color:#999999;}
+#footer-inner ul li a:hover{color:#666;}
+#footer-inner p{font-size: 18.6px; color:#656666; font-family: MyriadPro-Regular; line-height: 24px;}
+#footer-inner span{display:block;}
+
+/*==========================Credit Card===============================*/
+.inner-pages{width:100%; background:#f5f5f1; padding:33px 0 0 0; float:left;}
+.paitem .items .Category .price .input:focus {border:solid 3px #0095fc;}
+.DivSelectyze {position:relative; width:589px; text-align:left;}
+.DivSelectyze .selectyzeValue {position:relative; z-index:10; display:block;	text-decoration:none; padding:0 0 0 14px; border-radius:11px; background:#fff url(/assets/landing-25/bg-Drop-down.png) no-repeat 95% 22px; color:#999; font-size:36px; font-family: helvetica-neue-medium; height:69px; line-height:69px; border:solid 1px #ccc; border-radius:11px; margin:0 0 21px 1px; display:block;}
+.DivSelectyze .selectyzeValue:focus {border:solid 3px #0095fc;}
+.DivSelectyze ul {list-style:none;}
+.DivSelectyze .UlSelectize {position:absolute; z-index:9999;	display:none;}
+.DivSelectyze li a {display:block;	text-decoration:none;}
+.mac .UlSelectize {top:72px;	left:0px; width:100%; background-color:#fff; border:1px solid #333;	padding:0;
+-moz-box-shadow: 4px 4px 10px -2px #000;
+-webkit-box-shadow: 4px 4px 10px -2px #000;
+box-shadow: 4px 4px 10px -2px #000;}
+.mac li a {background-color:transparent; color:#666; padding-left:14px; line-height:48px;	font-size:36px;
+font-family: HelveticaNeue;}
+.mac li a:hover {color:#fff; background-color:#0095fc;}
+
+/*==========================Upload Photo===============================*/
+
+/* Chrome/Safari and web-kit-based browsers 
+   (if it doesn't work, try maybe also on the parent/wrapper)
+*/
+::-webkit-file-upload-button {
+    cursor:pointer;
+}
+
+/* IE11 (if it doesn't work, try maybe also on the parent/wrapper) */
+input[type=file] {
+    cursor:pointer;
+}
+
+/*==========================PA Items===============================*/
+
+/*==========================PA Trade===============================*/
+
+
+@media only screen  and (max-width :1200px) {
+  .credit-card h2.title{background:url(/assets/landing/goat.png) no-repeat 68px 0; padding:78px 0 50px 163px;}
+.header-inner .bg-red{line-height:52px;}
+.header-inner .login{margin:22px 0 0 0;}
+.credit-card .price .input{line-height:98px;}
+.credit-card .form{padding:0;}
+.upload-photo{padding:0;}
+.paitem .items .Category .price .label{vertical-align:inherit;}
+.saftey-top h1{font-size: 48px;line-height: 50px; margin: 38px 0 57px;}
+.saftey-top h2{font-size: 36px;line-height: 42px;padding-left:0;}
+.saftey-top p{ font-size: 26px;line-height: 33px;padding-left:0;}
+.safteypage-list{ margin: 28px 0 0;padding:0;}
+.safteypage-textarea{ padding-left: 36px; padding-right:0;}
+.safteypage-textarea h3{font-size: 36px;line-height: 42px;padding-left:0;}
+.safteypage-textarea p{font-size: 26px;line-height: 33px;}
+.saftey-list-li{padding: 37px 0 25px;}
+.safteypage-list{padding:0 5%;}
+.saftey-top1{padding:0 5%;}
+.paitem .items .Category-slider{width:635px;}
+.white_content .align{width:635px;}
+.paitem .slide2{width:500px;}
+}
+
+
+@media only screen  and (max-width :1023px) {
+.header-inner .login{margin:16px 0 0 0;}
+.paitem .items .Category{padding:15px 0 0 0}
+.paitem .items .Category-slider{padding:0; margin:30px 0 0 0; position:relative;}
+.white_content .align{padding:0}
+.paitem .Approve-Items{margin:0 auto; display:block;}
+.white_content .cross{left:10px; top:10px;}
+.paitem .items .Category .price{margin:-12px 0 0 10px;}
+}
+
+@media only screen  and (max-width :991px) {
+  .credit-card h2.title{background:url(/assets/landing/goat.png) no-repeat 4px 0; font-size:30px; padding:82px 0 50px 106px;}
+.paitem .slide2{width:100%; margin:0 0 52px 0;}
+.paitem .items .Category-slider{width:100%;}
+.white_content .align{width:100%;}
+}
+
+@media only screen  and (max-width :767px) {
+.credit-card h2.title span{display:block; }
+.header-inner{padding:30px 0;}
+.header-inner .login{margin:17px 0 0 0; font-size:22px;}
+.header-inner .bg-red{background-size:100% auto; width:54px; height:42px; line-height:42px; font-size:26px; font-family: MyriadPro-Regular;}
+
+#footer-inner ul li{font-size:20px; padding:0 10px;}
+#footer-inner p{font-size: 14px;}
+
+.saftey-top h1{font-size: 38px;line-height: 40px;margin: 38px 0 16px;}
+.saftey-top h2{font-size: 32px;line-height: 35px;text-align: center;}
+.saftey-top p {font-size: 23px;line-height: 32px; padding: 0 10px;}
+.safteypage-textarea p{padding-top:30px !important;}
+.safteypage-textarea p br{display:none;}
+.safteypage-img{text-align:center;}
+.safteypage-textarea{padding:0;}
+.safteypage-img {margin: 10px 0 40px;}
+.safteypage-textarea h3{text-align:center;font-size: 32px;    line-height: 42px;}
+.saftey-button-section{display: none;}
+.saftey-copy2{padding: 18px 0 0 0 !important;}
+.safteypage-list{padding:0 0;}
+.saftey-top1{padding:0 0;}
+}
+@media only screen  and (max-width :730px) {
+  .paitem .Approve-Items{width:100%; background:#0099ff url(/assets/landing/bg-check.png) no-repeat 18% center;}
+  .paitem .Approve-Items:hover{background:#000 url(/assets/landing/bg-check.png) no-repeat 18% center;}
+}
+
+
+@media only screen  and (max-width :639px) {
+.white_content h6{font-size:36px;}
+.paitem .Approve-Items{background-size:30px auto;}
+.paitem .Approve-Items:hover{background-size:30px auto;}
+.header-inner .login{margin:14px 0 0 0; font-size:16px;}
+.header-inner .bg-red{width:60px; height:46px; line-height:46px; margin:5px 0 0 0; font-size:20px;}
+.header-inner .login {font-size:20px; margin: 20px 0 0;}
+.white_content .cross img {margin:0; width:24px;}
+
+.banner-safety .img{display:none}
+.banner-safety .img2{display:block;}
+.banner-safety{margin:0;}
+.saftey-social-icons li{margin: 0 2px !important;padding:0 0;}
+.saftey-social-icons li a img{width: 70% !important;}
+}
+
+
+@media only screen  and (max-width :479px) {
+.header-inner{padding:20px 0;}
+.header-inner .login{margin:12px 0 0 0; font-size:13px;}
+.header-inner .bg-red{width:36px; height:30px; line-height:30px; margin:5px 0 0 0; font-size:18px;}
+#footer-inner{padding:35px 0;}
+#footer-inner ul li {font-size: 18px; padding:8px 14px;}
+#footer-inner p{font-size:13px;}
+#footer-inner span{display:inline;}
+
+p.other span{display:inline;}
+.paitem h1{font-size:20px;}
+p.other{line-height:20px;}
+}
+#footer-inner ul li a img{width:50px;}
+
+
+/* Safari Mac specific alterations
+ * (relies on class added by js browser detection above),
+ * to take into account different font metrics */
+.safari-mac  .paitem .items .Category .price .label {vertical-align:middle;}
+.safari-mac  .paitem .items .Category .price .input{margin:-5px 0 0 0}
+.DivSelectyze .selectyzeValue{font-size: 24px; height: 52px; line-height: 52px; background-position: 90% center; background-size: 30px auto;}
+.mac li a{font-size: 24px;}
+.mac .UlSelectize{top:54px;}
+.saftey-top h1{ font-size: 29px;line-height: 33px;}
+.saftey-top h2 {font-size: 24px; line-height: 28px;}
+.saftey-top p{ font-size: 18px; line-height: 23px;}
+.safteypage-list{ margin: 11px 0 0;}
+.safteypage-textarea h3{font-size: 25px;line-height: 30px;}
+.saftey-list-li{padding: 28px 0 20px;}
+.saftey-copy2{padding: 28px 0 0 0 !important;}
+.paitem .slide2{margin:0 0 25px 0;}

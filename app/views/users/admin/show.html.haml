@@ -1,0 +1,22 @@
+%h2 Login
+
+= form_tag(admin_login_path, method: 'post') do
+  
+  .col-sm-6
+    %div(class='panel panel-default')
+      .panel-body
+          
+        .form-group
+          = label_tag :user_name, 'User Name / Email', :class => 'col-sm-5 control-label'
+          .col-sm-6
+            = text_field_tag :login, '', :autofocus => true, :placeholder => 'User Name', :class => 'form-control'
+            
+        .form-group
+          = label_tag :password, 'Password', :class => 'col-sm-5 control-label'
+          .col-sm-6
+            = password_field_tag :password, '', :placeholder => 'Password', :class => 'form-control'
+      
+        .form-group
+          %div(class='col-sm-6 btn-group btn-group-lg')
+            = submit_tag "Login", :class => 'btn btn-primary'
+

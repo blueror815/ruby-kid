@@ -1,0 +1,11 @@
+- search_uri = 'http://www.google.com/search?q='
+%table.schools-table#admin-schools-table
+  %tbody
+    - @schools.to_a.each do |school|
+      %tr
+        %td(width="30%") <span style="color: red"> #{@schools_students[school.id]} </span> #{link_to school.name, search_uri + school.name, :target => "_blank"}
+        %td(width="22%") #{school.city}
+        %td(width="18%") #{school.state}
+        %td(width="15%") #{school.zip}
+        %td(colspan="2") #{school.country}
+        %td(colspan="2") #{link_to "Edit", schools_admin_edit_path(school)}

@@ -1,0 +1,111 @@
+- all_cats = ::Category.order('name asc').all
+- content_for(:head_extra) do
+
+  :css
+    .button-success { background-color:#c4e3ff; padding:0; }
+    .button-changed { background-color:#ffddf0; padding:0; }
+    .category-group-input { font-size:1.1em; }
+    .category-group-wrapper {
+      margin: 1% 2%;
+      display: inline-block;
+      width: 480px;
+      vertical-align: top;
+    }
+    .category-group-wrapper input[type=text] { width:50px; text-align: center; }
+    .category-group-box {
+      border: solid 5px #999999;
+      margin: 10px 0 16px 0;
+      padding: 5px;
+    }
+    .category-group-box-male { border-color: rgb(64, 159, 237); }
+    .category-group-box-female { border-color: rgb(255, 31, 71); }
+    .category-tiles-list { list-style-type:none; padding-left:0; margin-left:0; }
+
+    @media only screen and (max-width: 640px) {
+      .category-group-wrapper { width: 360px; }
+    }
+
+- content_for(:footer_extra) do
+  :javascript
+
+    $(function() {
+
+      $(".category-group-input").change( function(){
+        var cgid = $(this).attr("data");
+        var cgsubmit = $("#save_category_group_" + cgid);
+        cgsubmit.removeClass("button-success");
+        cgsubmit.addClass("button-changed");
+      });
+      $(".category-tiles-list").sortable({
+        update: function(event, ui) {
+          var children = $(this).children();
+          var order = 1;
+          for (var ci = 0; ci < children.length; ci++) {
+            if (children[ci].tagName == "LI")
+            {
+              var id = $(children[ci]).attr("data");
+              $("#curated_category_" + id +"_order_index").val(order);
+              order++;
+            }
+          }
+          var cgid = $(this).attr("data");
+          $("#update_all_form_" + cgid).submit();
+        }
+      }).disableSelection();
+      $("input[data-disable-with]").click( function(){ $(this).attr('disabled',true); $(this).val($(this).attr('data-disable-with')); } );
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+.container
+  .row.form-group.clearfix(style="vertical-align:bottom; margin:0;")
+    %img.pull-left(src="/assets/logos/kidstrade-title.png" alt="KIDSTrade" style="margin:0 2% 0 0;")
+    %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+      %a(href='/admin') ADMIN
+      %span.gray-title-color - CATEGORY GROUPS
+    %p.pull-right(style="width:25%;")
+      -#= submit_tag("SUBMIT", class:'btn btn-large light-blue-bg', disable_with:'Submitting...')
+.section-gap
+%hr.full-separator
+.container
+  - @category_groups.each do|cg|
+    %div(style="display:inline-block;")
+      .category-group-wrapper.form-inline
+        = form_for(cg, method: :put, remote:true, id:"category_group_form_#{cg.id}") do|f|
+          .form-group.moderate-dark-title-color(style='width:100%;')
+            = f.text_field(:name, class:"category-group-input form-control #{cg.gender.downcase}-color", style:'width:240px; font-size:1.4em; font-weight:500;', data:"#{cg.id}")
+            = f.text_field(:lowest_age, class:'category-group-input form-control', data:"#{cg.id}")
+            to
+            = f.text_field(:highest_age, class:'category-group-input form-control', data:"#{cg.id}")
+            %button(type='submit' class='btn button-success glyphicon glyphicon-floppy-disk pull-right' id="save_category_group_#{cg.id}" title='Save changes to this Category Group' style='padding:10px;')/
+        = form_tag(update_all_category_groups_path, method: :put, remote:false, id:"update_all_form_#{cg.id}") do
+          %div(class="category-group-box category-group-box-#{cg.gender.downcase}")
+            %ul.category-tiles-list(id="category_group_#{cg.id}" data="#{cg.id}")
+              - cg.category_group_mappings.order("order_index asc").each_with_index do|mapping, index|
+                %input(type='hidden' name="mapping_#{mapping.id}[order_index]" id="mapping_#{mapping.id}_order_index" value="#{index}")/
+                = make_category_cell(mapping.mapped_category, cg.sample_child, url: edit_category_group_mapping_path(mapping), class:'category-cell', tag_name: :li, name: mapping.category.name.underscore, data: mapping.id, 'data-toggle'=>"tooltip", 'data-placement'=>"right", 'title'=>"Click to modify #{mapping.category.name}.  \nDrag to re-order." )
+                = link_to(' ', edit_category_group_mapping_path(mapping) )
+            .clearfix
+          .dropdown
+            %button.btn.btn-large.btn-default(id="add_category_btn_#{cg.id}" type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded="false"  style="width:94%;")
+              ADD CATEGORY
+              %span.caret
+            %ul.dropdown-menu.list-group(aria-labelledby="add_category_btn_#{cg.id}" )
+              - category_group_cat_ids = cg.curated_categories.collect(&:category_id)
+              - all_cats.each do|cat|
+                - unless category_group_cat_ids.include?(cat.id)
+                  %li.list-group-item
+                    = link_to(cat.name, add_category_group_mapping_path(id: cg.id, mapping:{category_id: cat.id} ), remote:true, method:'post', style:"text-align:left;")
+
+  #category_group_mapping_modal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          %button.close(type="button" data-dismiss="modal" aria-label="Close")
+            %span(aria-hidden="true") &times;
+          %h4.modal-title Customize Category for Category Group
+        #edit_category_group_mapping.modal-body
+          %p Hello
+        .modal-footer
+          %button.btn.btn-default(type='button' data-dismiss="modal") Close
+          %button.btn.btn-primary(type="button") Save changes

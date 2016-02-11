@@ -1,0 +1,14 @@
+<p>
+  Hi <%= @recipient.display_name.humanize %>,
+</p>
+<% @main_paragraphs.to_a.each do|p| -%>
+<p><%= p %>
+</p>
+<% end -%>
+<% @sub_paragraphs.to_a.each do|p| -%>
+<p><%= p %>
+</p>
+<% end -%>
+<p>
+  <a href="<%= inventory_approve_item_url(user_id: @item.try(:user_id) ) %>">Go to KidsTrade</a>
+</p>

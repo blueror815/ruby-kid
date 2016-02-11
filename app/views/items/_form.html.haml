@@ -1,0 +1,78 @@
+- content_for :head_extra do
+  = stylesheet_link_tag 'item-ui'
+  = javascript_include_tag 'nested_form'
+  = javascript_include_tag 'items'
+
+- content_for :footer_extra do
+  :javascript
+    $(function() {
+      
+      $('#add_more_photo_link').click();
+    });
+
+= nested_form_for(@item, :html=>{:multipart => true, :class => 'form-horizontal',  :role => 'form'}) do |f|
+  %div(class='panel panel-default')
+    .panel-body
+      .form-group
+        = f.label :category_id, 'Category', :class => 'col-sm-2 control-label'
+        %div(class='col-sm-6 text-left text-medium-title')
+          - if @item.category_id.to_i.zero? && @item.category.nil?
+            = f.select :category_id, categories_select_options, selected: @item.category.try(:id), :autofocus => true, :class => 'form-control'
+          - else
+            = f.hidden_field :category_id, value: @item.category_id
+            %span(style="color:#{category_bg_color_for(@item.category, auth_user)}")
+              = @item.category.name
+
+      .form-group
+        = f.label :description, 'Description', :class => 'col-sm-2 control-label'
+        .col-sm-8
+          = f.text_area :description, :placeholder => 'Description', :class => 'form-control', :rows => 10
+
+      .form-group
+        = f.label :price, 'Price', :class => 'col-sm-2 control-label'
+        .col-sm-3
+          .input-group
+            %span.input-group-addon $
+            = f.text_field :price, :class => 'form-control', :placeholder => '', |
+              :title => 'For buyer to purchase with or make offer near asking price' |
+        = f.hidden_field :quantity, value: 1
+
+    .panel-body
+      .row
+        .col-sm-2
+        .col-sm-4
+          = check_box_tag('for_male', 'M', @item.gender_group.to_s.include?('M'), style: "width: 28px;" )
+          %label(class='male-color text-medium-title') Boy
+
+          %span(class='text-moderate-small-title') &nbsp;&nbsp;
+
+          = check_box_tag('for_female', 'F', @item.gender_group.to_s.include?('F'), style: "width: 28px;", class: "female-bg")
+          %label(class='female-color text-medium-title' for='for_female') Girl
+
+        %div(class='col-sm-4 text-medium-title text-center')
+          = f.select(:intended_age_group, [ ['My Age', 'same'], ['All Ages', ''], ['Younger', 'younger'], ['Older', 'older'],  ], selected: 'same' )
+
+    .panel-body
+      .form-group
+        = f.label :item_photos, "Photos (maximum of #{ItemPhoto::MAX_ITEM_PHOTOS})", :class => 'control-label col-sm-2'
+        .col-sm-8
+          - nested_index = 0 # the FormBuilder limited nested_child_index in private
+          = f.fields_for :item_photos, nested_wrapper: false do|photo_form|
+            - if nested_index % 3 == 0 # num of pics per row
+              .row
+            = render(partial: 'item_photo_form', object: photo_form )
+            - nested_index += 1
+          %div(class='row')
+            = f.link_to_add "+ Add More Photo", :item_photos, class:'btn btn-info', role:'button', id: 'add_more_photo_link'
+
+    .panel-footer
+      %div(class='btn-group btn-group-lg')
+        = f.submit (@item.nil? || @item.new_record? ? 'Post' : 'Save'), :class => 'btn btn-success'
+      %div(class='btn-group btn-group-lg')
+        - if !@item.new_record? && @item.manageable_by_user?(auth_user)
+          - if @item.ended? || @item.pending?
+            = item_activation_link(@item, :use_icon => false, :link_text => 'Activate Item', class: 'btn-success')
+          - else
+            = item_activation_link(@item, :use_icon => false, :link_text => 'End Item', class:'btn btn-danger', confirm: t("selling.end_item.confirm") )
+          
+  

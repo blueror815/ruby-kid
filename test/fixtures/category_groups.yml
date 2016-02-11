@@ -1,0 +1,20 @@
+younger_boys:
+  gender: MALE
+  lowest_age: 0
+  highest_age: 5
+  country:
+younger_girls:
+  gender: FEMALE
+  lowest_age: 0
+  highest_age: 5
+  country:
+older_boys:
+  gender: MALE
+  lowest_age: 6
+  highest_age: 12
+  country:
+older_girls:
+  gender: FEMALE
+  lowest_age: 6
+  highest_age: 12
+  country:

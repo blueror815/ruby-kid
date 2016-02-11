@@ -1,0 +1,139 @@
+<% content_for(:head_extra) do %>
+  <style type="text/css">
+    #top-intro {
+      margin-top:-78px;
+      padding: 50px 0;
+    }
+    .intro-title p {
+      font-size: 1.4em;
+      font-weight: 200;
+      padding: 10px 0;
+    }
+
+    /* Smallest */
+    @media only screen and ( max-width: 400px )
+    {
+      #top-intro {
+        margin-top:-92px;
+        padding: 0 0 25px 0;
+      }
+      .intro-title p {
+        font-size: 1.2em;
+        line-height: 20px;
+      }
+    }
+    /* Small */
+    @media only screen and ( min-width: 400px) and ( max-width: 640px )
+    {
+
+      #top-intro {
+        margin-top:-92px;
+        padding: 0 0 25px 0;
+      }
+      #banner-destop h1 {
+        font-size: 20pt;
+        line-height: 40px;
+      }
+      .intro-title p {
+      }
+    }
+    /* Medium */
+    @media only screen and ( min-width: 640px) and (max-width: 800px )
+    {
+      #top-intro {
+        margin-top:-54px;
+        padding: 0 0 50px 0;
+      }
+      .intro-title p {
+        font-size: 20pt;
+      }
+    }
+    /* Big */
+    @media only screen and ( min-width: 800px )
+    {
+      .intro-title p {
+        font-size: 28pt;
+        line-height: 1.4em;
+      }
+    }
+  </style>
+
+<% end # head_extra %>
+
+<% content_for(:footer_extra) do %>
+  <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+
+  <%= render partial: 'layouts/google_analysis' %>
+<% end # footer_extra %>
+
+<header class="header-about" ><!--header-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-4">
+        <div id="logo-destop"><a href="/"><img src="/assets/landing-25/about-logo.png" alt="logo" /></a></div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-8">
+        <% if user_signed_in? -%>
+          <a href="<%= users_logout_path -%>" class="about-login btn-default">LOG OUT</a>
+        <% elsif request.path != new_user_session_path -%>
+          <a href="<%= new_user_session_path %>" class="about-login btn-default">LOGIN</a>
+        <% else -%> &nbsp;
+        <% end -%>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="banner-text">
+          <p class="cust-text">&#34;Isabelle will make me the happiest girl in the world.&#34;</p>
+        </div>
+      </div>
+    </div><!--row-->
+  </div><!--container end-->
+</header>
+
+<section class="section1"><!--section1-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <p class="para1"> With that promise, I braved the December chill, took a train into NYC, hopped in a
+          cab and stood in line at the American Girl store. Two hours later and &#36;100&#43; poorer,
+          Isabelle had a new loving home.</p>
+        <p class="para2">Fast forward three months. We all know, the love for a toy is... fickle.</p>
+        <p class="para3">Surely, there must be another child ready to be</p>
+        <p class="para4"> &#34;the happiest girl in the world&#34;.</p>
+        <p class="para5"> And so KidsTrade came to be.</p>
+      </div>
+    </div>
+  </div>
+</section><!--section1 end-->
+
+<section class="section2"><!--section2-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <p class="para1">About Us</p>
+        <p class="para2">
+          We are a Princeton-based start-up founded and run by parents
+          committed to creating entertaining and educational apps for kids. Our
+          entrepreneurial team has a combined 100 years of experience in the
+          fields of technology, entertainment, online security, marketing, graphic
+          design, computer programming and product development. We love
+          what we do and, more importantly, we think you and your kids will love it!
+        </p>
+      </div>
+    </div>
+  </div>
+</section><!--section2 end-->
+
+<section class="section3">	<!--section3-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <ul class="apple-logo">
+          <li><a href="https://itunes.apple.com/app/id1042828368"><img src="/assets/landing-25/apple-logo1.png" alt="IOS App"></a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop"><img src="/assets/landing-25/google-play-live.png" alt="Google Play App"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section><!--section3 end-->
+
+<%= render partial: 'layouts/landing_footer' %>

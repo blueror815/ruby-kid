@@ -1,0 +1,44 @@
+- @page_title = 'Update Account Info'
+- content_for :head_extra do
+  = render(partial: 'users/schools_data')
+  = javascript_include_tag 'jquery-ui', 'bootstrap-modal'
+
+
+- content_for :footer_extra do
+  :javascript
+    $(function() {
+      $( document ).tooltip();
+      $("#remove_profile_image_link").tooltip({animation: false, placement:'auto'} );
+      
+      $('#remove_profile_image_link').click( function() {
+        var removeField = $('#remove_profile_image');
+        var removeValue = (removeField == null) ? true : (removeField.val() == 'false');
+        $('#remove_profile_image').val( removeValue );
+        if (removeValue) {
+          $("#profile_image").attr("style", "opacity: 0.3;");
+          $("#profile_image_thumbnail").attr("style", "border-color: #993333; background-color: #ffdddd;");
+        } else {
+          $("#profile_image").attr("style", "opacity: 1.0;");
+          $("#profile_image_thumbnail").attr("style", "border-color: #cccccc; background-color: #ffffff;");
+        }
+       
+      } );
+      
+      $(".avatar-button").on("click", function() {
+        $("#user_profile_image_name").val( $(this).attr("data") );
+        $("#avatar_button_image").attr("src", $(this).attr("src") );
+        $("#avatars_modal").modal("hide");
+      } );
+    } );
+  
+
+.container
+
+  - if user_signed_in? && auth_user.is_a?(Parent)
+    = render partial: '/users/edit_profile_for_parent'
+
+  - else
+    %div(class='panel panel-default')
+      %div(class="panel-body" id='parent_tab')
+        = render(:partial => 'form')
+

@@ -1,0 +1,156 @@
+- content_for(:head_extra) do
+
+  :css
+    .item-for-approval-wrapper {
+      padding: 10px;
+    }
+    .remove-checkbox {
+      /* display:inline-block; */
+      background: url('/assets/icons/remove-white@2x.png') no-repeat 0 0;
+      line-height: 55px !important;
+      position: relative;
+      z-index: 3;
+      vertical-align: top;
+      top: 60px;
+      /* left: 5px; */
+      width: 55px;
+      height: 55px;
+    }
+    
+    .remove-checkbox:hover{
+      background: url('/assets/icons/removed-red@2x.png') no-repeat;
+    }
+    .remove-checkbox.selected{
+      background: url('/assets/icons/removed-red@2x.png') no-repeat;
+    }
+    .remove-checkbox input[type="checkbox"]{
+      margin: 0;
+      z-index: 3;
+      width: 55px;
+      height: 55px;
+      cursor: pointer;
+      outline: none;
+      opacity: 0;
+      /* CSS hacks for older browsers */
+      _noFocusLine: expression(this.hideFocus=true); 
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      filter: alpha(opacity=0);
+      -khtml-opacity: 0;
+      -moz-opacity: 0;
+    }
+    
+    .denied-overlay-title {
+      font-weight: bold;
+      font-size: 36pt;
+      color: rgb(255, 31, 71);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      visibility: hidden;
+    }
+
+    @media (max-width: 630px)
+    {
+      .remove-checkbox {
+        background: url('/assets/icons/remove-white.png') no-repeat 0 0;
+        width: 30px;
+        height: 30px;
+        /* top: 30px; */
+        left: 5px;
+      }
+      .remove-checkbox:hover{
+        background: url('/assets/icons/removed-red.png') no-repeat;
+      }
+      .remove-checkbox.selected{
+        background: url('/assets/icons/removed-red.png') no-repeat;
+      }
+    }
+
+- content_for(:footer_extra) do
+  :javascript
+    function customCheckbox(checkboxName){
+      var checkBox = $('input[name="'+ checkboxName +'"]');
+      $(checkBox).each(function(){
+        $(this).wrap( "<div class='remove-checkbox'></div>" );
+        $(this).attr("checked", false); 
+        var overlay = $("#denied_overlay_title_" + $(this).val() );
+        var mainImage = $("#main_image_link_" + $(this).val() );
+        overlay.positionOn( mainImage, "center" );
+                    
+        if($(this).is(':checked')){
+            $(this).parent().addClass("selected");
+        }
+      });
+      $(checkBox).click(function(){
+          $(this).parent().toggleClass("selected");
+          var isChecked = $(this).is(':checked');
+          centerDeniedToMainImage( $(this).val() );
+          var overlay = $("#denied_overlay_title_" + $(this).val() );
+          if (isChecked) {
+            overlay.css("visibility", "visible");
+          } else {
+            $("#denied_overlay_title_" + $(this).val() ).css("visibility", "hidden");
+          }
+          $("#main_image_link_" + $(this).val() ).css("opacity", isChecked ? '0.6' : '1.0'  );
+          $(".thumbnail_link_" + $(this).val() ).css("opacity", isChecked ? '0.6' : '1.0'  );
+      });
+    }
+    
+    function centerDeniedToMainImage(itemid) {
+      var overlay = $("#denied_overlay_title_" + itemid );
+      var mainImage = $("#main_image_link_" + itemid );
+      overlay.positionOn( mainImage, "center" );
+    }
+    
+    function alignDelcineCheckboxes() {
+      var mainImages = $(".main-image-placeholder");
+      for (i = 0; i < mainImages.length; i++) {
+        var mainImage = $( mainImages[i] );
+        mainImage.parent().siblings("div.remove-checkbox").css("position", "absolute");  
+        mainImage.parent().siblings("div.remove-checkbox").css("left", (mainImage.position().left + 2) + "px");
+        mainImage.parent().siblings("div.remove-checkbox").css("top", (mainImage.position().top + 15) + "px");
+      }
+    }
+    
+    /////////////////////////////////
+        
+    $( function() {
+      customCheckbox("decline_item_ids[]");
+      $('#approve_items_button').on('click', function () {
+          var $btn = $(this).button('Processing ...')
+        });
+      $(window).load( alignDelcineCheckboxes );
+      $(window).resize( alignDelcineCheckboxes );
+    } );
+
+= form_tag(inventory_activate_item_url, method: 'put' ) do
+  = hidden_field_tag('tab', params[:tab] )
+  = hidden_field_tag('user_id', params[:user_id] )
+  .content-table-width(style="width:90%; margin:auto;")
+    %table(class='no-top-border-table')
+      %tbody
+        %tr
+          - if @owner
+            %td(style='vertical-align:top;')
+              .user-avatar-wrapper
+                %img.user-avatar-icon(src="#{@owner.profile_image_url(:thumb)}" alt="#{@owner.display_name}" title="#{@owner.display_name}")
+          %td
+            - if @owner
+              = user_name_label(@owner)
+              %div(class='text-big-title dark-text-color')
+                - if @items.present?
+                  Wants to list 
+                  %span(class='warning-color') #{@total_count || @items.size}
+                  #{@items.size > 1 ? 'items' : 'item' }
+                - else
+                  Has No Item for Approval
+            - if @items.present?
+              %div(class='gray-title-color text-medium-title')
+                Approve, decline or tap on photo to edit item info.
+    - @items.each_with_index do|item, index|
+      = render :partial => 'item_for_approval', locals: { item: item, item_number: index + 1 }
+      - if index < @items.size - 1
+        %hr.dark-hr
+    - if @items.present?      
+      %div(style='padding: 40px;')
+        = submit_tag('Approve Items', id:'approve_items_button', class:'btn btn-lg large-form-button light-blue-bg')

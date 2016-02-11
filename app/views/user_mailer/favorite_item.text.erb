@@ -1,0 +1,8 @@
+<%= @user.display_name %> Likes Your Item
+
+Price: <%= sprintf("%9.2f", @item.price) %>
+<% if @item.title.present? -%>Title: <%= @item.title -%><% end -%>
+Description: 
+  <%= @item.description[0, 100] %>
+
+Item Link: <%= item_url(@item) %>

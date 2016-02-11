@@ -1,0 +1,50 @@
+- content_for(:head_extra) do
+
+  :css
+    body {
+      padding-bottom: 100px;
+    }
+
+    .tab-link {
+      width: 100px;
+      height: 100px;
+    }
+    .tab-browse { background: url('/assets/nav/tabbar-browse@2x.png') no-repeat center; }
+    .tab-post { background: url('/assets/nav/tabbar-post@2x.png') no-repeat center; }
+    .tab-friends { background: url('/assets/nav/tabbar-friends@2x.png') no-repeat center; }
+    .tab-likes { background: url('/assets/nav/tabbar-likes@2x.png') no-repeat center; }
+    .tab-trading { background: url('/assets/nav/tabbar-trading@2x.png') no-repeat center; }
+
+    @media only screen and (max-width: 600px)  {
+      .tab-link {
+        width: 50px;
+        height: 50px;
+      }
+      .tab-browse { background: url('/assets/nav/tabbar-browse.png') no-repeat center; }
+      .tab-post { background: url('/assets/nav/tabbar-post.png') no-repeat center; }
+      .tab-friends { background: url('/assets/nav/tabbar-friends.png') no-repeat center; }
+      .tab-likes { background: url('/assets/nav/tabbar-likes.png') no-repeat center; }
+      .tab-trading { background: url('/assets/nav/tabbar-trading.png') no-repeat center; }
+    }
+
+
+%nav(class="navbar navbar-default navbar-fixed-bottom" style='background-color:white; z-index:6000;')
+  %div(class='container content-width')
+    %table(style='width: 100%')
+      %tbody
+        %tr
+          %td.text-center
+            %a(class='tab-link' href="#{newest_items_path}" title="Browse Items")
+              %img(src="/assets/nav/tabbar-browse@2x.png" alt="Browse Items")
+          %td.text-center
+            %a(class='tab-link' href="#{new_item_path}" title="Post Item")
+              %img(src="/assets/nav/tabbar-post@2x.png" alt="Post Item")
+          %td.text-center
+            %a(class='tab-link' href="#{friends_items_path}" title="Friends")
+              %img(src="/assets/nav/tabbar-friends#{params[:action].to_s=='friends' ? '-selected' : ''}@2x.png" alt="Friends")
+          %td.text-center
+            %a(class='tab-link' href="#{likes_items_path}" title="Your Likes")
+              %img(src="/assets/nav/tabbar-likes#{params[:action].to_s=='likes' ? '-heart-red' : ''}@2x.png" alt="Your Likes")
+          %td.text-center
+            %a(class='tab-link' href="#{trades_path}" title="Your Trades")
+              %img(src="/assets/nav/tabbar-trading#{params[:controller].to_s=='trading/trades' ? '-selected' : ''}@2x.png" alt="Your Trades")

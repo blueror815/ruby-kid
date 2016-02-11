@@ -1,0 +1,52 @@
+- content_for(:head_extra) do
+  :javascript
+    $( function() {
+      $("#all_item_ids").change( 
+        function(){ 
+          if(this.checked) { $(".item_id_checkbox").each( function(){ this.checked=true;} ); 
+          } else { $(".item_id_checkbox").each( function(){ this.checked=false;} ); 
+          }
+        } )
+    } );
+
+%div(class='center-block text-center' style="padding: 0 5%")
+  %h2 Inventory Manager
+
+  %ul(class='nav nav-tabs')
+    %li(class="#{params[:tab].to_s =~ /all/i ? 'active' : ''}")
+      = link_to('All', inventory_manager_index_path(tab: 'all') )
+    %li(class="#{params[:tab].to_s =~ /^active/i ? 'active' : ''}")
+      = link_to('Active', inventory_manager_index_path(tab: 'active') )
+    %li(class="#{params[:tab].to_s =~ /^inactive/i ? 'active' : ''}")
+      = link_to('Inactive', inventory_manager_index_path(tab: 'inactive') )
+
+  .row
+    &nbsp;
+  %table(class='table table-striped')
+    %thead
+      %tr
+        %th
+          %input(type='checkbox' id='all_item_ids' title='Select All/None')
+        %th Title
+        %th Price
+        %th Activation Date
+        %th Actions
+    %tbody
+      - @items.each do|item|
+        %tr(id="item_row_of_#{item.id}")
+          %td
+            = check_box_tag("item_ids[]", item.id, params[:item_ids].to_a.include?(params[:id]), class: 'item_id_checkbox' )
+          %td
+            = link_to(item.title, edit_item_path(item) )
+          %td(class='text-danger text-right') #{price_display(item.price) }
+          %td
+            - if item.active? && item.activated_at
+              %span.text-muted #{item.activated_at.to_formatted_s(:short_date)}
+          %td
+            - if item.editable_by_user?(auth_user)
+              = link_to(edit_item_path(item), class: 'btn btn-primary', role: 'button', title: 'Edit' ) do
+                %span(class='glyphicon glyphicon-pencil')
+              = item_activation_link(item, remote: true)
+
+
+  = pagination_links @items

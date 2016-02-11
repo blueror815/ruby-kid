@@ -1,0 +1,2 @@
+$("#header_cart_link").html("<a href='#{carts_path}'>Cart #{@cart.item_count.to_i > 0 ? "<span class='badge'>#{@cart.item_count}</span>".html_safe : ''}</a>");
+$("#add_to_cart_#{@item.id}").html("Added to Cart").attr("disabled", true);

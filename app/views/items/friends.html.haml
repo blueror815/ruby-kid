@@ -1,0 +1,14 @@
+%div(class='container')
+
+  .row
+    %p.clearfix
+
+  %table(class='content-table-width')
+    %tbody
+      - @friends.each do|friend|
+        %tr
+          %td.gray-border-color(style="border-left:0; border-right:0; border-top:0;")
+            = render(partial: 'users/seller_info', locals:{ user: friend, show_trade_icon:true } )
+
+  - if auth_user && auth_user.is_a?(Child)
+    = render(partial: 'home/bottom_tabbar')

@@ -1,0 +1,28 @@
+-# Follows layouts/notification_mail.html.haml
+-# Expected instance variables:
+-#   @friend_request <Users::FriendRequest>
+-#   @child <User>
+-#   @parent <User>
+-#   @host_uri
+-
+:ruby
+  @host_uri ||= Rails.env.development? ? "http://localhost" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+  @yield_top_banner_row = true
+
+  @main_paragraphs = [ "#{@child.first_name.titleize} found a friend!  Approval is required before #{@child.pronoun_form} can follow this child." ]
+  @sub_paragraphs = ["Any user outside your child’s school or more than a grade above or below your child’s own grade is considered outside the circle." ]
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding: 0;")
+      %div.text-center(style="padding:25px 5% 0 5%;")
+        %img(src="#{@host_uri}/assets/messages/more-friends-more-fun-desktop.png" title="More Friends More Fun" style="max-width:100%;")
+
+
+- content_for(:goto_section) do
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{@host_uri}#{friend_request_path(@friend_request)}") Log In
+  %p &nbsp;
+
+
+= render partial: 'user_mailer/basic_css_table_layout'

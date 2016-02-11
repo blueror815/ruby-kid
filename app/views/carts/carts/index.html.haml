@@ -1,0 +1,20 @@
+- @page_title = 'Shopping Cart'
+
+%h3 Shopping Cart
+
+%div(id="all_carts")
+  - if @cart.blank? || @cart.item_count.to_i.zero?
+    %p
+      No Items in Your Cart.
+  - else
+    - @cart.for_each_seller do|seller, cart_items|
+      %div(id="cart_for_#{seller.id}")
+        = render partial: 'cart_items', locals: { seller: seller, cart_items: cart_items }
+        
+        
+:javascript
+  jQuery(function() {
+    $('.cart_item_quantity').change( function(event) {
+        $.ajax({type: "PUT", url: "/carts/" + $(event.target).attr("data-id") + "?quantity=" + event.target.options[event.target.selectedIndex].value });
+      } );
+  } );

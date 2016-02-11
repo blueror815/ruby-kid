@@ -1,0 +1,52 @@
+%html(lang="en")
+  %head
+    %title
+      = (@page_title.present? ? @page_title + ' - ' : '') + 'KidsTrade - An App For Kids To Trade With Friends'
+    = render partial: 'layouts/site_meta'
+
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+
+    = yield :head_extra
+
+  %body
+    - # = render partial: '/layouts/nav_menu'
+    - if !params[:hide_navbar]
+      %header.header
+        .default-menu
+
+          %table(class='center-block notification-content')
+            %tbody
+              %tr
+                %td(style='width:5%;') &nbsp;
+                - if false && user_signed_in?
+                  %td(style='white-space: nowrap' class='nav-circle-padding')
+                    - link_title = (@notifications_count.to_i > 0 ? pluralize(@notifications_count, 'New Message') + ' in ' : '') + 'Message Board'
+                    %button(id='nav-message-circle' class="btn text-subject#{@notifications_count.to_i==0 ? ' nav-message-circle-inactive' : ''}" onclick="window.location.href='#{notifications_path}';" title="#{link_title}") #{@notifications_count.to_i > 0 ? @notifications_count : '&nbsp;&nbsp;'.html_safe}
+                %td.text-center(style="width: 90%;")
+                  - if @menu_title.present?
+                    %span(class='text-center text-big-title dark-title-color nav-center-title') #{@menu_title}
+                  - else
+                    %a(href='/')
+                      %img.nav-center-logo(src="/assets/logos/nav-bar-logo.png" alt='#{domain_name}' title='#{domain_name}')
+
+                %td.text-right(style='white-space: nowrap')
+                  - if user_signed_in?
+                    %a.moderate-dark-title-color(href="#{users_logout_path}") LOG OUT
+                    -####%a(id='nav-more-icon' href='#{users_dashboard_path}') #{auth_user_more_icon}
+                  - elsif request.path != new_user_session_path
+                    %a.moderate-dark-title-color(href="#{new_user_session_path}") LOGIN
+                  - else
+                    &nbsp;
+
+                %td(style="width: 5%;") &nbsp;
+
+    .body-container
+      = yield :body_top
+
+      = yield
+
+    - if !params[:hide_navbar] && !params[:hide_footer]
+      = render partial: 'layouts/footer'
+
+    = yield :footer_extra

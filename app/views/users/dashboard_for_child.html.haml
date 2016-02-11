@@ -1,0 +1,45 @@
+.section-gap &nbsp;
+
+= render partial: 'items/tile_item_list'
+.row
+  %div(class='col-xs-5 text-right')
+    .user-avatar-wrapper
+      .user-avatar-circle
+        %a(href="#{users_edit_child_path(id: @user.id)}")
+          %img.user-avatar-icon(src="#{@user.profile_image_url(:thumb)}" alt="#{@user.display_name}" title="#{@user.display_name}")
+      %div(class='text-subject light-blue-color')
+        %a(href="#{users_edit_child_path(id: @user.id)}") Change Picture
+
+  .col-xs-1
+  %div(class='col-xs-6' style='vertical-align: middle;')
+    - if auth_user.is_a?(Parent)
+      %p.text-big-title
+        %a(href="#{users_edit_child_path(id: @user.id)}") Account Info
+      %p.text-big-title
+        %a() End Item
+      %p.text-big-title
+        %a() My Likes
+    - else
+      %p.text-big-title
+        = link_to('Log Out', destroy_user_session_path)
+      %p.text-big-title
+        My Info
+      %p.text-big-title
+        Tips
+
+- if @items
+  .full-separator
+  .section-gap &nbsp;
+
+  %div(id='seller_info_box' class='row content-width center-block')
+    = render(partial: 'users/seller_info', locals:{ user: @user, show_trade_icon: true, hide_user_avatar: true } )
+
+  .section-gap &nbsp;
+
+  %div(id='items_container' class='row content-width center-block')
+    = render(partial: 'items/item_thumbnail_grid', locals:{ items: @items, favorite_counts_map: @favorite_counts, hide_user_label: true, hide_school_teacher_label: true } )
+
+  .clearfix
+
+- if auth_user.is_a?(Child) && auth_user.id == @user.id
+  = render(partial: 'home/bottom_tabbar' )

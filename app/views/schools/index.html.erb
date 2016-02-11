@@ -1,0 +1,67 @@
+<style type="text/css">
+  .striped-table td {
+    padding: 10px; 
+  }
+  .striped-table tr:nth-child(even) {
+    background-color: #eeeeee;
+    
+  }
+</style>
+
+
+<div class="row">
+
+  <div class="col-sm-2">
+  </div>
+
+  <div class="col-sm-8">
+
+    <h1>Found Schools</h1>
+
+    <table class="striped-table">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Latitude, Longitude</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @schools.each do |school| %>
+        <tr>
+          <td><%= school.name %></td>
+          <td><%= school.address %></td>
+          <td><%= school.city %></td>
+          <td><span title="<%= school.state_name %>"><%= school.state %></span></td>
+          <td><%= school.zip %></td>
+          <td><%= link_to "#{school.latitude}, #{school.longitude}", schools_path(lat: school.latitude, lon: school.longitude) %></td>
+          <td><%= link_to 'Show', school_path(school) %></td>
+          <td><%= link_to 'Edit', edit_school_path(school) %></td>
+          <td><%= link_to 'Destroy', school_path(school), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <br />
+
+    <%= pagination_links(@schools) %>
+
+    <br />
+
+    <%= link_to 'New School', new_school_path, class: 'btn btn-default' %>
+
+    <div class="clearfix">
+      <br />
+    </div>
+
+    <%= render :partial => 'schools_gmap', locals:{ markers_hash: @schools_gmap_hash } %>
+
+  </div>
+  <div class="col-sm-2">
+
+  </div>
+</div>

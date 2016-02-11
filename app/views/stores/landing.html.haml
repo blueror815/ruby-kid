@@ -1,0 +1,295 @@
+- items = @items || @items_search.results
+
+- content_for(:head_extra) do
+  = stylesheet_link_tag 'item-ui'
+  = javascript_include_tag "application"
+
+  :css
+
+    #top-intro {
+      margin-top:-54px;
+    }
+    #top-intro p {
+      font-size: 1.4em;
+    }
+    #tiles li { margin:8px 12px !important; float: left; border: solid 2px #c0c0c0; }
+    /* Simpler form of avatar than thumbnail-user-icon */
+    .item-avatar-icon {
+      margin: 0;
+      z-index: 5;
+      background-color: rgb(252, 252, 252);
+      border: solid 0.5px #cccccc;
+      opacity: 0.8;
+      border-radius: 50%;
+      position: relative;
+      float: right;
+      bottom: 64px;
+      max-width: 64px;
+      max-height:64px;
+      overflow:hidden;
+    }
+    .item-avatar-icon:hover {
+      opacity: 1.0;
+    }
+    .item-avatar-icon img {
+      max-width: 62px;
+    }
+    a.app-store { position: relative; top:270px; right:0; z-index:99;}
+    a.app-store img { width: 240px; }
+
+      /* Smallest */
+    @media only screen and ( max-width: 400px )
+    {
+      .item-avatar-icon {
+        max-width: 40px;
+      }
+      .item-avatar-icon img {
+        max-width: 40px;
+      }
+
+      #banner-destop h1 {
+        margin: 80px 0 0;
+      }
+      #top-intro p {
+        font-size: 1.0em;
+        line-height: 10px;
+      }
+      a.app-store { top:10px; }
+      a.app-store img { width: 120px; }
+    }
+    /* Small */
+    @media only screen and ( min-width: 400px) and ( max-width: 639px )
+    {
+      .item-avatar-icon {
+        max-width: 50px;
+        max-height: 50px;
+      }
+      .item-avatar-icon img {
+        max-width: 50px;
+      }
+      #banner-destop h1 {
+        font-size: 20pt;
+        line-height: 40px;
+      }
+      #top-intro p {
+        font-size: 1.4em;
+      }
+      a.app-store { top:90px; }
+      a.app-store img { width: 120px; }
+    }
+      /* Medium */
+    @media only screen and ( min-width: 640px) and (max-width: 799px )
+    {
+      #banner-destop h1 {
+        font-size: 24pt;
+        line-height: 50px;
+      }
+      #top-intro {
+        margin-top:-54px;
+      }
+      #top-intro p {
+        font-size: 20pt;
+      }
+      a.app-store { top:220px; }
+      a.app-store img { width: 160px; }
+    }
+    /* Big */
+    @media only screen and ( min-width: 800px )
+    {
+      #banner-destop h1 {
+        font-size: 30pt;
+        line-height: 50px;
+      }
+      #top-intro p {
+        font-size: 28pt;
+        line-height: 35px;
+      }
+    }
+
+- content_for(:footer_extra) do
+
+  = javascript_include_tag 'items'
+
+  :javascript
+    $( function(){
+      if ( $(window).width() < 900 ) {
+        $("#item_li_no_1").insertAfter("#item_li_no_2");
+        $("#item_li_no_6").insertAfter("#item_li_no_8");
+      }
+      $(window).load( setTilesWithWookmark );
+      $(window).resize( setTilesWithWookmark );
+    });
+
+
+  = render partial: 'layouts/google_analysis'
+
+
+.landing-page-section
+  .landing-top-section
+    .wraper
+      %p
+        Here's what
+        %span #{@user.user_name.titleize}
+        and other kids are trading in
+        %span #{(@user.primary_user_location || @user.parent.primary_user_location).city_state}
+
+  .section-gap
+  .row.content-width.center-block
+    .wraper#items_container
+      %ul#tiles
+        - items.each_with_index do|item, index|
+          - next if item.nil?
+          %li.text-center(id="item_li_no_#{index}" style="border:0;")
+            %div(style="overflow:visible; height:auto; max-width:100%;")
+              = image_tag( default_thumbnail(item), class: 'thumbnail-image', style:"max-width:100%; height:auto; object-fit:cover", title: item.title, alt: item.title )
+              - user = item.user
+              .item-avatar-icon(id="avatar_icon_#{item.id}" style="position:absolute; bottom:2px; right:2px; ")
+                %img.user-avatar-icon(src="#{profile_image_thumbnail(user)}" alt="#{user.display_name}" title="#{user.display_name}")
+            .clearfix
+      .clearfix
+.clearfix
+.section-gap
+%section.pageContent
+  #landing1.made-app
+    .container
+      .row
+        .col-md-6.col-sm-6.col-xs-12
+          .landing-btn-section
+            %a{:href => "http://itunes.apple.com/app/id1042828368"}
+              %img{:alt => "", :src => "/assets/landing-25/banner-app-img.png"}/
+            %a(href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop")
+              %img(src="/assets/landing-25/google-play-live.png" alt="Google Play App")/
+          .landing-btn-section-mobile
+            %a{:href => "http://itunes.apple.com/app/id1042828368"}
+              %img{:alt => "", :src => "/assets/landing-25/mobile-app-store.png"}/
+            %a(href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop")
+              %img(src="/assets/landing-25/google-play-live.png" alt="Google Play App")/
+          %p
+            #{t('child.landing.made_app_title', child_name: @user.user_name.titleize).html_safe}
+        .col-md-6.col-sm-6.col-xs-12.mobile
+          .vedio-section
+            = how_it_works_video_iframe_for_kid
+  / row
+  / container
+  / made-app
+  .itwork
+    .container
+      .row
+        .col-md-6.col-md-offset-6.col-sm-6.col-sm-offset-6.col-xs-12.col-xs-offset-0
+          %p
+            %span #{t("child.landing.itwork_title_#{@user.kid_gender.downcase}_1")}
+            #{t("child.landing.itwork_subtitle_#{@user.kid_gender.downcase}_1")}
+            %span #{t("child.landing.itwork_title_#{@user.kid_gender.downcase}_2")}
+  / row
+  / container
+  / itwork
+  .kids-post
+    .container
+      .row
+        .col-md-6.col-sm-6.col-xs-12
+          .right
+            .textarea
+              %h2 #{t('child.landing.kids_post_title_1')}
+              %p
+                %span #{t('child.landing.kids_post_subtitle_1')}
+                %span #{t('child.landing.kids_post_subtitle_2')}
+                %span #{t('child.landing.kids_post_subtitle_3')}
+                %span #{t('child.landing.kids_post_subtitle_4')}
+        .col-md-6.col-sm-6.col-xs-12.kids-mobile
+          .img
+            %img{:alt => "", :src => "/assets/landing-25/#{@user.kid_gender}-Phone-Mobile-LP.png"}/
+  / row
+  / container
+  / kids-post
+  .kids-post-mobile
+    %h2 #{t('child.landing.kids_post_title_1')}
+    .img
+      %img{:alt => "Kid's Phone Mobile", :src => "/assets/landing-25/#{@user.kid_gender}-Double-Phone-Desktop.png"}/
+    .textarea
+      %p
+        %span #{t('child.landing.kids_post_subtitle_1')}
+        %span #{t('child.landing.kids_post_subtitle_2')}
+        %span #{t('child.landing.kids_post_subtitle_3')}
+        %span #{t('child.landing.kids_post_subtitle_4')}
+  / kids-post
+  .parents-approve
+    .container
+      .row
+        .col-md-6.col-sm-6.col-xs-12
+          .img
+            %img{:alt => "", :src => "/assets/landing-25/#{@user.kid_gender}-Phone-Mobile.png"}/
+        .col-md-6.col-sm-6.col-xs-12
+          .textarea
+            %h3
+              %span #{t('child.landing.parent_approve_title_1')}
+              %span #{t('child.landing.parent_approve_title_2')}
+            %p
+              %span #{t('child.landing.parent_approve_subtitle_1')}
+              %span #{t('child.landing.parent_approve_subtitle_2')}
+  / row
+  / container
+  / parents-approve
+  .parents-approve-mobile
+    .container
+      .row
+        .col-md-6.col-sm-6.col-xs-12
+          .textarea
+            %h3
+              %span #{t('child.landing.parent_approve_title_1')}
+              %span #{t('child.landing.parent_approve_title_2')}
+            %p
+              %span #{t('child.landing.parent_approve_subtitle_1')}
+              %span #{t('child.landing.parent_approve_subtitle_2')}
+        .col-md-6.col-sm-6.col-xs-12
+          .img
+            %img{:alt => "", :src => "/assets/landing-25/#{@user.kid_gender}-Phone-Mobile.png"}/
+  / row
+  / container
+  / parents-approve-mobile
+  .itsafe
+    .container
+      .row
+        .col-md-5.col-sm-5.col-xs-12.destop
+          .itsafe-content
+            %h3 #{t('child.landing.itsafe_title_1')}
+            %p
+              #{t('child.landing.itsafe_subtitle_1')}
+              %span #{t('child.landing.itsafe_subtitle_2')}
+        .col-md-7.col-sm-7.col-xs-12
+          .img
+            %img{:alt => "", :src => "/assets/landing-25/#{@user.kid_gender}-Double-Phone-Desktop.png"}/
+        .col-md-12.col-sm-12.col-xs-12
+          .bottom
+            %h4
+              %span #{t('child.landing.itsafe_subtitle_3')}
+              %span #{t('child.landing.itsafe_subtitle_4')}
+            %p
+  / row
+  / container
+  / itsafe
+
+  .earn-buck.mobile
+    .container
+      .row
+        .col-md-12.col-sm-12.col-xs-12.buck
+          .textarea
+            %h5 #{t('child.landing.earn_buck_title_1')}
+            %p
+              #{t('child.landing.earn_buck_subtitle_1')}
+              %span #{t('child.landing.earn_buck_subtitle_2')}
+        .col-md-6.col-md-offset-6.col-sm-6.col-sm-offset-6.col-xs-12
+          .img-right
+            %a{:href => "https://itunes.apple.com/app/id1042828368"}
+              %img{:alt => "", :src => "/assets/landing-25/banner-app-img.png"}/
+            %a(href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop")
+              %img(src="/assets/landing-25/google-play-live.png" alt="Google Play App")/
+          .img-right-mobile
+            %a{:href => "https://itunes.apple.com/app/id1042828368"}
+              %img{:alt => "", :src => "/assets/landing-25/mobile-app-store.png"}/
+            %a(href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop")
+              %img(src="/assets/landing-25/google-play-live.png" alt="Google Play App")/
+  / row
+  / container
+  / earn-buck
+
+.section-gap

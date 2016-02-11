@@ -1,0 +1,328 @@
+/** Scale down icons for small 320px screen.  Same list of classes as application.scss, but
+ * override with necessary smaller-sizes.
+*/
+@media only screen and ( max-width: $small-screen-max-width )
+{
+
+  $superbig-size: 1.6em;
+  $container-hmargin: 10px;
+
+  .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+
+/* Form */
+
+  .btn-light {
+    border: solid 1px $light-blue-color;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 10px 16px;
+  }
+  .large-form-button {
+    font-size: 14pt !important;
+    font-weight: medium !important;
+    padding: 8px 8px !important;
+  }
+
+/* Text */
+
+  .text-user-name {
+    font-weight: bold;
+    font-size: 1em;
+    padding-top: 0;
+  }
+
+  .text-superbig-title {
+    font-size: 1.6em;
+    font-weight: normal;
+    line-height: 1.1em;
+  }
+
+  .text-big-title {
+    font-size: 1.3em !important;
+    font-weight: normal;
+  }
+  .text-moderate-big-title {
+    font-size: 1.1em !important;
+    font-weight: normal;
+  }
+  .text-medium-title {
+    font-size: 1.0em !important;
+    font-weight: normal;
+  }
+  .text-moderate-small-title {
+    font-size: 0.7em !important;
+    font-weight: normal;
+  }
+  .text-small-title {
+    font-size: 0.6em !important;
+    font-weight: normal;
+  }
+
+  .text-subject {
+    font-size: 0.9em !important;
+  }
+  .text-tip {
+    font-size: 0.8em !important;
+  }
+  .text-timestamp {
+    font-size: 0.7em !important;
+  }
+
+/* Coloring */
+  .subtle-drop-shadow-small-screen {
+    box-shadow: 1px 1px 1px $gray-border-color;
+    -webkit-box-shadow: 1px 1px 1px $gray-border-color;
+    -moz-box-shadow: 1px 1px 1px $gray-border-color;
+  }
+
+/* Header */
+
+  #header-panel {
+    background: no-repeat scroll 0 0 transparent;
+    background-color: #cfc;
+    width: 100%;
+    height: 100px;
+    padding: 20px 20px 0 20px;
+    font-size: 30pt;
+    font-family: 'Lucida Grande', sans-serif;
+  }
+
+  #header-logo {
+    float: left;
+  }
+
+  #user-nav {
+    float: right;
+    font-size: 10pt;
+    margin-right: 50px;
+  }
+
+  #message-panel {
+    margin-bottom: 10px;
+    clear: both;
+    text-align: center;
+  }
+
+  .panel-no-top-border {
+    border: solid 1px #cccccc;
+    border-top: 0;
+    padding: 25px;
+  }
+
+  .content-width {
+    max-width: $content-width;
+  }
+
+  .content-table-width {
+    max-width: $content-width;
+    width: 100%;
+    margin: auto;
+  }
+
+  .sides-spaced {
+    margin-left: $container-hmargin;
+    margin-right: $container-hmargin;
+  }
+
+/* Menu */
+
+  #menu {
+    background-color: #ffffff;
+    line-height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 74px;
+    padding-top: 10px;
+    background-color: #ffffff;
+    z-index: 100;
+  }
+
+  #menu a, #menu p {
+    font-family: "Lucida Grande", sans-serif;
+    font-weight: bold;
+    color: #333;
+  }
+
+/* Nav bar */
+
+  #nav-left-arrow {
+    padding: 2px 0;
+    margin-left: 3%;
+    line-height: 2.0em;
+  }
+
+  #nav-message-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8em;
+    background: no-repeat center url("/assets/icons/activity-red.png");
+  }
+  .nav-message-circle-inactive {
+    background: no-repeat center url("/assets/icons/activity-gray.png") !important;
+  }
+
+  #nav-search-icon {
+    padding: 2px 0;
+    margin-right: 2%;
+    //background: url('/assets/nav/search-magnifier@2x.png') center no-repeat;
+  }
+
+  #nav-more-icon {
+    padding: 2px 0;
+    margin-right: 4px;
+    //background: url('/assets/nav/more@2x.png') center no-repeat;
+  }
+  #nav-more-icon img {
+    max-width: 28px;;
+  }
+
+
+/* User components */
+
+  .trade-count-icon {
+    height: 50px;
+    font-weight: bold;
+  }
+
+/** Avatar logo */
+  .user-avatar-icon {
+    max-width: 60px;
+    width: 100%;
+    height: auto;
+  }
+
+/** Entire container wrapping both avatar icon within circle and user name at bottom. */
+  .user-avatar-wrapper {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin: 5px 5px;
+    width: 58px;
+  }
+
+  .user-avatar-wrapper-responsive {
+
+  }
+
+  .user-avatar-circle {
+    background-color: #ffffff;
+    width: 52px;
+    height: 52px;
+  }
+  .add-user-avatar-icon {
+    max-width: 40px;
+  }
+
+  .user-avatar-circle-small {
+    border-radius: 50%;
+    border: solid 1px $gray-border-color;
+    background-color: #ffffff;
+    position: relative;
+    opacity: 0.8;
+    margin-top: 6px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .user-avatar-circle-small:hover {
+    opacity: 1.0;
+  }
+
+  .user-avatar-circle-small img {
+    border-radius: 50%;
+    border: solid 1px $gray-border-color;
+    width: 36px;
+    height: 36px;
+    @extend .subtle-drop-shadow-small-screen
+  }
+
+  .user-avatar-circle-responsive {
+    @extend .user-avatar-circle-small;
+  }
+
+  .gender-icon {
+    width: 20px;
+    height: 30px;
+  }
+  .gender-icon img {
+    max-width: 20px;
+  }
+  .boy-icon {
+    background: url('/assets/icons/boy-figure.png') center no-repeat;
+  }
+  .girl-icon {
+    background: url('/assets/icons/girl-figure.png') center no-repeat;
+  }
+
+/* Default Style */
+
+
+  .default-menu {
+    padding: 2px;
+  }
+  .default-menu-icon {
+    max-width: 25px;
+    height: 25px;
+  }
+  img.nav-center-logo {
+    width: auto;
+    height: 36px;
+  }
+  .nav-center-title {
+    font-size: 1.2em !important;
+    font-weight: normal;
+  }
+
+/* CSS3 position: fixed */
+  .fixed-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 0 40px #222;
+    -webkit-box-shadow: 0 0 40px #222;
+    -moz-box-shadow: 0 0 40px #222;
+  }
+
+/* Items */
+
+  .price-field {
+    background-color: #fff;
+    border: 1px solid #ff3333;
+    border-radius: 4px;
+    color: #ff3333;
+    font-size: 1.2em;
+    font-weight: normal;
+    height: 32px;
+    line-height: 24pt;
+    text-align: center;
+    width: 80px;
+  }
+
+  .price {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 1.3em;
+    color: $dark-gray-color;
+  }
+
+  .price-medium {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 0.9em;
+    color: $dark-gray-color;
+  }
+
+/* Global settings */
+
+  .section-gap {
+    height: 1.0em !important;
+  }
+  .full-separator {
+    border-bottom: solid 1px $gray-border-color;
+  }
+}

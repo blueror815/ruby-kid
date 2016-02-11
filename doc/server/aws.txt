@@ -1,0 +1,69 @@
+Amazon Web Service (AWS)
+
+##################################
+Root User
+jwolffert@yahoo.com | farah217
+
+##################################
+IAM User
+
+Account #: Brian_Gan @ 935749823171
+u9S^E^oKdtx5
+
+##################################
+ec2 Instant Types
+
+http://aws.amazon.com/ec2/instance-types/
+
+##################################
+Verify a New Domain
+
+Must create the following records in the DNS settings for the domain, with the following values:
+
+_amazonses.www.cubbyshop.com
+
+ZWhFzuFdfkdxIKMgPsOVGnYdTt2yoctjxBXOavA+6KI=
+
+##################################
+Access Credentials given by Jennifer Wolffert
+
+Access Key
+AK1AJWCKJMYK3KB3SZNA
+
+Secret Access Key
+QaVi5B1HfDW8+
+
+###################################
+SMTP Credentials
+
+Given on 2014-12-15 12:30 ------------------------
+ses-smtp-user.20141215-122745
+AKIAJNCU36R3TA5FQ6EQ
+AuudL8Nv8Vs4PeEGcx3TZdlAAyuTsz7RW5DKPu6BaW1H
+
+Server Name: email-smtp.us-east-1.amazonaws.com
+Port: 	25, 465 or 587
+Use Transport Layer Security (TLS): 	Yes
+
+###################################
+S3 Bucket Config
+
+export AWS_SES_ACCESS_KEY_ID=AKIAJYLC2KNUAAHH35GQ
+export AWS_SES_SECRET_ACCESS_KEY=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
+export AWS_S3_BUCKET=cubbyshop-uploads
+
+-------------------------------------
+
+<CORSConfiguration>
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <MaxAgeSeconds>3000</MaxAgeSeconds>
+        <AllowedHeader>Authorization</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+
+
+###################################
+GoDaddy
+26552647 | 217Scarface

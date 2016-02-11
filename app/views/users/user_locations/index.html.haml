@@ -1,0 +1,45 @@
+- content_for(:head_extra) do
+
+  :javascript
+    $(function() {
+      var zipCodes = #{::Geocode::ZipCode::ZIP_CODE_LIST};
+      $('#users_user_location_zip').autocomplete( {
+          source: zipCodes
+        } 
+      );
+      
+      
+      $('#users_user_location_zip').blur(function (event) {
+          var cityField = event.target.form["users_user_location[city]"];
+          var stateField = event.target.form["users_user_location[state]"];
+          if(cityField.value == "" || stateField.value == "") {
+            //////$.ajax("/zip_codes?zip=" + event.target.value + "&city_id=" + cityField.id + "&state_id=" + stateField.id
+          }
+        }
+      );
+    } );
+
+
+.container
+  %h3
+    = params[:action] == 'new' ? 'Enter New Address' : 'Your Addresses'
+  %br
+  - params[:tab] = 'address'
+
+  - content_for(:other_tab_content) do
+    %div(class="tab-pane panel-no-top-border #{profile_tab_css_class('address')}" id='address_tab')
+      - if @user_locations.blank? || params[:action] == 'new'
+        = render partial: 'form', locals: { user_location: ::Users::UserLocation.new }
+
+      - else
+        %table(class="table table-hover")
+          %tbody
+            - @user_locations.each do|user_location|
+              %tr
+                %td
+                  %br
+                  = render partial: 'form', locals: { user_location: user_location }
+
+
+  = render partial: '/users/edit_profile_for_parent'
+

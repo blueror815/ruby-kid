@@ -1,0 +1,17 @@
+-###############
+-# Required locals:
+-#   items <Array of Item>
+-# Optional locals:
+-#   hide_user_label <Boolean> default false.
+-
+
+%div(id='thumbnail-columns')
+  - items.each_with_index do|item, index|
+    %figure
+      = link_to(item_title_path(item, title:item.title_path) ) do
+        = image_tag( default_thumbnail(item), title: item.title, alt: item.title)
+      %figcaption
+        %span.pricespan #{price_display(item.price) }
+        - if item.user.current_school_id && item.current_school
+          %small #{item.current_school.name}
+        .clearfix

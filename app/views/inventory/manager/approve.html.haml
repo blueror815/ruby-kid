@@ -1,0 +1,99 @@
+- content_for(:footer_extra) do
+  :javascript
+    $(function() {
+      if ($(window).width() <= 640 ) {
+        $(".Approve-Items")[0].value = "Approve";
+      }
+      $("#all_item_ids").change(
+        function(){
+          if(this.checked) { $(".item_id_checkbox").each( function(){ this.checked=true;} );
+          } else { $(".item_id_checkbox").each( function(){ this.checked=false;} );
+          }
+        } );
+    });
+
+%section.inner-pages
+  .paitem
+    .container
+      .row
+        .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+          %h1
+            Please review the items your
+            %span child wants to post:
+          .user-info-row
+            .img
+              %img.user-avatar-icon(src="#{@owner.profile_image_url(:thumb)}" alt="#{@owner.display_name}" title="#{@owner.display_name}")
+            .textarea
+              %h3
+                #{user_name_label(@owner)}
+                %span.size - #{@owner.first_name}
+              %h3
+                Wants to post
+                %span.red #{@items.size}
+                #{@items.size > 1 ? 'items' : 'item'}
+
+              %p Approve, decline or tap on the photo to edit item info.
+    = form_tag(inventory_activate_item_url, method: 'put' ) do
+      = hidden_field_tag('tab', params[:tab] )
+      = hidden_field_tag('user_id', params[:user_id] )
+      - @items.each_with_index do|item, index|
+        = hidden_field_tag('item_ids[]', item.id, id: "item_id_#{item.id}")
+        = hidden_field_tag('decline_item_ids[]', '', id: "decline_item_id_#{item.id}")
+        .items
+          .container
+            .row
+              .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+                %h3
+                  Item
+                  %span.red #{index + 1}
+                .Category
+                  %h3
+                    Category:
+                    %span.color #{item.category.try(:name).try(:titleize)}
+                  .price
+                    %label.label $
+                    = text_field_tag("item_#{item.id}[price]", ("%.2f" % [item.price] ), class: 'input price-field')
+                  .clearfix
+                  %p #{item.description.strip.truncate(500).html_safe}
+              .col-md-11.col-md-offset-1.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+                .Category-slider
+                  .white_content(id="light#{index+1}")
+                    %a.cross{:href => "javascript:void(0)", :onclick => "document.getElementById('light#{index+1}').style.visibility='hidden';$('.fade').css('visibility','hidden'); $('#item_id_#{item.id}').val(#{item.id}); $('#decline_item_id_#{item.id}').val(''); "}
+                      %img{:alt => "", :src => "/assets/icons/bg-cross.png"}/
+                    .align
+                      %h6 DENIED
+                  .carousel.slide{"id" => "carousel#{index + 1}", "data-ride" => "carouse#{index}"}
+                    .carousel-inner
+                      - item.item_photos.each_with_index do|item_photo, ip_index|
+                        %div(class="item#{ip_index==0 ? ' active': ''}")
+                          %a{:href => review_item_path(item) }
+                            %img{:alt => item.title.to_s.html_safe, :src => item_photo.image_url }/
+                          %a.cross{:href => "javascript:void(0)", :onclick => "document.getElementById('light#{index+1}').style.visibility='visible';$('.fade').css('visibility','visible'); $('#item_id_#{item.id}').val(''); $('#decline_item_id_#{item.id}').val(#{item.id});"}
+                            %img{:alt => "Deny", :src => "/assets/icons/bg-cross.png"}/
+                  - if item.item_photos.size > 0
+                    .clearfix
+                      .carousel.slide{"id" => "thumbcarousel#{index + 1}", "data-interval" => "false"}
+                        .carousel-inner
+                          .item.active
+                            - item.item_photos[1, item.item_photos.size-1].each_with_index do|item_photo, ip_index|
+                              .thumb{"data-slide-to" => ip_index.to_s, "data-target" => "#carousel#{index+1}"}
+                                %img(alt="" src="#{item_photo.image_url(:thumb)}")
+                            / item
+                        / carousel-inner
+                        - if item.item_photos.size > 0 ####### 1
+                          %a.left.carousel-control{"data-slide" => "prev", :href => "#thumbcarousel#{index+1}", :role => "button"}
+                            %span.glyphicon.glyphicon-chevron-left
+                          %a.right.carousel-control{"data-slide" => "next", :href => "#thumbcarousel#{index+1}", :role => "button"}
+                            %span.glyphicon.glyphicon-chevron-right
+                      / /thumbcarousel
+        / /clearfix
+        / /col-sm-6
+      / items ============================
+
+      .container
+        .row
+          .col-md-6.col-md-offset-3.col-sm-12.col-sm-offset-0.col-xs-12.col-xs-offset-0
+            %input.Approve-Items.desktop{:name => "button", :type => "submit", :value => "Approve Items"}/
+        / row
+      / container
+    / form

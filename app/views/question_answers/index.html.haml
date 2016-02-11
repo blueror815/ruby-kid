@@ -1,0 +1,47 @@
+- content_for(:footer_extra) do
+  :javascript
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+
+      $("#qa_list").sortable({
+        update: function(event, ui) {
+          var children = $(this).children();
+          var order = 1;
+          for (var ci = 0; ci < children.length; ci++) {
+            if (children[ci].tagName == "LI")
+            {
+              var id = $(children[ci]).attr("data");
+              $("#mapping_" + id +"_order_index").val(order);
+              order++;
+            }
+          }
+          var saveOrderingClass = $("#save_ordering_button").attr("class");
+          if (saveOrderingClass && saveOrderingClass.indexOf("btn-primary") == -1 ) {
+            $("#save_ordering_button").attr("class", saveOrderingClass + " btn-primary");
+          }
+        }
+      });
+    });
+
+.container
+  .section-gap
+  %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+    %a(href='/admin') ADMIN
+    %span.gray-title-color - Questions &amp; Answers
+  .clearfix
+
+  = form_tag(update_all_question_answers_path, method: :put, remote:true, id:'question_answers_form', name:'question_answers_form') do
+    - if auth_user.is_a?(Admin)
+      %a.btn.btn-success.pull-right(href="#{new_question_answer_path}" title="New Question & Answer") New
+      = submit_tag('Save Ordering', class:'btn pull-right', disable_with:'Saving Ordering ...', id:'save_ordering_button', style:'margin: 0 25px 0 5px;')
+      %span.pull-right.light-blue-color You can drag up/down to re-order and press ->
+      .clearfix
+    .section-gap
+    #qa_box
+      %ul#qa_list.list-group
+        - @question_answers.each_with_index do|qa, index|
+          %li.list-group-item(id="qa_li_#{qa.id}" data="#{qa.id}")
+            %input(type='hidden' name="mapping_#{qa.id}[order_index]" id="mapping_#{qa.id}_order_index" value="#{index}")/
+            #{qa.question}
+            = link_to(' ', question_answer_path(qa), remote:true, method:'delete', confirm:'Are you sure to delete this Q&A?', class:'glyphicon glyphicon-remove pull-right', title:'Delete This Question & Answer' )
+            %a.glyphicon.glyphicon-pencil.pull-right(href="#{edit_question_answer_path(qa)}" title="Edit This Question & Answer") &nbsp;

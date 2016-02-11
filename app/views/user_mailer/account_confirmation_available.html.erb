@@ -1,0 +1,11 @@
+<% content_for :body_content do %>
+<p>Hi!<p>
+<br>
+<p>Please confirm your account by clicking <%= link_to "here", account_confirmation_url %>.</p>
+<br>
+<p>Thanks,</p>
+<br>
+<p>KidsTrade.com</p>
+<% end %>
+
+<%= render partial: 'user_mailer/basic_css_table_layout' %>

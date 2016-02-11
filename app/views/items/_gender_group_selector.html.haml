@@ -1,0 +1,15 @@
+- # Optional Locals
+- #   gender_group <String> current gender group 
+- #   selector_name <String> default is 'gender_group_selector'
+- if !defined?(gender_group); gender_group = 'MF'; end;
+- if !defined?(selector_name); selector_name = 'gender_group_selector'; end;
+- boy_icon = (gender_group =~ /m/i ) ? 'boy-on@2x.png' : 'boy-off@2x.png'
+- girl_icon = (gender_group =~ /f/i ) ? 'girl-on@2x.png' : 'girl-off@2x.png'
+
+%div(class='selector-field gray-border-round-corner' id="#{selector_name}")
+  %a(href='javascript:void(0)')
+    %img(class='vertical-center for-boys-figure' src='/assets/icons/#{boy_icon}' alt='For Boys' title='For Boys')
+  
+  %span(class='text-big-title gray-title-color vertical-center') and/or 
+      
+  %img(class='vertical-center for-girls-figure' src='/assets/icons/#{girl_icon}' alt='For Girls' title='For Girls')

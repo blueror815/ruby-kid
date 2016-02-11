@@ -1,0 +1,6 @@
+<% @items_search.results.each do|item| -%>
+    $("#tiles").append("<li><%= j(render(:partial => 'item_thumbnail', locals:{ item: item, favorite_item_ids: @favorite_item_ids } ) ) %></li>");
+<% end -%>
+<% if @items_search.results.last_page? -%>
+    morePages = false;
+<% end -%>

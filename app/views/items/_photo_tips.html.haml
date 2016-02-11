@@ -1,0 +1,17 @@
+.section-gap
+
+%div(class='text-center text-superbig-title') #{t("selling.photo_tips.header").html_safe}
+
+.section-gap
+.section-gap
+
+.text-center
+  %div.hand-ipad
+    %div(class="hand-ipad-screen center-block")
+      %img(src="#{sample_category_photo(@category)}")
+    %div(class="hand-ipad-tip center-block dark-title-color") #{t("selling.photo_tips.tip")}
+    
+.section-gap
+.sides-spaced
+  = f.file_field 'item_photos[][image]', id: "main-item-photo", value: 'Select Picture', style: 'display:none;'
+  %a(href="javascript:void(0);" id='take-picture-button' role='button' class='btn btn-lg large-form-button light-blue-bg') #{t('selling.photo_tips.take_picture')}

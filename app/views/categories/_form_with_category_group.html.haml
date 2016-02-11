@@ -1,0 +1,111 @@
+- ##
+- # Required locals:
+- #   category <Category>
+- # Expected instance variables:
+- #   @category_group
+- mapping = @category_group.category_group_mappings.where(category_id: category.id).first || ::CategoryGroupMapping.new(category_group_id: @category_group.id, category_id: category.id)
+
+- content_for(:head_extra) do
+  :css
+    .category-table th {
+      text-align: right;
+      vertical-align: top;
+      padding-right: 10px;
+    }
+    .color-textfield { width:130px; font-family:monospace, serif; font-size:1.2em; }
+    .curated-item-wrapper {  width:395px; height:550px; display:inline-block;}
+    .curated-item-pic-box { border:solid 1px #eeeeee; margin: 10px 10px; width:375px; height:500px; text-align:center; vertical-align:middle; }
+    .curated-item-pic-box img { max-width:100%; max-height: 100%; z-index: 10; }
+    .curated-item-pic-box h4 { position: relative; top:-300px; left:20%; z-index: 3; }
+    .curated-item-textfield { width:100px; }
+
+- content_for(:footer_extra) do
+  :javascript
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+      $(".color-textfield").change( function() {
+        $(this).css('background-color', $(this).val() );
+      } );
+      $("input[data-disable-with]").click( function(){ $(this).attr('disabled',true); $(this).val($(this).attr('data-disable-with')); } );
+    });
+
+= form_for(category, html:{ class:'form-inline' } ) do|f|
+  = hidden_field_tag(:category_group_id, params[:category_group_id])
+  .container
+    .row.form-group.clearfix(style="vertical-align:bottom; width:100%; margin:0;")
+      %img.pull-left(src="/assets/logos/kidstrade-title.png" alt="KIDSTrade" style="margin:0 2% 0 0;")
+      %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+        %a(href='/admin') ADMIN
+        = '-'
+        %a(href='/admin/categories') CATEGORY
+        %span.gray-title-color - #{@category.new_record? ? 'CREATE' : 'MODIFY'} CATEGORY
+      %p.pull-right
+
+        = f.submit('SUBMIT', class:'btn btn-large light-blue-bg', 'data-disable-with'=>'Submitting...')
+
+        -#= link_to('DELETE', category_path(category), method:'delete', class:'btn btn-large btn-warning', style:"margin: 0 25px;", confirm:'Are you sure to delete?', disable_with:'Deleting...') if !category.new_record?
+
+  %table.category-table(style="width:96%; margin:10px auto;")
+    %tbody
+      - if @category_group
+        %tr
+          %td(colspan="5" )
+            %h1.light-blue-color #{@category_group.name}
+            %br
+      %tr
+        %th
+          = f.label(:name, 'Title: ', class:'gray-title-color text-medium-title')
+        %td
+          = f.text_field(:name, class: 'form-control', placeholder: 'Title')
+          - hide_name_field = (@category_group.try(:for_female?) ? :female_hides_name : :male_hides_name)
+          = f.check_box(hide_name_field, { 'data-toggle'=>"tooltip", 'data-placement'=>"right", 'title'=>"Click to toggle whether category name should be hidden" } )
+          = f.label(:hide_name_field, 'Hide?', class: 'text-medium-title')
+
+        %th(rowspan="3" style="vertical-align:top;")
+          - bg_field = (@category_group.try(:for_female?) ? :female_camera_background : :male_camera_background)
+          - bg_bg = mapping.try(:camera_background_url, :thumb) || category.try("#{bg_field}_url", :thumb)
+          - bg_bg = "background:url(#{bg_bg}) no-repeat center center;" if bg_bg.present?
+          = f.label(bg_field, 'Camera BG:', class:'gray-title-color text-medium-title')
+        %td(rowspan="3" style="vertical-align:top;")
+          %div(style="border: solid 1px #cccccc; width:160px; height:160px; padding:3px; #{bg_bg}")
+            = f.file_field(bg_field, style:"width:100%; height:100%;")
+
+        %th(rowspan="3" style="vertical-align:top;")
+          %label.gray-title-color.text-medium-title Keywords
+        %td(rowspan="3" style="vertical-align:top;")
+          %textarea(rows="5" cols="30" )
+
+      %tr
+        - icon_field = (@category_group.try(:for_female?) ? :female_icon : :male_icon)
+        - icon_bg = mapping.try(:icon_url, :thumb) || category.try("#{icon_field}_url", :thumb)
+        - icon_bg = "background:url(#{icon_bg}) no-repeat center center;" if icon_bg.present?
+        %th
+          = f.label(icon_field, 'Tile: ', class:'gray-title-color text-medium-title')
+        %td
+          %ul(style="margin-left:0; padding-left:0;" )
+            %li.category-cell(style="border: solid 1px #cccccc; padding:3px;#{icon_bg}")
+              = f.file_field(icon_field, style:"width:100%; height:100%;")
+      %tr
+        - bgcolor_field = (@category_group.try(:for_female?) ? :female_icon_background_color : :male_icon_background_color)
+        %th
+          = f.label(bgcolor_field, 'Tile Color: ', class:'gray-title-color text-medium-title')
+        %td
+          = f.text_field(bgcolor_field, class:'color-textfield', style:"#{category.try(bgcolor_field).blank? ? '' : 'background-color:'+ category.try(bgcolor_field)}", title:'Provide the hex RGB values like #ffcccc', 'data-toggle'=>'tooltip', 'data-placement'=>"right")
+      %tr
+        %td(colspan="6" )
+          %p &nbsp;
+      %tr
+        %th
+          %label.gray-title-color.text-medium-title Curated Items:
+        %td(colspan="5")
+          .row
+            - 0.upto(3) do|idx|
+              - curated_item = (category.category_curated_items || [])[idx] || Items::CategoryCuratedItem.new
+              - item = curated_item.try(:item) || Item.new
+              .curated-item-wrapper(id="curate_item_#{idx}" class="col-xs-3 col-sm-3 col-md-3")
+                .curated-item-pic-box.subtle-drop-shadow
+                  - if (item_image_url = item.item_photos.first.try(:image_url) ).present?
+                    = image_tag(item_image_url, alt:"")
+                  = file_field_tag("curated_item_image[]", style:"width:100%; height:100%; position:relative; left:0; top:0;", title:'Click to Upload New Item', 'data-toggle'=>'tooltip', 'data-placement'=>"top")
+                %div.text-center
+                  %input.curated-item-textfield(type='text' name="curated_item_id[]" value="#{item.id}" placeholder="Item ID" )

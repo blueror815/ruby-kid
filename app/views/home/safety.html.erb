@@ -1,0 +1,159 @@
+﻿<% content_for(:footer_extra) do -%>
+  <%= render partial: 'layouts/google_analysis' -%>
+<% end # footer_extra -%>
+
+<header class="header-safty" ><!--header-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-4">
+        <div id="logo-destop"><a href="/"><img src="/assets/landing-25/about-logo.png" alt="logo" /></a></div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-8">
+        <% if user_signed_in? -%>
+          <a href="<%= users_logout_path -%>" class="about-login btn-default">LOG OUT</a>
+        <% elsif request.path != new_user_session_path -%>
+          <a href="<%= new_user_session_path %>" class="about-login btn-default">LOGIN</a>
+        <% else -%> &nbsp;
+        <% end -%>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="banner-text">
+          <p class="cust-text"></p>
+        </div>
+      </div>
+    </div><!--row-->
+  </div><!--container end-->
+</header>
+<div class="clearfix"></div>
+<section class="safety-page">
+  <div class="saftey-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12  col-sm-12  col-xs-12 col-xs-offset-0">
+          <div class="saftey-top1">
+            <h1>Safety Is Priority One</h1><!-- top heading -->
+            <h2>We’re Parents, too.</h2><!-- top heading two-->
+            <p>KidsTrade is founded and run by  parents. So, your
+              concerns are our  concerns. From sophisticated algorithmic
+              filters that snag swear words to live people with years of
+              online security experience using  their eyes and their
+              instincts, we employ an array of methods to  ensure a safe
+              environment.
+            </p><!-- top para -->
+          </div>
+        </div>
+        <div class="col-md-12  col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+          <div class="safteypage-list">
+            <div class="row">
+              <div class="saftey-list-li">
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                  <div class="safteypage-img">
+                    <img src="/assets/landing-25/saftey1.png" alt="" />
+                  </div>
+                </div>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <div class="safteypage-textarea">
+                    <h3>BOUNDARIES</h3>
+                    <p>
+                      Kids are only linked to friends and other students at their school.
+                      So, a familiar face is always at the other end of a trade.
+                    </p>
+                  </div>
+                </div>
+              </div><!-- list one -->
+              <div class="saftey-list-li">
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                  <div class="safteypage-img">
+                    <img src="/assets/landing-25/saftey3.png" alt="" />
+                  </div>
+                </div>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <div class="safteypage-textarea">
+                    <h3>NOTIFICATIONS</h3>
+                    <p>
+                      When a parent creates an account, they are directly notified when their
+                      child posts an item, agrees to an uneven trade, or wishes to buy or sell.
+                      Parents can log in anytime to view activity.
+                    </p>
+                  </div>
+                </div>
+              </div><!-- list three -->
+              <div class="saftey-list-li safty-list">
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                  <div class="safteypage-img">
+                    <img src="/assets/landing-25/saftey4.png" alt="" />
+                  </div>
+                </div>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <div class="safteypage-textarea">
+                    <h3>FILTERS</h3>
+                    <p>
+                      An exhaustive list of red-flagged words
+                      means offensive posts won’t see the light
+                      of day.
+                    </p>
+                  </div>
+                </div>
+              </div><!-- list four -->
+              <div class="saftey-list-li safty-list">
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                  <div class="safteypage-img">
+                    <img src="/assets/landing-25/saftey5.png" alt="" />
+                  </div>
+                </div>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <div class="safteypage-textarea">
+                    <h3>REPORT</h3>
+                    <p>
+                      Both kids and parents can report any
+                      activity or item they feel is inappropriate
+                      and it is immediately removed.
+                    </p>
+                  </div>
+                </div>
+              </div><!-- list five -->
+              <div class="saftey-list-li safty-list">
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                  <div class="safteypage-img">
+                    <img src="/assets/landing-25/saftey6.png" alt="" />
+                  </div>
+                </div>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <div class="safteypage-textarea">
+                    <h3>BLOCK</h3>
+                    <p>
+                      Parents can block specific users, keywords
+                      and even entire  categories.  These
+                      restrictions can be customized for each
+                      child.
+                    </p>
+                  </div>
+                </div>
+              </div><!-- list six -->
+
+            </div><!--row-->
+
+          </div><!--safty list-->
+
+        </div> <!-- col end -->
+
+      </div>
+
+
+    </div><!--container-->
+  </div><!--made-app-->
+  <section class="section3 safty-mac">	<!--section3-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <ul class="apple-logo">
+            <li><a href="http://itunes.apple.com/app/id1042828368"><img src="/assets/landing-25/apple-logo1.png" alt="IOS App"></a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop"><img src="/assets/landing-25/google-play-live.png" alt="Google Play App"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section><!--section3 end-->
+</section>
+
+<%= render partial: 'layouts/landing_footer' %>

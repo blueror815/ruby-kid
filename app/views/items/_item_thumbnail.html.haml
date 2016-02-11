@@ -1,0 +1,57 @@
+-###############
+-# Required locals:
+-#   item <Array of Item>
+-# Optional locals:
+-#   hide_user_label <Boolean> default false.
+-#   hide_item_info_labels <Boolean> default false. This row includes school info and price.
+-#   hide_school_teacher_label <Boolean> default false.
+-#   favorite_item_ids <Array of integer>
+-#   favorite_counts_map <Hash of item_id => integer> If defined, renders the favorite icon as a like-count instead of icon for buyers to toggle like status.
+-#   use_trade_path <boolean> whether set thumbnail link to point to trade path instead of item path.  default false.  This checks the presence of active_trade attribute.
+-# Reference: http://www.jqueryscript.net/layout/Dynamic-Grid-Layout-Plugin.html
+- hide_user_label = false if not defined?(hide_user_label)
+- hide_item_info_labels = false if not defined?(hide_item_info_labels)
+- hide_school_teacher_label = false if not defined?(hide_school_teacher_label)
+- favorite_item_ids = Set.new if not defined?(favorite_item_ids)
+- favorite_item_ids ||= Set.new
+- use_trade_path = false if not defined?(use_trade_path)
+
+%div(class="thumbnail-box text-center")
+  - thumbnail_link = (use_trade_path && item.active_trade) ? trade_path(item.active_trade) : item_path(item)
+  = link_to(thumbnail_link, id: "main_image_link_#{item.id}", class:"main-image-link #{item.status.downcase}-item" ) do
+    = image_tag( default_thumbnail(item), class: 'thumbnail-image', title: item.title, alt: item.title )
+  - if item.open?
+    = defined?(favorite_counts_map) && favorite_counts_map ? favorite_count_icon(item, favorite_counts_map[item.id] ) : favorite_item_icon(item, auth_user, favorite_item_ids.include?(item.id) )
+  - else
+    .thumbnail-overlay-text(id="waiting_for_approval_#{item.id}")
+      .thumbnail-overlay-title #{item.pending? ? 'Waiting for Parent Approval' : item.active_trade_attribute(:title).to_s.gsub("\n",'<br/>').html_safe }
+      .thumbnail-overlay-subtitle #{item.active_trade_attribute(:subtitle) }
+    - if item.active_trade_attribute(:needs_action) && item.active_trade && !item.active_trade.breathing?
+      - user = item.active_trade.the_other_user(item.user_id)
+      .thumbnail-user-icon-wrapper
+        .thumbnail-user-icon
+          %img.user-avatar-icon(src="#{user.profile_image_url(:thumb)}" alt="#{user.display_name}" title="#{user.display_name}")
+        .thumbnail-trading-activity-icon
+          %img(src="/assets/trading/trading-activity-circle.png" alt="#{user.display_name}" title="#{user.display_name}")
+  - if not hide_user_label
+    - user = (use_trade_path && item.active_trade) ? item.active_trade.the_other_user(item.user) : item.user
+    %div(class="user-info-row #{item.status.downcase}-item text-right #{item.user.profile_image_url(:thumb).present? ? 'user-info-shrink-space' : ''}")
+      .pull-left
+        = user_name_label(item.owner, :span)
+      - if !hide_user_label && user.profile_image_url(:thumb).present? && user.id == item.user_id
+        = link_to( store_path(id: user.id), { class: 'user-avatar-circle-small' + (hide_item_info_labels ? ' hidden-item-info-shrink-space':'') } ) do
+          %img(src="#{item.user.profile_image_url(:thumb)}" alt="#{user.display_name}" title="#{user.display_name}")
+      .clearfix
+  - if not hide_item_info_labels
+    %div(class="item-info-row #{item.status.downcase}-item")
+      %table(width='100%')
+        %tbody
+          %tr
+            - unless item.trading?
+              %td
+                - if !hide_school_teacher_label && item.user.current_school_id && item.current_school
+                  - compact_school_name = item.current_school.name.gsub(/(\s+school)$/i, '')
+                  %span(class='gray-title-color school-name' style="#{compact_school_name.size > 15 ? 'font-size:90%;':''}") #{compact_school_name}
+              %td.text-right(style="vertical-align: bottom;")
+                %span(class='price-medium') #{price_display(item.price) }
+      .clearfix

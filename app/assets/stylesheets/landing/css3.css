@@ -1,0 +1,16 @@
+/* Safari only override */
+::i-block-chrome,.credit-card .form .part .input {
+ padding:10px 0 0 14px; line-height:40px
+}
+/* Safari only override */
+::i-block-chrome,.credit-card .price .input{
+ padding:20px 0 0 0; line-height:40px; 
+}
+
+/* Safari only override */
+::i-block-chrome,.credit-card .price .input{width:276px; color:#ff3333; text-align:left; font-size:48px; height:98px; line-height:50px; padding:15px 0 0 15px; border:solid 1px #ccc; border-radius:11px; margin:0 0 21px 1px; display:inline-block;}
+
+/* Safari only override */
+::i-block-chrome,.paitem .items .Category .price .input{padding:10px 0 0 14px; line-height:40px}
+/* Safari only override */
+::i-block-chrome,.paitem .items .Category .price .input{width:147px; color:#ff3333; text-align:center; font-size:35px; height:53px; line-height:53px; border:solid 1px #ccc; border-radius:5px; margin:0 0 21px 1px; display:inline-block;}

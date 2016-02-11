@@ -1,0 +1,2292 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>Cubby Shop API Documentation</title>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" type="text/css" rel='stylesheet'/>
+  <script src="http://getbootstrap.com/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+</head>
+
+<body style="margin-left: 5%; margin-right: 5%;">
+
+<div class="container">
+<div class="col-md-9">
+
+<div class='page-header'>
+
+    <h2>Models:
+        <small>The JSON parameter keys presented in JSON response.</small>
+    </h2>
+</div>
+
+<!- ########################################################## ->
+<a name="model_item"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: Item</h3>
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>id</td>
+      <td>itemID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>title</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>price</td>
+      <td>price</td>
+      <td>CGFloat</td>
+    </tr>
+
+    <tr>
+      <td>user_id</td>
+      <td>userID</td>
+      <td>NSSInteger</td>
+    </tr>
+    <tr>
+      <td>user_name</td>
+      <td>userName</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>description</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>category_id</td>
+      <td>categoryID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>default_thumbnail_url</td>
+      <td>thumbnailURL</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>gender_group</td>
+      <td>genderGroup</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>age_group</td>
+      <td>ageGroup</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>teacher</td>
+      <td>teacher</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>profile_image_url</td>
+      <td>profileImageURL</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td></td>
+      <td>NSString - "PENDING" for waiting for approval, "OPEN" for active item or "TRADING" in pending trade</td>
+    </tr>
+    <tr>
+      <td>owner</td>
+      <td>owner</td>
+      <td><a href="#model_user">User</a></td>
+    </tr>
+    <tr>
+      <td>item_photos</td>
+      <td></td>
+      <td>Array of Strings - URLs of images</td>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<!- ########################################################## ->
+<a name="model_category"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: ItemCategory</h3>
+  </div>
+
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>id</td>
+      <td>categoryId</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>name</td>
+      <td>NSString - The name shown in text</td>
+    </tr>
+    <tr>
+      <td>icon_label</td>
+      <td></td>
+      <td>NSString - Unlike name, this is intended for label on top of the icon. So this may be empty, like for Barbie
+        icon.
+      </td>
+    </tr>
+    <tr>
+      <td>gender_group</td>
+      <td></td>
+      <td>NSInteger - either 'M', 'F', or 'MF'</td>
+    </tr>
+    <tr>
+      <td>male_icon_url</td>
+      <td></td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>male_camera_background_url</td>
+      <td></td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>male_icon_background_color</td>
+      <td></td>
+      <td>NSString - hex value like "#ffccff"</td>
+    </tr>
+    <tr>
+      <td>male_hides_name</td>
+      <td></td>
+      <td>Boolean - whether should hide the category name along with the icon</td>
+    </tr>
+    <tr>
+      <td>female_icon_url</td>
+      <td></td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>female_camera_background_url</td>
+      <td></td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>female_icon_background_color</td>
+      <td></td>
+      <td>NSString - hex value like "#ffccff"</td>
+    </tr>
+    <tr>
+      <td>female_hides_name</td>
+      <td></td>
+      <td>Boolean - whether should hide the category name along with the icon</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!- ########################################################## ->
+<a name="model_item_comment"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: ItemComment</h3>
+  </div>
+
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>id</td>
+      <td>itemCommentID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>item_id</td>
+      <td>itemID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>user_id</td>
+      <td>userID</td>
+      <td>NSInteger - author of the comment/question</td>
+    </tr>
+    <tr>
+      <td>recipient_user_id</td>
+      <td>recipientUserID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>body</td>
+      <td>email</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td></td>
+      <td>NSString in date-time format yyyy-MM-dd'T'HH:mm:ssZ</td>
+    </tr>
+    <tr>
+      <td>user</td>
+      <td></td>
+      <td>NSDictionary - <a href="#model_user">the author's user info</a></td>
+    </tr>
+    <tr>
+      <td>recipient</td>
+      <td></td>
+      <td>NSDictionary - <a href="#model_user">the recipient's user info</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!- ########################################################## ->
+<a name="model_user"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: User</h3>
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>id</td>
+      <td>userID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>type</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>user_name</td>
+      <td>userName</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>email</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>first_name</td>
+      <td>firstName</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>last_name</td>
+      <td>lastName</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td>gender</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>current_school_id</td>
+      <td>currentSchoolID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>current_school_name</td>
+      <td>currentSchoolName</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>grade</td>
+      <td>grade</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>teacher</td>
+      <td>teacher</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>profile_image_url</td>
+      <td>profileImageURL</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>relationship_type</td>
+      <td>relationshipType</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>number_of_items_for_sale</td>
+      <td>numberOfItemsForSale</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>number_of_past_transactions</td>
+      <td>numberOfPastTransactions</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>parent_id</td>
+      <td></td>
+      <td>NSInteger</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<!- ########################################################## ->
+<a name="model_user_location"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: UserLocation</h3>
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>address</td>
+      <td>address</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>city</td>
+      <td>city</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>zip</td>
+      <td>zip</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>country</td>
+      <td>country</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>latitude</td>
+      <td>latitude</td>
+      <td>CGFloat</td>
+    </tr>
+    <tr>
+      <td>longitude</td>
+      <td>longitude</td>
+      <td>CGFloat</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!- ########################################################## ->
+
+<a name="model_trade"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: Trade</h3>
+  </div>
+  <div class="panel-body">
+    Negotiation info between the users: items, comments, status flags.
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>id</td>
+      <td></td>
+      <td>NSInteger - Trade ID</td>
+    </tr>
+    <tr>
+      <td>customer</td>
+      <td></td>
+      <td>{ "user": <a href="#model_user">User hash</a>, "items": <a href="#name">Array of Items</a> } - current logged-in user who's selecting items</td>
+    </tr>
+    <tr>
+      <td>merchant</td>
+      <td></td>
+      <td>{ "user": <a href="#model_user">User hash</a>, "items": <a href="#name">Array of Items</a> } - the other user who owns the items</td>
+    </tr>
+    <tr>
+      <td>comments</td>
+      <td></td>
+      <td>{ "user": <a href="#model_user">User hash</a>, "comment": String } </td>
+    </tr>
+    <tr>
+      <td>waiting_for_counter_offer</td>
+      <td></td>
+      <td>Boolean in Integer - 1 or 0</td>
+    </tr>
+    <tr>
+      <td>waiting_for_meeting_place</td>
+      <td></td>
+      <td>Boolean in Integer - 1 or 0</td>
+    </tr>
+    <tr>
+      <td>waiting_for_parent_approval</td>
+      <td></td>
+      <td>Boolean in Integer - 1 or 0</td>
+    </tr>
+    <tr>
+      <td>waiting_for_user_id</td>
+      <td></td>
+      <td>Integer - the user who should respond to action next.</td>
+    </tr>
+    <tr>
+      <td>last_meeting_place_set_by</td>
+      <td></td>
+      <td>Integer - the user who last set meeting place.</td>
+    </tr>
+    <tr>
+      <td>finished</td>
+      <td></td>
+      <td>Boolean in Integer - 1 or 0</td>
+    </tr>
+    <tr>
+      <td>cancelled</td>
+      <td></td>
+      <td>Boolean in Integer - 1 or 0</td>
+    </tr>
+    <tr>
+      <td>sent_completed_notification</td>
+      <td></td>
+      <td>Boolean in Integer - 1 or 0</td>
+    </tr>
+    <tr>
+      <td>completion_confirmed</td>
+      <td></td>
+      <td>Boolean in Integer - 1 or 0</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<!- ########################################################## ->
+
+<a name="model_trade_comment"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: TradeComment</h3>
+  </div>
+  <div class="panel-body">
+
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>trade_id</td>
+      <td></td>
+      <td>Integer</td>
+    </tr>
+    <tr>
+      <td>body</td>
+      <td></td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>createdAt</td>
+      <td>NSString in date-time format yyyy-MM-dd'T'HH:mm:ssZ</td>
+    </tr>
+    <tr>
+      <td>user</td>
+      <td></td>
+      <td><a href="#model_user">User hash</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!- ########################################################## ->
+
+
+<a name="model_notification"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: Notification</h3>
+  </div>
+  <div class="panel-body">
+    Message from another system with action type like &ldquo;Likes Your Item&rdquo; or &ldquo;Invite to Trade&rdquo;.
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--     attr_accessible :sender_user_id, :recipient_user_id, :title, :uri, :local_references, :status, :related_model_type, :related_model_id, :tip, :expires_at -->
+    <tr>
+      <td>id</td>
+      <td>notificationID</td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>title</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>tip</td>
+      <td>tip</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>related_model_type</td>
+      <td>relatedModelType</td>
+      <td>NSString - values like Item, User, Child, Parent, Trade, ItemComment, FavoriteItem, OfferResponse</td>
+    </tr>
+    <tr>
+      <td>related_model_id</td>
+      <td>relatedModelID</td>
+      <td>NSInteger - the record ID of related_model_type</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>status</td>
+      <td>NSString - values like WAIT, VIEWED</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>createdAt</td>
+      <td>NSString in date-time format yyyy-MM-dd'T'HH:mm:ssZ</td>
+    </tr>
+    <tr>
+      <td>priority</td>
+      <td></td>
+      <td>NSInteger - higher than 0 if user needs to pay more attention.</td>
+    </tr>
+    <tr>
+      <td>starred</td>
+      <td></td>
+      <td>Boolean - whether this message type is important and given a star</td>
+    </tr>
+    <tr>
+      <td>sender</td>
+      <td>sender</td>
+      <td>NSDictionary - <a href="#model_user">User hash</a> of the sender</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!- ########################################################## ->
+
+<a name="model_device"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Model: Device</h3>
+  </div>
+  <div class="panel-body">
+    Stores the set of devices the user has been using with the push_token used for push notifications.
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--     attr_accessible :sender_user_id, :recipient_user_id, :title, :uri, :local_references, :status, :related_model_type, :related_model_id, :tip, :expires_at -->
+    <tr>
+      <td>id</td>
+      <td></td>
+      <td>NSInteger</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td></td>
+      <td>NSString - values like 'ios'</td>
+    </tr>
+    <tr>
+      <td>user_id</td>
+      <td></td>
+      <td>Integer</td>
+    </tr>
+    <tr>
+      <td>push_token</td>
+      <td></td>
+      <td>NSString - push notification service token/ID</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>createdAt</td>
+      <td>NSString in date-time format yyyy-MM-dd'T'HH:mm:ssZ</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<a name="items_search_hash"></a>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Items Search Result</h3>
+  </div>
+  <div class="panel-body">
+    Combo of attributes of search results.
+  </div>
+  <table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th>JSON parameter name</th>
+      <th>Class property</th>
+      <th>Data Type</th>
+    </tr>
+    </thead>
+    <tbody>
+  <!--     attr_accessible :sender_user_id, :recipient_user_id, :title, :uri, :local_references, :status, :related_model_type, :related_model_id, :tip, :expires_at -->
+      <tr>
+        <td>items</td>
+        <td>Array of <a href="#model_item">Item JSON attributes</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>favorite_item_ids</td>
+        <td>Array of Integer</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>page</td>
+        <td>Integer</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>per_page</td>
+        <td>Integer</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>total_count</td>
+        <td>Integer</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>limits</td>
+        <td>Hash of "items_min_threshold": (Integer), "items_low_warning": (Integer)</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="clearfix">
+  <p></p>
+</div>
+
+<!- ########################################################## ->
+
+<div class='page-header'>
+  <h2>Item Info API Requests</h2>
+</div>
+
+<div class='row'>
+  <a name="item_detail"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/items/{id}.json (Request method: GET)</h3>
+      <h5>Detailed item information query.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>id</td>
+          <td>Y</td>
+          <td><strong>id</strong> integrated into the URL is required.</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>item</td>
+          <td>Hash of <a href="#model_item">Item JSON attributes</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>user</td>
+          <td>Hash of <a href="#model_user">User JSON attributes</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>is_in_cart</td>
+          <td>Boolean in Integer form</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>is_in_favorite_items</td>
+          <td>Boolean in Integer form</td>
+          <td>Whether signed-in user set Like this item.</td>
+        </tr>
+        <tr>
+          <td>is_follower</td>
+          <td>Boolean in Integer form</td>
+          <td>Whether signed-in user is following the item's seller shop</td>
+        </tr>
+        <tr>
+          <td>permission</td>
+          <td>Integer</td>
+          <td>Flag representing the combination of permissions the signed-user has to access the item.</td>
+        </tr>
+        <tr>
+          <td>comment_threads</td>
+          <td>Array of &lt;NSDictionary of "from_user": <a href="#model_user">buyer User hash</a>, "comments":
+            &lt;Array of <a href="#model_item_comment">ItemComment hash</a>&gt; &gt;</td>
+          <td>Lists of comments based on buyers</td>
+        </tr>
+        <tr>
+          <td>other_items</td>
+          <td>Array of <a href="#model_item">Item JSON</a></td>
+          <td>The seller's other active items.</td>
+        </tr>
+        <tr>
+          <td>favorite_item_ids</td>
+          <td>Array of Integer</td>
+          <td>Whether the signed-in user likes some of the other items.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!- ############################# ->
+
+<div class='row'>
+  <a name="liked_items"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/items/likes.json or /items/favorites.json (Request method: GET)</h3>
+      <h5>Fetches the user's selected Like/Favorite items.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td>
+          <td>Hash of <a href="#items_search_hash">Item Search Result</a> </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class='page-header'>
+  <h2>Item Update API Requests</h2>
+</div>
+
+<div class='row'>
+
+<div class='panel panel-success'>
+
+  <a name="item_update"></a>
+  <div class='panel-heading'>
+    <h3>/items/{id}.json (Request method: PUT)</h3>
+    <h5>Saves the given item attributes into the database.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>ID of the item</td>
+      </tr>
+      <tr>
+        <td>item</td>
+        <td>Y</td>
+        <td><a href="#model_item">Hash of Item JSON attributes</a></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Boolean in Integer form (0 | 1)</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class='page-header'>
+
+  <h2>Item Approval API Requests</h2>
+</div>
+
+<div class='row'>
+
+<a name="item_inventory"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/inventory/manager.json (Request method: GET)</h3>
+    <h5>Retrieval the list of items posted in various status. If signed-in user is a child, the list would be only
+      child's items. Else if user is a parent, the children's items would be included.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>tab</td>
+        <td>N</td>
+        <td>Values: active | pending | all, Default: active</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>/</td>
+        <td>Array of <a href="#model_item">Item JSON attributes</a></td>
+        <td>Root of the response hash is an array.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<a name="item_activate"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/inventory/activate.json (Request method: GET, PUT or POST)</h3>
+    <h5>Approve or re-activate item(s). Required parameter is either <strong>id</strong> or
+      <strong>item_ids</strong></h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>N</td>
+        <td>One single item</td>
+      </tr>
+      <tr>
+        <td>item_ids</td>
+        <td>N</td>
+        <td>Multiple item IDs (Integer)</td>
+      </tr>
+      <tr>
+        <td>decline_item_ids</td>
+        <td>N</td>
+        <td>To decline other items at the same, set this Array of item IDs (Integer).</td>
+      </tr>
+      <tr>
+        <td>item_<strong>1234256</strong></td>
+        <td>N</td>
+        <td>In the pattern of &quot;item_123456&quot; where 123456 is item ID, set to update item with this <a
+            href="#model_item">Item attributes</a></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Boolean in Integer form (0 | 1)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>item_count</td>
+        <td>Integer</td>
+        <td>Number of items updated</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<a name="item_deactivate"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/inventory/deactivate.json (Request method: GET, PUT or POST)</h3>
+    <h5>End item(s). Required parameter is either <strong>id</strong> or
+      <strong>item_ids</strong></h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>N</td>
+        <td>One single item</td>
+      </tr>
+      <tr>
+        <td>item_ids</td>
+        <td>N</td>
+        <td>Multiple items</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Boolean in Integer form (0 | 1)</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<a name="item_decline"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/inventory/decline.json (Request method: GET, PUT or POST)</h3>
+    <h5>Decline the pending item(s). Required parameter is either <strong>id</strong> or
+      <strong>item_ids</strong></h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>N</td>
+        <td>One single item</td>
+      </tr>
+      <tr>
+        <td>item_ids</td>
+        <td>N</td>
+        <td>Multiple items</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Boolean in Integer form (0 | 1)</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+<!--
+  inventory_manager_index GET inventory/manager#index
+  inventory_activate_item /inventory/activate/:id(.:format) inventory/manager#activate
+  inventory_deactivate_item /inventory/deactivate/:id(.:format) inventory/manager#deactivate
+  inventory_decline_item /inventory/decline/:id(.:format) inventory/manager#decline
+-->
+
+</div>
+
+<!- ########################################################## ->
+
+<div class='page-header'>
+  <h2>Category Info API Requests</h2>
+</div>
+
+<div class='row'>
+  <a name="user_categories"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/user_categories.json (Request method: GET)</h3>
+      <h5>Returns the categories oriented for the current user </h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Array of <a href="#model_category">keys and values of the ItemCategory hash</a>
+          <td>Array</td>
+          <td>Basic attributes of the ItemCategory hash.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class='page-header'>
+  <h2>User Info API Requests</h2>
+</div>
+
+<div class='row'>
+  <a name="current_user"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/users/show_current_user.json (Request method: GET)</h3>
+      <h5>Returns the current user's info and status</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><a href="#model_user">keys and values of the User hash</a>
+          <td>Hash</td>
+          <td>Basic attributes of the User hash.</td>
+        </tr>
+        <tr>
+          <td><a href="#model_user_location">keys and values of the UserLocation hash</a></td>
+          <td>Hash</td>
+          <td>Exists if user's location is set. Basic attributes of the UserLocation hash.</td>
+        </tr>
+        <tr>
+          <td>user_children_count</td>
+          <td>Integer</td>
+          <td>If user is a parent, this is the count of children</td>
+        </tr>
+        <tr>
+          <td>notifications_count</td>
+          <td>Integer</td>
+          <td>Number of unread messages/notifications</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <a name="specific_user"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/users/{id}.json (Request method: GET)</h3>
+      <h5>Returns the specified user's info. The access is limited to current user himself/herself and the
+        children.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>id</td>
+          <td>Y</td>
+          <td>ID of the user</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><a href="#model_user">keys and values of the User hash</a>
+          <td>Hash</td>
+          <td>Basic attributes of the User hash.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<! ######################### >
+
+<div class='row'>
+  <a name="notifications"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/notifications.json (Request method: GET)</h3>
+      <h5>Returns the logged-in user's notifications.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>/</td>
+          <td>Array of <a href="#model_notification">Notification hash</a></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<! ######################### >
+
+<div class='row'>
+  <a name="notifications_count"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/notifications_count.json (Request method: GET)</h3>
+      <h5>Returns the logged-in user's number of waiting notifications.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>notifications_count</td>
+          <td>Integer</td>
+          <td>number of waiting notifications </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!- ###################### ->
+
+<div class='row'>
+  <a name="add_device"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/devices.json (Request method: POST)</h3>
+      <h5>Add .</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>device</td>
+          <td>Y</td>
+          <td><a href="#model_device">Device hash</a> with type and push_token attributes specified.</td>
+        </tr>
+        </thead>
+        <tbody>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>device</td>
+          <td><a href="#model_notification">Device hash</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>success</td>
+          <td>Boolean</td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!- #################### ->
+
+<div class='row'>
+  <a name="list_devices"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/devices.json (Request method: GET)</h3>
+      <h5>Returns the logged-in user's notifications.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>/</td>
+          <td>Array of <a href="#model_notification">Device hash</a></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<!- ########################################################## ->
+
+<div class='page-header'>
+
+  <h2>Store API Requests</h2>
+</div>
+
+<!- #################### ->
+
+<div class='row'>
+  <a name="follow_user"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/stores/follow/#{:id}.json (Request method: any)</h3>
+      <h5>Toggles whether current user follows the shop's merchant.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>id</td>
+            <td>id</td>
+            <td>ID of the merchant <a href="#model_user">User</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>is_following</td>
+          <td>Boolean in integer</td>
+          <td>whether user has changed to follow or not</td>
+        </tr>
+        <tr>
+          <td>followed_user_ids</td>
+          <td>Array of integers</td>
+          <td>current list of store merchants being followed by logged-in user</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!- ############################# ->
+
+<div class='row'>
+  <a name="store_items"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/stores/{id}.json (Request method: GET)</h3>
+      <h5>Fetches the list of items from a user's cubby shop.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>id</td>
+          <td>Y</td>
+          <td>The user's <strong>id</strong> integrated into the URL is required.</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td>
+          <td>Array of <a href="#model_item">Item JSON attributes</a></td>
+          <td></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!- ################### ->
+
+
+<div class='row'>
+  <a name="store_items_for_trade"></a>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
+      <h3>/stores/{id}/items_for_trade/{trade_id}.json (Request method: GET)</h3>
+      <h5>Fetches the list of items from specified user's cubby shop and sorted more relevantly to the trade.</h5>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>Request Parameter</th>
+          <th>Required?</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>id</td>
+          <td>Y</td>
+          <td>The user's <strong>id</strong> integrated into the URL is required.</td>
+        </tr>
+        <tr>
+          <td>trade_id</td>
+          <td>Y</td>
+          <td>The trade's <strong>id</strong> integrated into the URL is required.</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>JSON Response Parameter</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>items</td>
+          <td>Array of <a href="#model_item">Item JSON attributes</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>more_items</td>
+          <td>Array of <a href="#model_item">Item JSON attributes</a></td>
+          <td></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<div class='page-header'>
+
+  <h2>Trading API Requests</h2>
+</div>
+
+<a name="show_trade"></a>
+
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/{id}.json (Request method: GET)</h3>
+    <h5><a href="#model_trade">Trade hash</a> at root</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>ID of the Trade</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <td><a href="#model_trade">Trade hash</a></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<a name="ask_question"></a>
+
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/item_comments.json (Request method: POST)</h3>
+    <h5><a href="#model_trade">Trade hash</a> at root</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>item_comment</td>
+        <td>Y</td>
+        <td>Hash of <a href="#model_item_comment">ItemComment</a> with item_id, body required </td>
+      </tr>
+      </tbody>
+    </table>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>item_comment</td>
+        <td><a href="#model_item_comment">ItemComment hash</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>success</td>
+        <td>Boolean of 1 or 0</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<a name="post_trade"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades.json (Request method: POST)</h3>
+    <h5>Create some invitation or offer to trade certain item.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>item_ids</td>
+        <td>Y</td>
+        <td>Array of item IDs</td>
+      </tr>
+      <tr>
+        <td>comment</td>
+        <td>N</td>
+        <td>String - optional comment</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Boolean</td>
+        <td>1 or 0</td>
+      </tr>
+      <tr>
+        <td>trade</td>
+        <td><a href="#model_trade">Trade hash</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>needs_parent_approval</td>
+        <td>Boolean</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>reason</td>
+        <td>String</td>
+        <td>Some reason for parent approval such as &quot;One of the items if over 50 dollars&quot;</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<a name="list_comments"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/:id/comments.json (Request method: GET)</h3>
+    <h5>List of trade comments of the trade.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>Integer - Trade ID</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>/</td>
+        <td></td>
+        <td>Array of <a href="#model_trade_comment">TradeComment hash</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<a name="add_comments"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/:id/comments.json (Request method: POST)</h3>
+    <h5>Add some comment to the trade.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>Integer - Trade ID</td>
+      </tr>
+      <tr>
+        <td>comment</td>
+        <td>N</td>
+        <td>String - comment</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>user</td>
+        <td></td>
+        <td><a href="#model_user">User hash</a></td>
+      </tr>
+      <tr>
+        <td>body</td>
+        <td></td>
+        <td>String</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<a name="accept_trade"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/{id}/accept.json (Request method: POST)</h3>
+    <h5>Accepts the trade between 2 users, each with their selection of items.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>Trade ID</td>
+      </tr>
+      <tr>
+        <td>comment</td>
+        <td></td>
+        <td>String</td>
+      </tr>
+      </tbody>
+    </table>
+    
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Integer</td>
+        <td>Either 1 or 0</td>
+      </tr>
+      <tr>
+        <td>errors</td>
+        <td></td>
+        <td>Array of String</td>
+      </tr>
+      <tr>
+        <td>trade</td>
+        <td><a href="#model_trade">Trade hash</a></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!- ########################################################## ->
+
+<a name="cancel_trade"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/{id}/cancel.json (Request method: DELETE, PUT, POST)</h3>
+    <h5>Cancels the trade between 2 users, which means deleting in-wait comments and notifications.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>Trade ID</td>
+      </tr>
+      </tbody>
+    </table>
+    
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Integer</td>
+        <td>Either 1 or 0</td>
+      </tr>
+      <tr>
+        <td>errors</td>
+        <td></td>
+        <td>Array of String</td>
+      </tr>
+      <tr>
+        <td>trade</td>
+        <td><a href="#model_trade">Trade hash</a></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<a name="pick_meeting"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/{id}/pick_meeting.json (Request method: POST or PUT)</h3>
+    <h5>Sends a message to the other user about how to meet and exchange items.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>Trade ID</td>
+      </tr>
+      <tr>
+        <td>comment</td>
+        <td>Y</td>
+        <td>String</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Integer</td>
+        <td>Either 1 or 0</td>
+      </tr>
+      <tr>
+        <td>errors</td>
+        <td></td>
+        <td>Array of String</td>
+      </tr>
+      <tr>
+        <td>trade</td>
+        <td><a href="#model_trade">Trade hash</a></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!- ########################################################## ->
+
+<a name="respond_to_meeting"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/{id}/respond_to_meeting.json (Request method: POST or PUT)</h3>
+    <h5>Sends a message to the other user whether agrees or wants to change the meeting.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>Trade ID</td>
+      </tr>
+      <tr>
+        <td>meeting_action</td>
+        <td>N</td>
+        <td>"agree" = agrees to meeting.  otherwise, blank or other value would mean change of meeting</td>
+      </tr>
+      <tr>
+        <td>comment</td>
+        <td>N</td>
+        <td>String</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Integer</td>
+        <td>Either 1 or 0</td>
+      </tr>
+      <tr>
+        <td>errors</td>
+        <td></td>
+        <td>Array of String</td>
+      </tr>
+      <tr>
+        <td>trade</td>
+        <td><a href="#model_trade">Trade hash</a></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+<!- ########################################################## ->
+
+<a name="confirm_completion"></a>
+<div class='panel panel-success'>
+  <div class='panel-heading'>
+    <h3>/trades/{id}/confirm_completion.json (Request method: POST or PUT)</h3>
+    <h5>For the trader to confirm whether the items are finished trading.</h5>
+  </div>
+  <div class='panel-body'>
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Request Parameter</th>
+        <th>Required?</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>id</td>
+        <td>Y</td>
+        <td>Trade ID</td>
+      </tr>
+      <tr>
+        <td>completion_confirmed</td>
+        <td>N</td>
+        <td>Boolean</td>
+      </tr>
+      <tr>
+        <td>comment</td>
+        <td>N</td>
+        <td>String</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>JSON Response Parameter</th>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>success</td>
+        <td>Integer</td>
+        <td>Either 1 or 0</td>
+      </tr>
+      <tr>
+        <td>trade</td>
+        <td><a href="#model_trade">Trade Hash</a></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!-- ################################# -->
+</div>
+
+</div><!-- Detail column -->
+
+<div class="col-md-3">
+  <p>&nbsp;</p>
+  <h4>Models</h4>
+  <ul style="list-style-type: none; margin-left: -20px;">
+    <li><a href="#model_item">Item</a> </li>
+    <li><a href="#model_category">ItemCategory</a> </li>
+    <li><a href="#model_item_comment">ItemComment</a> </li>
+    <li><a href="#model_user">User</a> </li>
+    <li><a href="#model_user_location">UserLocation</a> </li>
+    <li><a href="#model_trade">Trade</a> </li>
+    <li><a href="#model_trade_comment">TradeComment</a> </li>
+    <li><a href="#model_notification">Notification</a> </li>
+    <li><a href="#items_search_hash">Items Search Result</a> </li>
+  </ul>
+
+  <h4>Item API Requests</h4>
+  <ul style="list-style-type: none; margin-left: -20px;">
+    <li><a href="#item_detail">Item Detail</a> </li>
+    <li><a href="#store_items">Shop's Item List</a> </li>
+    <li><a href="#liked_items">Liked Items</a></li>
+    <li><a href="#item_update">Update Item</a> </li>
+    <li><a href="#item_inventory">Items for Approval</a> </li>
+    <li><a href="#item_activate">Approve Item(s)</a> </li>
+    <li><a href="#item_deactivate">End Item(s)</a> </li>
+    <li><a href="#item_decline">Decline Item(s)</a> </li>
+  </ul>
+
+  <h4>Category API Requests</h4>
+  <ul style="list-style-type: none; margin-left: -20px;">
+    <li><a href="#user_categories">User Categories</a> </li>
+  </ul>
+
+  <h4>User API Requests</h4>
+  <ul style="list-style-type: none; margin-left: -20px;">
+    <li><a href="#current_user">Logged-in User</a> </li>
+    <li><a href="#specific_user">Specific User</a> </li>
+    <li><a href="#notifications">Notifications List</a></li>
+    <li><a href="#notifications_count">Notifications Count</a></li>
+    <li><a href="#add_device">Add Device</a></li>
+    <li><a href="#list_device">Devices List</a></li>
+  </ul>
+
+  <h4>Store API Requests</h4>
+  <ul style="list-style-type: none; margin-left: -20px;">
+    <li><a href="#follow_user">Follow Merchant - toggling</a> </li>
+    <li><a href="#store_items">Store Items</a></li>
+    <li><a href="#store_items_for_trade">Store Items for Trade</a></li>
+  </ul>
+
+  <h4>Trading API Requests</h4>
+  <ul style="list-style-type: none; margin-left: -20px;">
+    <li><a href="#show_trade">Trade Info</a> </li>
+    <li><a href="#ask_question">Ask Question</a></li>
+    <li><a href="#post_trade">Invite to Trade / Counter Offer</a> </li>
+    <li><a href="#list_comments">List Comments</a></li>
+    <li><a href="#add_comments">Add Comment</a></li>
+    <li><a href="#accept_trade">Accept Trade</a> </li>
+    <li><a href="#cancel_trade">Cancel Trade</a> </li>
+    <li><a href="#pick_meeting">Pick Meeting Place and Time</a> </li>
+    <li><a href="#respond_to_meeting">Respond to Meeting</a> </li>
+    <li><a href="#confirm_completion">Confirm Trade Completion</a> </li>
+
+  </ul>
+</div>
+
+</div>
+
+</body>
+</html>

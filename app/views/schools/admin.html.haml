@@ -1,0 +1,41 @@
+- content_for(:head_extra) do
+  :css
+    .full-width-block { width:100%; margin:0; }
+    #schools_wrapper {  max-height: 400px; overflow: scroll; padding:2px; background-color:#cccccc; }
+    .schools-table { width:100%; margin:0; background-color:#ffffff; }
+    .schools-table tr:hover td { background-color:rgb(213, 237, 253); }
+    .schools-table td { padding: 5px 10px; }
+    .schools-table td input { width:96%; border-radius: 4px; }
+    #nearby_schools { list-style: none; margin: 0; padding:0; }
+    #nearby_schools li { display:inline-block; margin:0 15px; width:45%; font-weight:300; line-height: 1.7em; }
+    #nearby_schools li a { text-decoration:none; }
+
+- content_for(:footer_extra) do
+  :javascript
+    jQuery(function(){
+    });
+
+.container
+  .row(style="vertical-align:bottom; margin:0;")
+    = form_for(:school, method: :get, remote:false ) do
+      %img.pull-left(src="/assets/logos/kidstrade-title.png" alt="KIDSTrade" style="margin:0 2% 0 0;")
+      %p.pull-left.normal-weight.text-medium-title(style="margin:0 2% 0 0;")
+        %a(href='/admin') ADMIN
+        %span.gray-title-color - SCHOOLS
+      %p.pull-left(width="25%;")
+        %input#school_name(type="text" name="q" value="#{params[:name]}" placeholder="Search Schools" width="80%;" )
+          %button(type="submit"  aria-label="Search Schools" )
+            %span.glyphicon.glyphicon-search(aria-hidden="true")/
+      %p.pull-right.normal-weight.text-medium-title
+        %a(href="#{schools_admin_path}") List
+.full-width-block.subtle-inner-shadow
+  %table.schools-table.table-striped
+    %tbody
+      %tr.gray-bottom-border
+        %td.text-tiny.gray-title-color(width="30%") Name
+        %td.text-tiny.gray-title-color(width="22%") City
+        %td.text-tiny.gray-title-color(width="18%") State/Province/Region
+        %td.text-tiny.gray-title-color(width="15%") Zip/Postal Code
+        %td.text-tiny.gray-title-color(colspan="2" width="15%" ) Country
+#schools_wrapper.full-width-block
+  = render 'schools_table', :schools => @schools

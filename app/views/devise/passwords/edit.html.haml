@@ -1,0 +1,65 @@
+-# @user <User> the user whose password intended to be changed.
+- @user = User.with_reset_password_token(params[:reset_password_token])
+- which_password = @user.is_a?(Child) ? "your child's password" : 'your password'
+- password_label = @user.is_a?(Child) ? "Child's password" : 'Your password'
+- puts @user.is_a?(Child)
+- content_for(:head_extra) do
+
+  :css
+    .login-form-group {
+      padding: 30px;
+      background-color: rgb(245, 245, 241);
+    }
+    .login-form-group button { width:80%; }
+    .title-statue {
+      margin-left: -115px;
+    }
+    img.goat { max-width: 100%; }
+    @media only screen and (min-width: 641px ) and ( max-width: 840px ) {
+      .title-statue {
+        margin-left: -50px;
+      }
+      .title-statue h3 { font-size: 18pt; }
+    }
+    @media only screen and ( max-width: 640px )
+    {
+      .login-form-group {
+        padding: 30px;
+        border-radius: 10px;
+      }
+      .login-form-group button { width:100%; }
+      .title-statue {
+        margin-left: -25px;
+      }
+      .title-statue h3 { font-size: 16pt; }
+      img.goat { max-width: 80%; }
+    }
+  :javascript
+    $(function() {
+      //$("#errorModal").modal({show: true } );
+    });
+//resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html=>{:role => 'form', :method => :put}) do |f|
+  .section-gap
+  .container
+    %div(class='login-form-group col-md-6 col-md-offset-3 col-sm-8 col-sm-2 col-sm-10 col-sm-1')
+      .title-statue
+        %table
+          %tbody
+            %tr
+              %td
+                %img.goat.pull-left(src='/assets/logos/goat-statue-small.png')
+              %td(style="vertical-align:bottom; padding-left:5px;" )
+                %h3(style="color: rgb(68, 198, 0);") Please reset #{which_password}:
+      .form-group
+        %h3 #{password_label}:
+      = f.hidden_field :reset_password_token
+      %div(class='form-group')
+        = f.password_field :password, :class => 'form-control large-form-field', :autofocus => true, :placeholder => "New Password"
+
+      %div(class='form-group')
+        = f.password_field :password_confirmation, :class => 'form-control large-form-field', :placeholder => 'Confirm New Password'
+
+      %div(class='form-group text-center' style='margin-top:70px;')
+        %br
+        = f.submit "Submit", :class => 'btn btn-primary large-form-button light-blue-bg'

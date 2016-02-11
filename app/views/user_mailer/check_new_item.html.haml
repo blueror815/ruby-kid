@@ -1,0 +1,42 @@
+-# Follows layouts/notification_mail.html.haml
+-# Expected instance variables:
+-#   @sender <User>
+-#   @recipient <User>
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+-#   @host_uri
+
+:ruby
+  @host_uri ||= Rails.env.development? ? "http://192.168.1.195" : "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+  @footer_warning_notes = t('parenting.check_new_item.email_bottom_tip')
+  @yield_top_banner_row = true
+
+= render partial: 'user_mailer/basic_css_table_config'
+
+- content_for(:top_banner_row) do
+  %tr
+    %td.top-banner-row(colspan="3" style="width: 100%; padding: 0;")
+      %div.text-center(style="padding:25px 5% 0 5%;")
+        %img(src="#{@host_uri}/assets/messages/see-whats-happening-mobile.png" title="See What's happening!" style="max-width:100%;")
+
+
+- content_for(:goto_section) do
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{@host_uri}#{log_into_app_path}") Log In
+  %p &nbsp;
+
+  %table(cellspacing="0" style="margin: 0 auto; width:100%;")
+    %tbody
+      %tr
+        %td(style="text-align:center;")
+          %p(style="color:#{@font_color}; font-size:12pt; line-height:1.4em;")
+            Need the KidsTrade app on your phone?
+            %br Download it! Its free!
+      %tr
+        %td(style="vertical-align:top; text-align:center; padding:10px 0;")
+          %a(href="http://itunes.apple.com/app/id1042828368" style="margin: 10px 20px;")
+            %img(src="#{@host_uri}/assets/logos/apple-logo-130.png" alt="Download on the AppStore")/
+          %a(href="https://play.google.com/store/apps/details?id=com.cubbyshop.cubbyshop" style="margin: 10px 10px;")
+            %img(src="#{@host_uri}/assets/logos/google-play-130.png" alt="Google Play App")/
+
+= render partial: 'user_mailer/basic_css_table_layout'

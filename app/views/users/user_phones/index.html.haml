@@ -1,0 +1,12 @@
+
+%h3
+  = params[:action] == 'new' ? 'Enter New Phone Number' : 'Your Phone Numbers'
+%br
+- params[:tab] = 'phone'
+
+- content_for(:other_tab_content) do
+  %div(class="tab-pane panel-no-top-border #{profile_tab_css_class('phone')}" id='phone_tab')
+    = render [::Users::UserPhone.new(params[:users_user_phone]) ] + @user_phones
+
+= render partial: '/users/edit_profile_for_parent'
+

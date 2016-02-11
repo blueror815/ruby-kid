@@ -1,0 +1,36 @@
+- # Required locals:
+- #   item <Item>
+- # Optional locals:
+- #   item_number <Integer> number used to append to header 'Item' 
+
+%div(class="item-for-approval-wrapper center-block")
+  %div(class='pull-left text-big-title dark-text-color')
+    Item
+    %span(class='warning-color') #{defined?(item_number) ? item_number : ''}
+    
+  %div(class='pull-right warning-color text-big-title')
+    %span.text-big-title $
+    = text_field_tag("item_#{item.id}[price]", ("%.2f" % [item.price] ), class: 'price-field')
+  .clearfix
+
+  %div(class='text-medium-title dark-text-color' style='padding: 10px 0;') #{item.description.strip.truncate(500).html_safe}
+  
+  %div(class='text-superbig-title gray-title-color')
+
+  - if item.item_photos.present?
+    %div(class='center-block text-center')
+      = hidden_field_tag('item_ids[]', item.id, id: "item_id_#{item.id}")
+      %input(type='checkbox' name="decline_item_ids[]" value="#{item.id}" id="decline_item_checkbox_#{item.id}" title="Decline This Item")
+      %a(href="#{edit_item_path(item)}" id="main_image_link_#{item.id}")
+        %img.main-image-placeholder(src="#{item.item_photos.first.image_url}" alt='Main Picture' style="margin-top: 10px")
+      %div(class='denied-overlay-title clearfix' id="denied_overlay_title_#{item.id}") DENIED
+
+      &nbsp;
+  - if item.item_photos.present? && item.item_photos.size > 1
+    %div(class='center-block' style='padding-top: 10px;')
+      - item.item_photos[1, item.item_photos.size - 1].each_with_index do|item_photo, index|
+        %div(class='thumbnail-cell')
+          %a(href="#{edit_item_path(item)}" class="thumbnail_link_#{item.id}")
+            %img.thumbnail-placeholder(src="#{item_photo.image_url(:thumb)}" alt="Picture #{index + 2}")
+        
+

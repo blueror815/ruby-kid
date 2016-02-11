@@ -1,0 +1,32 @@
+- content_for(:footer_extra) do
+
+  :javascript
+    var schoolNames = #{@schools.to_a.collect{|sc| {'label' => "#{sc.name.titleize} (#{sc.address})", 'value'=> sc.id } }.to_json };
+          
+    jQuery(function() {
+        
+      $('#search_schools_name').autocomplete( {
+          source: schoolNames,
+          minLength: 2,
+          select: function(event, ui) {
+            $("#user_current_school_id").attr("value", ui.item.value);
+          }
+        } 
+      );
+      
+      $('#search_schools_button').click( function(event) {
+          $.ajax("/schools?state=" + $("#search_schools_state").val() + "&zip=" + $("#search_schools_zip").val() );
+        }
+      );
+          
+      $("#search_schools_state").change(function(event) { 
+          $.ajax("/schools?state=" + event.target.options[event.target.selectedIndex].value); 
+        } 
+      );
+      $("#search_schools_zip").blur(function(event) {
+          if(event.target.value != "") {
+            $.ajax("/schools?zip=" + event.target.value );
+          }
+        }
+      );
+    } );

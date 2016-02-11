@@ -1,0 +1,11 @@
+<% @items.each do|item| 
+-%>
+  $("#item_activation_link_<%= item.id %>").attr('href', "<%=inventory_activate_item_path(item, tab:params[:tab]) %>")
+    .attr('title','Activate').removeClass("btn-warning").addClass("btn-success")
+    .html( "<span class='glyphicon glyphicon-ok-circle'></span>" );
+  <% if params[:tab] == 'active' -%>
+    $("#item_row_of_<%= item.id %>").fadeOut(2000, function(){
+        $("#item_row_of_<%= item.id %>").hide();
+      } );
+  <% end -%>
+<% end -%>

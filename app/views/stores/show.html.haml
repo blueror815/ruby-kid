@@ -1,0 +1,33 @@
+- content_for(:head_extra) do
+
+  = javascript_include_tag 'items'
+
+- content_for(:footer_extra) do
+
+  :javascript
+
+    $(function () {
+
+      $("#items_search_sort").change( function() { $("#items_search_form").submit(); } );
+
+      $(window).load( setTilesWithWookmark );
+      $(window).resize( setTilesWithWookmark );
+
+    } );
+
+
+%div(class='container row content-width center-block')
+  = render(partial: 'users/seller_info', locals: { user: @user } )
+  
+  .section-gap
+    
+  %div(id='items_container' class='row content-width center-block')
+    = render(partial: 'items/item_thumbnail_grid', locals:{ items: @items, favorite_item_ids: (@favorite_counts || {}).keys, hide_user_label: true, hide_school_teacher_label: true } )
+
+    .clearfix
+
+  .row
+    %p.clearfix
+
+  - if auth_user && auth_user.is_a?(Child)
+    = render(partial: 'home/bottom_tabbar')

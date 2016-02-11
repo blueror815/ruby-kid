@@ -1,0 +1,14 @@
+<%
+button_id = params[:button_id] || 'sendItemCommentButton'
+dialog_id = params[:dialog_id] || 'replyItemComment'
+table_id = params[:table_id] || 'itemCommentsTable'
+-%>
+$("#<%= button_id %>").text("Comment Sent").prop("disabled", true);
+<% ######### NOT WORKING: $("#<%= table_id % >").html("<%= render(partial: 'item_comments/table', locals:{ item: @item, item_comments: @item.item_comments.reload, make_modal: false } ) % >");
+-%>
+setTimeout(function() {
+    $("#<%= dialog_id %>").modal('hide');
+    $("#item_comment_body").val("");
+    $("#<%= button_id %>").text("Send");
+    $("#<%= button_id %>").text("Comment Sent").prop("disabled", false);
+  }, 3000);

@@ -1,0 +1,78 @@
+---
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: Can I get KidsTrade on my iPad?
+    answer: ! "<img class=\" img-responsive faq-img\" src=\"/assets/landing-25/faq-img.png\">\r\n\r\nYes!
+      \ You can use the app just as easily on an iPad as you can on an iPhone.  When
+      searching the App Store on your iPad, tap “iPad Only” in the upper left corner.
+      Then choose  “iPhone Only” and continue.  You can also go directly from our
+      home page or <a href=\"https://itunes.apple.com/app/id1042828368\" style=\"text-decoration:
+      underline;\">right here</a>."
+    order_index: 0
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: How does trading work?
+    answer: ! "<ul class=\"faq-tab\">\r\n                    <li>Your child browses
+      items posted by kids in their circle.</li>\r\n                    <li>When they
+      see something they like, they select itand invite the owner to check out their
+      stuff. </li>\r\n                    <li>That child picks something from your
+      child, who can then accept or decline the trade.</li>\r\n                    <li>If
+      a trade seems uneven or involves items over $50, parental approval is required.</li>\r\n
+      \                   <li>The child who started the trade suggests where and when
+      to make the exchange.</li>\r\n                  </ul>"
+    order_index: 1
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: Why do items need prices if we just want to trade?
+    answer: If you’d like to stick with trading, that’s great!  But for those times
+      when you just have to have something and simply can’t wait, we also offer the
+      option to buy and sell.
+    order_index: 2
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: How does buying and selling work?
+    answer: Each item has an “Add to Cart” option. If you wish to buy something or
+      agree to sell something, it becomes a parent-to-parent transaction.
+    order_index: 3
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: How else is my child’s safety ensured?
+    answer: Children are only linked to peers within their own school. So, interactions
+      are with kids they already know. In addition, we employ an array of methods
+      to ensure a safe environment for our users, from sophisticated algorithmic filters
+      that snag swear words to live people with years of online security experience
+      using their eyes and their instincts.
+    order_index: 4
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: Who is in my child’s “circle”?
+    answer: Any user who is a student at the same school and is in the same grade,
+      a grade above and a grade below your child. So, if your child is in 3rd grade,
+      he can trade with 2nd, 3rd and 4th graders.
+    order_index: 5
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: What if a child is being inappropriate?
+    answer: You or your child can hit “Report” and the offensive item and/or conversation
+      are immediately removed and the parent of the reported child is notified. You
+      can also block a user by going to “Boundaries” on your parental dashboard. Your
+      child will no longer see their items or be able to communicate.
+    order_index: 6
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: Is my child’s information secure?
+    answer: We take your privacy very seriously.  We solely collect a child’s grade
+      and school in order to connect them with classmates and curate a safe, familiar
+      environment for them to talk and trade with only kids they know. In compliance
+      with the Children’s Online Privacy Protection Act, we will not actively use
+      information provided by your child in third-party advertising, nor will we track
+      such information for that purpose. We will not retain your child’s information
+      on our servers for longer than it is necessary to fulfill the purpose for which
+      it was provided.
+    order_index: 7
+- !ruby/object:QuestionAnswer
+  attributes:
+    question: Is there a fee to use KidsTrade?
+    answer: The app is free to download and use.  Eventually, we may charge for certain
+      features. If that happens, we will give you fair warning.
+    order_index: 8

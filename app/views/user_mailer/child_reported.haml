@@ -1,0 +1,30 @@
+-# Expected instance variables:
+-#   @sender <User>
+-#   @recipient <User>
+-#   @main_paragraphs <Array>
+-#   @sub_paragraphs <Array>
+-#   @host_uri
+-#   @report <Report>
+
+:ruby
+  @host_uri ||= "http://#{Rails.configuration.action_mailer.default_url_options[:host] || 'www.kidstrade.com'}"
+  @statue_logo = ''
+  @use_separator_gap = false
+
+- content_for(:goto_section) do
+  %div(style="width: 100%; text-align: left;")
+    %p.sub-paragraph(style="#{@sub_p_style}")
+      Thank you, <br/>Our Safety Team
+    %p.sub-paragraph &nbsp;
+
+  .submit-button(style="#{@form_button_style}")
+    %a(href="#{report_url(id: @report.id)}") Log In
+
+- content_for(:footer_extra) do
+  %table(cellspacing="0" style="margin: 10px 0;")
+    %tbody
+      %tr
+        %td(style="vertical-align:top;")
+
+
+= render partial: 'user_mailer/basic_css_table_layout'
